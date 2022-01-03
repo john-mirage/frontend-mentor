@@ -22,7 +22,7 @@ const Container = styled.a`
     padding-left: 2.4rem;
     padding-right: 2.4rem;
     background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     animation: ${slideIn} 300ms linear;
 `;
 
