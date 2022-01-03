@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "@src/GlobalStyle";
-import Page from "@src/components/ordersummary/Page";
+import GlobalStyle from "@styles/GlobalStyle";
+import Page from "@components/ordersummary/Page";
+import Fab from "@components/Fab";
 
 const theme = {
     paleBlue: "hsl(225, 100%, 94%)",
@@ -26,6 +27,7 @@ function OrderSummary() {
                 <title>Frontend Mentor | Order Summary Component</title>
             </Head>
             <ThemeProvider theme={theme}>
+                <Fab />
                 <Page />
             </ThemeProvider>
         </>
