@@ -1,6 +1,35 @@
+import Head from "next/head";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "@styles/GlobalStyle";
+import Fab from "@components/Fab";
+import Page from "@components/ntfpreviewcard/Page";
+
+const theme = {
+    softBlue: "hsl(215, 51%, 70%)",
+    cyan: "hsl(178, 100%, 50%)",
+    backgroundMain: "hsl(217, 54%, 11%)",
+    backgroundCard: "hsl(216, 50%, 16%)",
+    backgroundLine: "hsl(215, 32%, 27%)",
+    white: "hsl(0, 0%, 100%)"
+}
+
 function NFTPreviewCard() {
     return (
-        <h1>NFT Card Preview Component</h1>
+        <>
+            <GlobalStyle fontFamily="Outfit" />
+            <Head>
+                <meta charSet="UTF-8" key="charset" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" key="edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" key="viewport" />
+                <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet" key="font" />
+                <link rel="icon" href="./favicon.png" key="favicon" />
+                <title>Frontend Mentor | NFT Preview Card</title>
+            </Head>
+            <ThemeProvider theme={theme}>
+                <Fab />
+                <Page />
+            </ThemeProvider>
+        </>
     );
 }
 
