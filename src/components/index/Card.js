@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const Container = styled.a`
+const Container = styled.article`
     width: 100%;
     height: auto;
     overflow: hidden;
@@ -41,7 +41,8 @@ const Body = styled.div`
     }
 `;
 
-const Title = styled.h2`
+const Title = styled.a`
+    display: block;
     text-align: center;
     font-size: 2rem;
     font-weight: 500;
@@ -50,6 +51,10 @@ const Title = styled.h2`
 
     @media screen and (min-width: 808px) {
         text-align: start;
+    }
+
+    &:hover {
+        color: ${props => props.theme.darkBlue};
     }
 `;
 
@@ -76,18 +81,18 @@ const Description = styled.p`
 
 function Card(props) {
     return (
-        <Link href={props.link}>
-            <Container>
-                <Image
-                    src={props.imageSrc}
-                    alt={props.imageAlt}
-                />
-                <Body>
+        <Container>
+            <Image
+                src={props.imageSrc}
+                alt={props.imageAlt}
+            />
+            <Body>
+                <Link href={props.link}>
                     <Title>{props.title}</Title>
-                    <Description>{props.description}</Description>
-                </Body>
-            </Container>
-        </Link>
+                </Link>
+                <Description>{props.description}</Description>
+            </Body>
+        </Container>
     );
 }
 
