@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -38,13 +39,6 @@ const Section = styled.div`
     }
 `;
 
-const Icon = styled.img`
-    display: block;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-`;
-
 const Plan = styled.h2`
     font-size: 1.6rem;
     font-weight: 900;
@@ -81,9 +75,11 @@ function Order(props) {
         <Container>
 
             <Section>
-                <Icon
+                <Image
                     src={props.iconSrc}
                     alt={props.iconAlt}
+                    width="50"
+                    height="50"
                 />
             </Section>
             

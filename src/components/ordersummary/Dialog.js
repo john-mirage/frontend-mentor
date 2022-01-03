@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const Container = styled.article`
@@ -13,12 +14,6 @@ const Container = styled.article`
         margin-left: auto;
         margin-right: auto;
     }
-`;
-
-const Image = styled.img`
-    display: block;
-    width: 100%;
-    height: auto;
 `;
 
 const Body = styled.div`
@@ -93,32 +88,20 @@ const SecondaryAction = styled(Action)`
 function Dialog(props) {
     return (
         <Container>
-
             <Image
                 src={props.imageSrc}
                 alt={props.imageAlt}
+                layout="responsive"
+                priority
             />
-
             <Body>
-
-                <Title>
-                    {props.title}
-                </Title>
-
-                <Description>
-                    {props.description}
-                </Description>
+                <Title>{props.title}</Title>
+                <Description>{props.description}</Description>
 
                 {props.children}
 
-                <PrimaryAction>
-                    {props.primaryAction}
-                </PrimaryAction>
-
-                <SecondaryAction>
-                    {props.secondaryAction}
-                </SecondaryAction>
-
+                <PrimaryAction>{props.primaryAction}</PrimaryAction>
+                <SecondaryAction>{props.secondaryAction}</SecondaryAction>
             </Body>
 
         </Container>

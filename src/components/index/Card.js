@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -23,13 +24,14 @@ const Container = styled.article`
     }
 `;
 
-const Image = styled.img`
+const ImageContainer = styled.div`
+    position: relative;
     width: 100%;
     height: auto;
 
     @media screen and (min-width: 808px) {
-        width: auto;
-        height: 19.2rem;
+        flex: 0 0 25.6rem;
+        width: 25.6rem;
     }
 `;
 
@@ -82,10 +84,14 @@ const Description = styled.p`
 function Card(props) {
     return (
         <Container>
-            <Image
-                src={props.imageSrc}
-                alt={props.imageAlt}
-            />
+            <ImageContainer>
+                <Image
+                    src={props.imageSrc}
+                    alt={props.imageAlt}
+                    layout="responsive"
+                    priority
+                />
+            </ImageContainer>
             <Body>
                 <Link href={props.link}>
                     <Title>{props.title}</Title>

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Card from "@components/index/Card";
+import orderSummaryIllustration from "@assets/index/ordersummary.jpg";
+import nftPreviewCardIllustration from "@assets/index/nftpreviewcard.jpg";
 
 const Container = styled.main`
     width: 100%;
@@ -20,7 +22,7 @@ function Page() {
                 link="/ordersummary"
                 title="Order Summary Component"
                 description="A perfect project for newbies who are starting to build confidence with layouts!"
-                imageSrc="./assets/ordersummary/design.jpg"
+                imageSrc={orderSummaryIllustration}
                 imageAlt="Order Summary Component design illustration"
             />
 
@@ -28,7 +30,7 @@ function Page() {
                 link="/nftpreviewcard"
                 title="NFT Preview Card Component"
                 description="This HTML & CSS only challenge is perfect for anyone just starting out or anyone wanting a small project to play around with."
-                imageSrc="./assets/nftpreviewcard/design.jpg"
+                imageSrc={nftPreviewCardIllustration}
                 imageAlt="NFT Preview Card Component design illustration"
             />
 
