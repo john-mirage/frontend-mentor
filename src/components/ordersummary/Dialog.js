@@ -4,7 +4,7 @@ const Container = styled.article`
     width: 100%;
     height: auto;
     border-radius: 2rem;
-    box-shadow: 0px 4px 24px ${props => props.theme.desaturatedBlue};
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     overflow: hidden;
     background-color: #FFF;
 
