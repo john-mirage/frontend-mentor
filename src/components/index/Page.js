@@ -1,0 +1,39 @@
+import styled from "styled-components";
+import Card from "@components/index/Card";
+
+const Container = styled.main`
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.4rem;
+    background: linear-gradient(to right, ${props => props.theme.darkBlue}, ${props => props.theme.blue});
+`;
+
+function Page() {
+    return (
+        <Container>
+
+            <Card
+                link="/ordersummary"
+                title="Order Summary Component"
+                description="A perfect project for newbies who are starting to build confidence with layouts!"
+                imageSrc="./assets/ordersummary/design.jpg"
+                imageAlt="Order Summary Component design illustration"
+            />
+
+            <Card
+                link="/nftpreviewcard"
+                title="NFT Preview Card Component"
+                description="This HTML & CSS only challenge is perfect for anyone just starting out or anyone wanting a small project to play around with."
+                imageSrc="./assets/nftpreviewcard/design.jpg"
+                imageAlt="NFT Preview Card Component design illustration"
+            />
+
+        </Container>
+    );
+}
+
+export default Page;
