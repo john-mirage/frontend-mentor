@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Card from "@components/index/Card";
 import orderSummaryIllustration from "@assets/index/ordersummary.jpg";
 import nftPreviewCardIllustration from "@assets/index/nftpreviewcard.jpg";
+import FAQAccordionCardIllustration from "@assets/index/faqaccordioncard.jpg";
 
 const Container = styled.main`
     width: 100%;
@@ -32,6 +33,14 @@ function Page() {
                 description="This HTML & CSS only challenge is perfect for anyone just starting out or anyone wanting a small project to play around with."
                 imageSrc={nftPreviewCardIllustration}
                 imageAlt="NFT Preview Card Component design illustration"
+            />
+
+            <Card
+                link="/faqaccordioncard"
+                title="FAQ Accordion Card Component"
+                description="In this challenge, you'll be building out an FAQ accordion. This is an extremely common front-end pattern, so it's a great opportunity to get some practice in!"
+                imageSrc={FAQAccordionCardIllustration}
+                imageAlt="FAQ Accordion Card Component design illustration"
             />
 
         </Container>

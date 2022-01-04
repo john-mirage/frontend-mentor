@@ -27,11 +27,12 @@ const Container = styled.article`
 const ImageContainer = styled.div`
     position: relative;
     width: 100%;
-    height: auto;
+    min-height: 25.6rem;
 
     @media screen and (min-width: 808px) {
         flex: 0 0 25.6rem;
         width: 25.6rem;
+        min-height: 18rem;
     }
 `;
 
@@ -88,7 +89,8 @@ function Card(props) {
                 <Image
                     src={props.imageSrc}
                     alt={props.imageAlt}
-                    layout="responsive"
+                    layout="fill"
+                    objectFit="cover"
                     priority
                 />
             </ImageContainer>
