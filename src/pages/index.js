@@ -17,6 +17,7 @@ function Home() {
         <>
             <GlobalStyle fontFamily="Roboto" />
             <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&family=Roboto:wght@400;500&display=swap" rel="stylesheet" key="font" />
                 <title>Frontend Mentor | Challenges</title>
             </Head>

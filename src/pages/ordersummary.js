@@ -19,6 +19,7 @@ function OrderSummary() {
         <>
             <GlobalStyle fontFamily="Red Hat Display" />
             <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap" rel="stylesheet" key="font" />
                 <title>Frontend Mentor | Order Summary Component</title>
             </Head>
