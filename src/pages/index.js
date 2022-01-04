@@ -22,7 +22,7 @@ function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" key="viewport" />
                 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&family=Roboto:wght@400;500&display=swap" rel="stylesheet" key="font" />
                 <link rel="icon" href="./favicon.png" key="favicon" />
-                <title>Frontend Mentor | Home</title>
+                <title>Frontend Mentor | Challenges</title>
             </Head>
             <ThemeProvider theme={theme}>
                 <Page />
