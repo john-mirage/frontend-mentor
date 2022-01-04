@@ -13,6 +13,7 @@ const slideIn = keyframes`
 
 const Container = styled.a`
     position: fixed;
+    z-index: 99;
     top: 1.6rem;
     left: 50%;
     transform: translateX(-50%);
