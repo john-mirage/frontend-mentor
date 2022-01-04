@@ -1,9 +1,8 @@
-import Image from "next/image";
 import styled from "styled-components";
+import Hero from "@components/ntfpreviewcard/Hero";
 import Crypto from "@components/ntfpreviewcard/Crypto";
 import Timer from "@components/ntfpreviewcard/Timer";
 import Author from "@components/ntfpreviewcard/Author";
-import equilibrium from "@assets/nftpreviewcard/image-equilibrium.jpg";
 
 const Container = styled.article`
     width: 100%;
@@ -17,25 +16,6 @@ const Container = styled.article`
         margin-left: auto;
         margin-right: auto;
     }
-`;
-
-const ImageContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: auto;
-    border-radius: 0.8rem;
-    overflow: hidden;
-    margin-bottom: 2rem;
-`;
-
-const ImageOverlay = styled.a`
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: ${props => props.theme.cyan};
 `;
 
 const Title = styled.a`
@@ -77,14 +57,7 @@ const Divider = styled.div`
 function Card() {
     return (
         <Container>
-            <ImageContainer>
-                <Image
-                    src={equilibrium}
-                    alt="Equilibrium illustration"
-                    layout="responsive"
-                    priority
-                />
-            </ImageContainer>
+            <Hero />
             <Title>Equilibrium #3429</Title>
             <Description>Our Equilibrium collection promotes balance and calm.</Description>
             <Row>
