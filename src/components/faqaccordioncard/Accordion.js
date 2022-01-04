@@ -23,6 +23,7 @@ const Question = styled.h2`
     font-size: 1.4rem;
     font-weight: 300;
     color: ${props => props.theme.neutralTextDarkBlue};
+    margin-right: 1.6rem;
 `;
 
 const Answer = styled.p`
