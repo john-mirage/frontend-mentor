@@ -1,8 +1,6 @@
-import Image from "next/image";
 import styled from "styled-components";
+import Illustration from "@components/faqaccordioncard/Illustration";
 import Accordion from "@components/faqaccordioncard/Accordion";
-import mobileIllustration from "@assets/faqaccordioncard/illustration-woman-online-mobile.svg";
-import mobilePattern from "@assets/faqaccordioncard/bg-pattern-mobile.svg";
 
 const Container = styled.article`
     position: relative;
@@ -10,63 +8,49 @@ const Container = styled.article`
     height: auto;
     border-radius: 2.4rem;
     background-color: #fff;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-    @media screen and (min-width: 1048px) {
-        width: 100rem;
+    @media screen and (min-width: 1248px) {
+        display: flex;
+        flex-direction: row;
+        width: 120rem;
         margin-left: auto;
         margin-right: auto;
     }
 `;
 
-const MobileIllustration = styled.div`
-    position: absolute;
-    z-index: 20;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    width: 75%;
-    height: auto;
-`;
-
-const MobilePattern = styled.div`
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -10%);
-    width: 75%;
-    height: auto;
-`;
-
 const Body = styled.div`
-    padding: 2.4rem;
-    margin-top: 30%;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 4.8rem;
+
+    @media screen and (min-width: 716px) {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+
+    @media screen and (min-width: 1248px) {
+        flex: 1 1 60%;
+        padding: 8rem 16rem 9.6rem 16rem;
+    }
 `;
 
 const Title = styled.h1`
     font-size: 3.2rem;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 1.6rem;
+    padding-bottom: 2.5rem;
     color: ${props => props.theme.neutralTextDarkBlue};
+
+    @media screen and (min-width: 1248px) {
+        text-align: start;
+    }
 `;
 
 function Dialog() {
     return (
         <Container>
-            <MobileIllustration>
-                <Image
-                    src={mobileIllustration}
-                    layout="responsive"
-                />
-            </MobileIllustration>
-            <MobilePattern>
-                <Image
-                    src={mobilePattern}
-                    layout="responsive"
-                />
-            </MobilePattern>
+            <Illustration />
             <Body>
                 <Title>FAQ</Title>
                 <Accordion
@@ -83,6 +67,16 @@ function Dialog() {
                     question="How do i reset my password?"
                     answer="You can reset your password at any time by clicking your avatar and settings / account."
                     accordionId="accordion-3"
+                />
+                <Accordion
+                    question="Can i cancel my subscription?"
+                    answer="You can cancel your subscription at any time."
+                    accordionId="accordion-4"
+                />
+                <Accordion
+                    question="Do you provide additional support?"
+                    answer="You are available by phone or email."
+                    accordionId="accordion-5"
                 />
             </Body>
         </Container>
