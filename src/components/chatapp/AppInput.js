@@ -38,13 +38,38 @@ const Button = styled.button`
     background-color: ${props => props.theme.secondaryVeryDarkDesaturatedViolet};
     outline: none;
     border: none;
+    cursor: pointer;
+`;
+
+const ButtonArrowElement = styled.div`
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 1.4rem;
+    height: 0.4rem;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+    background-color: ${props => props.theme.secondaryWhite};
+`;
+
+const ButtonUpArrowElement = styled(ButtonArrowElement)`
+    transform-origin: top right;
+    transform: translate(50%, calc(-50% + 0.2rem)) rotateZ(45deg);
+`;
+
+const ButtonDownArrowElement = styled(ButtonArrowElement)`
+    transform-origin: bottom right;
+    transform: translate(50%, calc(-50% - 0.2rem)) rotateZ(-45deg);
 `;
 
 function AppInput() {
     return (
         <Container>
             <TextInput type="text" placeholder="Type a message..." />
-            <Button />
+            <Button>
+                <ButtonUpArrowElement />
+                <ButtonDownArrowElement />
+            </Button>
         </Container>
     );
 }
