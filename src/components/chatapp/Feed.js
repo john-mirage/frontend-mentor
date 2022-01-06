@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Pictures from "@components/chatapp/Pictures";
 import Proposition from "@components/chatapp/Proposition";
 
 const Container = styled.div`
@@ -6,7 +7,7 @@ const Container = styled.div`
     flex-direction: column;
     width: 100%;
     height: auto;
-    padding: 1.6rem;
+    padding-top: 1.6rem;
 `;
 
 const Message = styled.p`
@@ -30,6 +31,7 @@ function Feed() {
         <Container>
             <Message>That sounds great. I'd be happy to discuss more.</Message>
             <Message>Could you send over some pictures of your dog, please?</Message>
+            <Pictures />
             <Message right>Here are a few pictures. She's an happy girl!</Message>
             <Message right>Can you make it?</Message>
             <Message>She looks so happy! The we discussed works. How long shall i take her out for?</Message>
