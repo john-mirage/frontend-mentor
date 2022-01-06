@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import TopAppBar from "@components/chatapp/TopAppBar";
-import Feed from "@components/chatapp/Feed";
-import AppInput from "@components/chatapp/AppInput";
+import Bar from "@components/chatapp/Bar";
+import Chat from "@components/chatapp/Chat";
 
-const Case = styled.article`
+const Screen = styled.article`
     position: relative;
     z-index: 20;
     margin-top: 9.6rem;
-    width: 40rem;
+    width: 100%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -15,9 +14,15 @@ const Case = styled.article`
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     border-radius: 4.8rem;
     padding: 1.4rem;
+
+    @media screen and (min-width: 452px) {
+        width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
 `;
 
-const Screen = styled.div`
+const App = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
@@ -38,26 +43,15 @@ const Gap = styled.div`
     background-color: #fff;
 `;
 
-const Content = styled.div`
-    width: 100%;
-    height: auto;
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-    padding-bottom: 1.6rem;
-`;
-
 function Phone() {
     return (
-        <Case>
-            <Screen>
+        <Screen>
+            <App>
                 <Gap />
-                <TopAppBar />
-                <Content>
-                    <Feed />
-                    <AppInput />
-                </Content>
-            </Screen>
-        </Case>
+                <Bar />
+                <Chat />
+            </App>
+        </Screen>
     );
 }
 

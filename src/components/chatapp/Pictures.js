@@ -9,16 +9,17 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     flex-wrap: wrap;
-    width: 70%;
+    width: 100%;
     height: auto;
     margin-left: auto;
     margin-right: -1.4rem;
+    margin-bottom: -1.4rem;
 `;
 
-const ImageContainer = styled.div`
+const Picture = styled.div`
     width: calc((100% / 3) - 1.4rem);
     margin-right: 1.4rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
     border-radius: 1.6rem;
     overflow: hidden;
 `;
@@ -26,24 +27,26 @@ const ImageContainer = styled.div`
 function Pictures() {
     return (
         <Container>
-            <ImageContainer>
+            <Picture>
                 <Image
                     src={dogPicture1}
                     layout="responsive"
                 />
-            </ImageContainer>
-            <ImageContainer>
+            </Picture>
+            
+            <Picture>
                 <Image
                     src={dogPicture2}
                     layout="responsive"
                 />
-            </ImageContainer>
-            <ImageContainer>
+            </Picture>
+
+            <Picture>
                 <Image
                     src={dogPicture3}
                     layout="responsive"
                 />
-            </ImageContainer>
+            </Picture>
         </Container>
     );
 }

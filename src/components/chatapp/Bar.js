@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
-import ArrowIcon from "@components/chatapp/ArrowIcon";
+import LeftArrowButton from "@components/chatapp/LeftArrowButton";
+import MoreButton from "@components/chatapp/MoreButton";
 import avatar from "@assets/chatapp/avatar.jpg";
 
 const Container = styled.div`
@@ -14,21 +15,9 @@ const Container = styled.div`
     border-bottom-right-radius: 0.8rem;
     padding-top: 5rem;
     padding-bottom: 2rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 `;
-
-const Arrow = styled.div`
-    width: 1.6rem;
-    height: 1.6rem;
-    margin-right: 1.5rem;
-`;
-
-const ArrowElement = styled.div``;
-
-const ArrowUpElement = styled(ArrowElement)``;
-
-const ArrowDownElement = styled(ArrowElement)``;
 
 const Avatar = styled.div`
     width: 4rem;
@@ -55,49 +44,23 @@ const Name = styled.h2`
 const State = styled.p`
     font-size: 1.4rem;
     font-weight: 400;
-    color: ${props => props.theme.secondaryVeryLightMagenta};
+    color: rgba(255, 255, 255, 0.6);
 `;
 
-const More = styled.div`
-    width: 1.6rem;
-    height: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: auto;
-`;
-
-const Dot = styled.div`
-    width: 0.4rem;
-    height: 0.4rem;
-    border-radius: 50%;
-    background-color: ${props => props.theme.secondaryWhite};
-`;
-
-function TopAppBar() {
+function Bar() {
     return (
         <Container>
-            <ArrowIcon
-                size="2.4rem"
-            />
+            <LeftArrowButton />
             <Avatar>
-                <Image
-                    src={avatar}
-                    layout="responsive"
-                />
+                <Image src={avatar} layout="responsive"/>
             </Avatar>
             <Info>
                 <Name>Samuel Green</Name>
                 <State>Available to Walk</State>
             </Info>
-            <More>
-                <Dot />
-                <Dot />
-                <Dot />
-            </More>
+            <MoreButton />
         </Container>
     );
 }
 
-export default TopAppBar;
+export default Bar;

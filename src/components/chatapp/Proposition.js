@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import RadioInput from "@components/chatapp/RadioInput";
 
 const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 75%;
+    width: 100%;
     height: auto;
     border-top-left-radius: 1.6rem;
     border-top-right-radius: 1.6rem;
@@ -12,41 +13,12 @@ const Container = styled.div`
     border-bottom-left-radius: 0.6rem;
     background: linear-gradient(to right, ${props => props.theme.gradientLightMagenta}, ${props => props.theme.gradientLightViolet});
     padding: 1.6rem;
-    margin-bottom: 1.6rem;
-`;
-
-const RadioButton = styled.label`
-    display: flex;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 50%;
-    border: 0.2rem solid ${props => props.theme.secondaryVeryLightMagenta};
-    margin-right: 1.6rem;
-    cursor: pointer;
-`;
-
-const RadioButtonInput = styled.input`
-    display: none;
-
-    &:checked ~ .cd-Proposition-RadioButtonIndicator {
-        display: block;
-    }
-`;
-
-const RadioButtonIndicator = styled.div`
-    display: none;
-    width: 1rem;
-    height: 1rem;
-    margin: auto;
-    border-radius: 50%;
-    background-color: ${props => props.theme.secondaryWhite};
-    border: 0.2rem solid transparent;
 `;
 
 const Duration = styled.h3`
     font-size: 1.4rem;
     font-weight: 400;
-    color: ${props => props.theme.secondaryLightGrayishViolet};
+    color: rgba(255, 255, 255, 0.7);
 `;
 
 const Price = styled.p`
@@ -61,10 +33,7 @@ const Price = styled.p`
 function Proposition(props) {
     return (
         <Container>
-            <RadioButton htmlFor={props.inputId}>
-                <RadioButtonInput type="radio" id={props.inputId} name="proposition-selection" value={props.inputId} />
-                <RadioButtonIndicator className="cd-Proposition-RadioButtonIndicator" />
-            </RadioButton>
+            <RadioInput inputId={props.inputId} />
             <Duration>{props.duration}</Duration>
             <Price>{props.price}</Price>
         </Container>

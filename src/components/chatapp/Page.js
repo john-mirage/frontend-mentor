@@ -6,6 +6,8 @@ const Container = styled.main`
     width: 100%;
     height: 150rem;
     overflow: hidden;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
 `;
 
 const LeftShape = styled.div`
