@@ -10,7 +10,14 @@ const Container = styled.label`
     cursor: pointer;
 `;
 
-const Input = styled.input`
+const Input = styled.input.attrs(props => {
+    return {
+        type: "radio",
+        id: props.inputId,
+        name: "proposition-selection",
+        value: props.inputId
+    };
+})`
     display: none;
 `;
 
@@ -31,12 +38,7 @@ const Dot = styled.div`
 function RadioInput(props) {
     return (
         <Container htmlFor={props.inputId}>
-            <Input
-                type="radio"
-                id={props.inputId}
-                name="proposition-selection"
-                value={props.inputId}
-            />
+            <Input inputId={props.inputId} />
             <Dot />
         </Container>
     );

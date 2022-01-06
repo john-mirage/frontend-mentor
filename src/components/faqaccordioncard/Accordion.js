@@ -12,7 +12,13 @@ const Container = styled.label`
     border-bottom: 0.1rem solid ${props => props.theme.neutralDivider};
 `;
 
-const Trigger = styled.input`
+const Input = styled.input.attrs(props => {
+    return {
+        type: "checkbox",
+        id: props.inputId,
+        name: props.inputId,
+    }
+})`
     display: none;
 `;
 
@@ -30,7 +36,7 @@ const Question = styled.h2`
     font-weight: 300;
     color: ${props => props.theme.primaryTextBlue};
 
-    ${Trigger}:checked ~ ${Row} & {
+    ${Input}:checked ~ ${Row} & {
         font-weight: 600;
         color: ${props => props.theme.neutralTextDarkBlue};
     }
@@ -49,7 +55,7 @@ const ArrowIcon = styled.div`
     transition: transform;
     transition-duration: 300ms;
 
-    ${Trigger}:checked ~ ${Row} & {
+    ${Input}:checked ~ ${Row} & {
         transform: rotate(180deg);
     }
 `;
@@ -62,7 +68,7 @@ const Answer = styled.p`
     padding-top: 2rem;
     padding-right: 3.4rem;
 
-    ${Trigger}:checked ~ & {
+    ${Input}:checked ~ & {
         display: block;
     }
 
@@ -74,9 +80,11 @@ const Answer = styled.p`
 function Accordion(props) {
     return (
         <Container htmlFor={props.accordionId}>
-            <Trigger type="checkbox" id={props.accordionId} name={props.accordionId} />
+            <Input inputId={props.accordionId} />
             <Row>
-                <Question>{props.question}</Question>
+                <Question>
+                    {props.question}
+                </Question>
                 <ArrowIcon>
                     <Image
                         src={arrowIcon}
@@ -85,7 +93,9 @@ function Accordion(props) {
                     />
                 </ArrowIcon>
             </Row>
-            <Answer>{props.answer}</Answer>
+            <Answer>
+                {props.answer}
+            </Answer>
         </Container>
     );
 }

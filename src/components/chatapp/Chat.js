@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Message from "@components/chatapp/Message";
 import Pictures from "@components/chatapp/Pictures";
 import Proposition from "@components/chatapp/Proposition";
@@ -20,11 +20,21 @@ const Section = styled.div`
 `;
 
 const Element = styled.div`
-    width: ${props => props.width ? props.width : "auto"};
-    max-width: ${props => props.maxWidth ? props.maxWidth : "none"};
     align-self: ${props => props.right ? "flex-end" : "flex-start"};
     height: auto;
     margin-bottom: 1.5rem;
+
+    ${props => {
+        if (props.fixedWidth) {
+            return css`
+                width: ${props.fixedWidth};
+            `;
+        } else if (props.maxWidth) {
+            return css`
+                max-width: ${props.maxWidth};
+            `;
+        }
+    }}
 
     &:last-child {
         margin-bottom: 0;
@@ -44,7 +54,7 @@ function Chat() {
             </Section>
             
             <Section>
-                <Element right width="70%">
+                <Element right fixedWidth="70%">
                     <Pictures />
                 </Element>
                 <Element right maxWidth="60%">
@@ -59,10 +69,10 @@ function Chat() {
                 <Element maxWidth="60%">
                     <Message message="She looks so happy! The we discussed works. How long shall i take her out for?" />
                 </Element>
-                <Element width="70%">
+                <Element fixedWidth="70%">
                     <Proposition duration="30 minutes walk" price="$29" inputId="proposition-selector-1" />
                 </Element>
-                <Element width="70%">
+                <Element fixedWidth="70%">
                     <Proposition duration="1 hour walk" price="$49" inputId="proposition-selector-2" />
                 </Element>
             </Section>

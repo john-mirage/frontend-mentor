@@ -10,7 +10,12 @@ const Container = styled.div`
     overflow: hidden;
 `;
 
-const Input = styled.input`
+const Input = styled.input.attrs(() => {
+    return {
+        type: "text",
+        placeholder: "Type a message..."
+    }
+})`
     display: block;
     width: 100%;
     height: 100%;
@@ -38,7 +43,7 @@ const Button = styled.div`
 function TextInput() {
     return (
         <Container>
-            <Input type="text" placeholder="Type a message..." />
+            <Input />
             <Button>
                 <RightArrowButton />
             </Button>
