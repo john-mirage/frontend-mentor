@@ -33,8 +33,8 @@ function Feed() {
             <Message right>Here are a few pictures. She's an happy girl!</Message>
             <Message right>Can you make it?</Message>
             <Message>She looks so happy! The we discussed works. How long shall i take her out for?</Message>
-            <Proposition duration="30 minutes walk" price="$29" />
-            <Proposition duration="1 hour walk" price="$49" />
+            <Proposition duration="30 minutes walk" price="$29" inputId="proposition-selector-1" />
+            <Proposition duration="1 hour walk" price="$49" inputId="proposition-selector-2" />
         </Container>
     );
 }
