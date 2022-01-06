@@ -3,6 +3,7 @@ import Card from "@components/index/Card";
 import orderSummaryIllustration from "@assets/index/ordersummary.jpg";
 import nftPreviewCardIllustration from "@assets/index/nftpreviewcard.jpg";
 import FAQAccordionCardIllustration from "@assets/index/faqaccordioncard.jpg";
+import ChatApp from "@assets/index/chatapp.jpg";
 
 const Container = styled.main`
     width: 100%;
@@ -41,6 +42,14 @@ function Page() {
                 description="In this challenge, you'll be building out an FAQ accordion. This is an extremely common front-end pattern, so it's a great opportunity to get some practice in!"
                 imageSrc={FAQAccordionCardIllustration}
                 imageAlt="FAQ Accordion Card Component design illustration"
+            />
+
+            <Card
+                link="/chatapp"
+                title="Chat App CSS Illustration"
+                description="In this challenge, you'll be building out the entire app illustration from scratch. This will seriously test your CSS skills. So give it a go if you feel confident!"
+                imageSrc={ChatApp}
+                imageAlt="Chat App CSS design illustration"
             />
 
         </Container>
