@@ -11,10 +11,6 @@ const Container = styled.div`
     border-radius: 0.8rem;
     overflow: hidden;
     margin-bottom: 2rem;
-
-    &:hover .cd-Hero__overlay {
-        display: flex;
-    }
 `;
 
 const Overlay = styled.a`
@@ -27,6 +23,10 @@ const Overlay = styled.a`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 255, 247, 0.5);
+
+    ${Container}:hover & {
+        display: flex;
+    }
 `;
 
 function Hero() {
@@ -38,7 +38,7 @@ function Hero() {
                 layout="responsive"
                 priority
             />
-            <Overlay className="cd-Hero__overlay">
+            <Overlay>
                 <Image
                     src={viewIcon}
                     alt="Eye icon illustration"

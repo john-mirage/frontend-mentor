@@ -12,10 +12,6 @@ const Container = styled.label`
 
 const Input = styled.input`
     display: none;
-
-    &:checked ~ .cd-Proposition-RadioButtonIndicator {
-        display: block;
-    }
 `;
 
 const Dot = styled.div`
@@ -26,13 +22,22 @@ const Dot = styled.div`
     border-radius: 50%;
     background-color: ${props => props.theme.secondaryWhite};
     border: 0.2rem solid transparent;
+
+    ${Input}:checked ~ & {
+        display: block;
+    }
 `;
 
 function RadioInput(props) {
     return (
         <Container htmlFor={props.inputId}>
-            <Input type="radio" id={props.inputId} name="proposition-selection" value={props.inputId} />
-            <Dot className="cd-Proposition-RadioButtonIndicator" />
+            <Input
+                type="radio"
+                id={props.inputId}
+                name="proposition-selection"
+                value={props.inputId}
+            />
+            <Dot />
         </Container>
     );
 }
