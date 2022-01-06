@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import TopAppBar from "@components/chatapp/TopAppBar";
+import Feed from "@components/chatapp/Feed";
 
 const Case = styled.article`
     position: relative;
     z-index: 20;
     margin-top: 9.6rem;
-    width: 33.2rem;
-    height: 50rem;
+    width: 40rem;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     background-color: #ffffff;
@@ -20,6 +22,7 @@ const Screen = styled.div`
     height: 100%;
     background-color: ${props => props.theme.secondaryLightGrayishViolet};
     border-radius: 3.8rem;
+    overflow: hidden;
 `;
 
 const Gap = styled.div`
@@ -39,6 +42,8 @@ function Phone() {
         <Case>
             <Screen>
                 <Gap />
+                <TopAppBar />
+                <Feed />
             </Screen>
         </Case>
     );
