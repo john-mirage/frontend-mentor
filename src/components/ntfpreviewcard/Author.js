@@ -30,6 +30,8 @@ const TextCreation = styled.span`
 const TextAuthor = styled.a`
     display: inline;
     color: ${props => props.theme.white};
+    transition-property: color;
+    transition-duration: 300ms;
 
     &:hover {
         color: ${props => props.theme.cyan};

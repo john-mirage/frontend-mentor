@@ -14,7 +14,9 @@ const Container = styled.div`
 `;
 
 const Overlay = styled.a`
-    display: none;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -23,9 +25,12 @@ const Overlay = styled.a`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 255, 247, 0.5);
+    transition-property: visibility, opacity;
+    transition-duration: 300ms;
 
     ${Container}:hover & {
-        display: flex;
+        visibility: visible;
+        opacity: 1;
     }
 `;
 

@@ -19,12 +19,13 @@ const Container = styled.article`
 `;
 
 const Title = styled.a`
-    display: block;
     font-size: 2.4rem;
     font-weight: 600;
     color: ${props => props.theme.white};
     margin-bottom: 1.6rem;
     letter-spacing: 0.04rem;
+    transition-property: color;
+    transition-duration: 300ms;
 
     &:hover {
         color: ${props => props.theme.cyan};
