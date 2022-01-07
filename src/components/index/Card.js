@@ -28,11 +28,14 @@ const ImageContainer = styled.div`
     position: relative;
     width: 100%;
     min-height: 25.6rem;
+    border-bottom: 0.1rem solid ${props => props.theme.divider};
 
     @media screen and (min-width: 808px) {
         flex: 0 0 25.6rem;
         width: 25.6rem;
         min-height: 18rem;
+        border-bottom: none;
+        border-right: 0.1rem solid ${props => props.theme.divider};
     }
 `;
 

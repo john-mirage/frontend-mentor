@@ -10,6 +10,7 @@ const theme = {
     blue: "#3b82f6",
     white: "#eff6ff",
     shadow: "#1e3a8a",
+    divider: "#e2e8f0",
 };
 
 function Home() {
