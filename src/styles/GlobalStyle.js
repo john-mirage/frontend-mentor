@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     a {
+        display: block;
         text-decoration: 0;
         color: inherit;
         cursor: pointer;
