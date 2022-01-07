@@ -1,11 +1,12 @@
 import Image from "next/image";
 import styled from "styled-components";
+import musicIcon from "@assets/ordersummary/icon-music.svg";
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f3f4f6;
+    background-color: rgba(0, 0, 0, 0.03);
     padding: 2rem;
     border-radius: 1.6rem;
 
@@ -21,21 +22,30 @@ const Container = styled.div`
 const Section = styled.div`
     flex-grow: 0;
     flex-shrink: 0;
+`;
 
-    &:first-child {
-        margin-bottom: 1.5rem;
-        @media screen and (min-width: 384px) {
-            margin-bottom: 0;
-            margin-right: 2rem;
-        }
+const Icon = styled(Section)`
+    margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 384px) {
+        margin-bottom: 0;
+        margin-right: 2rem;
     }
+`;
 
-    &:last-child {
-        margin-top: 1.5rem;
-        @media screen and (min-width: 384px) {
-            margin-top: 0;
-            margin-left: auto;
-        }
+const Info = styled(Section)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 4.5rem;
+`;
+
+const Action = styled(Section)`
+    margin-top: 1.5rem;
+
+    @media screen and (min-width: 384px) {
+        margin-top: 0;
+        margin-left: auto;
     }
 `;
 
@@ -43,12 +53,7 @@ const Plan = styled.h2`
     font-size: 1.6rem;
     font-weight: 900;
     margin-top: 0;
-    margin-bottom: 0.2rem;
     color: ${props => props.theme.primaryText};
-
-    @media screen and (min-width: 532px) {
-        margin-bottom: 0.4rem;
-    }
 `;
 
 const Price = styled.p`
@@ -58,46 +63,41 @@ const Price = styled.p`
     color: ${props => props.theme.secondaryText};
 `;
 
-const Action = styled.a`
+const Link = styled.a`
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 900;
     text-decoration: underline;
     color: ${props => props.theme.brightBlue};
     cursor: pointer;
+    transition-property: opacity;
+    transition-duration: 300ms;
 
     &:hover {
-        opacity: 75%;
+        opacity: 80%;
+        text-decoration: none;
     }
 `;
 
-function Order(props) {
+function Order() {
     return (
         <Container>
-
-            <Section>
+            <Icon>
                 <Image
-                    src={props.iconSrc}
-                    alt={props.iconAlt}
+                    src={musicIcon}
+                    alt="An icon of a music note"
                     width="50"
                     height="50"
                 />
-            </Section>
+            </Icon>
             
-            <Section>
-                <Plan>
-                    {props.plan}
-                </Plan>
-                <Price>
-                    {props.price}
-                </Price>
-            </Section>
+            <Info>
+                <Plan>Annual Plan</Plan>
+                <Price>$59.99/year</Price>
+            </Info>
 
-            <Section>
-                <Action>
-                    {props.action}
-                </Action>
-            </Section>
-
+            <Action>
+                <Link>Change</Link>
+            </Action>
         </Container>
     );
 }

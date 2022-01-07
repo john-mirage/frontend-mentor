@@ -1,10 +1,13 @@
 import Image from "next/image";
 import styled from "styled-components";
+import Order from "@components/ordersummary/Order";
+import Button from "@components/ordersummary/Button";
+import heroIllustration from "@assets/ordersummary/illustration-hero.svg";
 
 const Container = styled.article`
     width: 100%;
     height: auto;
-    border-radius: 2rem;
+    border-radius: 3rem;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     overflow: hidden;
     background-color: #FFF;
@@ -20,16 +23,18 @@ const Body = styled.div`
     padding: 3rem;
 
     @media screen and (min-width: 550px) {
-        padding: 5rem;
+        padding: 4.5rem;
     }
+`;
+
+const Row = styled.div`
+    margin-bottom: ${props => props.marginBottom ? props.marginBottom : "0"};
 `;
 
 const Title = styled.h1`
     text-align: center;
     font-size: 2.4rem;
     font-weight: 900;
-    margin: 0;
-    padding-bottom: 1.5rem;
     color: ${props => props.theme.primaryText};
 
     @media screen and (min-width: 550px) {
@@ -41,67 +46,45 @@ const Description = styled.p`
     text-align: center;
     font-size: 1.6rem;
     font-weight: 500;
-    margin: 0;
-    padding-bottom: 2rem;
     letter-spacing: 0.04rem;
     color: ${props => props.theme.secondaryText};
-    line-height: 2.4rem;
+    line-height: 2.5rem;
 
     @media screen and (min-width: 384px) {
-        padding-left: 2rem;
-        padding-right: 2rem;
+        padding-left: 10%;
+        padding-right: 10%;
     }
 `;
 
-const Action = styled.a`
-    display: block;
-    width: 100%;
-    border-radius: 0.8rem;
-    font-size: 1.6rem;
-    text-align: center;
-    cursor: pointer;
-    padding: 1.5rem;
-`;
-
-const PrimaryAction = styled(Action)`
-    background-color: ${props => props.theme.brightBlue};
-    color: #FFF;
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    box-shadow: 0px 4px 16px ${props => props.theme.desaturatedBlue};
-
-    &:hover {
-        opacity: 75%;
-    }
-`;
-
-const SecondaryAction = styled(Action)`
-    color: #6b7280;
-    font-weight: 900;
-
-    &:hover {
-        color: #111827;
-    }
-`;
-
-function Dialog(props) {
+function Dialog() {
     return (
         <Container>
             <Image
-                src={props.imageSrc}
-                alt={props.imageAlt}
+                src={heroIllustration}
+                alt="Women listening and dancing to music with headphone"
                 layout="responsive"
-                priority
             />
+
             <Body>
-                <Title>{props.title}</Title>
-                <Description>{props.description}</Description>
+                <Row marginBottom="2.5rem">
+                    <Title>Order Summary</Title>
+                </Row>
 
-                {props.children}
+                <Row marginBottom="3rem">
+                    <Description>You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</Description>
+                </Row>
 
-                <PrimaryAction>{props.primaryAction}</PrimaryAction>
-                <SecondaryAction>{props.secondaryAction}</SecondaryAction>
+                <Row marginBottom="3rem">
+                    <Order />
+                </Row>
+
+                <Row marginBottom="1rem">
+                    <Button buttonLabel="Proceed to Payment" buttonType="primary" />
+                </Row>
+
+                <Row>
+                    <Button buttonLabel="Cancel Order" buttonType="secondary" />
+                </Row>
             </Body>
 
         </Container>
