@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
-import LeftArrowButton from "@components/chatapp/LeftArrowButton";
-import MoreButton from "@components/chatapp/MoreButton";
-import avatar from "@assets/chatapp/avatar.jpg";
+import LeftArrowButton from "@components/chat-app-css-illustration/LeftArrowButton";
+import MoreButton from "@components/chat-app-css-illustration/MoreButton";
+import avatar from "@assets/chat-app-css-illustration/avatar.jpg";
 
 const Container = styled.div`
     display: flex;

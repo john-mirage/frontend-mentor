@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Dialog from "@components/faqaccordioncard/Dialog";
+import Dialog from "@components/faq-accordion-card/Dialog";
 
 const Container = styled.main`
     width: 100%;

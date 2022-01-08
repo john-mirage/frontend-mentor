@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Dialog from "@components/ordersummary/Dialog";
-import patternDesktop from "@assets/ordersummary/pattern-background-desktop.svg";
-import patternMobile from "@assets/ordersummary/pattern-background-mobile.svg";
+import Dialog from "@components/order-summary/Dialog";
+import patternDesktop from "@assets/order-summary/pattern-background-desktop.svg";
+import patternMobile from "@assets/order-summary/pattern-background-mobile.svg";
 
 const Container = styled.main`
     width: 100%;

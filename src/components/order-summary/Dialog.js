@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Order from "@components/ordersummary/Order";
-import Button from "@components/ordersummary/Button";
-import heroIllustration from "@assets/ordersummary/illustration-hero.svg";
+import Order from "@components/order-summary/Order";
+import Button from "@components/order-summary/Button";
+import heroIllustration from "@assets/order-summary/illustration-hero.svg";
 
 const Container = styled.article`
     width: 100%;

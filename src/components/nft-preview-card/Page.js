@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "@components/ntfpreviewcard/Card";
+import Card from "@components/nft-preview-card/Card";
 
 const Container = styled.main`
     width: 100%;

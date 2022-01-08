@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RadioInput from "@components/chatapp/RadioInput";
+import RadioInput from "@components/chat-app-css-illustration/RadioInput";
 
 const Container = styled.div`
     display: flex;

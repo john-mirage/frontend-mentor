@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "@styles/GlobalStyle";
-import Page from "@components/ordersummary/Page";
 import Fab from "@components/Fab";
+import Page from "@components/order-summary/Page";
 
 const theme = {
     paleBlue: "hsl(225, 100%, 94%)",

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RightArrowButton from "@components/chatapp/RightArrowButton";
+import RightArrowButton from "@components/chat-app-css-illustration/RightArrowButton";
 
 const Container = styled.div`
     position: relative;

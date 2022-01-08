@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
-import equilibrium from "@assets/nftpreviewcard/image-equilibrium.jpg";
-import viewIcon from "@assets/nftpreviewcard/icon-view.svg";
+import equilibrium from "@assets/nft-preview-card/image-equilibrium.jpg";
+import viewIcon from "@assets/nft-preview-card/icon-view.svg";
 
 const Container = styled.div`
     display: block;

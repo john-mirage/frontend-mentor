@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Hero from "@components/ntfpreviewcard/Hero";
-import Crypto from "@components/ntfpreviewcard/Crypto";
-import Timer from "@components/ntfpreviewcard/Timer";
-import Author from "@components/ntfpreviewcard/Author";
+import Hero from "@components/nft-preview-card/Hero";
+import Crypto from "@components/nft-preview-card/Crypto";
+import Timer from "@components/nft-preview-card/Timer";
+import Author from "@components/nft-preview-card/Author";
 
 const Container = styled.article`
     width: 100%;

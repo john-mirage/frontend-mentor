@@ -2,7 +2,7 @@ import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "@styles/GlobalStyle";
 import Fab from "@components/Fab";
-import Page from "@components/chatapp/Page";
+import Page from "@components/chat-app-css-illustration/Page";
 
 const theme = {
     textPaleViolet: "hsl(276, 100%, 81%)",

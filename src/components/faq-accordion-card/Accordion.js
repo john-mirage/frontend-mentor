@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
-import arrowIcon from "@assets/faqaccordioncard/icon-arrow-down.svg";
+import arrowIcon from "@assets/faq-accordion-card/icon-arrow-down.svg";
 
 const List = styled.div`
     display: flex;

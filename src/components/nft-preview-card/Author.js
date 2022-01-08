@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import avatar from "@assets/nftpreviewcard/image-avatar.png";
+import avatar from "@assets/nft-preview-card/image-avatar.png";
 
 const Container = styled.div`
     display: flex;

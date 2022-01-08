@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import musicIcon from "@assets/ordersummary/icon-music.svg";
+import musicIcon from "@assets/order-summary/icon-music.svg";
 
 const Container = styled.div`
     display: flex;

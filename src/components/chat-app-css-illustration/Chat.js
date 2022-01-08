@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import Message from "@components/chatapp/Message";
-import Pictures from "@components/chatapp/Pictures";
-import Proposition from "@components/chatapp/Proposition";
-import TextInput from "@components/chatapp/TextInput";
+import Message from "@components/chat-app-css-illustration/Message";
+import Pictures from "@components/chat-app-css-illustration/Pictures";
+import Proposition from "@components/chat-app-css-illustration/Proposition";
+import TextInput from "@components/chat-app-css-illustration/TextInput";
 
 const Container = styled.div`
     display: block;

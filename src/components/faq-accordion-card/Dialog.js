@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Illustration from "@components/faqaccordioncard/Illustration";
-import Accordion from "@components/faqaccordioncard/Accordion";
+import Illustration from "@components/faq-accordion-card/Illustration";
+import Accordion from "@components/faq-accordion-card/Accordion";
 
 const Container = styled.article`
     position: relative;

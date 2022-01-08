@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Bar from "@components/chatapp/Bar";
-import Chat from "@components/chatapp/Chat";
+import Bar from "@components/chat-app-css-illustration/Bar";
+import Chat from "@components/chat-app-css-illustration/Chat";
 
 const Screen = styled.article`
     position: relative;

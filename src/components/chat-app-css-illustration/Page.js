@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Phone from "@components/chatapp/Phone";
+import Phone from "@components/chat-app-css-illustration/Phone";
 
 const Container = styled.main`
     position: relative;

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "@styles/GlobalStyle";
 import Fab from "@components/Fab";
-import Page from "@components/ntfpreviewcard/Page";
+import Page from "@components/nft-preview-card/Page";
 
 const theme = {
     softBlue: "hsl(215, 51%, 70%)",

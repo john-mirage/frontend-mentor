@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Card from "@components/index/Card";
-import orderSummaryIllustration from "@assets/index/ordersummary.jpg";
-import nftPreviewCardIllustration from "@assets/index/nftpreviewcard.jpg";
-import FAQAccordionCardIllustration from "@assets/index/faqaccordioncard.jpg";
-import ChatApp from "@assets/index/chatapp.jpg";
+import orderSummary from "@assets/index/ordersummary.jpg";
+import NFTPreviewCard from "@assets/index/nftpreviewcard.jpg";
+import FAQAccordionCard from "@assets/index/faqaccordioncard.jpg";
+import ChatAppCSSIllustration from "@assets/index/chatapp.jpg";
+import FyloDataStorage from "@assets/index/fylo-data-storage.jpg";
 
 const Container = styled.main`
     width: 100%;
@@ -21,35 +22,43 @@ function Page() {
         <Container>
 
             <Card
-                link="/ordersummary"
+                link="/order-summary"
                 title="Order Summary Component"
                 description="A perfect project for newbies who are starting to build confidence with layouts!"
-                imageSrc={orderSummaryIllustration}
+                imageSrc={orderSummary}
                 imageAlt="Order Summary Component design illustration"
             />
 
             <Card
-                link="/nftpreviewcard"
+                link="/nft-preview-card"
                 title="NFT Preview Card Component"
                 description="This HTML & CSS only challenge is perfect for anyone just starting out or anyone wanting a small project to play around with."
-                imageSrc={nftPreviewCardIllustration}
+                imageSrc={NFTPreviewCard}
                 imageAlt="NFT Preview Card Component design illustration"
             />
 
             <Card
-                link="/faqaccordioncard"
+                link="/faq-accordion-card"
                 title="FAQ Accordion Card Component"
                 description="In this challenge, you'll be building out an FAQ accordion. This is an extremely common front-end pattern, so it's a great opportunity to get some practice in!"
-                imageSrc={FAQAccordionCardIllustration}
+                imageSrc={FAQAccordionCard}
                 imageAlt="FAQ Accordion Card Component design illustration"
             />
 
             <Card
-                link="/chatapp"
+                link="/chat-app-css-illustration"
                 title="Chat App CSS Illustration"
                 description="In this challenge, you'll be building out the entire app illustration from scratch. This will seriously test your CSS skills. So give it a go if you feel confident!"
-                imageSrc={ChatApp}
+                imageSrc={ChatAppCSSIllustration}
                 imageAlt="Chat App CSS design illustration"
+            />
+
+            <Card
+                link="/fylo-data-storage"
+                title="Fylo data storage Illustration"
+                description="This component has some interesting CSS challenges in the design. If you're looking to test your CSS skills, this will be a great project for you!"
+                imageSrc={FyloDataStorage}
+                imageAlt="Fylo data storage design illustration"
             />
 
         </Container>

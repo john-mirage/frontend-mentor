@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
-import dogPicture1 from "@assets/chatapp/dog-image-1.jpg";
-import dogPicture2 from "@assets/chatapp/dog-image-2.jpg";
-import dogPicture3 from "@assets/chatapp/dog-image-3.jpg";
+import dogPicture1 from "@assets/chat-app-css-illustration/dog-image-1.jpg";
+import dogPicture2 from "@assets/chat-app-css-illustration/dog-image-2.jpg";
+import dogPicture3 from "@assets/chat-app-css-illustration/dog-image-3.jpg";
 
 const Container = styled.div`
     display: flex;
