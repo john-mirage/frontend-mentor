@@ -26,7 +26,7 @@ const Mobile = styled.div`
         margin-top: -25rem;
     }
 
-    @media screen and (min-width: 1248px) {
+    @media screen and (min-width: 1340px) {
         display: none;
     }
 `;
@@ -34,7 +34,7 @@ const Mobile = styled.div`
 const Desktop = styled.div`
     display: none;
     
-    @media screen and (min-width: 1248px) {
+    @media screen and (min-width: 1340px) {
         position: relative;
         display: block;
         flex: 1 1 40%;
@@ -42,7 +42,7 @@ const Desktop = styled.div`
             url(${desktopIllustration.src}),
             url(${desktopShadow.src});
         background-repeat: no-repeat;
-        background-size: 120% auto, 240% auto;
+        background-size: 120% auto, 260% auto;
         background-position: 100% 50%, 100% 65%;
     }
 `;
