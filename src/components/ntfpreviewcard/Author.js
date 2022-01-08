@@ -9,6 +9,7 @@ const Container = styled.div`
 `;
 
 const AvatarContainer = styled.div`
+    flex: 0 0 3.5rem;
     display: block;
     width: 3.5rem;
     height: 3.5rem;

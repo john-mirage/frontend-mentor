@@ -4,18 +4,28 @@ import ethereum from "@assets/nftpreviewcard/icon-ethereum.svg";
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+
+    @media screen and (min-width: 340px) {
+        flex-direction: row;
+    }
 `;
 
 const ImageContainer = styled.div`
     display: block;
     width: 1.1rem;
     height: 1.8rem;
-    margin-right: 0.8rem;
+    margin-bottom: 0.4rem;
+
+    @media screen and (min-width: 340px) {
+        margin-bottom: 0;
+        margin-right: 0.8rem;
+    }
 `;
 
 const Amount = styled.p`
+    text-align: center;
     font-size: 1.8rem;
     font-weight: 500;
     text-transform: uppercase;
