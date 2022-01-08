@@ -5,7 +5,6 @@ import Chat from "@components/chatapp/Chat";
 const Screen = styled.article`
     position: relative;
     z-index: 20;
-    margin-top: 9.6rem;
     width: 100%;
     height: auto;
     margin-left: auto;
