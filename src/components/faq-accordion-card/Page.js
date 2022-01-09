@@ -8,12 +8,8 @@ const Container = styled.main`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 50% 2.4rem;
+    padding: 2.4rem;
     background: linear-gradient(to bottom, ${props => props.theme.primaryGradientViolet}, ${props => props.theme.primaryGradientBlue});
-
-    @media screen and (min-width: 748px) {
-        padding: 26rem 2.4rem;
-    }
 `;
 
 function Page() {

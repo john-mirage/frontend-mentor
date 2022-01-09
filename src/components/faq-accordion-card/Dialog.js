@@ -11,24 +11,30 @@ const Container = styled.article`
     background-color: #fff;
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-    @media screen and (min-width: 748px) {
+    @media screen and (min-width: 768px) {
         width: 70rem;
         margin-left: auto;
         margin-right: auto;
     }
 
-    @media screen and (min-width: 1340px) {
+    @media screen and (min-width: 1440px) {
         display: flex;
         flex-direction: row;
-        width: 120rem;
+        width: 128rem;
     }
+`;
+
+const Body = styled.div`
+    margin-top: 2rem;
 `;
 
 function Dialog() {
     return (
         <Container>
             <Illustration />
-            <FrequentlyAskedQuestions />
+            <Body>
+                <FrequentlyAskedQuestions />
+            </Body>
         </Container>
     );
 }

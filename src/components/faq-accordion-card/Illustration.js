@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import mobileIllustration from "@assets/faq-accordion-card/illustration-woman-online-mobile.svg";
 import mobileShadow from "@assets/faq-accordion-card/bg-pattern-mobile.svg";
@@ -7,47 +6,44 @@ import desktopShadow from "@assets/faq-accordion-card/bg-pattern-desktop.svg";
 import desktopBox from "@assets/faq-accordion-card/illustration-box-desktop.svg";
 
 const Mobile = styled.div`
-    width: 65vw;
-    height: 58vw;
-    margin-top: -35%;
-    margin-bottom: 3rem;
+    width: 16rem;
+    height: 16rem;
+    margin-top: -8.8rem;
     margin-left: auto;
     margin-right: auto;
     background-image:
         url(${mobileIllustration.src}),
         url(${mobileShadow.src});
     background-repeat: no-repeat;
-    background-size: 100%, 100%;
-    background-position: top, bottom;
+    background-size: contain;
+    background-position: center bottom 60%, center bottom;
 
-    @media screen and (min-width: 748px) {
-        width: 50rem;
-        height: 44rem;
-        margin-top: -25rem;
+    @media screen and (min-width: 375px) {
+        width: 24rem;
+        height: 24rem;
+        margin-top: -13.2rem;
     }
 
-    @media screen and (min-width: 1340px) {
+    @media screen and (min-width: 768px) {
+        width: 32rem;
+        height: 32rem;
+        margin-top: -17.6rem;
+    }
+
+    @media screen and (min-width: 1440px) {
         display: none;
     }
 `;
 
 const Desktop = styled.div`
     display: none;
-    
-    @media screen and (min-width: 1340px) {
-        position: relative;
+
+    @media screen and (min-width: 1440px) {
         display: block;
-        flex: 1 1 40%;
-        background-image:
-            url(${desktopIllustration.src}),
-            url(${desktopShadow.src});
-        background-repeat: no-repeat;
-        background-size: 120% auto, 260% auto;
-        background-position: 100% 50%, 100% 65%;
     }
 `;
 
-const DesktopBox = styled.div`
+const DesktopBox = styled.img`
     position: absolute;
     top: 50%;
     left: 0;
@@ -59,13 +55,7 @@ function Illustration() {
         <>
             <Mobile />
             <Desktop>
-                <DesktopBox>
-                    <Image
-                        src={desktopBox}
-                        width="191"
-                        height="184"
-                    />
-                </DesktopBox>
+                <DesktopBox src={desktopBox.src} />
             </Desktop>
         </>
     );
