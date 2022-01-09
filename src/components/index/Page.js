@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Card from "@components/index/Card";
-import orderSummary from "@assets/index/ordersummary.jpg";
-import NFTPreviewCard from "@assets/index/nftpreviewcard.jpg";
-import FAQAccordionCard from "@assets/index/faqaccordioncard.jpg";
-import ChatAppCSSIllustration from "@assets/index/chatapp.jpg";
+import orderSummary from "@assets/index/order-summary.jpg";
+import NFTPreviewCard from "@assets/index/nft-preview-card.jpg";
+import FAQAccordionCard from "@assets/index/faq-accordion-card.jpg";
+import ChatAppCSSIllustration from "@assets/index/chat-app-css-illustration.jpg";
 import FyloDataStorage from "@assets/index/fylo-data-storage.jpg";
 
 const Container = styled.main`
