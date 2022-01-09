@@ -9,7 +9,7 @@ import desktopBox from "@assets/faq-accordion-card/illustration-box-desktop.svg"
 const Mobile = styled.div`
     width: 65vw;
     height: 58vw;
-    margin-top: -32%;
+    margin-top: -35%;
     margin-bottom: 3rem;
     margin-left: auto;
     margin-right: auto;
