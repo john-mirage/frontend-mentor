@@ -19,14 +19,14 @@ const theme = {
     secondaryVeryLightMagenta: "hsl(289, 100%, 72%)"
 }
 
-function ChatApp() {
+function ChatAppCSSIllustration() {
     return (
         <>
             <GlobalStyle fontFamily="Rubik" />
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" key="font" />
-                <title>Frontend Mentor | Chat App</title>
+                <title>Frontend Mentor | Chat App CSS Illustration</title>
             </Head>
             <ThemeProvider theme={theme}>
                 <Fab />
@@ -36,4 +36,4 @@ function ChatApp() {
     );
 }
 
-export default ChatApp;
+export default ChatAppCSSIllustration;
