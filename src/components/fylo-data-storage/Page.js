@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Header from "@components/fylo-data-storage/Header";
+import Navigation from "@components/fylo-data-storage/Navigation";
 import Storage from "@components/fylo-data-storage/Storage";
 import mobileBackground from "@assets/fylo-data-storage/bg-mobile.png";
 
@@ -7,25 +7,36 @@ const Container = styled.main`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 2.5rem;
     background-image: url(${mobileBackground.src});
     background-repeat: no-repeat;
     background-size: cover;
 `;
 
-const Body = styled.div`
-    margin-top: 2rem;
+const Content = styled.div`
+    width: 100%;
+    height: auto;
+    margin-bottom: 4rem;
+    
+    @media screen and (min-width: 500px) {
+        width: 45rem;
+    }
+`;
+
+const StyledNavigation = styled(Navigation)`
+    margin-bottom: 2rem;
 `;
 
 function Page() {
     return (
         <Container>
-            <Header />
-            <Body>
+            <Content>
+                <StyledNavigation />
                 <Storage />
-            </Body>
+            </Content>
         </Container>
     );
 }

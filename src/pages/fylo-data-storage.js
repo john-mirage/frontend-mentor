@@ -5,11 +5,17 @@ import Fab from "@components/Fab";
 import Page from "@components/fylo-data-storage/Page";
 
 const theme = {
-    gradient: "to right, hsl(6, 100%, 80%), hsl(335, 100%, 65%)",
-    paleBlue: "hsl(243, 100%, 93%)",
-    grayishBlue: "hsl(229, 7%, 55%)",
-    darkBlue: "hsl(228, 56%, 26%)",
-    veryDarkBlue: "hsl(229, 57%, 11%)"
+    color: {
+        primary: {
+            gradient: "to right, hsl(6, 100%, 80%), hsl(335, 100%, 65%)",
+        },
+        neutral: {
+            paleBlue: "hsl(243, 100%, 93%)",
+            grayishBlue: "hsl(229, 7%, 55%)",
+            darkBlue: "hsl(228, 56%, 26%)",
+            veryDarkBlue: "hsl(229, 57%, 11%)"
+        }
+    },
 }
 
 function FyloDataStorage() {
