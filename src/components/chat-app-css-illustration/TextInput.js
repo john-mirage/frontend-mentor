@@ -26,10 +26,10 @@ const Input = styled.input.attrs(() => {
     font-family: "Rubik", sans-serif;
     font-size: 1.4rem;
     font-weight: 400;
-    color: ${props => props.theme.textDesaturatedDarkViolet};
+    color: ${props => props.theme.color.primary.text.desaturatedDarkViolet};
 
     &::placeholder {
-        color: ${props => props.theme.textGrayishBlue};
+        color: ${props => props.theme.color.primary.text.grayishBlue};
     }
 `;
 

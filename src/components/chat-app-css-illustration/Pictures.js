@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import dogPicture1 from "@assets/chat-app-css-illustration/dog-image-1.jpg";
 import dogPicture2 from "@assets/chat-app-css-illustration/dog-image-2.jpg";
@@ -7,46 +6,27 @@ import dogPicture3 from "@assets/chat-app-css-illustration/dog-image-3.jpg";
 const Container = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    flex-wrap: wrap;
     width: 100%;
     height: auto;
-    margin-left: auto;
-    margin-right: -1.4rem;
-    margin-bottom: -1.4rem;
 `;
 
-const Picture = styled.div`
-    width: calc((100% / 3) - 1.4rem);
-    margin-right: 1.4rem;
-    margin-bottom: 1.4rem;
-    border-radius: 1.6rem;
+const Picture = styled.img`
+    flex: 1 1 0;
+    margin-right: 5%;
+    border-radius: 20%;
     overflow: hidden;
+
+    &:last-child {
+        margin-right: 0;
+    }
 `;
 
-function Pictures() {
+function Pictures(props) {
     return (
-        <Container>
-            <Picture>
-                <Image
-                    src={dogPicture1}
-                    layout="responsive"
-                />
-            </Picture>
-            
-            <Picture>
-                <Image
-                    src={dogPicture2}
-                    layout="responsive"
-                />
-            </Picture>
-
-            <Picture>
-                <Image
-                    src={dogPicture3}
-                    layout="responsive"
-                />
-            </Picture>
+        <Container className={props.className}>
+            <Picture src={dogPicture1.src} />
+            <Picture src={dogPicture2.src} />
+            <Picture src={dogPicture3.src} />
         </Container>
     );
 }

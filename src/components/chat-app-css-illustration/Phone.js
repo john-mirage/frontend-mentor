@@ -7,8 +7,6 @@ const Screen = styled.article`
     z-index: 20;
     width: 100%;
     height: auto;
-    margin-left: auto;
-    margin-right: auto;
     background-color: #ffffff;
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     border-radius: 4.8rem;
@@ -16,8 +14,6 @@ const Screen = styled.article`
 
     @media screen and (min-width: 452px) {
         width: 42rem;
-        margin-left: auto;
-        margin-right: auto;
     }
 `;
 
@@ -25,7 +21,7 @@ const App = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: ${props => props.theme.secondaryLightGrayishViolet};
+    background-color: ${props => props.theme.color.secondary.lightGrayishViolet};
     border-radius: 3.8rem;
     overflow: hidden;
 `;
@@ -42,9 +38,9 @@ const Gap = styled.div`
     background-color: #fff;
 `;
 
-function Phone() {
+function Phone(props) {
     return (
-        <Screen>
+        <Screen className={props.className}>
             <App>
                 <Gap />
                 <Bar />

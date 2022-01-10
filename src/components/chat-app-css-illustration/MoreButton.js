@@ -9,6 +9,8 @@ const Button = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 300ms;
 
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
@@ -29,7 +31,7 @@ const Dot = styled.div`
     width: 0.4rem;
     height: 0.4rem;
     border-radius: 50%;
-    background-color: ${props => props.theme.secondaryWhite};
+    background-color: ${props => props.theme.color.secondary.white};
 `;
 
 function MoreButton() {

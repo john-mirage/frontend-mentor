@@ -11,8 +11,13 @@ const Container = styled.div`
     border-top-right-radius: 1.6rem;
     border-bottom-right-radius: 1.6rem;
     border-bottom-left-radius: 0.6rem;
-    background: linear-gradient(to right, ${props => props.theme.gradientLightMagenta}, ${props => props.theme.gradientLightViolet});
+    background: ${props => props.theme.color.primary.gradient.magentaToVioletHorizontal};
     padding: 1.6rem;
+`;
+
+const StyledRadioInput = styled(RadioInput)`
+    flex-grow: 0;
+    flex-shrink: 0;
 `;
 
 const Duration = styled.h3`
@@ -27,13 +32,13 @@ const Price = styled.p`
     font-size: 2rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: ${props => props.theme.secondaryWhite};
+    color: ${props => props.theme.color.secondary.white};
 `;
 
 function Proposition(props) {
     return (
-        <Container>
-            <RadioInput inputId={props.inputId} />
+        <Container className={props.className}>
+            <StyledRadioInput inputId={props.inputId} />
             <Duration>{props.duration}</Duration>
             <Price>{props.price}</Price>
         </Container>

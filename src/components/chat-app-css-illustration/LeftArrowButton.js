@@ -9,6 +9,8 @@ const Button = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 300ms;
 
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
@@ -23,7 +25,7 @@ const Rectangle = styled.div`
     height: 0.4rem;
     border-top-right-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
-    background-color: ${props => props.theme.secondaryWhite};
+    background-color: ${props => props.theme.color.secondary.white};
 
     &:first-child {
         transform-origin: top left;

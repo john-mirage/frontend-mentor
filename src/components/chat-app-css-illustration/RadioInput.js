@@ -5,7 +5,7 @@ const Container = styled.label`
     width: 2.4rem;
     height: 2.4rem;
     border-radius: 50%;
-    border: 0.2rem solid ${props => props.theme.secondaryVeryLightMagenta};
+    border: 0.2rem solid ${props => props.theme.color.secondary.veryLightMagenta};
     margin-right: 1.6rem;
     cursor: pointer;
 `;
@@ -22,22 +22,25 @@ const Input = styled.input.attrs(props => {
 `;
 
 const Dot = styled.div`
-    display: none;
+    display: block;
+    transform: scale(0);
     width: 1rem;
     height: 1rem;
     margin: auto;
     border-radius: 50%;
-    background-color: ${props => props.theme.secondaryWhite};
+    background-color: ${props => props.theme.color.secondary.white};
     border: 0.2rem solid transparent;
+    transition-property: transform;
+    transition-duration: 300ms;
 
     ${Input}:checked ~ & {
-        display: block;
+        transform: scale(1);
     }
 `;
 
 function RadioInput(props) {
     return (
-        <Container htmlFor={props.inputId}>
+        <Container className={props.className} htmlFor={props.inputId}>
             <Input inputId={props.inputId} />
             <Dot />
         </Container>

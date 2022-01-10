@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import LeftArrowButton from "@components/chat-app-css-illustration/LeftArrowButton";
 import MoreButton from "@components/chat-app-css-illustration/MoreButton";
@@ -10,7 +9,7 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     height: auto;
-    background: linear-gradient(to right, ${props => props.theme.gradientLightViolet}, ${props => props.theme.gradientLightMagenta});
+    background: ${props => props.theme.color.primary.gradient.magentaToVioletHorizontal};
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
     padding-top: 5rem;
@@ -19,13 +18,16 @@ const Container = styled.div`
     padding-right: 1rem;
 `;
 
-const Avatar = styled.div`
+const Avatar = styled.img`
+    flex-grow: 0;
+    flex-shrink: 0;
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
+    margin-left: 0.4rem;
     margin-right: 1.5rem;
     overflow: hidden;
-    border: 0.2rem solid ${props => props.theme.secondaryWhite};
+    border: 0.2rem solid ${props => props.theme.color.secondary.white};
 `;
 
 const Info = styled.div`
@@ -38,22 +40,22 @@ const Info = styled.div`
 const Name = styled.h2`
     font-size: 1.8rem;
     font-weight: 600;
-    color: ${props => props.theme.secondaryWhite};
+    color: ${props => props.theme.color.secondary.white};
 `;
 
 const State = styled.p`
     font-size: 1.4rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
 `;
 
 function Bar() {
     return (
         <Container>
             <LeftArrowButton />
-            <Avatar>
-                <Image src={avatar} layout="responsive"/>
-            </Avatar>
+            <Avatar
+                src={avatar.src}
+            />
             <Info>
                 <Name>Samuel Green</Name>
                 <State>Available to Walk</State>

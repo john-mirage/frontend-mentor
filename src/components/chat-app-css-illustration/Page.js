@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Phone from "@components/chat-app-css-illustration/Phone";
+import Hero from "@components/chat-app-css-illustration/Hero";
 
 const Container = styled.main`
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
@@ -13,8 +15,7 @@ const Container = styled.main`
     @media screen and (min-width: 1280px) {
         flex-direction: row;
         justify-content: center;
-        align-items: center;
-        padding: 0;
+        padding: 6rem 0;
     }
 `;
 
@@ -28,7 +29,7 @@ const LeftShape = styled.div`
     transform: translateX(-75%);
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
-    background: linear-gradient(to bottom, ${props => props.theme.gradientLightMagenta}, ${props => props.theme.gradientLightViolet});
+    background: ${props => props.theme.color.primary.gradient.magentaToVioletVertical};
 
     @media screen and (min-width: 1280px) {
         width: 20%;
@@ -49,25 +50,25 @@ const RightShape = styled.div`
     transform: translateX(75%);
     border-top-right-radius: 50%;
     border-top-left-radius: 50%;
-    background-color: ${props => props.theme.secondaryLightGrayishViolet};
+    background-color: ${props => props.theme.color.secondary.lightGrayishViolet};
 `;
 
-const Section = styled.div`
+const StyledPhone = styled(Phone)`
     z-index: 20;
+    margin-bottom: 6.4rem;
+
+    @media screen and (min-width: 1280px) {
+        margin-bottom: 0;
+        margin-right: 5%;
+    }
 `;
 
-const Title = styled.h1`
-    font-size: 4.4rem;
-    font-weight: 500;
-    color: ${props => props.theme.textVeryDarkDesaturedViolet};
-    margin-bottom: 2.4rem;
-`;
+const StyledHero = styled(Hero)`
+    z-index: 20;
 
-const Description = styled.p`
-    font-size: 1.8rem;
-    font-weight: 400;
-    line-height: 3rem;
-    color: ${props => props.theme.textDarkGrayishViolet};
+    @media screen and (min-width: 1280px) {
+        margin-left: 5%;
+    }
 `;
 
 function Page() {
@@ -75,15 +76,8 @@ function Page() {
         <Container>
             <LeftShape />
             <RightShape />
-
-            <Section>
-                <Phone />
-            </Section>
-            
-            <Section>
-                <Title>Simple booking</Title>
-                <Description>Stay in touch with our dog walkers through the chat interface. This makes it easy to discuss arrangements and make bookings. Once the walk has been completed you can rate your walker and book again all through the chat.</Description>
-            </Section>
+            <StyledPhone />
+            <StyledHero />
         </Container>
     );
 }

@@ -6,9 +6,15 @@ const Button = styled.button`
     width: 4.4rem;
     height: 4.4rem;
     border-radius: 50%;
-    background-color: ${props => props.theme.secondaryVeryDarkDesaturatedViolet};
+    background-color: ${props => props.theme.color.secondary.veryDarkDesaturatedViolet};
     border: none;
     cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 300ms;
+
+    &:hover {
+        background-color: rgba(62, 39, 83, 0.8);
+    }
 `;
 
 const Rectangle = styled.div`
@@ -19,7 +25,7 @@ const Rectangle = styled.div`
     height: 0.4rem;
     border-top-left-radius: 0.2rem;
     border-bottom-left-radius: 0.2rem;
-    background-color: ${props => props.theme.secondaryWhite};
+    background-color: ${props => props.theme.color.secondary.white};
 
     &:first-child {
         transform-origin: top right;
