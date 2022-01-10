@@ -40,6 +40,10 @@ const Question = styled.h2`
         font-weight: 700;
         color: ${props => props.theme.neutralTextDarkBlue};
     }
+
+    @media screen and (min-width: 1440px) {
+        font-size: 1.6rem;
+    }
 `;
 
 const ArrowIcon = styled.img`
@@ -65,6 +69,10 @@ const Answer = styled.p`
 
     ${Input}:checked ~ & {
         display: block;
+    }
+
+    @media screen and (min-width: 1440px) {
+        padding-top: 2rem;
     }
 `;
 

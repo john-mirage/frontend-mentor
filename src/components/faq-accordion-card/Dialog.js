@@ -17,26 +17,17 @@ const Container = styled.article`
 
     @media screen and (min-width: 768px) {
         width: 70rem;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     @media screen and (min-width: 1440px) {
         display: flex;
         flex-direction: row;
-        width: 128rem;
+        width: 120rem;
+        padding: 0;
     }
 `;
 
 const Illustration = styled.div`
-
-`;
-
-const Body = styled.div`
-    margin-top: 2rem;
-`;
-
-const Mobile = styled.div`
     width: 16rem;
     height: 16rem;
     margin-top: -8.8rem;
@@ -62,33 +53,52 @@ const Mobile = styled.div`
     }
 
     @media screen and (min-width: 1440px) {
-        display: none;
+        position: relative;
+        flex: 1 1 40%;
+        width: 40%;
+        height: auto;
+        margin-top: 0;
+        background-image:
+            url(${desktopIllustration.src}),
+            url(${desktopShadow.src});
+        background-size: 58rem auto, auto 116rem;
+        background-position: right top 8rem, right top -36rem;
     }
 `;
 
-const Desktop = styled.div`
+const Body = styled.div`
+    margin-top: 2rem;
+
+    @media screen and (min-width: 1440px) {
+        flex: 1 1 60%;
+        width: 60%;
+        margin-top: 0;
+        padding: 8rem 14rem 12rem 14rem;
+    }
+`;
+
+const Box = styled.div`
     display: none;
 
     @media screen and (min-width: 1440px) {
         display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 19.1rem;
+        height: 100%;
+        transform: translateX(-50%);
+        background-image: url(${desktopBox.src});
+        background-repeat: no-repeat;
+        background-position: left top 27rem;
     }
-`;
-
-const DesktopBox = styled.img`
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(-50%, -15%);
 `;
 
 function Dialog() {
     return (
         <Container>
             <Illustration>
-                <Mobile />
-                <Desktop>
-                    <DesktopBox src={desktopBox.src} />
-                </Desktop>
+                <Box />
             </Illustration>
             <Body>
                 <FrequentlyAskedQuestions />

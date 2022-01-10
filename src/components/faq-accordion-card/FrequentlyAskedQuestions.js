@@ -11,6 +11,10 @@ const Title = styled.h1`
     font-weight: 600;
     text-align: center;
     color: ${props => props.theme.neutralTextDarkBlue};
+
+    @media screen and (min-width: 1440px) {
+        text-align: start;
+    }
 `;
 
 const Accordions = styled.div`
