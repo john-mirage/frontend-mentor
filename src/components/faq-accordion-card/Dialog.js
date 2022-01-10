@@ -66,18 +66,7 @@ const Illustration = styled.div`
     }
 `;
 
-const Body = styled.div`
-    margin-top: 2rem;
-
-    @media screen and (min-width: 1440px) {
-        flex: 1 1 60%;
-        width: 60%;
-        margin-top: 0;
-        padding: 8rem 14rem 12rem 14rem;
-    }
-`;
-
-const Box = styled.div`
+const BoxIllustration = styled.div`
     display: none;
 
     @media screen and (min-width: 1440px) {
@@ -94,15 +83,24 @@ const Box = styled.div`
     }
 `;
 
+const StyledFaq = styled(FrequentlyAskedQuestions)`
+    margin-top: 2rem;
+
+    @media screen and (min-width: 1440px) {
+        flex: 1 1 60%;
+        width: 60%;
+        margin-top: 0;
+        padding: 8rem 14rem 12rem 14rem;
+    }
+`;
+
 function Dialog() {
     return (
         <Container>
             <Illustration>
-                <Box />
+                <BoxIllustration />
             </Illustration>
-            <Body>
-                <FrequentlyAskedQuestions />
-            </Body>
+            <StyledFaq />
         </Container>
     );
 }

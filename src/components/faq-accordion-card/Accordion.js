@@ -7,7 +7,7 @@ const Container = styled.label`
     height: auto;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 0.1rem solid ${props => props.theme.neutralDivider};
+    border-bottom: 0.1rem solid ${props => props.theme.color.neutral.lightGrayishBlue};
     cursor: pointer;
 `;
 
@@ -34,11 +34,11 @@ const Question = styled.h2`
     flex: 1 1 0;
     font-size: 1.4rem;
     font-weight: 400;
-    color: ${props => props.theme.primaryTextBlue};
+    color: ${props => props.theme.color.neutral.veryDarkGrayishBlue};
 
     ${Input}:checked + ${Header} & {
         font-weight: 700;
-        color: ${props => props.theme.neutralTextDarkBlue};
+        color: ${props => props.theme.color.primary.veryDarkDesaturatedBlue};
     }
 
     @media screen and (min-width: 1440px) {
@@ -65,7 +65,7 @@ const Answer = styled.p`
     padding-right: 3rem;
     font-size: 1.4rem;
     font-weight: 300;
-    color: ${props => props.theme.neutralTextBlue};
+    color: ${props => props.theme.color.neutral.darkGrayishBlue};
 
     ${Input}:checked ~ & {
         display: block;

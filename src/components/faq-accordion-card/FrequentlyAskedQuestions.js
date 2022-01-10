@@ -10,7 +10,7 @@ const Title = styled.h1`
     font-size: 3.2rem;
     font-weight: 600;
     text-align: center;
-    color: ${props => props.theme.neutralTextDarkBlue};
+    color: ${props => props.theme.color.primary.veryDarkDesaturatedBlue};
 
     @media screen and (min-width: 1440px) {
         text-align: start;
@@ -21,9 +21,9 @@ const Accordions = styled.div`
     margin-top: 2rem;
 `;
 
-function FrequentlyAskedQuestions() {
+function FrequentlyAskedQuestions(props) {
     return (
-        <Container>
+        <Container className={props.className}>
             <Title>FAQ</Title>
             <Accordions>
                 <Accordion

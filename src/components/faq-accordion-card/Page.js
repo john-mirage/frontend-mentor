@@ -9,7 +9,7 @@ const Container = styled.main`
     justify-content: center;
     align-items: center;
     padding: 2.4rem;
-    background: linear-gradient(to bottom, ${props => props.theme.primaryGradientViolet}, ${props => props.theme.primaryGradientBlue});
+    background: ${props => props.theme.color.primary.gradient};
 `;
 
 function Page() {
