@@ -11,7 +11,7 @@ const BaseButton = styled.a`
 `;
 
 const PrimaryButton = styled(BaseButton)`
-    background-color: ${props => props.theme.brightBlue};
+    background-color: ${props => props.theme.color.primary.brightBlue};
     box-shadow: 0 25px 50px -12px rgba(56, 41, 224, 0.4);
     font-weight: 700;
     color: #FFF;
@@ -24,20 +24,20 @@ const PrimaryButton = styled(BaseButton)`
 
 const SecondaryButton = styled(BaseButton)`
     font-weight: 900;
-    color: ${props => props.theme.secondaryText};
+    color: ${props => props.theme.color.neutral.gray};
     transition-property: color;
 
     &:hover {
-        color: ${props => props.theme.primaryText};
+        color: ${props => props.theme.color.neutral.darkGray};
     }
 `;
 
 function Button(props) {
     switch (props.buttonType) {
         case "primary":
-            return (<PrimaryButton>{props.buttonLabel}</PrimaryButton>);
+            return (<PrimaryButton className={props.className}>{props.buttonLabel}</PrimaryButton>);
         case "secondary":
-            return (<SecondaryButton>{props.buttonLabel}</SecondaryButton>);
+            return (<SecondaryButton className={props.className}>{props.buttonLabel}</SecondaryButton>);
     }
 }
 

@@ -53,21 +53,21 @@ const Plan = styled.h2`
     font-size: 1.6rem;
     font-weight: 900;
     margin-top: 0;
-    color: ${props => props.theme.primaryText};
+    color: ${props => props.theme.color.neutral.darkGray};
 `;
 
 const Price = styled.p`
     font-size: 1.6rem;
     font-weight: 500;
     margin: 0;
-    color: ${props => props.theme.secondaryText};
+    color: ${props => props.theme.color.neutral.gray};
 `;
 
 const Link = styled.a`
     font-size: 1.4rem;
     font-weight: 900;
     text-decoration: underline;
-    color: ${props => props.theme.brightBlue};
+    color: ${props => props.theme.color.primary.brightBlue};
     cursor: pointer;
     transition-property: opacity;
     transition-duration: 300ms;
@@ -78,9 +78,9 @@ const Link = styled.a`
     }
 `;
 
-function Order() {
+function Order(props) {
     return (
-        <Container>
+        <Container className={props.className}>
             <Icon>
                 <Image
                     src={musicIcon}

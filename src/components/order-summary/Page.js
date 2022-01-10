@@ -10,7 +10,7 @@ const Container = styled.main`
     flex-direction: row;
     align-items: center;
     padding: 2.5rem;
-    background-color: ${props => props.theme.paleBlue};
+    background-color: ${props => props.theme.color.primary.paleBlue};
     background-image: url(${patternMobile.src});
     background-repeat: no-repeat;
     background-size: 100% 50%;

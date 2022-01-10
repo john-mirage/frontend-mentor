@@ -27,15 +27,12 @@ const Body = styled.div`
     }
 `;
 
-const Row = styled.div`
-    margin-bottom: ${props => props.marginBottom ? props.marginBottom : "0"};
-`;
-
 const Title = styled.h1`
     text-align: center;
     font-size: 2.4rem;
     font-weight: 900;
-    color: ${props => props.theme.primaryText};
+    color: ${props => props.theme.color.neutral.darkGray};
+    margin-bottom: 2.5rem;
 
     @media screen and (min-width: 550px) {
         font-size: 3rem;
@@ -47,13 +44,22 @@ const Description = styled.p`
     font-size: 1.6rem;
     font-weight: 500;
     letter-spacing: 0.04rem;
-    color: ${props => props.theme.secondaryText};
+    color: ${props => props.theme.color.neutral.gray};
     line-height: 2.5rem;
+    margin-bottom: 3rem;
 
     @media screen and (min-width: 384px) {
         padding-left: 10%;
         padding-right: 10%;
     }
+`;
+
+const StyledOrder = styled(Order)`
+    margin-bottom: 3rem;
+`;
+
+const StyledButton = styled(Button)`
+    margin-bottom: 1rem;
 `;
 
 function Dialog() {
@@ -66,25 +72,11 @@ function Dialog() {
             />
 
             <Body>
-                <Row marginBottom="2.5rem">
-                    <Title>Order Summary</Title>
-                </Row>
-
-                <Row marginBottom="3rem">
-                    <Description>You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</Description>
-                </Row>
-
-                <Row marginBottom="3rem">
-                    <Order />
-                </Row>
-
-                <Row marginBottom="1rem">
-                    <Button buttonLabel="Proceed to Payment" buttonType="primary" />
-                </Row>
-
-                <Row>
-                    <Button buttonLabel="Cancel Order" buttonType="secondary" />
-                </Row>
+                <Title>Order Summary</Title>
+                <Description>You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</Description>
+                <StyledOrder />
+                <StyledButton buttonLabel="Proceed to Payment" buttonType="primary" />
+                <Button buttonLabel="Cancel Order" buttonType="secondary" />
             </Body>
 
         </Container>
