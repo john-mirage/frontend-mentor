@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import avatar from "@assets/nft-preview-card/image-avatar.png";
 
@@ -8,7 +7,7 @@ const Container = styled.div`
     align-items: center;
 `;
 
-const AvatarContainer = styled.div`
+const Avatar = styled.img`
     flex: 0 0 3.5rem;
     display: block;
     width: 3.5rem;
@@ -18,42 +17,31 @@ const AvatarContainer = styled.div`
     margin-right: 2rem;
 `;
 
-const TextContainer = styled.div`
-    display: block;
+const Text = styled.p`
     font-size: 1.8rem;
     font-weight: 300;
+    color: ${props => props.theme.color.primary.softBlue};
 `;
 
-const TextCreation = styled.span`
-    color: ${props => props.theme.softBlue};
-`;
-
-const TextAuthor = styled.a`
+const Name = styled.a`
     display: inline;
-    color: ${props => props.theme.white};
+    color: ${props => props.theme.color.neutral.white};
     transition-property: color;
     transition-duration: 300ms;
 
     &:hover {
-        color: ${props => props.theme.cyan};
+        color: ${props => props.theme.color.primary.cyan};
     }
 `;
 
 function Author() {
     return (
         <Container>
-            <AvatarContainer>
-                <Image
-                    src={avatar}
-                    alt="Jules Wyvern profile picture"
-                    width="35"
-                    height="35"
-                />
-            </AvatarContainer>
-            <TextContainer>
-                <TextCreation>Creation of </TextCreation>
-                <TextAuthor>Jules Wyvern</TextAuthor>
-            </TextContainer>
+            <Avatar
+                src={avatar.src}
+                alt="Jules Wyvern profile picture"
+            />
+            <Text>Creation of <Name>Jules Wyvern</Name></Text>
         </Container>
     );
 }

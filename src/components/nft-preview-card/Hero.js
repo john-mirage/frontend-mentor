@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import equilibrium from "@assets/nft-preview-card/image-equilibrium.jpg";
 import viewIcon from "@assets/nft-preview-card/icon-view.svg";
@@ -10,21 +9,26 @@ const Container = styled.div`
     height: auto;
     border-radius: 0.8rem;
     overflow: hidden;
-    margin-bottom: 2rem;
+`;
+
+const Image = styled.img`
+    width: 100%;
+    height: auto;
 `;
 
 const Overlay = styled.a`
-    display: flex;
-    visibility: hidden;
-    opacity: 0;
-    justify-content: center;
-    align-items: center;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 255, 247, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    background-color: ${props => props.theme.color.primary.transparentCyan};
+    background-image: url(${viewIcon.src});
+    background-repeat: no-repeat;
+    background-position: center;
     transition-property: visibility, opacity;
     transition-duration: 300ms;
 
@@ -38,19 +42,10 @@ function Hero() {
     return (
         <Container>
             <Image
-                src={equilibrium}
+                src={equilibrium.src}
                 alt="Equilibrium illustration"
-                layout="responsive"
-                priority
             />
-            <Overlay>
-                <Image
-                    src={viewIcon}
-                    alt="Eye icon illustration"
-                    width="50"
-                    height="50"
-                />
-            </Overlay>
+            <Overlay />
         </Container>
     );
 }

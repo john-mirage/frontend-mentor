@@ -9,7 +9,7 @@ const Container = styled.article`
     height: auto;
     padding: 2.4rem;
     border-radius: 1.6rem;
-    background-color: ${props => props.theme.backgroundCard};
+    background-color: ${props => props.theme.color.neutral.darkBlue};
 
     @media screen and (min-width: 448px) {
         width: 40rem;
@@ -21,21 +21,22 @@ const Container = styled.article`
 const Title = styled.a`
     font-size: 2.4rem;
     font-weight: 600;
-    color: ${props => props.theme.white};
+    color: ${props => props.theme.color.neutral.white};
+    margin-top: 2rem;
     margin-bottom: 1.6rem;
     letter-spacing: 0.04rem;
     transition-property: color;
     transition-duration: 300ms;
 
     &:hover {
-        color: ${props => props.theme.cyan};
+        color: ${props => props.theme.color.primary.cyan};
     }
 `;
 
 const Description = styled.p`
     font-size: 1.8rem;
     font-weight: 300;
-    color: ${props => props.theme.softBlue};
+    color: ${props => props.theme.color.primary.softBlue};
     line-height: 2.4rem;
     letter-spacing: 0.02rem;
     margin-bottom: 2rem;
@@ -52,7 +53,7 @@ const Divider = styled.div`
     height: 0.1rem;
     margin-bottom: 1.6rem;
     margin-top: 1.6rem;
-    background-color: ${props => props.theme.backgroundLine};
+    background-color: ${props => props.theme.color.neutral.blue};
 `;
 
 function Card() {

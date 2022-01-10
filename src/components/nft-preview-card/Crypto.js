@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import ethereum from "@assets/nft-preview-card/icon-ethereum.svg";
 
@@ -12,7 +11,7 @@ const Container = styled.div`
     }
 `;
 
-const ImageContainer = styled.div`
+const Icon = styled.img`
     display: block;
     width: 1.1rem;
     height: 1.8rem;
@@ -24,26 +23,22 @@ const ImageContainer = styled.div`
     }
 `;
 
-const Amount = styled.p`
+const Price = styled.p`
     text-align: center;
     font-size: 1.8rem;
     font-weight: 500;
     text-transform: uppercase;
-    color: ${props => props.theme.cyan};
+    color: ${props => props.theme.color.primary.cyan};
 `;
 
 function Crypto() {
     return (
         <Container>
-            <ImageContainer>
-                <Image
-                    src={ethereum}
-                    alt="Ethereum crypto currency icon"
-                    width="11"
-                    height="18"
-                />
-            </ImageContainer>
-            <Amount>0.041 ETH</Amount>
+            <Icon
+                src={ethereum.src}
+                alt="Ethereum crypto currency icon"
+            />
+            <Price>0.041 ETH</Price>
         </Container>
     );
 }

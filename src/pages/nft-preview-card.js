@@ -5,12 +5,19 @@ import Fab from "@components/Fab";
 import Page from "@components/nft-preview-card/Page";
 
 const theme = {
-    softBlue: "hsl(215, 51%, 70%)",
-    cyan: "hsl(178, 100%, 50%)",
-    backgroundMain: "hsl(217, 54%, 11%)",
-    backgroundCard: "hsl(216, 50%, 16%)",
-    backgroundLine: "hsl(215, 32%, 27%)",
-    white: "hsl(0, 0%, 100%)"
+    color: {
+        primary: {
+            softBlue: "hsl(215, 51%, 70%)",
+            cyan: "hsl(178, 100%, 50%)",
+            transparentCyan: "rgba(0, 255, 247, 0.5)",
+        },
+        neutral: {
+            veryDarkBlue: "hsl(217, 54%, 11%)",
+            darkBlue: "hsl(216, 50%, 16%)",
+            blue: "hsl(215, 32%, 27%)",
+            white: "hsl(0, 0%, 100%)",
+        },
+    },
 }
 
 function NFTPreviewCard() {

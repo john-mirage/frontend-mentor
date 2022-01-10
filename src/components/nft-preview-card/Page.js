@@ -8,7 +8,7 @@ const Container = styled.main`
     flex-direction: row;
     align-items: center;
     padding: 2.4rem;
-    background-color: ${props => props.theme.backgroundMain};
+    background-color: ${props => props.theme.color.neutral.veryDarkBlue};
 `;
 
 function Page() {

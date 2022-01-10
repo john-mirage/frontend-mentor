@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import clock from "@assets/nft-preview-card/icon-clock.svg";
 
@@ -12,7 +11,7 @@ const Container = styled.div`
     }
 `;
 
-const ImageContainer = styled.div`
+const Icon = styled.img`
     display: block;
     width: 1.7rem;
     height: 1.7rem;
@@ -24,26 +23,22 @@ const ImageContainer = styled.div`
     }
 `;
 
-const Amount = styled.p`
+const TimeLeft = styled.p`
     text-align: center;
     font-size: 1.8rem;
     font-weight: 300;
-    color: ${props => props.theme.softBlue};
+    color: ${props => props.theme.color.primary.softBlue};
     letter-spacing: 0.02rem;
 `;
 
 function Timer() {
     return (
         <Container>
-            <ImageContainer>
-                <Image
-                    src={clock}
-                    alt="Clock icon illustration"
-                    width="17"
-                    height="17"
-                />
-            </ImageContainer>
-            <Amount>3 days left</Amount>
+            <Icon
+                src={clock.src}
+                alt="Clock icon illustration"
+            />
+            <TimeLeft>3 days left</TimeLeft>
         </Container>
     );
 }
