@@ -43,6 +43,13 @@ const GlobalStyle = createGlobalStyle`
     img {
         display: block;
     }
+
+    button {
+        font-family: inherit;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyle;
