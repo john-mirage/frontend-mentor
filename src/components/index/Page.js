@@ -5,6 +5,7 @@ import NFTPreviewCard from "@assets/index/nft-preview-card.jpg";
 import FAQAccordionCard from "@assets/index/faq-accordion-card.jpg";
 import ChatAppCSSIllustration from "@assets/index/chat-app-css-illustration.jpg";
 import FyloDataStorage from "@assets/index/fylo-data-storage.jpg";
+import InteractivePricing from "@assets/index/interactive-pricing.jpg";
 
 const Container = styled.main`
     width: 100%;
@@ -59,6 +60,14 @@ function Page() {
                 description="This component has some interesting CSS challenges in the design. If you're looking to test your CSS skills, this will be a great project for you!"
                 imageSrc={FyloDataStorage}
                 imageAlt="Fylo data storage design illustration"
+            />
+
+            <Card
+                link="/interactive-pricing"
+                title="Interactive Pricing component Illustration"
+                description="In this project, you'll build out an interactive pricing component complete with custom range input slider and pricing toggle. A perfect way to test your JS skills!"
+                imageSrc={InteractivePricing}
+                imageAlt="Interactive Pricing component illustration"
             />
 
         </Container>
