@@ -4,7 +4,8 @@ import sliderIcon from "@assets/interactive-pricing/icon-slider.svg";
 const Container = styled.div`
     width: 100%;
     height: 5rem;
-    padding: 2rem 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 `;
 
 const EmptyBar = styled.div`

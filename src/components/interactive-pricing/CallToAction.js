@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.button`
+    display: block;
     width: auto;
     height: 5rem;
     padding-left: 6rem;
@@ -15,9 +16,9 @@ const Text = styled.span`
     color: ${props => props.theme.color.primary.paleBlue};
 `;
 
-function CallToAction() {
+function CallToAction(props) {
     return (
-        <Container>
+        <Container className={props.className}>
             <Text>Start my trial</Text>
         </Container>
     );

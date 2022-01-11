@@ -26,7 +26,8 @@ const Yearly = styled(Text)`
 `;
 
 const Badge = styled.p`
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
     position: absolute;
     top: 50%;
     right: 0;
@@ -40,6 +41,13 @@ const Badge = styled.p`
     line-height: 2.5rem;
     color: ${props => props.theme.color.primary.lightRed};
     background-color: ${props => props.theme.color.primary.lightGrayishRed};
+
+    @media screen and (min-width: 860px) {
+        &::after {
+            content: "discount";
+            margin-left: 0.4rem;
+        }
+    }
 `;
 
 function Plan(props) {

@@ -8,18 +8,32 @@ const Container = styled.main`
     padding: 8rem 3rem;
     background-image: url(${pattern.src});
     background-repeat: no-repeat;
-    background-size: auto 50%;
+    background-size: 100% 50%;
 `;
 
 const StyledHero = styled(Hero)`
     margin-bottom: 5rem;
 `;
 
+const StyledCard = styled(Card)`
+    @media screen and (min-width: 560px) {
+        width: 50rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media screen and (min-width: 860px) {
+        width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+`;
+
 function Page() {
     return (
         <Container>
             <StyledHero />
-            <Card />
+            <StyledCard />
         </Container>
     );
 }
