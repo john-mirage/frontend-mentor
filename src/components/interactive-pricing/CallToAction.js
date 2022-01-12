@@ -4,10 +4,15 @@ const Container = styled.button`
     display: block;
     width: auto;
     height: 5rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
-    border-radius: 3rem;
+    border-radius: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     background-color: ${props => props.theme.color.neutral.darkDesaturatedBlue};
+
+    @media screen and (min-width: 375px) {     
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
 `;
 
 const Text = styled.span`

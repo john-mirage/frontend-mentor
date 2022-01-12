@@ -20,6 +20,7 @@ const Container = styled.article`
     @media screen and (min-width: 860px) {
         justify-content: flex-start;
         align-items: center;
+        padding: 4rem 6rem;
     }
 `;
 
@@ -30,38 +31,12 @@ const Title = styled.h2`
     text-transform: uppercase;
     margin-bottom: 3rem;
     color: ${props => props.theme.color.neutral.grayishBlue};
+    text-align: center;
 
     @media screen and (min-width: 860px) {
         width: 50%;
         order: 1;
-    }
-`;
-
-const StyledSlider = styled(Slider)`
-    margin-bottom: 3rem;
-
-    @media screen and (min-width: 860px) {
-        order: 3;
-    }
-`;
-
-const StyledPricePerMonth = styled(PricePerMonth)`
-    justify-content: center;
-    margin-bottom: 4rem;
-
-    @media screen and (min-width: 860px) {
-        justify-content: flex-end;
-        width: 50%;
-        order: 2;
-        margin-left: auto;
-    }
-`;
-
-const StyledPlan = styled(Plan)`
-    margin-bottom: 5rem;
-
-    @media screen and (min-width: 860px) {
-        order: 4;
+        text-align: start;
     }
 `;
 
@@ -74,7 +49,11 @@ const Divider = styled.div`
     background-color: ${props => props.theme.color.neutral.veryLightGrayishBlue};
 
     @media screen and (min-width: 860px) {
+        width: calc(100% + 12rem);
         order: 5;
+        margin-bottom: 4rem;
+        margin-left: -6rem;
+        margin-right: -6rem;
     }
 `;
 
@@ -84,10 +63,48 @@ const Features = styled.div`
     text-align: center;
 
     @media screen and (min-width: 860px) {
+        text-align: start;
         margin-bottom: 0;
         width: 50%;
         order: 6;
-        text-align: start;
+    }
+`;
+
+const StyledSlider = styled(Slider)`
+    margin-bottom: 3rem;
+
+    @media screen and (min-width: 860px) {
+        order: 3;
+        margin-bottom: 2rem;
+    }
+`;
+
+const StyledPricePerMonth = styled(PricePerMonth)`
+    justify-content: center;
+    margin-bottom: 4rem;
+
+    @media screen and (min-width: 860px) {
+        justify-content: flex-end;
+        width: 50%;
+        order: 2;
+        margin-bottom: 3rem;
+    }
+`;
+
+const StyledPlan = styled(Plan)`
+    margin-bottom: 5rem;
+
+    @media screen and (min-width: 860px) {
+        order: 4;
+        margin-bottom: 3rem;
+    }
+`;
+
+const StyledFeature = styled(Feature)`
+    justify-content: center;
+
+    @media screen and (min-width: 860px) {
+        justify-content: flex-start;
     }
 `;
 
@@ -107,9 +124,9 @@ function Card(props) {
             <StyledPlan />
             <Divider />
             <Features>
-                <Feature feature="Unlimited websites" />
-                <Feature feature="100% data ownership" />
-                <Feature feature="Email reports" />
+                <StyledFeature feature="Unlimited websites" />
+                <StyledFeature feature="100% data ownership" />
+                <StyledFeature feature="Email reports" />
             </Features>
             <StyledCallToAction />
         </Container>

@@ -20,9 +20,14 @@ const Label = styled.label`
     cursor: pointer;
     transition-property: background-color;
     transition-duration: 300ms;
+    transform: rotate(90deg);
 
     ${Input}:checked + & {
         background-color: ${props => props.theme.color.primary.softCyan};
+    }
+
+    @media screen and (min-width: 520px) {
+        transform: rotate(0);
     }
 `;
 
@@ -39,11 +44,11 @@ const Dot = styled.div`
     }
 `;
 
-function ToggleButton() {
+function ToggleButton(props) {
     return (
         <>
             <Input />
-            <Label htmlFor="toggle-button-trigger">
+            <Label className={props.className} htmlFor="toggle-button-trigger">
                 <Dot />
             </Label>
         </>

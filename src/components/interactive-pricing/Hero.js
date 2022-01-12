@@ -16,6 +16,10 @@ const Title = styled.h1`
     font-size: 2.5rem;
     font-weight: 800;
     color: ${props => props.theme.color.neutral.darkDesaturatedBlue};
+
+    @media screen and (min-width: 860px) {
+        font-size: 4rem;
+    }
 `;
 
 const Description = styled.p`
@@ -26,6 +30,11 @@ const Description = styled.p`
     font-weight: 600;
     line-height: 3rem;
     color: ${props => props.theme.color.neutral.grayishBlue};
+
+    @media screen and (min-width: 860px) {
+        width: 50rem;
+        font-size: 1.8rem;
+    }
 `;
 
 function Hero(props) {

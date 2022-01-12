@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     height: auto;
+
+    @media screen and (min-width: 375px) {
+        flex-direction: row;
+    }
 `;
 
 const Price = styled.h3`

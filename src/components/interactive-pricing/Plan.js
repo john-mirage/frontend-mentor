@@ -1,61 +1,55 @@
 import styled from "styled-components";
 import ToggleButton from "@components/interactive-pricing/ToggleButton";
+import Badge from "@components/interactive-pricing/Badge";
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: auto;
+
+    @media screen and (min-width: 520px) {
+        flex-direction: row;
+    }
 `;
 
 const Text = styled.p`
+    position: relative;
     font-size: 1.5rem;
     font-weight: 600;
     color: ${props => props.theme.color.neutral.grayishBlue};
 `;
 
-const Monthly = styled(Text)`
-    margin-right: 1.5rem;
+const StyledToggleButton = styled(ToggleButton)`
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    @media screen and (min-width: 520px) {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
 `;
 
-const Yearly = styled(Text)`
-    position: relative;
-    margin-left: 1.5rem;
-`;
-
-const Badge = styled.p`
-    display: flex;
-    flex-direction: row;
+const StyledBadge = styled(Badge)`
     position: absolute;
     top: 50%;
-    right: 0;
-    width: auto;
-    height: auto;
-    transform: translate(110%, -50%);
-    font-size: 1.2rem;
-    font-weight: 800;
-    padding: 0 1.2rem;
-    border-radius: 1.25rem;
-    line-height: 2.5rem;
-    color: ${props => props.theme.color.primary.lightRed};
-    background-color: ${props => props.theme.color.primary.lightGrayishRed};
+    right: -0.5rem;
+    transform: translate(100%, -50%);
+    margin-top: 0.2rem;
 
     @media screen and (min-width: 860px) {
-        &::after {
-            content: "discount";
-            margin-left: 0.4rem;
-        }
+        right: -1rem;
     }
 `;
 
 function Plan(props) {
     return (
         <Container className={props.className}>
-            <Monthly>Monthly Billing</Monthly>
-            <ToggleButton />
-            <Yearly>Yearly Billing<Badge>-25%</Badge></Yearly>
+            <Text>Monthly Billing</Text>
+            <StyledToggleButton />
+            <Text>Yearly Billing<StyledBadge>-25%</StyledBadge></Text>
         </Container>
     );
 }
