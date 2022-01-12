@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.span`
+    display: block;
     width: auto;
     height: 2rem;
     padding: 0 0.5rem;
@@ -8,7 +9,8 @@ const Container = styled.div`
     background-color: ${props => props.theme.color.primary.lightGrayishRed};
 `;
 
-const Text = styled.p`
+const Text = styled.span`
+    display: block;
     font-size: 1.2rem;
     font-weight: 800;
     line-height: 2rem;

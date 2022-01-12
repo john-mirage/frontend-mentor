@@ -48,7 +48,7 @@ function Plan(props) {
     return (
         <Container className={props.className}>
             <Text>Monthly Billing</Text>
-            <StyledToggleButton />
+            <StyledToggleButton setPlan={props.setPlan} />
             <Text>Yearly Billing<StyledBadge>-25%</StyledBadge></Text>
         </Container>
     );

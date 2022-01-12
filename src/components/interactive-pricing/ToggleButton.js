@@ -45,9 +45,18 @@ const Dot = styled.div`
 `;
 
 function ToggleButton(props) {
+
+    function handlePlanChange(event) {
+        if (event.target.checked) {
+            props.setPlan("year");
+        } else {
+            props.setPlan("month");
+        }
+    }
+
     return (
         <>
-            <Input />
+            <Input onChange={handlePlanChange} />
             <Label className={props.className} htmlFor="toggle-button-trigger">
                 <Dot />
             </Label>

@@ -4,6 +4,7 @@ import PricePerMonth from "@components/interactive-pricing/PricePerMonth";
 import Plan from "@components/interactive-pricing/Plan";
 import Feature from "@components/interactive-pricing/Feature";
 import CallToAction from "@components/interactive-pricing/CallToAction";
+import { useState } from "react";
 
 const Container = styled.article`
     display: flex;
@@ -24,7 +25,7 @@ const Container = styled.article`
     }
 `;
 
-const Title = styled.h2`
+const PageViews = styled.h2`
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: 0.3rem;
@@ -116,12 +117,32 @@ const StyledCallToAction = styled(CallToAction)`
 `;
 
 function Card(props) {
+    const priceTable = {
+        "10k": 8,
+        "50k": 12,
+        "100k": 16,
+        "500k": 24,
+        "1m": 36,
+    };
+
+    function getPrice(pageViews, plan) {
+        if (plan === "month") {
+            return priceTable[pageViews];
+        } else if (plan === "year") {
+            return (priceTable[pageViews] * 12) * 0.75;
+        }
+    }
+
+    const [pageViews, setPageViews] = useState("100k");
+    const [plan, setPlan] = useState("month");
+    const price = getPrice(pageViews, plan);
+
     return (
         <Container className={props.className}>
-            <Title>100k pageviews</Title>
+            <PageViews>{pageViews} pageviews</PageViews>
             <StyledSlider />
-            <StyledPricePerMonth />
-            <StyledPlan />
+            <StyledPricePerMonth price={price} plan={plan} />
+            <StyledPlan setPlan={setPlan} />
             <Divider />
             <Features>
                 <StyledFeature feature="Unlimited websites" />

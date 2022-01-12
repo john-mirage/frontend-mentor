@@ -26,10 +26,11 @@ const Type = styled.p`
 `;
 
 function PricePerMonth(props) {
+    const formatedPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(props.price);
     return (
         <Container className={props.className}>
-            <Price>$16.00</Price>
-            <Type>/ month</Type>
+            <Price>{formatedPrice}</Price>
+            <Type>/ {props.plan}</Type>
         </Container>
     );
 }
