@@ -22,6 +22,10 @@ const Info = styled.h1`
     letter-spacing: 0.05rem;
     color: ${props => props.theme.color.neutral.paleBlue};
     margin-bottom: 2rem;
+
+    @media screen and (min-width: 1280px) {
+        text-align: start;
+    }
 `;
 
 const UsedData = styled.span`
@@ -35,9 +39,15 @@ const StyledProgressBar = styled(ProgressBar)`
 
 const StyledRemainingData = styled(RemainingData)`
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
+    top: 100%;
+    right: 50%;
+    transform: translate(50%, -50%);
+
+    @media screen and (min-width: 1280px) {
+        top: 0;
+        right: 4rem;
+        transform: translate(0, -60%);
+    }
 `;
 
 function Storage(props) {

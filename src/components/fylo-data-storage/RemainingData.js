@@ -17,6 +17,14 @@ const Container = styled.div`
         padding-left: 3rem;
         padding-right: 3rem;
     }
+
+    @media screen and (min-width: 1280px) {
+        position: relative;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 0;
+    }
 `;
 
 const DataAmount = styled.p`
@@ -41,11 +49,29 @@ const DataType = styled.p`
     }
 `;
 
+const Triangle = styled.div`
+    display: none;
+
+    @media screen and (min-width: 1280px) {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        transform: translateY(50%);
+        border-top: 2.5rem solid transparent;
+        border-bottom: 2.5rem solid transparent;
+        border-right: 2.5rem solid #fff;
+    }
+`;
+
 function RemainingData(props) {
     return (
         <Container className={props.className}>
             <DataAmount>185</DataAmount>
             <DataType>gb left</DataType>
+            <Triangle />
         </Container>
     );
 }
