@@ -12,7 +12,7 @@ const Screen = styled.article`
     border-radius: 4.8rem;
     padding: 1.4rem;
 
-    @media screen and (min-width: 452px) {
+    @media screen and (min-width: 460px) {
         width: 42rem;
     }
 `;
@@ -31,7 +31,7 @@ const Gap = styled.div`
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 55%;
+    width: 21.2rem;
     height: 3rem;
     border-bottom-left-radius: 2.5rem;
     border-bottom-right-radius: 2.5rem;
