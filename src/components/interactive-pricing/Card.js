@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Slider from "@components/interactive-pricing/Slider";
-import PricePerMonth from "@components/interactive-pricing/PricePerMonth";
+import Price from "@components/interactive-pricing/Price";
 import Plan from "@components/interactive-pricing/Plan";
 import Feature from "@components/interactive-pricing/Feature";
 import CallToAction from "@components/interactive-pricing/CallToAction";
@@ -80,7 +80,7 @@ const StyledSlider = styled(Slider)`
     }
 `;
 
-const StyledPricePerMonth = styled(PricePerMonth)`
+const StyledPrice = styled(Price)`
     justify-content: center;
     margin-bottom: 4rem;
 
@@ -140,8 +140,8 @@ function Card(props) {
     return (
         <Container className={props.className}>
             <PageViews>{pageViews} pageviews</PageViews>
-            <StyledSlider />
-            <StyledPricePerMonth price={price} plan={plan} />
+            <StyledSlider setPageViews={setPageViews} />
+            <StyledPrice price={price} plan={plan} />
             <StyledPlan setPlan={setPlan} />
             <Divider />
             <Features>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Input = styled.input.attrs(props => {
+const Input = styled.input.attrs(() => {
     return {
         type: "checkbox",
         id: "toggle-button-trigger",

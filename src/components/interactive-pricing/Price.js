@@ -12,7 +12,7 @@ const Container = styled.div`
     }
 `;
 
-const Price = styled.h3`
+const Amount = styled.h3`
     margin-right: 1rem;
     font-size: 4rem;
     font-weight: 800;
@@ -25,14 +25,14 @@ const Type = styled.p`
     color: ${props => props.theme.color.neutral.grayishBlue};
 `;
 
-function PricePerMonth(props) {
+function Price(props) {
     const formatedPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(props.price);
     return (
         <Container className={props.className}>
-            <Price>{formatedPrice}</Price>
+            <Amount>{formatedPrice}</Amount>
             <Type>/ {props.plan}</Type>
         </Container>
     );
 }
 
-export default PricePerMonth;
+export default Price;
