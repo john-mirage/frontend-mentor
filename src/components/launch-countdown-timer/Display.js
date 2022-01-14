@@ -114,25 +114,26 @@ const Overlay = styled.div`
 `;
 
 function Display(props) {
+    const timeValue = ("00" + props.timeValue).slice(-2);
     return (
         <Container className={props.className}>
             <TopPannel>
-                <BottomNumber>02</BottomNumber>
+                <BottomNumber>{timeValue}</BottomNumber>
                 <Overlay />
             </TopPannel>
 
             <MovingPannel>
                 <Front>
-                    <BottomNumber>03</BottomNumber>
+                    <BottomNumber>{timeValue}</BottomNumber>
                     <Overlay />
                 </Front>
                 <Back>
-                    <TopNumber>02</TopNumber>
+                    <TopNumber>{timeValue}</TopNumber>
                 </Back>
             </MovingPannel>
 
             <BottomPannel>
-                <TopNumber>03</TopNumber>
+                <TopNumber>{timeValue}</TopNumber>
             </BottomPannel>
 
             <LeftCircle />
