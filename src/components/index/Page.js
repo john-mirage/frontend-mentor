@@ -6,6 +6,7 @@ import FAQAccordionCard from "@assets/index/faq-accordion-card.jpg";
 import ChatAppCSSIllustration from "@assets/index/chat-app-css-illustration.jpg";
 import FyloDataStorage from "@assets/index/fylo-data-storage.jpg";
 import InteractivePricing from "@assets/index/interactive-pricing.jpg";
+import LaunchCountdownTimer from "@assets/index/launch-countdown-timer.jpg";
 
 const Container = styled.main`
     width: 100%;
@@ -68,6 +69,14 @@ function Page() {
                 description="In this project, you'll build out an interactive pricing component complete with custom range input slider and pricing toggle. A perfect way to test your JS skills!"
                 imageSrc={InteractivePricing}
                 imageAlt="Interactive Pricing component illustration"
+            />
+
+            <Card
+                link="/launch-countdown-timer"
+                title="Launch Countdown Timer component Illustration"
+                description="This will be a fun one! Your challenge is to build this countdown timer. There are lots of small CSS tests in the design as well. So it should keep you busy!"
+                imageSrc={LaunchCountdownTimer}
+                imageAlt="Launch Countdown Timer component Illustration"
             />
 
         </Container>
