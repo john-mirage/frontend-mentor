@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Countdown from "@components/launch-countdown-timer/Countdown";
 import SocialMedias from "@components/launch-countdown-timer/SocialMedias";
 import hillsIllustration from "@assets/launch-countdown-timer/pattern-hills-custom.svg";
 import starsIllustration from "@assets/launch-countdown-timer/bg-stars.svg";
@@ -26,6 +27,7 @@ const Title = styled.h1`
     text-transform: uppercase;
     text-align: center;
     color: ${props => props.theme.color.neutral.white};
+    margin-bottom: 10rem;
 `;
 
 const StyledSocialMedias = styled(SocialMedias)`
@@ -36,6 +38,7 @@ function Page() {
     return (
         <Container>
             <Title>we're launching soon</Title>
+            <Countdown />
             <StyledSocialMedias />
         </Container>
     );
