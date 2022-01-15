@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import musicIcon from "@assets/order-summary/icon-music.svg";
 
@@ -24,7 +23,11 @@ const Section = styled.div`
     flex-shrink: 0;
 `;
 
-const Icon = styled(Section)`
+const Icon = styled.img`
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 5rem;
+    height: 5rem;
     margin-bottom: 1.5rem;
 
     @media screen and (min-width: 384px) {
@@ -81,14 +84,10 @@ const Link = styled.a`
 function Order(props) {
     return (
         <Container className={props.className}>
-            <Icon>
-                <Image
-                    src={musicIcon}
-                    alt="An icon of a music note"
-                    width="50"
-                    height="50"
-                />
-            </Icon>
+            <Icon
+                src={musicIcon.src}
+                alt="An icon of a music note"
+            />
             
             <Info>
                 <Plan>Annual Plan</Plan>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import Order from "@components/order-summary/Order";
 import Button from "@components/order-summary/Button";
@@ -17,6 +16,11 @@ const Container = styled.article`
         margin-left: auto;
         margin-right: auto;
     }
+`;
+
+const Image = styled.img`
+    width: 100%;
+    height: auto;
 `;
 
 const Body = styled.div`
@@ -66,11 +70,9 @@ function Dialog() {
     return (
         <Container>
             <Image
-                src={heroIllustration}
+                src={heroIllustration.src}
                 alt="Women listening and dancing to music with headphone"
-                layout="responsive"
             />
-
             <Body>
                 <Title>Order Summary</Title>
                 <Description>You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</Description>
