@@ -29,15 +29,21 @@ const Description = styled.p`
         margin-left: auto;
         margin-right: auto;
         font-size: 2rem;
-        line-height: 3.5rem;
+        line-height: 3rem;
     }
+`;
+
+const Link = styled.a`
+    display: inline;
+    color: ${props => props.theme.color.primary.purple};
 `;
 
 function Hero(props) {
     return (
         <Container className={props.className}>
             <Title>Frontend Mentor challenges</Title>
-            <Description>All the challenges are made with Next / React and Styled components</Description>
+            <Description>
+                All the challenges are made with <Link href="https://nextjs.org/">Next.js</Link> / <Link href="https://reactjs.org/">React</Link> and <Link href="https://styled-components.com/">Styled components</Link></Description>
         </Container>
     );
 }
