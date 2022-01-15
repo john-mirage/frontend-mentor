@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -24,16 +23,17 @@ const Container = styled.article`
     }
 `;
 
-const ImageContainer = styled.div`
+const Image = styled.img`
     position: relative;
     width: 100%;
-    min-height: 25.6rem;
+    height: 25.6rem;
     border-bottom: 0.1rem solid ${props => props.theme.divider};
+    object-fit: cover;
 
     @media screen and (min-width: 808px) {
         flex: 0 0 25.6rem;
         width: 25.6rem;
-        min-height: 18rem;
+        height: 18rem;
         border-bottom: none;
         border-right: 0.1rem solid ${props => props.theme.divider};
     }
@@ -88,15 +88,7 @@ const Description = styled.p`
 function Card(props) {
     return (
         <Container>
-            <ImageContainer>
-                <Image
-                    src={props.imageSrc}
-                    alt={props.imageAlt}
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                />
-            </ImageContainer>
+            <Image src={props.imageSrc.src} alt={props.imageAlt} />
             <Body>
                 <Link href={props.link}>
                     <Title>{props.title}</Title>
