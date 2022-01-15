@@ -4,90 +4,70 @@ import styled from "styled-components";
 const Container = styled.article`
     width: 100%;
     height: auto;
+    padding: 3rem;
+    border-radius: 1rem;
     overflow: hidden;
-    border-radius: 0.8rem;
-    margin-bottom: 3.2rem;
-    background-color: ${props => props.theme.white};
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    background-color: ${props => props.theme.color.primary.gray};
 
-    @media screen and (min-width: 808px) {
+    @media screen and (min-width: 800px) {
         display: flex;
         flex-direction: row;
-        width: 76rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    &:last-child {
-        margin-bottom: 0;
+        height: 20rem;
+        padding: 0;
     }
 `;
 
 const Image = styled.img`
-    position: relative;
     width: 100%;
-    height: 25.6rem;
-    border-bottom: 0.1rem solid ${props => props.theme.divider};
+    height: auto;
     object-fit: cover;
+    border-radius: 0.6rem;
 
-    @media screen and (min-width: 808px) {
-        flex: 0 0 25.6rem;
-        width: 25.6rem;
-        height: 18rem;
-        border-bottom: none;
-        border-right: 0.1rem solid ${props => props.theme.divider};
+    @media screen and (min-width: 800px) {
+        flex: 0 0 28rem;
+        width: 28rem;
+        height: 100%;
+        border-radius: 0;
     }
 `;
 
 const Body = styled.div`
-    padding: 1.6rem;
+    padding-top: 2rem;
+    width: 100%;
+    height: auto;
+    text-align: center;
 
-    @media screen and (min-width: 808px) {
-        padding: 2.4rem;
+    @media screen and (min-width: 800px) {
+        width: auto;
+        padding: 2rem 4rem;
+        text-align: start;
     }
 `;
 
 const Title = styled.a`
     display: block;
-    text-align: center;
     font-size: 2rem;
     font-weight: 500;
-    color: ${props => props.theme.primaryText};
+    color: ${props => props.theme.color.neutral.white};
     margin-bottom: 1.6rem;
-
-    @media screen and (min-width: 808px) {
-        text-align: start;
-    }
+    transition: color 300ms;
 
     &:hover {
-        color: ${props => props.theme.darkBlue};
+        color: ${props => props.theme.color.primary.purple};
     }
 `;
 
 const Description = styled.p`
-    text-align: center;
-    font-size: 1.6rem;
+    width: auto;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
     font-weight: 400;
-    color: ${props => props.theme.secondaryText};
-    line-height: 2.4rem;
-
-    @media screen and (min-width: 580px) {
-        width: 50rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    @media screen and (min-width: 808px) {
-        width: auto;
-        margin-left: 0;
-        margin-right: 0;
-        text-align: start;
-    }
+    color: ${props => props.theme.color.neutral.gray};
 `;
 
 function Card(props) {
     return (
-        <Container>
+        <Container className={props.className}>
             <Image src={props.imageSrc.src} alt={props.imageAlt} />
             <Body>
                 <Link href={props.link}>
