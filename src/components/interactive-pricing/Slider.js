@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import sliderIcon from "@assets/interactive-pricing/icon-slider.svg";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 
 const Container = styled.div`
     position: relative;
