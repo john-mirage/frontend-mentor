@@ -36,6 +36,10 @@ const Description = styled.p`
 const Link = styled.a`
     display: inline;
     color: ${props => props.theme.color.primary.purple};
+
+    &:hover {
+        text-decoration: underline;
+    }
 `;
 
 function Hero(props) {
