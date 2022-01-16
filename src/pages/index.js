@@ -10,6 +10,7 @@ const theme = {
             gray: "#1e293b",
             lightGray: "#334155",
             purple: "#c084fc",
+            darkPurple: "#581c87",
         },
         neutral: {
             white: "#f8fafc",
