@@ -40,7 +40,7 @@ const StyledHero = styled(Hero)`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2rem;
     width: 100%;
     height: auto;
 
@@ -61,7 +61,6 @@ function Page() {
                 <StyledHero />
 
                 <Grid>
-
                     {challenges.map((challenge, index) =>
                         <Challenge
                             title={challenge.title}
@@ -73,7 +72,6 @@ function Page() {
                             key={index}
                         />
                     )}
-
                 </Grid>
 
             </Content>

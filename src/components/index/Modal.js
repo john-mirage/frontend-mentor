@@ -1,23 +1,40 @@
-import Link from "next/link";
 import styled from "styled-components";
+import CloseButton from "@components/index/CloseButton";
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
     background-color: ${props => props.theme.color.primary.gray};
-    border-radius: 2rem;
     overflow: hidden;
+`;
+
+const Body = styled.div`
+    flex: 1 1 100%;
+    overflow-y: auto;
+`;
+
+const Footer = styled.footer`
+    flex: 0 0 6rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 1.8rem;
+    border-top: 0.1rem solid ${props => props.theme.color.primary.divider};
+
+    @media screen and (min-width: 580px) {
+        display: none;
+    }
 `;
 
 const Image = styled.img`
     width: 100%;
     height: auto;
-`;
-
-const Body = styled.div`
-    padding: 4rem;
-    max-height: calc(100vh - 35.2rem);
-    overflow-y: auto;
+    margin-bottom: 2rem;
 `;
 
 const Title = styled.h2`
@@ -26,6 +43,8 @@ const Title = styled.h2`
     line-height: 3rem;
     color: ${props => props.theme.color.neutral.white};
     margin-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 `;
 
 const Description = styled.p`
@@ -33,31 +52,22 @@ const Description = styled.p`
     font-weight: 400;
     line-height: 2.5rem;
     color: ${props => props.theme.color.neutral.gray};
-    margin-bottom: 6rem;
-`;
-
-const Button = styled.a`
-    width: 100%;
-    padding: 2rem 4rem;
-    border-radius: 1rem;
-    font-size: 1.6rem;
-    font-weight: 500;
-    text-align: center;
-    background-color: ${props => props.theme.color.primary.darkPurple};
-    color: ${props => props.theme.color.neutral.white};
+    padding-left: 3rem;
+    padding-right: 3rem;
 `;
 
 function Modal(props) {
     return (
         <Container className={props.className}>
-            <Image src={props.image} alt={props.imageAlt} />
             <Body>
+                <Image src={props.image} alt={props.imageAlt} />
                 <Title>{props.title}</Title>
                 <Description>{props.description}</Description>
-                <Link href={props.link}>
-                    <Button>Show the challenge</Button>
-                </Link>
             </Body>
+
+            <Footer>
+                <CloseButton label="Close" inputId={props.modalTrigger} />
+            </Footer>
         </Container>
     );
 }

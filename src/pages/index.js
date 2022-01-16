@@ -11,6 +11,7 @@ const theme = {
             lightGray: "#334155",
             purple: "#c084fc",
             darkPurple: "#581c87",
+            divider: "#334155",
         },
         neutral: {
             white: "#f8fafc",
