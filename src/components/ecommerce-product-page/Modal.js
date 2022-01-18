@@ -5,9 +5,9 @@ const Container = styled.div`
 
 `;
 
-function Modal() {
+function Modal(props) {
     return (
-        <Container>
+        <Container className={props.className}>
             <Carrousel />
         </Container>
     );

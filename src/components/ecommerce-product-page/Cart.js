@@ -7,6 +7,7 @@ const Container = styled.div`
     min-height: 24rem;
     border-radius: 1rem;
     background-color: ${props => props.theme.color.neutral.white};
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
 const Header = styled.header`

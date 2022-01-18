@@ -4,6 +4,7 @@ import TopAppBar from "@components/ecommerce-product-page/TopAppBar";
 import Modal from "@components/ecommerce-product-page/Modal";
 import Drawer from "@components/ecommerce-product-page/Drawer";
 import Cart from "@components/ecommerce-product-page/Cart";
+import Product from "@components/ecommerce-product-page/Product";
 
 const Container = styled.main`
     padding-top: 7rem;
@@ -27,6 +28,10 @@ const StyledCart = styled(Cart)`
     width: calc(100% - 2rem);
     transition-property: visibility, opacity;
     transition-duration: 300ms;
+`;
+
+const StyledModal = styled(Modal)`
+    margin-bottom: 2rem;
 `;
 
 const StyledDrawer = styled(Drawer)`
@@ -67,7 +72,8 @@ function Page() {
             <StyledCart
                 cartIsOpen={cartIsOpen}
             />
-            <Modal />
+            <StyledModal />
+            <Product />
             <StyledDrawer
                 drawerIsOpen={drawerIsOpen}
                 setDrawerIsOpen={setDrawerIsOpen}
