@@ -9,7 +9,7 @@ const Container = styled.div`
     padding-bottom: 10rem;
 `;
 
-const Compagny = styled.p`
+const Company = styled.p`
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -33,22 +33,25 @@ const Description = styled.p`
     margin-bottom: 2.4rem;
 `;
 
-const StyledPrice = styled(Price)`
+const SpacedPrice = styled(Price)`
     margin-bottom: 2rem;
 `;
 
-const StyleCountInput = styled(CountInput)`
+const SpacedCountInput = styled(CountInput)`
     margin-bottom: 1.6rem;
 `;
 
-function Product() {
+function Product(props) {
     return (
         <Container>
-            <Compagny>sneaker compagny</Compagny>
+            <Company>sneaker company</Company>
             <Name>Fall Limited Edition Sneakers</Name>
             <Description>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</Description>
-            <StyledPrice />
-            <StyleCountInput />
+            <SpacedPrice />
+            <SpacedCountInput
+                cartItemsNumber={props.cartItemsNumber}
+                setCartItemsNumber={props.setCartItemsNumber}
+            />
             <CartButton />
         </Container>
     );

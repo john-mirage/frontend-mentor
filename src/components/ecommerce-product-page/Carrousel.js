@@ -52,13 +52,23 @@ const NextButton = styled(Button)`
     background-image: url(${nextIcon.src});
 `;
 
-function Carrousel() {
+function Carrousel(props) {
     const images = [productImage1, productImage2, productImage3, productImage4];
     const numberOfImages = images.length;
     const [currentSlide, setCurrentSlide] = useState(1);
 
+    function handlePreviousButton(event) {
+        event.preventDefault();
+        setCurrentSlide(currentSlide === 1 ? numberOfImages : currentSlide - 1);
+    }
+
+    function handleNextButton(event) {
+        event.preventDefault();
+        setCurrentSlide(currentSlide === numberOfImages ? 1 : currentSlide + 1)
+    }
+
     return (
-        <Container>
+        <Container className={props.className}>
             <Slider currentSlide={currentSlide} numberOfImages={numberOfImages}>
                 {images.map((image, index) =>
                     <Slide
@@ -68,8 +78,8 @@ function Carrousel() {
                     />
                 )}
             </Slider>
-            <PreviousButton onClick={() => setCurrentSlide(currentSlide === 1 ? numberOfImages : currentSlide - 1)} />
-            <NextButton onClick={() => setCurrentSlide(currentSlide === numberOfImages ? 1 : currentSlide + 1)} />
+            <PreviousButton onClick={handlePreviousButton} />
+            <NextButton onClick={handleNextButton} />
         </Container>
     );
 }

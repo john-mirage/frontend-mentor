@@ -3,12 +3,12 @@ import styled from "styled-components";
 const Container = styled.nav`
     display: flex;
     flex-direction: ${props => props.vertical ? "column" : "row"};
+    color: ${props => props.vertical ? props.theme.color.neutral.veryDarkBlue : props.theme.color.neutral.grayishBlue};
 `;
 
 const Link = styled.a`
     font-size: 1.6rem;
     font-weight: 700;
-    color: ${props => props.theme.color.primary.veryDarkBlue};
     line-height: 3.6rem;
 `;
 

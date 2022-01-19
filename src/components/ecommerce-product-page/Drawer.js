@@ -6,6 +6,7 @@ const Container = styled.aside`
     width: 20rem;
     height: 100%;
     background-color: ${props => props.theme.color.neutral.white};
+    padding-left: 1.8rem;
 `;
 
 const CloseButton = styled.button`
@@ -15,18 +16,19 @@ const CloseButton = styled.button`
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1.2rem;
-    padding: 0;
-`;
-
-const StyledNavigation = styled(Navigation)`
-    padding-left: 1.6rem;
+    margin-left: -1.8rem;
 `;
 
 function Drawer(props) {
+    function handleDrawer(event) {
+        event.preventDefault();
+        props.setDrawerIsOpen(false);
+    }
+
     return (
         <Container className={props.className}>
-            <CloseButton onClick={() => props.setDrawerIsOpen(false)} />
-            <StyledNavigation vertical />
+            <CloseButton onClick={handleDrawer} />
+            <Navigation vertical />
         </Container>
     );
 }

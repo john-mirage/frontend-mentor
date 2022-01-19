@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import IconButton from "@components/ecommerce-product-page/IconButton";
 import minusButton from "@assets/ecommerce-product-page/icon-minus.svg";
 import plusButton from "@assets/ecommerce-product-page/icon-plus.svg";
 
@@ -15,27 +16,6 @@ const Container = styled.div`
     padding-right: 0.4rem;
 `;
 
-const IconButton = styled.button`
-    width: 4.8rem;
-    height: 4.8rem;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 1.2rem;
-
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-`;
-
-const MinusButton = styled(IconButton)`
-    background-image: url(${minusButton.src});
-`;
-
-const PlusButton = styled(IconButton)`
-    background-image: url(${plusButton.src});
-`;
-
 const Count = styled.p`
     font-size: 1.6rem;
     font-weight: 700;
@@ -44,12 +24,32 @@ const Count = styled.p`
 `;
 
 function CountInput(props) {
-    console.log(minusButton);
+
+    function handleMinusButton(event) {
+        event.preventDefault();
+        if (props.cartItemsNumber > 0) {
+            props.setCartItemsNumber(props.cartItemsNumber - 1);
+        }
+    }
+
+    function handlePlusButton(event) {
+        event.preventDefault();
+        props.setCartItemsNumber(props.cartItemsNumber + 1);
+    }
+
     return (
         <Container className={props.className}>
-            <MinusButton />
-            <Count>0</Count>
-            <PlusButton />
+            <IconButton
+                icon={minusButton.src}
+                iconSize="1.2rem"
+                action={handleMinusButton}
+            />
+            <Count>{props.cartItemsNumber}</Count>
+            <IconButton
+                icon={plusButton.src}
+                iconSize="1.2rem"
+                action={handlePlusButton}
+            />
         </Container>
     );
 }

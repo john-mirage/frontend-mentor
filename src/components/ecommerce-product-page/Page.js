@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import TopAppBar from "@components/ecommerce-product-page/TopAppBar";
-import Modal from "@components/ecommerce-product-page/Modal";
+import Carrousel from "@components/ecommerce-product-page/Carrousel";
 import Drawer from "@components/ecommerce-product-page/Drawer";
 import Cart from "@components/ecommerce-product-page/Cart";
 import Product from "@components/ecommerce-product-page/Product";
@@ -10,14 +10,14 @@ const Container = styled.main`
     padding-top: 7rem;
 `;
 
-const StyledTopAppBar = styled(TopAppBar)`
+const FixedTopAppBar = styled(TopAppBar)`
     position: fixed;
     z-index: 80;
     top: 0;
     left: 0;
 `;
 
-const StyledCart = styled(Cart)`
+const FixedCart = styled(Cart)`
     visibility: ${props => props.cartIsOpen ? "visible" : "hidden"};
     opacity: ${props => props.cartIsOpen ? "1" : "0"};
     position: fixed;
@@ -30,11 +30,7 @@ const StyledCart = styled(Cart)`
     transition-duration: 300ms;
 `;
 
-const StyledModal = styled(Modal)`
-    margin-bottom: 2rem;
-`;
-
-const StyledDrawer = styled(Drawer)`
+const FixedDrawer = styled(Drawer)`
     position: fixed;
     z-index: 100;
     top: 0;
@@ -42,6 +38,10 @@ const StyledDrawer = styled(Drawer)`
     transform: ${props => props.drawerIsOpen ? "translateX(0)" : "translateX(-100%)"};
     transition: transform 300ms;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+`;
+
+const SpacedCarrousel = styled(Carrousel)`
+    margin-bottom: 2rem;
 `;
 
 const Scrim = styled.div`
@@ -62,25 +62,34 @@ const Scrim = styled.div`
 function Page() {
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
     const [cartIsOpen, setCartIsOpen] = useState(false);
+    const [cartItemsNumber, setCartItemsNumber] = useState(0);
+
+    function HandleScrim() {
+        setDrawerIsOpen(false);
+    }
+
     return (
         <Container>
-            <StyledTopAppBar
+            <SpacedCarrousel />
+            <Product
+                cartItemsNumber={cartItemsNumber}
+                setCartItemsNumber={setCartItemsNumber}
+            />
+            <FixedTopAppBar
                 setDrawerIsOpen={setDrawerIsOpen}
                 setCartIsOpen={setCartIsOpen}
                 cartIsOpen={cartIsOpen}
             />
-            <StyledCart
+            <FixedCart
                 cartIsOpen={cartIsOpen}
             />
-            <StyledModal />
-            <Product />
-            <StyledDrawer
+            <FixedDrawer
                 drawerIsOpen={drawerIsOpen}
                 setDrawerIsOpen={setDrawerIsOpen}
             />
             <Scrim
                 drawerIsOpen={drawerIsOpen}
-                onClick={() => setDrawerIsOpen(false)}
+                onClick={HandleScrim}
             />
         </Container>
     );
