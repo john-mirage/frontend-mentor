@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <Head>
             <meta charSet="UTF-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-            <link rel="icon" href="./favicon.png" />
+            <link rel="icon" type="image/png" href="/frontend-mentor/favicon.png" />
         </Head>
         <body>
           <Main />
