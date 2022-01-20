@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const flip = keyframes`
     from {
@@ -16,6 +16,7 @@ const Container = styled.div`
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 1rem 0 ${props => props.theme.color.neutral.veryDarkBlue};
+    perspective: 100rem;
 `;
 
 const Pannel = styled.div`
@@ -45,10 +46,9 @@ const MovingPannel = styled(Pannel)`
     z-index: 20;
     top: 0;
     left: 0;
-    transition: transform 1000ms;
     transform-origin: bottom;
     transform-style: preserve-3d;
-    animation: ${flip} 1000ms infinite linear;
+    animation: ${flip} 1000ms linear;
 `;
 
 const Face = styled.div`
@@ -130,7 +130,7 @@ function Display(props) {
             </TopPannel>
 
             {props.hasChanged &&
-                <MovingPannel>
+                <MovingPannel key={currentTime.toString()}>
                     <Front>
                         <BottomNumber>{currentTime}</BottomNumber>
                         <Overlay />
