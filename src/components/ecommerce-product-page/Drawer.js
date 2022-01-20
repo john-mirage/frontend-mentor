@@ -28,7 +28,7 @@ function Drawer(props) {
     return (
         <Container className={props.className}>
             <CloseButton onClick={handleDrawer} />
-            <Navigation vertical />
+            <Navigation type="Drawer" />
         </Container>
     );
 }

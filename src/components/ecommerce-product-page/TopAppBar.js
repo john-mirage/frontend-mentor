@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import IconButton from "@components/ecommerce-product-page/IconButton";
+import Navigation from "@components/ecommerce-product-page/Navigation";
 import menuIcon from "@assets/ecommerce-product-page/icon-menu.svg";
 import cartIcon from "@assets/ecommerce-product-page/icon-cart.svg";
 import avatar from "@assets/ecommerce-product-page/image-avatar.png";
@@ -15,11 +16,19 @@ const Container = styled.header`
     padding-right: 2.4rem;
     background-color: ${props => props.theme.color.neutral.white};
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    @media screen and (min-width: 900px) {
+        height: 10rem;
+    }
 `;
 
 const MenuIcon = styled(IconButton)`
     margin-left: -1.6rem;
     margin-right: 0.4rem;
+
+    @media screen and (min-width: 900px) {
+        display: none;
+    }
 `;
 
 const CartIcon = styled(IconButton)`
@@ -33,6 +42,18 @@ const ProfileIcon = styled(IconButton)`
 const Logo = styled.img`
     width: auto;
     height: 2rem;
+
+    @media screen and (min-width: 900px) {
+        margin-right: 6rem;
+    }
+`;
+
+const DesktopNavigation = styled(Navigation)`
+    display: none;
+
+    @media screen and (min-width: 900px) {
+        display: flex;
+    }
 `;
 
 function TopAppBar(props) {
@@ -61,6 +82,7 @@ function TopAppBar(props) {
             <Logo
                 src={logo.src}
             />
+            <DesktopNavigation type="TopAppBar" />
             <CartIcon
                 icon={cartIcon.src}
                 iconSize="2.4rem"

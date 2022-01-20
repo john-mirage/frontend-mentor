@@ -69,7 +69,10 @@ function Carrousel(props) {
 
     return (
         <Container className={props.className}>
-            <Slider currentSlide={currentSlide} numberOfImages={numberOfImages}>
+            <Slider
+                currentSlide={currentSlide}
+                numberOfImages={numberOfImages}
+            >
                 {images.map((image, index) =>
                     <Slide
                         src={image.src}

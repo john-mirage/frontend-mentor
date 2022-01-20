@@ -4,8 +4,6 @@ import CountInput from "@components/ecommerce-product-page/CountInput";
 import CartButton from "@components/ecommerce-product-page/CartButton";
 
 const Container = styled.div`
-    padding-left: 2rem;
-    padding-right: 2rem;
     padding-bottom: 10rem;
 `;
 
@@ -43,7 +41,7 @@ const SpacedCountInput = styled(CountInput)`
 
 function Product(props) {
     return (
-        <Container>
+        <Container className={props.className}>
             <Company>sneaker company</Company>
             <Name>Fall Limited Edition Sneakers</Name>
             <Description>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</Description>

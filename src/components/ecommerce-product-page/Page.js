@@ -2,12 +2,23 @@ import styled from "styled-components";
 import { useState } from "react";
 import TopAppBar from "@components/ecommerce-product-page/TopAppBar";
 import Carrousel from "@components/ecommerce-product-page/Carrousel";
+import Gallery from "@components/ecommerce-product-page/Gallery";
 import Drawer from "@components/ecommerce-product-page/Drawer";
 import Cart from "@components/ecommerce-product-page/Cart";
 import Product from "@components/ecommerce-product-page/Product";
 
 const Container = styled.main`
+    width: 100%;
     padding-top: 7rem;
+
+    @media screen and (min-width: 576px) {
+        width: 54rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 15rem;
+        padding-left: 1.8rem;
+        padding-right: 1.8rem;
+    }
 `;
 
 const FixedTopAppBar = styled(TopAppBar)`
@@ -42,6 +53,29 @@ const FixedDrawer = styled(Drawer)`
 
 const SpacedCarrousel = styled(Carrousel)`
     margin-bottom: 2rem;
+
+    @media screen and (min-width: 576px) {
+        display: none;
+    }
+`;
+
+const PaddedProduct = styled(Product)`
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    @media screen and (min-width: 576px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+`;
+
+const TabletGallery = styled(Gallery)`
+    display: none;
+
+    @media screen and (min-width: 576px) {
+        display: block;
+        margin-bottom: 2rem;
+    }
 `;
 
 const Scrim = styled.div`
@@ -71,7 +105,8 @@ function Page() {
     return (
         <Container>
             <SpacedCarrousel />
-            <Product
+            <TabletGallery />
+            <PaddedProduct
                 cartItemsNumber={cartItemsNumber}
                 setCartItemsNumber={setCartItemsNumber}
             />
