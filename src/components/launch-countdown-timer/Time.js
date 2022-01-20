@@ -24,7 +24,11 @@ const Type = styled.h2`
 function Time(props) {
     return (
         <Container>
-            <StyledDisplay timeValue={props.timeValue} />
+            <StyledDisplay
+                previousTime={props.previousTime}
+                currentTime={props.currentTime}
+                hasChanged={props.hasChanged}
+            />
             <Type>{props.timeType}</Type>
         </Container>
     );

@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const flip = keyframes`
+    from {
+        transform: rotateX(0);
+    }
+    to {
+        transform: rotateX(-180deg);
+    }
+`;
 
 const Container = styled.div`
     position: relative;
@@ -39,10 +48,7 @@ const MovingPannel = styled(Pannel)`
     transition: transform 1000ms;
     transform-origin: bottom;
     transform-style: preserve-3d;
-
-    ${Container}:hover & {
-        transform: rotateX(-180deg);
-    }
+    animation: ${flip} 1000ms infinite linear;
 `;
 
 const Face = styled.div`
@@ -114,26 +120,29 @@ const Overlay = styled.div`
 `;
 
 function Display(props) {
-    const timeValue = ("00" + props.timeValue).slice(-2);
+    const previousTime = (`00${props.previousTime}`.slice(-2));
+    const currentTime = (`00${props.currentTime}`.slice(-2));
     return (
         <Container className={props.className}>
             <TopPannel>
-                <BottomNumber>{timeValue}</BottomNumber>
+                <BottomNumber>{previousTime}</BottomNumber>
                 <Overlay />
             </TopPannel>
 
-            <MovingPannel>
-                <Front>
-                    <BottomNumber>{timeValue}</BottomNumber>
-                    <Overlay />
-                </Front>
-                <Back>
-                    <TopNumber>{timeValue}</TopNumber>
-                </Back>
-            </MovingPannel>
+            {props.hasChanged &&
+                <MovingPannel>
+                    <Front>
+                        <BottomNumber>{currentTime}</BottomNumber>
+                        <Overlay />
+                    </Front>
+                    <Back>
+                        <TopNumber>{previousTime}</TopNumber>
+                    </Back>
+                </MovingPannel>
+            }
 
             <BottomPannel>
-                <TopNumber>{timeValue}</TopNumber>
+                <TopNumber>{currentTime}</TopNumber>
             </BottomPannel>
 
             <LeftCircle />

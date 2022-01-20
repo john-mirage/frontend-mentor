@@ -14,51 +14,16 @@ class Countdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            days: 14,
-            hours: 0,
-            minutes: 0,
-            seconds: 0,
+            time: 1209600,
         };
     }
 
     componentDidMount() {
         this.timer = setInterval(() => {
-            if (
-                this.state.seconds === 0 &&
-                this.state.minutes === 0 &&
-                this.state.hours === 0 &&
-                this.state.days === 0
-            ) {
+            if (this.state.time === 0) {
                 clearInterval(this.timer);
-            } else if (
-                this.state.seconds === 0 &&
-                this.state.minutes === 0 &&
-                this.state.hours === 0
-            ) {
-                this.setState({
-                    days: this.state.days - 1,
-                    hours: 23,
-                    minutes: 59,
-                    seconds: 59,
-                });
-            } else if (
-                this.state.seconds === 0 &&
-                this.state.minutes === 0
-            ) {
-                this.setState({
-                    hours: this.state.hours - 1,
-                    minutes: 59,
-                    seconds: 59,
-                });
-            } else if (
-                this.state.seconds === 0
-            ) {
-                this.setState({ 
-                    minutes: this.state.minutes - 1,
-                    seconds: 59,
-                });
             } else {
-                this.setState({ seconds: this.state.seconds - 1 });
+                this.setState({ time: this.state.time - 1 });
             }
         }, 1000);
     }
@@ -67,13 +32,49 @@ class Countdown extends React.Component {
         clearInterval(this.timer);
     }
 
+    getTime(seconds) {
+        const times = {
+            seconds: seconds
+        };
+        times.days = Math.floor(times.seconds / 86400);
+        times.seconds %= 86400;
+        times.hours = Math.floor(times.seconds / 3600);
+        times.seconds %= 3600;
+        times.minutes = Math.floor(times.seconds / 60);
+        times.seconds %= 60;
+        return times;
+    }
+
     render() {
+        const previousTime = this.getTime(this.state.time - 1);
+        const currentTime = this.getTime(this.state.time);
+
         return (
             <Container>
-                <Time timeValue={this.state.days} timeType="days" />
-                <Time timeValue={this.state.hours} timeType="hours" />
-                <Time timeValue={this.state.minutes} timeType="minutes" />
-                <Time timeValue={this.state.seconds} timeType="seconds" />
+                <Time
+                    hasChanged={previousTime.days !== currentTime.days}
+                    previousTime={previousTime.days}
+                    currentTime={currentTime.days}
+                    timeType="days"
+                />
+                <Time
+                    hasChanged={previousTime.hours !== currentTime.hours}
+                    previousTime={previousTime.hours}
+                    currentTime={currentTime.hours}
+                    timeType="hours"
+                />
+                <Time
+                    hasChanged={previousTime.minutes !== currentTime.minutes}
+                    previousTime={previousTime.minutes}
+                    currentTime={currentTime.minutes}
+                    timeType="minutes"
+                />
+                <Time
+                    hasChanged={previousTime.seconds !== currentTime.seconds}
+                    previousTime={previousTime.seconds}
+                    currentTime={currentTime.seconds}
+                    timeType="seconds"
+                />
             </Container>
         );
     }
