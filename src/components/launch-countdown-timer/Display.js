@@ -11,21 +11,22 @@ const flip = keyframes`
 
 const Container = styled.div`
     position: relative;
-    width: 16rem;
-    height: 16rem;
-    border-radius: 1rem;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 10%;
     overflow: hidden;
     box-shadow: 0 1rem 0 ${props => props.theme.color.neutral.veryDarkBlue};
-    perspective: 100rem;
+    perspective: 50rem;
 `;
 
 const Pannel = styled.div`
+    position: absolute;
+    left: 0;
     width: 100%;
     height: 50%;
 `;
 
 const FixedPannel = styled(Pannel)`
-    position: relative;
     z-index: 10;
     display: flex;
     justify-content: center;
@@ -34,18 +35,18 @@ const FixedPannel = styled(Pannel)`
 `;
 
 const TopPannel = styled(FixedPannel)`
+    top: 0;
     align-items: flex-end;
 `;
 
 const BottomPannel = styled(FixedPannel)`
+    bottom: 0;
     align-items: flex-start;
 `;
 
-const FlipPannel = styled(Pannel)`
-    position: absolute;
+const MovingPannel = styled(Pannel)`
     z-index: 20;
     top: 0;
-    left: 0;
     transform-origin: bottom;
     transform-style: preserve-3d;
     animation: ${flip} 1000ms linear;
@@ -64,22 +65,28 @@ const Face = styled.div`
 
 const Front = styled(Face)`
     align-items: flex-end;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
 `;
 
 const Back = styled(Face)`
     align-items: flex-start;
     transform: rotateY(180deg) rotate(180deg);
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
 `;
 
 const BaseNumber = styled.p`
-    font-size: 8rem;
+    font-size: 10vw;
+    line-height: 10vw;
     font-weight: 700;
-    line-height: 8rem;
     color: ${props => props.theme.color.primary.softRed};
+
+    @media screen and (min-width: 576px) {
+        font-size: 5rem;
+        line-height: 5rem;
+    }
+
+    @media screen and (min-width: 848px) {
+        font-size: 8rem;
+        line-height: 8rem;
+    }
 `;
 
 const BottomNumber = styled(BaseNumber)`
@@ -94,8 +101,8 @@ const Circle = styled.div`
     position: absolute;
     z-index: 30;
     top: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 10%;
+    padding-bottom: 10%;
     border-radius: 50%;
     background-color: ${props => props.theme.color.neutral.veryDarkBlue};
 `;
@@ -128,7 +135,7 @@ function Display(props) {
             </TopPannel>
 
             {props.hasChanged &&
-                <FlipPannel key={props.currentValue}>
+                <MovingPannel key={props.currentValue}>
                     <Front>
                         <BottomNumber>{props.currentValue}</BottomNumber>
                         <Overlay />
@@ -136,7 +143,7 @@ function Display(props) {
                     <Back>
                         <TopNumber>{props.nextValue}</TopNumber>
                     </Back>
-                </FlipPannel>
+                </MovingPannel>
             }
 
             <BottomPannel>

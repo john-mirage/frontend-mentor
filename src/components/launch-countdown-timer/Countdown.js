@@ -6,7 +6,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 76rem;
+    width: 100%;
     height: auto;
 `;
 
@@ -57,7 +57,7 @@ class Countdown extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className={this.props.className}>
                 <Time
                     hasChanged={this.state.nextFormatedTime.days !== this.state.currentFormatedTime.days}
                     currentValue={this.state.currentFormatedTime.days}

@@ -5,19 +5,39 @@ import hillsIllustration from "@assets/launch-countdown-timer/pattern-hills-cust
 import starsIllustration from "@assets/launch-countdown-timer/bg-stars.svg";
 
 const Container = styled.main`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
-    min-height: 100vh;
-    padding: 20rem 2rem 10rem 2rem;
+    height: auto;
     background-color: ${props => props.theme.color.neutral.veryDarkBlue};
     background-image:
         url(${starsIllustration.src}),
         url(${hillsIllustration.src});
     background-repeat: repeat-x;
-    background-size: auto calc(100% - 30rem), auto 30rem;
-    background-position: top, bottom;
+    background-size: auto calc(80%), auto 20%;
+    background-position: top, bottom right;
+
+    @media screen and (min-width: 848px) {
+        background-position: top, bottom;
+    }
+`;
+
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 10rem 2rem 10% 2rem;
+
+    @media screen and (min-width: 576px) {
+        width: 54rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20rem 2rem 8rem 2rem;
+    }
+
+    @media screen and (min-width: 848px) {
+        width: 80rem;
+    }
 `;
 
 const Title = styled.h1`
@@ -30,16 +50,22 @@ const Title = styled.h1`
     margin-bottom: 10rem;
 `;
 
-const StyledSocialMedias = styled(SocialMedias)`
+const SpacedCountdown = styled(Countdown)`
+    margin-bottom: 8rem;
+`;
+
+const SpacedSocialMedias = styled(SocialMedias)`
     margin-top: auto;
 `;
 
 function Page() {
     return (
         <Container>
-            <Title>we're launching soon</Title>
-            <Countdown />
-            <StyledSocialMedias />
+            <Content>
+                <Title>we're launching soon</Title>
+                <SpacedCountdown />
+                <SpacedSocialMedias />
+            </Content>
         </Container>
     );
 }
