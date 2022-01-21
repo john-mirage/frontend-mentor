@@ -68,16 +68,11 @@ function Accordion(props) {
     const [isActive, setIsActive] = useState(false);
     const body = useRef();
 
-    function handleTransitionEnd() {
-        body.current.removeEventListener("transitionend", handleTransitionEnd);
-        body.current.style.height = "auto";
-    }
-
     function handleActiveState() {
         if (isActive && body.current.style.height === "auto") {
             collapseBody();
             setIsActive(false);
-        } else if (body.current.style.height === "") {
+        } else if (!body.current.hasAttribute("style")) {
             expandBody();
             setIsActive(true);
         }
@@ -86,7 +81,9 @@ function Accordion(props) {
     function expandBody() {
         const bodyHeight = body.current.scrollHeight;
         body.current.style.height = `${bodyHeight}px`;
-        body.current.addEventListener("transitionend", handleTransitionEnd);
+        body.current.addEventListener("transitionend", () => {
+            body.current.style.height = "auto";
+        }, {once: true});
     }
 
     function collapseBody() {
