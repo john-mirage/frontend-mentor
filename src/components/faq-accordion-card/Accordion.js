@@ -74,12 +74,13 @@ function Accordion(props) {
     }
 
     function handleActiveState() {
-        if (isActive) {
+        if (isActive && body.current.style.height === "auto") {
             collapseBody();
-        } else {
+            setIsActive(false);
+        } else if (body.current.style.height === "") {
             expandBody();
+            setIsActive(true);
         }
-        setIsActive(!isActive);
     }
 
     function expandBody() {
@@ -96,7 +97,7 @@ function Accordion(props) {
             body.current.style.height = `${bodyHeight}px`;
             body.current.style.transition = bodyTransition;
             requestAnimationFrame(() => {
-                body.current.style.height = "0px";
+                body.current.removeAttribute("style");
             });
         });
     }
