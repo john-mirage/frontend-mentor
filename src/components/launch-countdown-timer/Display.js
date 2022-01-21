@@ -15,7 +15,7 @@ const Container = styled.div`
     padding-bottom: 100%;
     border-radius: 10%;
     overflow: hidden;
-    box-shadow: 0 1rem 0 ${props => props.theme.color.neutral.veryDarkBlue};
+    box-shadow: 0 1em 0 rgba(0, 0, 0, 0.3);
     perspective: 50rem;
 `;
 
@@ -79,8 +79,8 @@ const BaseNumber = styled.p`
     color: ${props => props.theme.color.primary.softRed};
 
     @media screen and (min-width: 576px) {
-        font-size: 5rem;
-        line-height: 5rem;
+        font-size: 6rem;
+        line-height: 6rem;
     }
 
     @media screen and (min-width: 848px) {
