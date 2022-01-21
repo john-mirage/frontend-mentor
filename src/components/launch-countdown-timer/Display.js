@@ -11,8 +11,8 @@ const flip = keyframes`
 
 const Container = styled.div`
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 16rem;
+    height: 16rem;
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 1rem 0 ${props => props.theme.color.neutral.veryDarkBlue};
@@ -41,7 +41,7 @@ const BottomPannel = styled(FixedPannel)`
     align-items: flex-start;
 `;
 
-const MovingPannel = styled(Pannel)`
+const FlipPannel = styled(Pannel)`
     position: absolute;
     z-index: 20;
     top: 0;
@@ -120,29 +120,27 @@ const Overlay = styled.div`
 `;
 
 function Display(props) {
-    const previousTime = (`00${props.previousTime}`.slice(-2));
-    const currentTime = (`00${props.currentTime}`.slice(-2));
     return (
-        <Container className={props.className}>
+        <Container>
             <TopPannel>
-                <BottomNumber>{previousTime}</BottomNumber>
+                <BottomNumber>{props.nextValue}</BottomNumber>
                 <Overlay />
             </TopPannel>
 
             {props.hasChanged &&
-                <MovingPannel key={currentTime.toString()}>
+                <FlipPannel key={props.currentValue}>
                     <Front>
-                        <BottomNumber>{currentTime}</BottomNumber>
+                        <BottomNumber>{props.currentValue}</BottomNumber>
                         <Overlay />
                     </Front>
                     <Back>
-                        <TopNumber>{previousTime}</TopNumber>
+                        <TopNumber>{props.nextValue}</TopNumber>
                     </Back>
-                </MovingPannel>
+                </FlipPannel>
             }
 
             <BottomPannel>
-                <TopNumber>{currentTime}</TopNumber>
+                <TopNumber>{props.currentValue}</TopNumber>
             </BottomPannel>
 
             <LeftCircle />

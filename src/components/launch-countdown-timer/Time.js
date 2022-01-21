@@ -6,12 +6,7 @@ const Container = styled.div`
     height: auto;
 `;
 
-const StyledDisplay = styled(Display)`
-    width: 16rem;
-    height: 16rem;
-`;
-
-const Type = styled.h2`
+const Unit = styled.h2`
     margin-top: 3rem;
     text-align: center;
     text-transform: uppercase;
@@ -24,12 +19,12 @@ const Type = styled.h2`
 function Time(props) {
     return (
         <Container>
-            <StyledDisplay
-                previousTime={props.previousTime}
-                currentTime={props.currentTime}
+            <Display
+                currentValue={props.currentValue}
+                nextValue={props.nextValue}
                 hasChanged={props.hasChanged}
             />
-            <Type>{props.timeType}</Type>
+            <Unit>{props.unit}</Unit>
         </Container>
     );
 }

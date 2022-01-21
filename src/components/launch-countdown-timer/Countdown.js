@@ -14,7 +14,10 @@ class Countdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: 1209600,
+            currentTime: 1209600, // 14 days
+            currentFormatedTime: this.getFormatedTime(1209600),
+            nextTime: 1209599, // 13 days 23 hours 59 minutes 59 seconds
+            nextFormatedTime: this.getFormatedTime(1209599),
         };
     }
 
@@ -23,7 +26,13 @@ class Countdown extends React.Component {
             if (this.state.time === 0) {
                 clearInterval(this.timer);
             } else {
-                this.setState({ time: this.state.time - 1 });
+                const nextTime = this.state.nextTime - 1;
+                this.setState({
+                    currentTime: this.state.nextTime,
+                    currentFormatedTime: this.state.nextFormatedTime,
+                    nextTime: nextTime,
+                    nextFormatedTime: this.getFormatedTime(nextTime),
+                });
             }
         }, 1000);
     }
@@ -32,48 +41,46 @@ class Countdown extends React.Component {
         clearInterval(this.timer);
     }
 
-    getTime(seconds) {
-        const times = {
-            seconds: seconds
-        };
-        times.days = Math.floor(times.seconds / 86400);
-        times.seconds %= 86400;
-        times.hours = Math.floor(times.seconds / 3600);
-        times.seconds %= 3600;
-        times.minutes = Math.floor(times.seconds / 60);
-        times.seconds %= 60;
-        return times;
+    getFormatedTime(seconds) {
+        const formatedTime = { seconds: seconds };
+        formatedTime.days = Math.floor(formatedTime.seconds / 86400);
+        formatedTime.seconds %= 86400;
+        formatedTime.hours = Math.floor(formatedTime.seconds / 3600);
+        formatedTime.seconds %= 3600;
+        formatedTime.minutes = Math.floor(formatedTime.seconds / 60);
+        formatedTime.seconds %= 60;
+        Object.keys(formatedTime).forEach((unit) => {
+            formatedTime[unit] = (`0${formatedTime[unit].toString()}`.slice(-2));
+        });
+        return formatedTime;
     }
 
     render() {
-        const previousTime = this.getTime(this.state.time - 1);
-        const currentTime = this.getTime(this.state.time);
-
         return (
             <Container>
                 <Time
-                    hasChanged={previousTime.days !== currentTime.days}
-                    previousTime={previousTime.days}
-                    currentTime={currentTime.days}
-                    timeType="days"
+                    hasChanged={this.state.nextFormatedTime.days !== this.state.currentFormatedTime.days}
+                    currentValue={this.state.currentFormatedTime.days}
+                    nextValue={this.state.nextFormatedTime.days}
+                    unit="days"
                 />
                 <Time
-                    hasChanged={previousTime.hours !== currentTime.hours}
-                    previousTime={previousTime.hours}
-                    currentTime={currentTime.hours}
-                    timeType="hours"
+                    hasChanged={this.state.nextFormatedTime.hours !== this.state.currentFormatedTime.hours}
+                    currentValue={this.state.currentFormatedTime.hours}
+                    nextValue={this.state.nextFormatedTime.hours}
+                    unit="hours"
                 />
                 <Time
-                    hasChanged={previousTime.minutes !== currentTime.minutes}
-                    previousTime={previousTime.minutes}
-                    currentTime={currentTime.minutes}
-                    timeType="minutes"
+                    hasChanged={this.state.nextFormatedTime.minutes !== this.state.currentFormatedTime.minutes}
+                    currentValue={this.state.currentFormatedTime.minutes}
+                    nextValue={this.state.nextFormatedTime.minutes}
+                    unit="minutes"
                 />
                 <Time
-                    hasChanged={previousTime.seconds !== currentTime.seconds}
-                    previousTime={previousTime.seconds}
-                    currentTime={currentTime.seconds}
-                    timeType="seconds"
+                    hasChanged={this.state.nextFormatedTime.seconds !== this.state.currentFormatedTime.seconds}
+                    currentValue={this.state.currentFormatedTime.seconds}
+                    nextValue={this.state.nextFormatedTime.seconds}
+                    unit="seconds"
                 />
             </Container>
         );
