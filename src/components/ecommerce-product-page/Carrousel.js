@@ -15,8 +15,8 @@ const Container = styled.div`
 `;
 
 const Slider = styled.div`
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     width: ${props => (props.numberOfImages * 100)}%;
     height: auto;
     transform: translateX(-${props => (100 / props.numberOfImages) * (props.currentSlide - 1)}%);
@@ -24,9 +24,8 @@ const Slider = styled.div`
 `;
 
 const Slide = styled.img`
-    width: ${props => (100 / props.numberOfImages)}%;
+    width: 100%;
     height: auto;
-    max-height: ${props => (100 / props.numberOfImages)}%;
 `;
 
 const Button = styled.button`
@@ -77,7 +76,6 @@ function Carrousel(props) {
                 {images.map((image, index) =>
                     <Slide
                         src={image.src}
-                        numberOfImages={numberOfImages}
                         key={index}
                     />
                 )}
