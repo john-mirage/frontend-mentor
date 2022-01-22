@@ -12,6 +12,8 @@ const Container = styled.div`
 
 const Picture = styled.img`
     flex: 1 1 0;
+    width: calc(100% / 3);
+    height: auto;
     margin-right: 5%;
     border-radius: 20%;
     overflow: hidden;
