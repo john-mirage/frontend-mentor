@@ -24,9 +24,9 @@ const Slider = styled.div`
 `;
 
 const Slide = styled.img`
-    flex: 1 1 0;
     width: ${props => (100 / props.numberOfImages)}%;
     height: auto;
+    max-height: ${props => (100 / props.numberOfImages)}%;
 `;
 
 const Button = styled.button`
