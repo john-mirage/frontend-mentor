@@ -16,7 +16,6 @@ const Container = styled.div`
     border-radius: 10%;
     overflow: hidden;
     box-shadow: 0 1rem 0 rgba(0, 0, 0, 0.3);
-    perspective: 100rem;
 `;
 
 const Pannel = styled.div`
@@ -53,7 +52,7 @@ const MovingPannel = styled(Pannel)`
     transform-origin: bottom;
     transform-style: preserve-3d;
     transform: rotateX(-180deg);
-    animation: ${flip} 1000ms linear;
+    animation: ${flip} 500ms linear;
 `;
 
 const Face = styled.div`
