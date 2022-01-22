@@ -26,6 +26,7 @@ const Slider = styled.div`
 const Slide = styled.img`
     width: ${props => (100 / props.numberOfImages)}%;
     height: auto;
+    max-height: 100%;
 `;
 
 const Button = styled.button`
