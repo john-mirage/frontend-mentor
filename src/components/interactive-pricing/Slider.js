@@ -71,7 +71,9 @@ const Handle = styled.div`
     position: absolute;
     right: 0;
     top: 50%;
-    transform: translate(50%, -50%);
+    transform: ${props => props.sliderValue === "0" ? "translate(100%, -50%)"
+                        : props.sliderValue === "100" ? "translate(0, -50%)"
+                        : "translate(50%, -50%)"};
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -80,6 +82,7 @@ const Handle = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: 3rem auto;
+    transition: transform 100ms;
 `;
 
 function Slider(props) {
@@ -111,7 +114,7 @@ function Slider(props) {
             <Input sliderValue={sliderValue} onChange={handleSliderChange} />
             <EmptyBar>
                 <ProgressBar sliderValue={sliderValue}>
-                    <Handle />
+                    <Handle sliderValue={sliderValue} />
                 </ProgressBar>
             </EmptyBar>
         </Container>
