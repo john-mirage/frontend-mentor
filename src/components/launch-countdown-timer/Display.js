@@ -1,5 +1,13 @@
-import { useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const flip = keyframes`
+    from {
+        transform: rotateX(0);
+    }
+    to {
+        transform: rotateX(-180deg);
+    }
+`;
 
 const Container = styled.div`
     position: relative;
@@ -37,10 +45,15 @@ const BottomPannel = styled(FixedPannel)`
 `;
 
 const MovingPannel = styled(Pannel)`
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
     z-index: 20;
     top: 0;
     transform-origin: bottom;
     transform-style: preserve-3d;
+    transform: rotateX(-180deg);
+    animation: ${flip} 1000ms linear;
 `;
 
 const Face = styled.div`
@@ -118,23 +131,6 @@ const Overlay = styled.div`
 `;
 
 function Display(props) {
-    let movingPannel = useRef();
-
-    useEffect(() => {
-        if (movingPannel.current !== null) {
-            requestAnimationFrame(() => {
-                if (movingPannel.current.style.transition !== "") {
-                    movingPannel.current.style.transition = "";
-                    movingPannel.current.style.transform = "rotateX(0)";
-                }
-                requestAnimationFrame(() => {
-                    movingPannel.current.style.transform = "rotateX(-180deg)";
-                    movingPannel.current.style.transition = "transform 1000ms";
-                });
-            });
-        }
-    });
-
     return (
         <Container>
             <TopPannel>
@@ -143,7 +139,7 @@ function Display(props) {
             </TopPannel>
 
             {props.hasChanged &&
-                <MovingPannel ref={movingPannel}>
+                <MovingPannel key={props.currentValue}>
                     <Front>
                         <BottomNumber>{props.currentValue}</BottomNumber>
                         <Overlay />
