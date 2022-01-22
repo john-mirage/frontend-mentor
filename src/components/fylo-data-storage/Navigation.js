@@ -57,7 +57,6 @@ const Icon = styled.img`
     transform: translate(-50%, -50%);
     width: 2.4rem;
     height: auto;
-    margin: auto;
 `;
 
 function Navigation(props) {
