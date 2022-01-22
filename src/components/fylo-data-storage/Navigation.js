@@ -52,7 +52,11 @@ const Link = styled.a`
 
 const Icon = styled.img`
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.4rem;
+    height: auto;
     margin: auto;
 `;
 
