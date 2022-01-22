@@ -51,7 +51,7 @@ const MovingPannel = styled(Pannel)`
     top: 0;
     transform-origin: bottom;
     transform-style: preserve-3d;
-    transform: rotateX(-180deg);
+    transform: rotateX(-180deg) rotateY(0);
     animation: ${flip} 500ms linear;
 `;
 
