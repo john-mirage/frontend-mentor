@@ -1,12 +1,14 @@
 import styled, { keyframes } from "styled-components";
 
 const flip = keyframes`
-    from {
-        transform: rotateX(0);
-    }
-    to {
-        transform: rotateX(-180deg);
-    }
+    from { transform: rotateX(0); }
+    to { transform: rotateX(-180deg); }
+`;
+
+const backfaceFix = keyframes`
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 `;
 
 const Container = styled.div`
@@ -69,6 +71,8 @@ const Face = styled.div`
 
 const Front = styled(Face)`
     align-items: flex-end;
+    animation: ${backfaceFix} 500ms linear;
+    opacity: 0;
 `;
 
 const Back = styled(Face)`
