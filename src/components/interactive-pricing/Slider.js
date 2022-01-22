@@ -64,7 +64,7 @@ const ProgressBar = styled.div`
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     background-color: ${props => props.theme.color.primary.softCyan};
-    transition: width 300ms;
+    transition: width 100ms;
 `;
 
 const Handle = styled.div`
