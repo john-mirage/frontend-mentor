@@ -18,8 +18,6 @@ const Slider = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    //display: grid;
-    //grid-template-columns: repeat(4, 1fr);
     width: ${props => (props.numberOfImages * 100)}%;
     height: auto;
     transform: translateX(-${props => (100 / props.numberOfImages) * (props.currentSlide - 1)}%);
@@ -27,7 +25,6 @@ const Slider = styled.div`
 `;
 
 const Slide = styled.img`
-    flex: 1 1 0;
     width: ${props => (100 / props.numberOfImages)}%;
     height: auto;
 `;
