@@ -14,6 +14,7 @@ const Container = styled.main`
     background-image: url(${patternMobile.src});
     background-repeat: no-repeat;
     background-size: 100% 50%;
+    background-position: top;
 
     @media screen and (min-width: 532px) {
         background-image: url(${patternDesktop.src});

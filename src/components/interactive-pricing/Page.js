@@ -9,6 +9,7 @@ const Container = styled.main`
     background-image: url(${pattern.src});
     background-repeat: no-repeat;
     background-size: 100% 50%;
+    background-position: top;
 `;
 
 const StyledHero = styled(Hero)`
