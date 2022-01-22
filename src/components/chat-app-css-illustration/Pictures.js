@@ -4,23 +4,18 @@ import dogPicture2 from "@assets/chat-app-css-illustration/dog-image-2.jpg";
 import dogPicture3 from "@assets/chat-app-css-illustration/dog-image-3.jpg";
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
     width: 100%;
     height: auto;
 `;
 
 const Picture = styled.img`
-    flex: 1 1 0;
-    width: calc(100% / 3);
+    width: 100%;
     height: auto;
-    margin-right: 5%;
     border-radius: 20%;
     overflow: hidden;
-
-    &:last-child {
-        margin-right: 0;
-    }
 `;
 
 function Pictures(props) {
