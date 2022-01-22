@@ -18,6 +18,8 @@ const Input = styled.input.attrs(props => {
         name: "pricing-slider",
     };
 })`
+    -webkit-appearance: none;
+    background: transparent;
     position: absolute;
     z-index: 20;
     top: 50%;
@@ -27,6 +29,20 @@ const Input = styled.input.attrs(props => {
     margin: 0;
     cursor: pointer;
     opacity: 0;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+
+    &::-moz-range-thumb {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        outline: none;
+    }
 `;
 
 const EmptyBar = styled.div`
@@ -48,6 +64,7 @@ const ProgressBar = styled.div`
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     background-color: ${props => props.theme.color.primary.softCyan};
+    transition: width 300ms;
 `;
 
 const Handle = styled.div`
