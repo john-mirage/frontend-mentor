@@ -59,7 +59,9 @@ const EmptyBar = styled.div`
 
 const ProgressBar = styled.div`
     position: relative;
-    width: ${props => props.sliderValue}%;
+    width: ${props => props.sliderValue === "0" ? "2.5rem"
+                    : props.sliderValue === "100" ? "calc(100% - 2.5rem)"
+                    : `${props.sliderValue}%`};
     height: 100%;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
@@ -71,9 +73,7 @@ const Handle = styled.div`
     position: absolute;
     right: 0;
     top: 50%;
-    transform: ${props => props.sliderValue === "0" ? "translate(100%, -50%)"
-                        : props.sliderValue === "100" ? "translate(0, -50%)"
-                        : "translate(50%, -50%)"};
+    transform: translate(50%, -50%);
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -85,28 +85,20 @@ const Handle = styled.div`
     transition: transform 100ms;
 `;
 
+const steps = {
+    "0": "10k",
+    "25": "50k",
+    "50": "100k",
+    "75": "500k",
+    "100": "1m",
+}
+
 function Slider(props) {
     const [sliderValue, setSliderValue] = useState(50);
 
     function handleSliderChange(event) {
         setSliderValue(event.target.value);
-        switch (event.target.value) {
-            case "0":
-                props.setPageViews("10k");
-                break;
-            case "25":
-                props.setPageViews("50k");
-                break;
-            case "50":
-                props.setPageViews("100k");
-                break;
-            case "75":
-                props.setPageViews("500k");
-                break;
-            case "100":
-                props.setPageViews("1m");
-                break;
-        }
+        props.setPageViews(steps[event.target.value]);
     }
 
     return (
@@ -114,7 +106,7 @@ function Slider(props) {
             <Input sliderValue={sliderValue} onChange={handleSliderChange} />
             <EmptyBar>
                 <ProgressBar sliderValue={sliderValue}>
-                    <Handle sliderValue={sliderValue} />
+                    <Handle />
                 </ProgressBar>
             </EmptyBar>
         </Container>
