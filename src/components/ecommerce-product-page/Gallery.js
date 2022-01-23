@@ -8,31 +8,9 @@ import productImageThumbnail1 from "@assets/ecommerce-product-page/image-product
 import productImageThumbnail2 from "@assets/ecommerce-product-page/image-product-2-thumbnail.jpg";
 import productImageThumbnail3 from "@assets/ecommerce-product-page/image-product-3-thumbnail.jpg";
 import productImageThumbnail4 from "@assets/ecommerce-product-page/image-product-4-thumbnail.jpg";
-
-const Container = styled.div`
-    width: 100%;
-    height: auto;
-`;
-
-const Featured = styled.img`
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    margin-bottom: 4rem;
-`;
-
-const Pictures = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 4rem;
-`;
-
-const Picture = styled.img`
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    ${props => props.isActive && `outline: 0.2rem solid ${props.theme.color.primary.orange};`}
-`;
+import previousIcon from "@assets/ecommerce-product-page/icon-previous.svg";
+import nextIcon from "@assets/ecommerce-product-page/icon-next.svg";
+import closeIcon from "@assets/ecommerce-product-page/icon-close.svg";
 
 const pictures = [
     {
@@ -53,33 +31,176 @@ const pictures = [
     }
 ];
 
-function Gallery(props) {
-    const [featuredPicture, setFeaturedPicture] = useState(productImage1.src);
+const Container = styled.div`
+    width: 100%;
+    height: auto;
+`;
 
-    function handleFeaturedPicture(picture) {
-        if (picture !== featuredPicture) {
-            setFeaturedPicture(picture);
-        }
+const Display = styled.div`
+    position: relative;
+    width: 100%;
+    height: auto;
+`;
+
+const View = styled.div`
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+
+    @media screen and (min-width: 576px) {
+        border-radius: 2rem;
+    }
+`;
+
+const Slider = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: ${props => (props.numberOfPictures * 100)}%;
+    height: auto;
+    transform: translateX(-${props => (100 / props.numberOfPictures) * (props.currentSlide - 1)}%);
+    transition: transform 300ms;
+`;
+
+const Slide = styled.img`
+    width: ${props => (100 / props.numberOfPictures)}%;
+    height: auto;
+`;
+
+const Button = styled.button`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 1.4rem;
+    background-color: ${props => props.theme.color.neutral.white};
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+    @media screen and (min-width: 576px) {
+        ${props => !props.lightbox && "display: none;"}
+    }
+`;
+
+const PreviousButton = styled(Button)`
+    left: 2.4rem;
+    background-image: url(${previousIcon.src});
+
+    @media screen and (min-width: 576px) {
+        ${props => props.lightbox && `
+            left: -2rem;
+        `}
+    }
+`;
+
+const NextButton = styled(Button)`
+    right: 2.4rem;
+    background-image: url(${nextIcon.src});
+
+    @media screen and (min-width: 576px) {
+        ${props => props.lightbox && `
+            right: -2rem;
+        `}
+    }
+`;
+
+const CloseButton = styled.button`
+    display: block;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-left: auto;
+    margin-bottom: 2rem;
+    background-image: url(${closeIcon.src});
+    background-size: 2.4rem;
+    background-repeat: no-repeat;
+    background-position: center;
+`;
+
+const Thumbnails = styled.div`
+    display: none;
+
+    @media screen and (min-width: 576px) {
+        display: grid;
+        grid-template-columns: repeat(${props => props.numberOfPictures}, 1fr);
+        gap: 4rem;
+        margin-top: 4rem;
+    }
+`;
+
+const Thumbnail = styled.img`
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+`;
+
+function Carrousel(props) {
+    const [currentSlide, setCurrentSlide] = useState(1);
+
+    function showPicture(index) {
+        if (currentSlide !== index) setCurrentSlide(index);
+    }
+
+    function showPreviousPicture(event) {
+        event.preventDefault();
+        setCurrentSlide(currentSlide === 1 ? pictures.length : currentSlide - 1);
+    }
+
+    function showNextPicture(event) {
+        event.preventDefault();
+        setCurrentSlide(currentSlide === pictures.length ? 1 : currentSlide + 1);
+    }
+
+    function openLightbox(event) {
+        if (!props.lightbox && window.matchMedia('(min-width: 820px)').matches) props.setLightboxIsOpen(true);
+    }
+
+    function closeLightbox(event) {
+        event.preventDefault();
+        props.setLightboxIsOpen(false);
     }
 
     return (
         <Container className={props.className}>
-            <Featured src={featuredPicture} />
-            <Pictures>
+
+            {props.lightbox && <CloseButton onClick={closeLightbox} />}
+
+            <Display>
+                <View>
+                    <Slider
+                        currentSlide={currentSlide}
+                        numberOfPictures={pictures.length}
+                    >
+                        {pictures.map((picture, index) =>
+                            <Slide
+                                src={picture.normal}
+                                numberOfPictures={pictures.length}
+                                key={index}
+                                onClick={openLightbox}
+                            />
+                        )}
+                    </Slider>
+                </View>
+                <PreviousButton lightbox={props.lightbox} onClick={showPreviousPicture} />
+                <NextButton lightbox={props.lightbox} onClick={showNextPicture} />
+            </Display>
+
+            <Thumbnails numberOfPictures={pictures.length}>
                 {pictures.map((picture, index) => {
-                    const isActive = featuredPicture === picture.normal;
                     return (
-                        <Picture
+                        <Thumbnail
                             src={picture.thumbnail}
-                            onClick={() => handleFeaturedPicture(picture.normal)}
+                            onClick={() => showPicture(index + 1)}
                             key={index}
-                            isActive={isActive}
                         />
                     );
                 })}
-            </Pictures>
+            </Thumbnails>
+
         </Container>
     );
 }
 
-export default Gallery;
+export default Carrousel;

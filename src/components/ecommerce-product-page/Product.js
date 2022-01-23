@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Price from "@components/ecommerce-product-page/Price";
 import CountInput from "@components/ecommerce-product-page/CountInput";
 import CartButton from "@components/ecommerce-product-page/CartButton";
+import { useState } from "react";
 
 const Container = styled.div`
     padding-bottom: 10rem;
@@ -40,6 +41,8 @@ const SpacedCountInput = styled(CountInput)`
 `;
 
 function Product(props) {
+    const [itemsNumber, setItemsNumber] = useState(0);
+
     return (
         <Container className={props.className}>
             <Company>sneaker company</Company>
@@ -47,10 +50,14 @@ function Product(props) {
             <Description>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</Description>
             <SpacedPrice />
             <SpacedCountInput
+                itemsNumber={itemsNumber}
+                setItemsNumber={setItemsNumber}
+            />
+            <CartButton
+                itemsNumber={itemsNumber}
                 cartItemsNumber={props.cartItemsNumber}
                 setCartItemsNumber={props.setCartItemsNumber}
             />
-            <CartButton />
         </Container>
     );
 }

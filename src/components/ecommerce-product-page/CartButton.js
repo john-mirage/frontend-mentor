@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.button`
+    display: block;
     width: 100%;
     height: 6rem;
     display: flex;
@@ -9,6 +10,7 @@ const Container = styled.div`
     align-items: center;
     border-radius: 1rem;
     background-color: ${props => props.theme.color.primary.orange};
+    cursor: pointer;
 `;
 
 const Icon = styled.svg`
@@ -16,15 +18,21 @@ const Icon = styled.svg`
     color: ${props => props.theme.color.neutral.white};
 `;
 
-const Label = styled.p`
+const Label = styled.label`
+    display: block;
     font-size: 1.6rem;
     font-weight: 700;
     color: ${props => props.theme.color.neutral.white};
 `;
 
-function CartButton() {
+function CartButton(props) {
+    function handleCartUpdate(event) {
+        event.preventDefault();
+        props.setCartItemsNumber(props.cartItemsNumber + props.itemsNumber);
+    }
+
     return (
-        <Container>
+        <Container onClick={handleCartUpdate}>
             <Icon
                 width="22"
                 height="20"

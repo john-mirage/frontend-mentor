@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import TopAppBar from "@components/ecommerce-product-page/TopAppBar";
-import Carrousel from "@components/ecommerce-product-page/Carrousel";
 import Gallery from "@components/ecommerce-product-page/Gallery";
 import Drawer from "@components/ecommerce-product-page/Drawer";
-import Cart from "@components/ecommerce-product-page/Cart";
 import Product from "@components/ecommerce-product-page/Product";
 
 const Container = styled.main`
@@ -28,19 +26,6 @@ const FixedTopAppBar = styled(TopAppBar)`
     left: 0;
 `;
 
-const FixedCart = styled(Cart)`
-    visibility: ${props => props.cartIsOpen ? "visible" : "hidden"};
-    opacity: ${props => props.cartIsOpen ? "1" : "0"};
-    position: fixed;
-    z-index: 80;
-    top: 8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 2rem);
-    transition-property: visibility, opacity;
-    transition-duration: 300ms;
-`;
-
 const FixedDrawer = styled(Drawer)`
     position: fixed;
     z-index: 100;
@@ -51,11 +36,24 @@ const FixedDrawer = styled(Drawer)`
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
-const SpacedCarrousel = styled(Carrousel)`
+const SpacedGallery = styled(Gallery)`
     margin-bottom: 2rem;
+`;
 
-    @media screen and (min-width: 576px) {
-        display: none;
+const FixedGallery = styled(Gallery)`
+    visibility: ${props => props.lightboxIsOpen ? "visible" : "hidden"};
+    opacity: ${props => props.lightboxIsOpen ? "1" : "0"};
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 6rem);
+    transition-property: visibility, opacity;
+    transition-duration: 300ms;
+
+    @media screen and (min-width: 820px) {
+        width: 76rem;
     }
 `;
 
@@ -69,18 +67,9 @@ const PaddedProduct = styled(Product)`
     }
 `;
 
-const TabletGallery = styled(Gallery)`
-    display: none;
-
-    @media screen and (min-width: 576px) {
-        display: block;
-        margin-bottom: 2rem;
-    }
-`;
-
 const Scrim = styled.div`
-    visibility: ${props => props.drawerIsOpen ? "visible" : "hidden"};
-    opacity: ${props => props.drawerIsOpen ? "0.75" : "0"};
+    visibility: ${props => props.drawerIsOpen || props.lightboxIsOpen ? "visible" : "hidden"};
+    opacity: ${props => props.drawerIsOpen || props.lightboxIsOpen ? "0.9" : "0"};
     position: fixed;
     z-index: 90;
     top: 0;
@@ -95,28 +84,32 @@ const Scrim = styled.div`
 
 function Page() {
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-    const [cartIsOpen, setCartIsOpen] = useState(false);
+    const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
     const [cartItemsNumber, setCartItemsNumber] = useState(0);
 
     function HandleScrim() {
-        setDrawerIsOpen(false);
+        if (drawerIsOpen) setDrawerIsOpen(false);
+        if (lightboxIsOpen) setLightboxIsOpen(false);
     }
 
     return (
         <Container>
-            <SpacedCarrousel />
-            <TabletGallery />
+            <SpacedGallery
+                setLightboxIsOpen={setLightboxIsOpen}
+            />
             <PaddedProduct
                 cartItemsNumber={cartItemsNumber}
                 setCartItemsNumber={setCartItemsNumber}
             />
             <FixedTopAppBar
                 setDrawerIsOpen={setDrawerIsOpen}
-                setCartIsOpen={setCartIsOpen}
-                cartIsOpen={cartIsOpen}
+                cartItemsNumber={cartItemsNumber}
+                setCartItemsNumber={setCartItemsNumber}
             />
-            <FixedCart
-                cartIsOpen={cartIsOpen}
+            <FixedGallery
+                lightboxIsOpen={lightboxIsOpen}
+                setLightboxIsOpen={setLightboxIsOpen}
+                lightbox
             />
             <FixedDrawer
                 drawerIsOpen={drawerIsOpen}
@@ -124,6 +117,7 @@ function Page() {
             />
             <Scrim
                 drawerIsOpen={drawerIsOpen}
+                lightboxIsOpen={lightboxIsOpen}
                 onClick={HandleScrim}
             />
         </Container>

@@ -27,14 +27,14 @@ function CountInput(props) {
 
     function handleMinusButton(event) {
         event.preventDefault();
-        if (props.cartItemsNumber > 0) {
-            props.setCartItemsNumber(props.cartItemsNumber - 1);
+        if (props.itemsNumber > 0) {
+            props.setItemsNumber(props.itemsNumber - 1);
         }
     }
 
     function handlePlusButton(event) {
         event.preventDefault();
-        props.setCartItemsNumber(props.cartItemsNumber + 1);
+        props.setItemsNumber(props.itemsNumber + 1);
     }
 
     return (
@@ -44,7 +44,7 @@ function CountInput(props) {
                 iconSize="1.2rem"
                 action={handleMinusButton}
             />
-            <Count>{props.cartItemsNumber}</Count>
+            <Count>{props.itemsNumber}</Count>
             <IconButton
                 icon={plusButton.src}
                 iconSize="1.2rem"

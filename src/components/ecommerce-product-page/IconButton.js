@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.button`
+    position: relative;
     display: flex;
     width: 4.8rem;
     height: 4.8rem;
@@ -36,6 +37,7 @@ function IconButton(props) {
                 iconSize={props.iconSize}
                 isAvatar={props.isAvatar}
             />
+            {props.children}
         </Container>
     );
 }

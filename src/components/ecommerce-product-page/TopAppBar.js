@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { useState } from "react";
+import Cart from "@components/ecommerce-product-page/Cart";
 import IconButton from "@components/ecommerce-product-page/IconButton";
 import Navigation from "@components/ecommerce-product-page/Navigation";
 import menuIcon from "@assets/ecommerce-product-page/icon-menu.svg";
@@ -7,6 +9,7 @@ import avatar from "@assets/ecommerce-product-page/image-avatar.png";
 import logo from "@assets/ecommerce-product-page/logo.svg";
 
 const Container = styled.header`
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -56,7 +59,47 @@ const DesktopNavigation = styled(Navigation)`
     }
 `;
 
+const FixedCart = styled(Cart)`
+    visibility: ${props => props.cartIsOpen ? "visible" : "hidden"};
+    opacity: ${props => props.cartIsOpen ? "1" : "0"};
+    position: absolute;
+    z-index: 80;
+    top: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    transition-property: visibility, opacity;
+    transition-duration: 300ms;
+`;
+
+const BadgeAnimation = keyframes`
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+`;
+
+const Badge = styled.span`
+    position: absolute;
+    top: 0.6rem;
+    right: 0.4rem;
+    height: 1.4rem;
+    border-radius: 0.7rem;
+    background-color: ${props => props.theme.color.primary.orange};
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4rem;
+    color: ${props => props.theme.color.neutral.white};
+    animation-name: ${BadgeAnimation};
+    animation-duration: calc(1000ms * 1.3);
+    animation-timing-function: ease-in-out;
+`;
+
 function TopAppBar(props) {
+    const [cartIsOpen, setCartIsOpen] = useState(false);
 
     function handleMenu(event) {
         event.preventDefault();
@@ -65,11 +108,7 @@ function TopAppBar(props) {
 
     function handleCart(event) {
         event.preventDefault();
-        if (props.cartIsOpen) {
-            props.setCartIsOpen(false);
-        } else {
-            props.setCartIsOpen(true);
-        }
+        setCartIsOpen(!cartIsOpen);
     }
 
     return (
@@ -87,11 +126,18 @@ function TopAppBar(props) {
                 icon={cartIcon.src}
                 iconSize="2.4rem"
                 action={handleCart}
-            />
+            >
+                {props.cartItemsNumber > 0 && <Badge key={props.cartItemsNumber}>{props.cartItemsNumber}</Badge>}
+            </CartIcon>
             <ProfileIcon
                 icon={avatar.src}
                 iconSize="2.4rem"
                 isAvatar
+            />
+            <FixedCart
+                cartIsOpen={cartIsOpen}
+                cartItemsNumber={props.cartItemsNumber}
+                setCartItemsNumber={props.setCartItemsNumber}
             />
         </Container>
     );

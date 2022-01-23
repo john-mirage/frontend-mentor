@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CartProduct from "@components/ecommerce-product-page/CartProduct";
 
 const Container = styled.div`
     display: flex;
@@ -27,6 +28,7 @@ const Title = styled.h4`
 const Body = styled.div`
     flex: 1 1 0;
     display: flex;
+    padding: 2.4rem;
 `;
 
 const EmptyCartText = styled.p`
@@ -43,7 +45,10 @@ function Cart(props) {
                 <Title>Cart</Title>
             </Header>
             <Body>
-                <EmptyCartText>Your cart is empty.</EmptyCartText>
+                {props.cartItemsNumber > 0
+                    ? <CartProduct cartItemsNumber={props.cartItemsNumber} setCartItemsNumber={props.setCartItemsNumber} />
+                    : <EmptyCartText>Your cart is empty</EmptyCartText>
+                }
             </Body>
         </Container>
     );
