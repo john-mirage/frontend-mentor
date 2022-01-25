@@ -85,7 +85,7 @@ function Order(props) {
     return (
         <Container className={props.className}>
             <Icon
-                src={musicIcon.src}
+                src={musicIcon}
                 alt="An icon of a music note"
             />
             

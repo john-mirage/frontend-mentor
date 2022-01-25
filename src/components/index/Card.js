@@ -56,12 +56,12 @@ const Button = styled.a`
 
 const ModalButton = styled(Button)`
     display: block;
-    background-image: url(${infoIcon.src});
+    background-image: url(${infoIcon});
     cursor: pointer;
 `;
 
 const LinkButton = styled(Button)`
-    background-image: url(${visibilityIcon.src});
+    background-image: url(${visibilityIcon});
 `;
 
 function Card(props) {

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import IconButton from "@components/ecommerce-product-page/IconButton";
+import Button from "@components/ecommerce-product-page/Button";
 import productThumbnail from "@assets/ecommerce-product-page/image-product-1-thumbnail.jpg";
 import deleteIcon from "@assets/ecommerce-product-page/icon-delete.svg";
-import IconButton from "@components/ecommerce-product-page/IconButton";
 
 const Container = styled.div`
     width: 100%;
@@ -14,6 +15,7 @@ const Product = styled.div`
     align-items: center;
     width: 100%;
     height: auto;
+    margin-bottom: 2.5rem;
 `;
 
 const Thumbnail = styled.img`
@@ -57,11 +59,14 @@ function CartProduct(props) {
                     <Price>$125 x {props.cartItemsNumber} {totalPrice}</Price>
                 </Info>
                 <DeleteButton
-                    icon={deleteIcon.src}
+                    icon={deleteIcon}
                     iconSize="1.6rem"
                     action={handleCartReset}
                 />
             </Product>
+            <Button
+                label="Checkout"
+            />
         </Container>
     );
 }

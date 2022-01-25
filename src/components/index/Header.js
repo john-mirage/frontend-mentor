@@ -55,7 +55,7 @@ const Icon = styled.svg`
 function Header(props) {
     return (
         <Container className={props.className}>
-            <Logo src={logo.src} />
+            <Logo src={logo} />
             <Author>Chaosdynamix</Author>
             <Button href="https://github.com/ChaosDynamix/frontend-mentor">
                 <Icon viewBox="0 0 128 128">

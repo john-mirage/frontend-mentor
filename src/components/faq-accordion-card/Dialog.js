@@ -34,8 +34,8 @@ const Illustration = styled.div`
     margin-left: auto;
     margin-right: auto;
     background-image:
-        url(${mobileIllustration.src}),
-        url(${mobileShadow.src});
+        url(${mobileIllustration}),
+        url(${mobileShadow});
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center bottom 60%, center bottom;
@@ -59,8 +59,8 @@ const Illustration = styled.div`
         height: auto;
         margin-top: 0;
         background-image:
-            url(${desktopIllustration.src}),
-            url(${desktopShadow.src});
+            url(${desktopIllustration}),
+            url(${desktopShadow});
         background-size: 58rem auto, auto 116rem;
         background-position: right top 8rem, right top -36rem;
     }
@@ -77,7 +77,7 @@ const BoxIllustration = styled.div`
         width: 19.1rem;
         height: 100%;
         transform: translateX(-50%);
-        background-image: url(${desktopBox.src});
+        background-image: url(${desktopBox});
         background-repeat: no-repeat;
         background-position: left top 27rem;
     }

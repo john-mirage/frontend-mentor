@@ -62,18 +62,18 @@ const Icon = styled.img`
 function Navigation(props) {
     return (
         <Container className={props.className}>
-            <Logo src={brandLogo.src} />
+            <Logo src={brandLogo} />
             <Links>
                 <Link>
-                    <Icon src={documentIcon.src} />
+                    <Icon src={documentIcon} />
                 </Link>
 
                 <Link>
-                    <Icon src={folderIcon.src} />
+                    <Icon src={folderIcon} />
                 </Link>
 
                 <Link>
-                    <Icon src={uploadIcon.src} />
+                    <Icon src={uploadIcon} />
                 </Link>
             </Links>
         </Container>

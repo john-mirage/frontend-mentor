@@ -33,7 +33,7 @@ const Text = styled.p`
 function Feature(props) {
     return (
         <Container className={props.className}>
-            <Icon src={checkIcon.src} />
+            <Icon src={checkIcon} />
             <Text>{props.feature}</Text>
         </Container>
     );

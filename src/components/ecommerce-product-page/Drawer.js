@@ -12,7 +12,7 @@ const Container = styled.aside`
 const CloseButton = styled.button`
     width: 4.8rem;
     height: 4.8rem;
-    background-image: url(${closeIcon.src});
+    background-image: url(${closeIcon});
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1.2rem;

@@ -11,13 +11,13 @@ const Container = styled.main`
     align-items: center;
     padding: 2.5rem;
     background-color: ${props => props.theme.color.primary.paleBlue};
-    background-image: url(${patternMobile.src});
+    background-image: url(${patternMobile});
     background-repeat: no-repeat;
     background-size: 100% 50%;
     background-position: top;
 
     @media screen and (min-width: 532px) {
-        background-image: url(${patternDesktop.src});
+        background-image: url(${patternDesktop});
     }
 `;
 

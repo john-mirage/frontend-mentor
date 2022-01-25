@@ -40,13 +40,13 @@ function CountInput(props) {
     return (
         <Container className={props.className}>
             <IconButton
-                icon={minusButton.src}
+                icon={minusButton}
                 iconSize="1.2rem"
                 action={handleMinusButton}
             />
             <Count>{props.itemsNumber}</Count>
             <IconButton
-                icon={plusButton.src}
+                icon={plusButton}
                 iconSize="1.2rem"
                 action={handlePlusButton}
             />

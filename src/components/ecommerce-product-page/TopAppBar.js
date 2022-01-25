@@ -114,16 +114,16 @@ function TopAppBar(props) {
     return (
         <Container className={props.className}>
             <MenuIcon
-                icon={menuIcon.src}
+                icon={menuIcon}
                 iconSize="1.6rem"
                 action={handleMenu}
             />
             <Logo
-                src={logo.src}
+                src={logo}
             />
             <DesktopNavigation type="TopAppBar" />
             <CartIcon
-                icon={cartIcon.src}
+                icon={cartIcon}
                 iconSize="2.4rem"
                 action={handleCart}
             >

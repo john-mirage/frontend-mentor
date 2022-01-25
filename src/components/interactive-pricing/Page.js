@@ -6,7 +6,7 @@ import pattern from "@assets/interactive-pricing/bg-pattern.svg";
 const Container = styled.main`
     min-height: 100vh;
     padding: 8rem 3rem;
-    background-image: url(${pattern.src});
+    background-image: url(${pattern});
     background-repeat: no-repeat;
     background-size: 100% 50%;
     background-position: top;

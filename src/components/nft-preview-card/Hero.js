@@ -26,7 +26,7 @@ const Overlay = styled.a`
     visibility: hidden;
     opacity: 0;
     background-color: ${props => props.theme.color.primary.transparentCyan};
-    background-image: url(${viewIcon.src});
+    background-image: url(${viewIcon});
     background-repeat: no-repeat;
     background-position: center;
     transition-property: visibility, opacity;

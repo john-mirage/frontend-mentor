@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import Price from "@components/ecommerce-product-page/Price";
 import CountInput from "@components/ecommerce-product-page/CountInput";
-import CartButton from "@components/ecommerce-product-page/CartButton";
+import Button from "@components/ecommerce-product-page/Button";
+import CartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
 import { useState } from "react";
 
 const Container = styled.div`
@@ -42,6 +43,12 @@ const SpacedCountInput = styled(CountInput)`
 
 function Product(props) {
     const [itemsNumber, setItemsNumber] = useState(0);
+    const theme = useTheme();
+
+    function handleCartUpdate(event) {
+        event.preventDefault();
+        props.setCartItemsNumber(props.cartItemsNumber + itemsNumber);
+    }
 
     return (
         <Container className={props.className}>
@@ -53,11 +60,12 @@ function Product(props) {
                 itemsNumber={itemsNumber}
                 setItemsNumber={setItemsNumber}
             />
-            <CartButton
-                itemsNumber={itemsNumber}
-                cartItemsNumber={props.cartItemsNumber}
-                setCartItemsNumber={props.setCartItemsNumber}
-            />
+            <Button
+                action={handleCartUpdate}
+                label="Add to cart"
+            >
+                <CartIcon fill={theme.color.neutral.white} />
+            </Button>
         </Container>
     );
 }

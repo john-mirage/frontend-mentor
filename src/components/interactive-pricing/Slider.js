@@ -78,7 +78,7 @@ const Handle = styled.div`
     height: 5rem;
     border-radius: 50%;
     background-color: ${props => props.theme.color.primary.strongCyan};
-    background-image: url(${sliderIcon.src});
+    background-image: url(${sliderIcon});
     background-repeat: no-repeat;
     background-position: center;
     background-size: 3rem auto;

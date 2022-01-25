@@ -87,7 +87,7 @@ const Button = styled.button`
 
 const PreviousButton = styled(Button)`
     left: 2.4rem;
-    background-image: url(${previousIcon.src});
+    background-image: url(${previousIcon});
 
     @media screen and (min-width: 576px) {
         ${props => props.lightbox && `
@@ -98,7 +98,7 @@ const PreviousButton = styled(Button)`
 
 const NextButton = styled(Button)`
     right: 2.4rem;
-    background-image: url(${nextIcon.src});
+    background-image: url(${nextIcon});
 
     @media screen and (min-width: 576px) {
         ${props => props.lightbox && `
@@ -113,7 +113,7 @@ const CloseButton = styled.button`
     height: 2.4rem;
     margin-left: auto;
     margin-bottom: 2rem;
-    background-image: url(${closeIcon.src});
+    background-image: url(${closeIcon});
     background-size: 2.4rem;
     background-repeat: no-repeat;
     background-position: center;

@@ -70,7 +70,7 @@ function Dialog() {
     return (
         <Container>
             <Image
-                src={heroIllustration.src}
+                src={heroIllustration}
                 alt="Women listening and dancing to music with headphone"
             />
             <Body>

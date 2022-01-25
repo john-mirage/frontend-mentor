@@ -103,7 +103,7 @@ function Accordion(props) {
         <Container onClick={handleActiveState}>
             <Header>
                 <Question isActive={isActive}>{props.question}</Question>
-                <Icon isActive={isActive} src={arrowIcon.src}/>
+                <Icon isActive={isActive} src={arrowIcon}/>
             </Header>
             <Body isActive={isActive} ref={body}>
                 <Answer>{props.answer}</Answer>

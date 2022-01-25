@@ -4,7 +4,7 @@ import circles from "@assets/interactive-pricing/pattern-circles.svg";
 const Container = styled.article`
     padding-top: 4rem;
     padding-bottom: 4rem;
-    background-image: url(${circles.src});
+    background-image: url(${circles});
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 100%;

@@ -35,7 +35,7 @@ function Timer() {
     return (
         <Container>
             <Icon
-                src={clock.src}
+                src={clock}
                 alt="Clock icon illustration"
             />
             <TimeLeft>3 days left</TimeLeft>

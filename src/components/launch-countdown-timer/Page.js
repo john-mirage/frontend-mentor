@@ -9,8 +9,8 @@ const Container = styled.main`
     height: auto;
     background-color: ${props => props.theme.color.neutral.veryDarkBlue};
     background-image:
-        url(${starsIllustration.src}),
-        url(${hillsIllustration.src});
+        url(${starsIllustration}),
+        url(${hillsIllustration});
     background-repeat: repeat-x;
     background-size: auto calc(80%), auto 20%;
     background-position: top, bottom right;

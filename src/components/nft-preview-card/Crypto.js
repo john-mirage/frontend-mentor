@@ -35,7 +35,7 @@ function Crypto() {
     return (
         <Container>
             <Icon
-                src={ethereum.src}
+                src={ethereum}
                 alt="Ethereum crypto currency icon"
             />
             <Price>0.041 ETH</Price>
