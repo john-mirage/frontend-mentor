@@ -40,7 +40,8 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
-    img {
+    img,
+    svg {
         display: block;
     }
 
