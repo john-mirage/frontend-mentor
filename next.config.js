@@ -19,6 +19,10 @@ module.exports = {
                                                 attrs: "(fill|stroke)"
                                             }
                                         },
+                                        {
+                                            name: "removeDimensions",
+                                            active: true,
+                                        },
                                     ],
                                 },
                             },
