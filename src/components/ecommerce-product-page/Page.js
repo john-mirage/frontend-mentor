@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { useState } from "react";
-import TopAppBar from "@components/ecommerce-product-page/TopAppBar";
-import Gallery from "@components/ecommerce-product-page/Gallery";
-import Drawer from "@components/ecommerce-product-page/Drawer";
-import Product from "@components/ecommerce-product-page/Product";
+import React from "react";
+import BaseTopAppBar from "@components/ecommerce-product-page/TopAppBar";
+import BaseGallery from "@components/ecommerce-product-page/Gallery";
+import BaseDrawer from "@components/ecommerce-product-page/Drawer";
+import BaseProduct from "@components/ecommerce-product-page/Product";
+import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.main`
     width: 100%;
@@ -19,30 +20,30 @@ const Container = styled.main`
     }
 `;
 
-const FixedTopAppBar = styled(TopAppBar)`
+const TopAppBar = styled(BaseTopAppBar)`
     position: fixed;
     z-index: 80;
     top: 0;
     left: 0;
 `;
 
-const FixedDrawer = styled(Drawer)`
+const Drawer = styled(BaseDrawer)`
     position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
-    transform: ${props => props.drawerIsOpen ? "translateX(0)" : "translateX(-100%)"};
+    transform: ${props => props.isOpen ? "translateX(0)" : "translateX(-100%)"};
     transition: transform 300ms;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
-const SpacedGallery = styled(Gallery)`
+const Gallery = styled(BaseGallery)`
     margin-bottom: 2rem;
 `;
 
-const FixedGallery = styled(Gallery)`
-    visibility: ${props => props.lightboxIsOpen ? "visible" : "hidden"};
-    opacity: ${props => props.lightboxIsOpen ? "1" : "0"};
+const Lightbox = styled(BaseGallery)`
+    visibility: ${props => props.isOpen ? "visible" : "hidden"};
+    opacity: ${props => props.isOpen ? "1" : "0"};
     position: fixed;
     z-index: 100;
     top: 50%;
@@ -57,7 +58,7 @@ const FixedGallery = styled(Gallery)`
     }
 `;
 
-const PaddedProduct = styled(Product)`
+const Product = styled(BaseProduct)`
     padding-left: 2rem;
     padding-right: 2rem;
 
@@ -68,8 +69,8 @@ const PaddedProduct = styled(Product)`
 `;
 
 const Scrim = styled.div`
-    visibility: ${props => props.drawerIsOpen || props.lightboxIsOpen ? "visible" : "hidden"};
-    opacity: ${props => props.drawerIsOpen || props.lightboxIsOpen ? "0.9" : "0"};
+    visibility: ${props => props.active ? "visible" : "hidden"};
+    opacity: ${props => props.active ? "0.9" : "0"};
     position: fixed;
     z-index: 90;
     top: 0;
@@ -82,46 +83,49 @@ const Scrim = styled.div`
     cursor: pointer;
 `;
 
-function Page() {
-    const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-    const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
-    const [cartItemsNumber, setCartItemsNumber] = useState(0);
+class Page extends React.Component {
+    constructor(props) {
+        super(props);
 
-    function HandleScrim() {
-        if (drawerIsOpen) setDrawerIsOpen(false);
-        if (lightboxIsOpen) setLightboxIsOpen(false);
+        this.setDrawerIsOpen = (drawerIsOpen) => {
+            this.setState({ drawerIsOpen: drawerIsOpen });
+        }
+
+        this.setLightboxIsOpen = (lightboxIsOpen) => {
+            this.setState({ lightboxIsOpen: lightboxIsOpen });
+        }
+
+        this.setCartItemsNumber = (cartItemsNumber) => {
+            this.setState({ cartItemsNumber: cartItemsNumber });
+        }
+
+        this.state = {
+            drawerIsOpen: false,
+            setDrawerIsOpen: this.setDrawerIsOpen,
+            lightboxIsOpen: false,
+            setLightboxIsOpen: this.setLightboxIsOpen,
+            cartItemsNumber: 0,
+            setCartItemsNumber: this.setCartItemsNumber,
+        }
     }
 
-    return (
-        <Container>
-            <SpacedGallery
-                setLightboxIsOpen={setLightboxIsOpen}
-            />
-            <PaddedProduct
-                cartItemsNumber={cartItemsNumber}
-                setCartItemsNumber={setCartItemsNumber}
-            />
-            <FixedTopAppBar
-                setDrawerIsOpen={setDrawerIsOpen}
-                cartItemsNumber={cartItemsNumber}
-                setCartItemsNumber={setCartItemsNumber}
-            />
-            <FixedGallery
-                lightboxIsOpen={lightboxIsOpen}
-                setLightboxIsOpen={setLightboxIsOpen}
-                lightbox
-            />
-            <FixedDrawer
-                drawerIsOpen={drawerIsOpen}
-                setDrawerIsOpen={setDrawerIsOpen}
-            />
-            <Scrim
-                drawerIsOpen={drawerIsOpen}
-                lightboxIsOpen={lightboxIsOpen}
-                onClick={HandleScrim}
-            />
-        </Container>
-    );
+    render() {
+        return (
+            <Container>
+                <PageContext.Provider value={this.state}>
+                    <Gallery />
+                    <Product />
+                    <TopAppBar />
+                    <Lightbox isOpen={this.state.lightboxIsOpen} lightbox />
+                    <Drawer isOpen={this.state.drawerIsOpen} />
+                    <Scrim
+                        active={this.state.drawerIsOpen || this.state.lightboxIsOpen}
+                        onClick={() => this.state.drawerIsOpen && this.setDrawerIsOpen(false)}
+                    />
+                </PageContext.Provider>
+            </Container>
+        );
+    }
 }
 
 export default Page;

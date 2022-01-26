@@ -1,12 +1,14 @@
-import styled, { keyframes, useTheme } from "styled-components";
-import { useState } from "react";
+import styled from "styled-components";
+import { useContext, useState } from "react";
+import { PageContext } from "@components/ecommerce-product-page/PageContext";
 import IconButton from "@components/ecommerce-product-page/IconButton";
 import ProfileButton from "@components/ecommerce-product-page/ProfileButton";
-import Cart from "@components/ecommerce-product-page/Cart";
-import Navigation from "@components/ecommerce-product-page/Navigation";
-import MenuIcon from "@assets/ecommerce-product-page/icon-menu.svg?react";
-import LogoImage from "@assets/ecommerce-product-page/logo.svg?react";
-import CartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
+import BaseCart from "@components/ecommerce-product-page/Cart";
+import BaseNavigation from "@components/ecommerce-product-page/Navigation";
+import BaseBadge from "@components/ecommerce-product-page/Badge";
+import BaseMenuIcon from "@assets/ecommerce-product-page/icon-menu.svg?react";
+import BaseLogo from "@assets/ecommerce-product-page/logo.svg?react";
+import BaseCartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
 
 
 const Container = styled.header`
@@ -26,7 +28,10 @@ const Container = styled.header`
     }
 `;
 
-const Logo = styled(LogoImage)`
+const Logo = styled(BaseLogo)`
+    height: 2rem;
+    fill: ${props => props.theme.color.neutral.veryDarkBlue};
+
     @media screen and (min-width: 900px) {
         margin-right: 6rem;
     }
@@ -41,11 +46,22 @@ const MenuButton = styled(IconButton)`
     }
 `;
 
+const MenuIcon = styled(BaseMenuIcon)`
+    width: 1.4rem;
+    height: auto;
+    fill: ${props => props.theme.color.neutral.veryDarkBlue};
+`;
+
 const CartButton = styled(IconButton)`
     margin-left: auto;
 `;
 
-const DesktopNavigation = styled(Navigation)`
+const CartIcon = styled(BaseCartIcon)`
+    width: 2rem;
+    fill: ${props => props.theme.color.neutral.veryDarkBlue};
+`;
+
+const Navigation = styled(BaseNavigation)`
     display: none;
 
     @media screen and (min-width: 900px) {
@@ -53,7 +69,7 @@ const DesktopNavigation = styled(Navigation)`
     }
 `;
 
-const FixedCart = styled(Cart)`
+const Cart = styled(BaseCart)`
     visibility: ${props => props.cartIsOpen ? "visible" : "hidden"};
     opacity: ${props => props.cartIsOpen ? "1" : "0"};
     position: absolute;
@@ -76,40 +92,19 @@ const FixedCart = styled(Cart)`
     }
 `;
 
-const BadgeAnimation = keyframes`
-    0% { transform: scale(1); }
-    14% { transform: scale(1.3); }
-    28% { transform: scale(1); }
-    42% { transform: scale(1.3); }
-    70% { transform: scale(1); }
-`;
-
-const Badge = styled.span`
+const Badge = styled(BaseBadge)`
     position: absolute;
     top: 0.6rem;
     right: 0.4rem;
-    height: 1.4rem;
-    border-radius: 0.7rem;
-    background-color: ${props => props.theme.color.primary.orange};
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.4rem;
-    color: ${props => props.theme.color.neutral.white};
-    animation-name: ${BadgeAnimation};
-    animation-duration: calc(1000ms * 1.3);
-    animation-timing-function: ease-in-out;
 `;
 
 function TopAppBar(props) {
     const [cartIsOpen, setCartIsOpen] = useState(false);
-    const theme = useTheme();
-
+    const pageContext = useContext(PageContext);
 
     function handleMenu(event) {
         event.preventDefault();
-        props.setDrawerIsOpen(true);
+        pageContext.setDrawerIsOpen(true);
     }
 
     function handleCart(event) {
@@ -120,27 +115,21 @@ function TopAppBar(props) {
     return (
         <Container className={props.className}>
             <MenuButton action={handleMenu}>
-                <MenuIcon width="1.4rem" fill={theme.color.neutral.veryDarkBlue} />
+                <MenuIcon />
             </MenuButton>
 
-            <Logo height="2rem" fill={theme.color.neutral.veryDarkBlue} />
+            <Logo />
 
-            <DesktopNavigation type="TopAppBar" />
+            <Navigation type="TopAppBar" />
 
             <CartButton action={handleCart}>
-                <CartIcon width="2rem" fill={theme.color.neutral.veryDarkBlue} />
-                {props.cartItemsNumber > 0 &&
-                    <Badge key={props.cartItemsNumber}>{props.cartItemsNumber}</Badge>
-                }
+                <CartIcon />
+                {pageContext.cartItemsNumber > 0 && <Badge key={pageContext.cartItemsNumber} label={pageContext.cartItemsNumber}/>}
             </CartButton>
 
             <ProfileButton />
 
-            <FixedCart
-                cartIsOpen={cartIsOpen}
-                cartItemsNumber={props.cartItemsNumber}
-                setCartItemsNumber={props.setCartItemsNumber}
-            />
+            <Cart cartIsOpen={cartIsOpen}/>
         </Container>
     );
 }

@@ -1,9 +1,10 @@
-import styled, { useTheme } from "styled-components";
-import Price from "@components/ecommerce-product-page/Price";
-import CountInput from "@components/ecommerce-product-page/CountInput";
+import styled from "styled-components";
+import { useContext, useState } from "react";
+import BasePrice from "@components/ecommerce-product-page/Price";
+import BaseCountInput from "@components/ecommerce-product-page/CountInput";
 import Button from "@components/ecommerce-product-page/Button";
-import CartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
-import { useState } from "react";
+import BaseCartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
+import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.div`
     padding-bottom: 10rem;
@@ -33,25 +34,28 @@ const Description = styled.p`
     margin-bottom: 2.4rem;
 `;
 
-const SpacedPrice = styled(Price)`
+const Price = styled(BasePrice)`
     margin-bottom: 2rem;
 `;
 
-const SpacedCountInput = styled(CountInput)`
+const CountInput = styled(BaseCountInput)`
     margin-bottom: 1.6rem;
 `;
 
-const MargedCartIcon = styled(CartIcon)`
+const CartIcon = styled(BaseCartIcon)`
     margin-right: 1.6rem;
+    width: 2rem;
+    height: auto;
+    fill: ${props => props.theme.color.neutral.white};
 `;
 
 function Product(props) {
     const [itemsNumber, setItemsNumber] = useState(0);
-    const theme = useTheme();
+    const pageContext = useContext(PageContext);
 
     function handleCartUpdate(event) {
         event.preventDefault();
-        props.setCartItemsNumber(props.cartItemsNumber + itemsNumber);
+        pageContext.setCartItemsNumber(pageContext.cartItemsNumber + itemsNumber);
     }
 
     return (
@@ -59,19 +63,10 @@ function Product(props) {
             <Company>sneaker company</Company>
             <Name>Fall Limited Edition Sneakers</Name>
             <Description>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</Description>
-            <SpacedPrice />
-            <SpacedCountInput
-                itemsNumber={itemsNumber}
-                setItemsNumber={setItemsNumber}
-            />
-            <Button
-                action={handleCartUpdate}
-                label="Add to cart"
-            >
-                <MargedCartIcon
-                    width="2rem"
-                    fill={theme.color.neutral.white}
-                />
+            <Price />
+            <CountInput itemsNumber={itemsNumber} setItemsNumber={setItemsNumber}/>
+            <Button action={handleCartUpdate} label="Add to cart">
+                <CartIcon />
             </Button>
         </Container>
     );

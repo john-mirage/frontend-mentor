@@ -3,6 +3,8 @@ import IconButton from "@components/ecommerce-product-page/IconButton";
 import Button from "@components/ecommerce-product-page/Button";
 import productThumbnail from "@assets/ecommerce-product-page/image-product-1-thumbnail.jpg";
 import DeleteIcon from "@assets/ecommerce-product-page/icon-delete.svg?react";
+import { useContext } from "react";
+import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.div`
     width: 100%;
@@ -61,12 +63,14 @@ const DeleteButton = styled(IconButton)`
 `;
 
 function CartProduct(props) {
-    const totalPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(props.cartItemsNumber * 125);
+    const pageContext = useContext(PageContext);
+    const totalPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(pageContext.cartItemsNumber * 125);
     const theme = useTheme();
+    
 
     function handleCartReset(event) {
         event.preventDefault();
-        props.setCartItemsNumber(0);
+        pageContext.setCartItemsNumber(0);
     }
 
     return (
@@ -75,10 +79,10 @@ function CartProduct(props) {
                 <Thumbnail src={productThumbnail.src} />
                 <Info>
                     <Title>Autumn Limited Edition...</Title>
-                    <Price>$125 x {props.cartItemsNumber} <TotalPrice>{totalPrice}</TotalPrice></Price>
+                    <Price>$125 x {pageContext.cartItemsNumber} <TotalPrice>{totalPrice}</TotalPrice></Price>
                 </Info>
                 <DeleteButton action={handleCartReset}>
-                    <DeleteIcon width="1.4rem" fill={theme.color.neutral.grayishBlue} />
+                    <DeleteIcon width="14" fill={theme.color.neutral.grayishBlue} />
                 </DeleteButton>
             </Product>
             <Button

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import closeIcon from "@assets/ecommerce-product-page/icon-close.svg";
 import Navigation from "@components/ecommerce-product-page/Navigation";
+import { useContext } from "react";
+import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.aside`
     width: 20rem;
@@ -20,9 +22,11 @@ const CloseButton = styled.button`
 `;
 
 function Drawer(props) {
+    const pageContext = useContext(PageContext)
+
     function handleDrawer(event) {
         event.preventDefault();
-        props.setDrawerIsOpen(false);
+        pageContext.setDrawerIsOpen(false);
     }
 
     return (

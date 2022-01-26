@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import productImage1 from "@assets/ecommerce-product-page/image-product-1.jpg";
 import productImage2 from "@assets/ecommerce-product-page/image-product-2.jpg";
 import productImage3 from "@assets/ecommerce-product-page/image-product-3.jpg";
@@ -11,6 +11,7 @@ import productImageThumbnail4 from "@assets/ecommerce-product-page/image-product
 import previousIcon from "@assets/ecommerce-product-page/icon-previous.svg";
 import nextIcon from "@assets/ecommerce-product-page/icon-next.svg";
 import closeIcon from "@assets/ecommerce-product-page/icon-close.svg";
+import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const pictures = [
     {
@@ -142,6 +143,7 @@ const Thumbnail = styled.img`
 
 function Carrousel(props) {
     const [currentSlide, setCurrentSlide] = useState(1);
+    const pageContext = useContext(PageContext);
 
     function showPicture(index) {
         if (currentSlide !== index) setCurrentSlide(index);
@@ -158,12 +160,12 @@ function Carrousel(props) {
     }
 
     function openLightbox(event) {
-        if (!props.lightbox && window.matchMedia('(min-width: 820px)').matches) props.setLightboxIsOpen(true);
+        if (!props.lightbox && window.matchMedia('(min-width: 820px)').matches) pageContext.setLightboxIsOpen(true);
     }
 
     function closeLightbox(event) {
         event.preventDefault();
-        props.setLightboxIsOpen(false);
+        pageContext.setLightboxIsOpen(false);
     }
 
     return (
