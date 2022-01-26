@@ -80,6 +80,10 @@ const Button = styled.button`
     background-color: ${props => props.theme.color.neutral.white};
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
+    &:hover {
+        background-color: ${props => props.theme.color.primary.paleOrange};
+    }
+
     @media screen and (min-width: 576px) {
         ${props => !props.lightbox && "display: none;"}
     }

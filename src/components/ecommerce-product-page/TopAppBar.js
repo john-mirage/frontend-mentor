@@ -1,12 +1,13 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, useTheme } from "styled-components";
 import { useState } from "react";
-import Cart from "@components/ecommerce-product-page/Cart";
 import IconButton from "@components/ecommerce-product-page/IconButton";
+import ProfileButton from "@components/ecommerce-product-page/ProfileButton";
+import Cart from "@components/ecommerce-product-page/Cart";
 import Navigation from "@components/ecommerce-product-page/Navigation";
-import menuIcon from "@assets/ecommerce-product-page/icon-menu.svg";
-import cartIcon from "@assets/ecommerce-product-page/icon-cart.svg";
-import avatar from "@assets/ecommerce-product-page/image-avatar.png";
-import logo from "@assets/ecommerce-product-page/logo.svg";
+import MenuIcon from "@assets/ecommerce-product-page/icon-menu.svg?react";
+import LogoImage from "@assets/ecommerce-product-page/logo.svg?react";
+import CartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
+
 
 const Container = styled.header`
     position: relative;
@@ -25,7 +26,13 @@ const Container = styled.header`
     }
 `;
 
-const MenuIcon = styled(IconButton)`
+const Logo = styled(LogoImage)`
+    @media screen and (min-width: 900px) {
+        margin-right: 6rem;
+    }
+`;
+
+const MenuButton = styled(IconButton)`
     margin-left: -1.6rem;
     margin-right: 0.4rem;
 
@@ -34,21 +41,8 @@ const MenuIcon = styled(IconButton)`
     }
 `;
 
-const CartIcon = styled(IconButton)`
+const CartButton = styled(IconButton)`
     margin-left: auto;
-`;
-
-const ProfileIcon = styled(IconButton)`
-    margin-right: -1.2rem;
-`;
-
-const Logo = styled.img`
-    width: auto;
-    height: 2rem;
-
-    @media screen and (min-width: 900px) {
-        margin-right: 6rem;
-    }
 `;
 
 const DesktopNavigation = styled(Navigation)`
@@ -65,11 +59,21 @@ const FixedCart = styled(Cart)`
     position: absolute;
     z-index: 80;
     top: 8rem;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 50%;
+    transform: translateX(50%);
     width: calc(100% - 2rem);
     transition-property: visibility, opacity;
     transition-duration: 300ms;
+
+    @media screen and (min-width: 520px) {
+        right: 1rem;
+        width: 50rem;
+        transform: translateX(0);
+    }
+
+    @media screen and (min-width: 900px) {
+        top: 11rem;
+    }
 `;
 
 const BadgeAnimation = keyframes`
@@ -100,6 +104,8 @@ const Badge = styled.span`
 
 function TopAppBar(props) {
     const [cartIsOpen, setCartIsOpen] = useState(false);
+    const theme = useTheme();
+
 
     function handleMenu(event) {
         event.preventDefault();
@@ -113,27 +119,23 @@ function TopAppBar(props) {
 
     return (
         <Container className={props.className}>
-            <MenuIcon
-                icon={menuIcon}
-                iconSize="1.6rem"
-                action={handleMenu}
-            />
-            <Logo
-                src={logo}
-            />
+            <MenuButton action={handleMenu}>
+                <MenuIcon width="1.4rem" fill={theme.color.neutral.veryDarkBlue} />
+            </MenuButton>
+
+            <Logo height="2rem" fill={theme.color.neutral.veryDarkBlue} />
+
             <DesktopNavigation type="TopAppBar" />
-            <CartIcon
-                icon={cartIcon}
-                iconSize="2.4rem"
-                action={handleCart}
-            >
-                {props.cartItemsNumber > 0 && <Badge key={props.cartItemsNumber}>{props.cartItemsNumber}</Badge>}
-            </CartIcon>
-            <ProfileIcon
-                icon={avatar.src}
-                iconSize="2.4rem"
-                isAvatar
-            />
+
+            <CartButton action={handleCart}>
+                <CartIcon width="2rem" fill={theme.color.neutral.veryDarkBlue} />
+                {props.cartItemsNumber > 0 &&
+                    <Badge key={props.cartItemsNumber}>{props.cartItemsNumber}</Badge>
+                }
+            </CartButton>
+
+            <ProfileButton />
+
             <FixedCart
                 cartIsOpen={cartIsOpen}
                 cartItemsNumber={props.cartItemsNumber}

@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import IconButton from "@components/ecommerce-product-page/IconButton";
-import minusButton from "@assets/ecommerce-product-page/icon-minus.svg";
-import plusButton from "@assets/ecommerce-product-page/icon-plus.svg";
+import MinusButton from "@assets/ecommerce-product-page/icon-minus.svg?react";
+import PlusButton from "@assets/ecommerce-product-page/icon-plus.svg?react";
 
 const Container = styled.div`
     width: 100%;
@@ -24,6 +24,7 @@ const Count = styled.p`
 `;
 
 function CountInput(props) {
+    const theme = useTheme();
 
     function handleMinusButton(event) {
         event.preventDefault();
@@ -39,17 +40,13 @@ function CountInput(props) {
 
     return (
         <Container className={props.className}>
-            <IconButton
-                icon={minusButton}
-                iconSize="1.2rem"
-                action={handleMinusButton}
-            />
+            <IconButton action={handleMinusButton}>
+                <MinusButton width="1.2rem" fill={theme.color.primary.orange} />
+            </IconButton>
             <Count>{props.itemsNumber}</Count>
-            <IconButton
-                icon={plusButton}
-                iconSize="1.2rem"
-                action={handlePlusButton}
-            />
+            <IconButton action={handlePlusButton}>
+                <PlusButton width="1.2rem" fill={theme.color.primary.orange} />
+            </IconButton>
         </Container>
     );
 }

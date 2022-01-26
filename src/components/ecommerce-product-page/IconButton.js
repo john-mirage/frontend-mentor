@@ -13,17 +13,8 @@ const Container = styled.button`
     }
 `;
 
-const Icon = styled.img`
+const Icon = styled.div`
     margin: auto;
-    width: ${props => props.iconSize || "2.4rem"};
-    height: auto;
-    ${props => props.isAvatar && `
-        &:hover {
-            box-sizing: content-box;
-            border-radius: 50%;
-            border: 0.1rem solid ${props.theme.color.primary.orange}
-        };
-    `}
 `;
 
 function IconButton(props) {
@@ -32,12 +23,9 @@ function IconButton(props) {
             className={props.className}
             onClick={props.action}
         >
-            <Icon
-                src={props.icon}
-                iconSize={props.iconSize}
-                isAvatar={props.isAvatar}
-            />
-            {props.children}
+            <Icon>
+                {props.children}
+            </Icon>
         </Container>
     );
 }

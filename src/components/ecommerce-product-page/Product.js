@@ -41,6 +41,10 @@ const SpacedCountInput = styled(CountInput)`
     margin-bottom: 1.6rem;
 `;
 
+const MargedCartIcon = styled(CartIcon)`
+    margin-right: 1.6rem;
+`;
+
 function Product(props) {
     const [itemsNumber, setItemsNumber] = useState(0);
     const theme = useTheme();
@@ -64,7 +68,10 @@ function Product(props) {
                 action={handleCartUpdate}
                 label="Add to cart"
             >
-                <CartIcon fill={theme.color.neutral.white} />
+                <MargedCartIcon
+                    width="2rem"
+                    fill={theme.color.neutral.white}
+                />
             </Button>
         </Container>
     );

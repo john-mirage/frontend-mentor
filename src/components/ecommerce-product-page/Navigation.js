@@ -15,6 +15,7 @@ const TopAppBarNavigation = styled.nav`
     display: flex;
     flex-direction: row;
     height: 100%;
+    overflow-y: hidden;
 `;
 
 const TopAppBarLink = styled.a`
@@ -41,16 +42,18 @@ const TopAppBarText = styled.span`
 `;
 
 const TopAppBarLine = styled.div`
-    display: none;
+    display: block;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 0.4rem;
     background-color: ${props => props.theme.color.primary.orange};
+    transform: translateY(0.4rem);
+    transition: transform 300ms;
 
     ${TopAppBarLink}:hover & {
-        display: block;
+        transform: translateY(0);
     }
 `;
 
