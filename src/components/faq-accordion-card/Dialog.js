@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FrequentlyAskedQuestions from "@components/faq-accordion-card/FrequentlyAskedQuestions";
+import BaseFrequentlyAskedQuestions from "@components/faq-accordion-card/FrequentlyAskedQuestions";
 import mobileIllustration from "@assets/faq-accordion-card/illustration-woman-online-mobile.svg";
 import mobileShadow from "@assets/faq-accordion-card/bg-pattern-mobile.svg";
 import desktopIllustration from "@assets/faq-accordion-card/illustration-woman-online-desktop.svg";
@@ -83,7 +83,7 @@ const BoxIllustration = styled.div`
     }
 `;
 
-const StyledFaq = styled(FrequentlyAskedQuestions)`
+const FrequentlyAskedQuestions = styled(BaseFrequentlyAskedQuestions)`
     margin-top: 2rem;
 
     @media screen and (min-width: 1440px) {
@@ -100,7 +100,7 @@ function Dialog() {
             <Illustration>
                 <BoxIllustration />
             </Illustration>
-            <StyledFaq />
+            <FrequentlyAskedQuestions />
         </Container>
     );
 }

@@ -21,31 +21,42 @@ const Accordions = styled.div`
     margin-top: 2rem;
 `;
 
+const accordions = [
+    {
+        question: "How many team members can i invite?",
+        answer: "You can invite all the members you want, it's free and unlimited!",
+    },
+    {
+        question: "What is the maximum upload file?",
+        answer: "No more than 2GB. All files in your account must fit the allotted storage space.",
+    },
+    {
+        question: "How do i reset my password?",
+        answer: "You can reset your password at any time by clicking your avatar and settings / account.",
+    },
+    {
+        question: "Can i cancel my subscription?",
+        answer: "You can cancel your subscription at any time.",
+    },
+    {
+        question: "Do you provide additional support?",
+        answer: "You are available by phone or email.",
+    },
+];
+
 function FrequentlyAskedQuestions(props) {
     return (
         <Container className={props.className}>
             <Title>FAQ</Title>
             <Accordions>
-                <Accordion
-                    question="How many team members can i invite?"
-                    answer="You can invite all the members you want, it's free and unlimited!"
-                />
-                <Accordion
-                    question="What is the maximum upload file?"
-                    answer="No more than 2GB. All files in your account must fit the allotted storage space."
-                />
-                <Accordion
-                    question="How do i reset my password?"
-                    answer="You can reset your password at any time by clicking your avatar and settings / account."
-                />
-                <Accordion
-                    question="Can i cancel my subscription?"
-                    answer="You can cancel your subscription at any time."
-                />
-                <Accordion
-                    question="Do you provide additional support?"
-                    answer="You are available by phone or email."
-                />
+                {accordions.map((faq, index) => (
+                    <Accordion
+                        key={index}
+                        question={faq.question}
+                        answer={faq.answer}
+                        accordionIndex={index}
+                    />
+                ))}
             </Accordions>
         </Container>
     );
