@@ -11,6 +11,7 @@ module.exports = {
                         {
                             loader: "@svgr/webpack",
                             options: {
+                                ref: true,
                                 svgoConfig: {
                                     plugins: [
                                         {
