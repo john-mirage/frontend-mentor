@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export const PageContext = createContext({
-    drawerisOpen: false,
+    drawerIsOpen: false,
     setDrawerIsOpen: () => {},
     lightboxIsOpen: false,
     setLightboxIsOpen: () => {},

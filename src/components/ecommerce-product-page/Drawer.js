@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import closeIcon from "@assets/ecommerce-product-page/icon-close.svg";
 import Navigation from "@components/ecommerce-product-page/Navigation";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.aside`
@@ -21,8 +21,8 @@ const CloseButton = styled.button`
     margin-left: -1.8rem;
 `;
 
-function Drawer(props) {
-    const pageContext = useContext(PageContext)
+const Drawer = React.forwardRef((props, ref) => {
+    const pageContext = useContext(PageContext);
 
     function handleDrawer(event) {
         event.preventDefault();
@@ -30,11 +30,11 @@ function Drawer(props) {
     }
 
     return (
-        <Container className={props.className}>
+        <Container className={props.className} ref={ref}>
             <CloseButton onClick={handleDrawer} />
             <Navigation type="Drawer" />
         </Container>
     );
-}
+});
 
 export default Drawer;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import productImage1 from "@assets/ecommerce-product-page/image-product-1.jpg";
 import productImage2 from "@assets/ecommerce-product-page/image-product-2.jpg";
 import productImage3 from "@assets/ecommerce-product-page/image-product-3.jpg";
@@ -141,7 +141,7 @@ const Thumbnail = styled.img`
     border-radius: 1rem;
 `;
 
-function Carrousel(props) {
+const Gallery = React.forwardRef((props, ref) => {
     const [currentSlide, setCurrentSlide] = useState(1);
     const pageContext = useContext(PageContext);
 
@@ -169,7 +169,7 @@ function Carrousel(props) {
     }
 
     return (
-        <Container className={props.className}>
+        <Container className={props.className} ref={ref}>
 
             {props.lightbox && <CloseButton onClick={closeLightbox} />}
 
@@ -207,6 +207,6 @@ function Carrousel(props) {
 
         </Container>
     );
-}
+});
 
-export default Carrousel;
+export default Gallery;

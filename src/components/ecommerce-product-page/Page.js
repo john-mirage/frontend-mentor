@@ -5,6 +5,7 @@ import BaseGallery from "@components/ecommerce-product-page/Gallery";
 import BaseDrawer from "@components/ecommerce-product-page/Drawer";
 import BaseProduct from "@components/ecommerce-product-page/Product";
 import { PageContext } from "@components/ecommerce-product-page/PageContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Container = styled.main`
     width: 100%;
@@ -27,13 +28,11 @@ const TopAppBar = styled(BaseTopAppBar)`
     left: 0;
 `;
 
-const Drawer = styled(BaseDrawer)`
+const Drawer = styled(motion(BaseDrawer))`
     position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
-    transform: ${props => props.isOpen ? "translateX(0)" : "translateX(-100%)"};
-    transition: transform 300ms;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
@@ -41,17 +40,13 @@ const Gallery = styled(BaseGallery)`
     margin-bottom: 2rem;
 `;
 
-const Lightbox = styled(BaseGallery)`
-    visibility: ${props => props.isOpen ? "visible" : "hidden"};
-    opacity: ${props => props.isOpen ? "1" : "0"};
+const Lightbox = styled(motion(BaseGallery))`
     position: fixed;
     z-index: 100;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 6rem);
-    transition-property: visibility, opacity;
-    transition-duration: 300ms;
 
     @media screen and (min-width: 820px) {
         width: 76rem;
@@ -68,9 +63,7 @@ const Product = styled(BaseProduct)`
     }
 `;
 
-const Scrim = styled.div`
-    visibility: ${props => props.active ? "visible" : "hidden"};
-    opacity: ${props => props.active ? "0.9" : "0"};
+const Scrim = styled(motion.div)`
     position: fixed;
     z-index: 90;
     top: 0;
@@ -78,27 +71,15 @@ const Scrim = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${props => props.theme.color.neutral.black};
-    transition-property: visibility, opacity;
-    transition-duration: 300ms;
     cursor: pointer;
 `;
 
 class Page extends React.Component {
     constructor(props) {
         super(props);
-
-        this.setDrawerIsOpen = (drawerIsOpen) => {
-            this.setState({ drawerIsOpen: drawerIsOpen });
-        }
-
-        this.setLightboxIsOpen = (lightboxIsOpen) => {
-            this.setState({ lightboxIsOpen: lightboxIsOpen });
-        }
-
-        this.setCartItemsNumber = (cartItemsNumber) => {
-            this.setState({ cartItemsNumber: cartItemsNumber });
-        }
-
+        this.setDrawerIsOpen = (drawerIsOpen) => this.setState({ drawerIsOpen: drawerIsOpen });
+        this.setLightboxIsOpen = (lightboxIsOpen) => this.setState({ lightboxIsOpen: lightboxIsOpen });
+        this.setCartItemsNumber = (cartItemsNumber) => this.setState({ cartItemsNumber: cartItemsNumber });
         this.state = {
             drawerIsOpen: false,
             setDrawerIsOpen: this.setDrawerIsOpen,
@@ -116,12 +97,35 @@ class Page extends React.Component {
                     <Gallery />
                     <Product />
                     <TopAppBar />
-                    <Lightbox isOpen={this.state.lightboxIsOpen} lightbox />
-                    <Drawer isOpen={this.state.drawerIsOpen} />
-                    <Scrim
-                        active={this.state.drawerIsOpen || this.state.lightboxIsOpen}
-                        onClick={() => this.state.drawerIsOpen && this.setDrawerIsOpen(false)}
-                    />
+                    <AnimatePresence>
+                        {this.state.lightboxIsOpen && (
+                            <Lightbox
+                                key="lightbox"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                lightbox
+                            />
+                        )}
+                        {this.state.drawerIsOpen && (
+                            <Drawer
+                                key="drawer"
+                                initial={{ x: "-100%" }}
+                                animate={{ x: 0 }}
+                                exit={{ x: "-100%" }}
+                                transition={{ type: "tween" }}
+                            />
+                        )}
+                        {(this.state.lightboxIsOpen || this.state.drawerIsOpen) && (
+                            <Scrim
+                                key="scrim"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => this.setDrawerIsOpen(false)}
+                            />
+                        )}
+                    </AnimatePresence>
                 </PageContext.Provider>
             </Container>
         );
