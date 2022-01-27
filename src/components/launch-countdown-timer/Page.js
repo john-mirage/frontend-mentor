@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Countdown from "@components/launch-countdown-timer/Countdown";
-import SocialMedias from "@components/launch-countdown-timer/SocialMedias";
+import BaseCountdown from "@components/launch-countdown-timer/Countdown";
+import BaseSocialMedias from "@components/launch-countdown-timer/SocialMedias";
 import hillsIllustration from "@assets/launch-countdown-timer/pattern-hills-custom.svg";
 import starsIllustration from "@assets/launch-countdown-timer/bg-stars.svg";
 
@@ -50,11 +50,11 @@ const Title = styled.h1`
     margin-bottom: 10rem;
 `;
 
-const SpacedCountdown = styled(Countdown)`
+const Countdown = styled(BaseCountdown)`
     margin-bottom: 8rem;
 `;
 
-const SpacedSocialMedias = styled(SocialMedias)`
+const SocialMedias = styled(BaseSocialMedias)`
     margin-top: auto;
 `;
 
@@ -63,8 +63,8 @@ function Page() {
         <Container>
             <Content>
                 <Title>we're launching soon</Title>
-                <SpacedCountdown />
-                <SpacedSocialMedias />
+                <Countdown />
+                <SocialMedias />
             </Content>
         </Container>
     );
