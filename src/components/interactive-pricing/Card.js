@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Slider from "@components/interactive-pricing/Slider";
-import Price from "@components/interactive-pricing/Price";
-import Plan from "@components/interactive-pricing/Plan";
-import Feature from "@components/interactive-pricing/Feature";
-import CallToAction from "@components/interactive-pricing/CallToAction";
+import BaseSlider from "@components/interactive-pricing/Slider";
+import BasePrice from "@components/interactive-pricing/Price";
+import BasePlan from "@components/interactive-pricing/Plan";
+import BaseFeature from "@components/interactive-pricing/Feature";
+import BaseCallToAction from "@components/interactive-pricing/CallToAction";
 import { useState } from "react";
 
 const Container = styled.article`
@@ -71,7 +71,7 @@ const Features = styled.div`
     }
 `;
 
-const StyledSlider = styled(Slider)`
+const Slider = styled(BaseSlider)`
     margin-bottom: 3rem;
 
     @media screen and (min-width: 860px) {
@@ -80,7 +80,7 @@ const StyledSlider = styled(Slider)`
     }
 `;
 
-const StyledPrice = styled(Price)`
+const Price = styled(BasePrice)`
     justify-content: center;
     margin-bottom: 4rem;
 
@@ -92,7 +92,7 @@ const StyledPrice = styled(Price)`
     }
 `;
 
-const StyledPlan = styled(Plan)`
+const Plan = styled(BasePlan)`
     margin-bottom: 5rem;
 
     @media screen and (min-width: 860px) {
@@ -101,7 +101,7 @@ const StyledPlan = styled(Plan)`
     }
 `;
 
-const StyledFeature = styled(Feature)`
+const Feature = styled(BaseFeature)`
     justify-content: center;
 
     @media screen and (min-width: 860px) {
@@ -109,7 +109,7 @@ const StyledFeature = styled(Feature)`
     }
 `;
 
-const StyledCallToAction = styled(CallToAction)`
+const CallToAction = styled(BaseCallToAction)`
     @media screen and (min-width: 860px) {
         margin-left: auto;
         order: 7;
@@ -140,16 +140,16 @@ function Card(props) {
     return (
         <Container className={props.className}>
             <PageViews>{pageViews} pageviews</PageViews>
-            <StyledSlider setPageViews={setPageViews} />
-            <StyledPrice price={price} plan={plan} />
-            <StyledPlan setPlan={setPlan} />
+            <Slider setPageViews={setPageViews} />
+            <Price price={price} plan={plan} />
+            <Plan setPlan={setPlan} />
             <Divider />
             <Features>
-                <StyledFeature feature="Unlimited websites" />
-                <StyledFeature feature="100% data ownership" />
-                <StyledFeature feature="Email reports" />
+                <Feature feature="Unlimited websites" />
+                <Feature feature="100% data ownership" />
+                <Feature feature="Email reports" />
             </Features>
-            <StyledCallToAction />
+            <CallToAction />
         </Container>
     );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ToggleButton from "@components/interactive-pricing/ToggleButton";
-import Badge from "@components/interactive-pricing/Badge";
+import BaseToggleButton from "@components/interactive-pricing/ToggleButton";
+import BaseBadge from "@components/interactive-pricing/Badge";
 
 const Container = styled.div`
     display: flex;
@@ -22,7 +22,7 @@ const Text = styled.p`
     color: ${props => props.theme.color.neutral.grayishBlue};
 `;
 
-const StyledToggleButton = styled(ToggleButton)`
+const ToggleButton = styled(BaseToggleButton)`
     margin-top: 3rem;
     margin-bottom: 3rem;
 
@@ -32,7 +32,7 @@ const StyledToggleButton = styled(ToggleButton)`
     }
 `;
 
-const StyledBadge = styled(Badge)`
+const Badge = styled(BaseBadge)`
     position: absolute;
     top: 50%;
     right: -0.5rem;
@@ -48,8 +48,8 @@ function Plan(props) {
     return (
         <Container className={props.className}>
             <Text>Monthly Billing</Text>
-            <StyledToggleButton setPlan={props.setPlan} />
-            <Text>Yearly Billing<StyledBadge>-25%</StyledBadge></Text>
+            <ToggleButton setPlan={props.setPlan} />
+            <Text>Yearly Billing<Badge>-25%</Badge></Text>
         </Container>
     );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Hero from "@components/interactive-pricing/Hero";
-import Card from "@components/interactive-pricing/Card";
+import BaseHero from "@components/interactive-pricing/Hero";
+import BaseCard from "@components/interactive-pricing/Card";
 import pattern from "@assets/interactive-pricing/bg-pattern.svg";
 
 const Container = styled.main`
@@ -12,11 +12,11 @@ const Container = styled.main`
     background-position: top;
 `;
 
-const StyledHero = styled(Hero)`
+const Hero = styled(BaseHero)`
     margin-bottom: 5rem;
 `;
 
-const StyledCard = styled(Card)`
+const Card = styled(BaseCard)`
     @media screen and (min-width: 560px) {
         width: 50rem;
         margin-left: auto;
@@ -33,8 +33,8 @@ const StyledCard = styled(Card)`
 function Page() {
     return (
         <Container>
-            <StyledHero />
-            <StyledCard />
+            <Hero />
+            <Card />
         </Container>
     );
 }
