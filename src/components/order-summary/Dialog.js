@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Order from "@components/order-summary/Order";
+import BaseOrder from "@components/order-summary/Order";
 import Button from "@components/order-summary/Button";
 import heroIllustration from "@assets/order-summary/illustration-hero.svg";
 
@@ -58,11 +58,11 @@ const Description = styled.p`
     }
 `;
 
-const StyledOrder = styled(Order)`
+const Order = styled(BaseOrder)`
     margin-bottom: 3rem;
 `;
 
-const StyledButton = styled(Button)`
+const ButtonWithMargin = styled(Button)`
     margin-bottom: 1rem;
 `;
 
@@ -76,8 +76,8 @@ function Dialog() {
             <Body>
                 <Title>Order Summary</Title>
                 <Description>You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</Description>
-                <StyledOrder />
-                <StyledButton buttonLabel="Proceed to Payment" buttonType="primary" />
+                <Order />
+                <ButtonWithMargin buttonLabel="Proceed to Payment" buttonType="primary" />
                 <Button buttonLabel="Cancel Order" buttonType="secondary" />
             </Body>
 
