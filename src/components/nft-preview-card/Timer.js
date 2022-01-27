@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import clock from "@assets/nft-preview-card/icon-clock.svg";
+import BaseClockIcon from "@assets/nft-preview-card/icon-clock.svg?react";
 
 const Container = styled.div`
     display: flex;
@@ -11,11 +11,11 @@ const Container = styled.div`
     }
 `;
 
-const Icon = styled.img`
-    display: block;
+const ClockIcon = styled(BaseClockIcon)`
     width: 1.7rem;
-    height: 1.7rem;
+    height: auto;
     margin-bottom: 0.4rem;
+    fill: ${props => props.theme.color.primary.softBlue};
 
     @media screen and (min-width: 340px) {
         margin-bottom: 0;
@@ -34,10 +34,7 @@ const TimeLeft = styled.p`
 function Timer() {
     return (
         <Container>
-            <Icon
-                src={clock}
-                alt="Clock icon illustration"
-            />
+            <ClockIcon />
             <TimeLeft>3 days left</TimeLeft>
         </Container>
     );

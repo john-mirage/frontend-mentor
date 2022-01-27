@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ethereum from "@assets/nft-preview-card/icon-ethereum.svg";
+import BaseEthereumIcon from "@assets/nft-preview-card/icon-ethereum.svg?react";
 
 const Container = styled.div`
     display: flex;
@@ -11,11 +11,11 @@ const Container = styled.div`
     }
 `;
 
-const Icon = styled.img`
-    display: block;
+const EthereumIcon = styled(BaseEthereumIcon)`
     width: 1.1rem;
-    height: 1.8rem;
+    height: auto;
     margin-bottom: 0.4rem;
+    fill: ${props => props.theme.color.primary.cyan};
 
     @media screen and (min-width: 340px) {
         margin-bottom: 0;
@@ -34,10 +34,7 @@ const Price = styled.p`
 function Crypto() {
     return (
         <Container>
-            <Icon
-                src={ethereum}
-                alt="Ethereum crypto currency icon"
-            />
+            <EthereumIcon />
             <Price>0.041 ETH</Price>
         </Container>
     );
