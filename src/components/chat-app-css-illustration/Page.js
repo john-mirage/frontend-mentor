@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Phone from "@components/chat-app-css-illustration/Phone";
-import Hero from "@components/chat-app-css-illustration/Hero";
+import BasePhone from "@components/chat-app-css-illustration/Phone";
+import BaseHero from "@components/chat-app-css-illustration/Hero";
 
 const Container = styled.main`
     position: relative;
@@ -68,7 +68,7 @@ const Section = styled.div`
     }
 `;
 
-const StyledPhone = styled(Phone)`
+const Phone = styled(BasePhone)`
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 6.4rem;
@@ -79,7 +79,7 @@ const StyledPhone = styled(Phone)`
     }
 `;
 
-const StyledHero = styled(Hero)`
+const Hero = styled(BaseHero)`
     margin-left: auto;
     margin-right: auto;
 
@@ -95,11 +95,11 @@ function Page() {
             <RightShape />
 
             <Section>
-                <StyledPhone />
+                <Phone />
             </Section>
 
             <Section>
-                <StyledHero />
+                <Hero />
             </Section>
         </Container>
     );

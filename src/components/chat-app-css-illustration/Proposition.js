@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RadioInput from "@components/chat-app-css-illustration/RadioInput";
+import BaseRadioInput from "@components/chat-app-css-illustration/RadioInput";
 
 const Container = styled.div`
     display: flex;
@@ -15,7 +15,7 @@ const Container = styled.div`
     padding: 1.6rem;
 `;
 
-const StyledRadioInput = styled(RadioInput)`
+const RadioInput = styled(BaseRadioInput)`
     flex-grow: 0;
     flex-shrink: 0;
 `;
@@ -38,7 +38,7 @@ const Price = styled.p`
 function Proposition(props) {
     return (
         <Container className={props.className}>
-            <StyledRadioInput inputId={props.inputId} />
+            <RadioInput inputId={props.inputId} />
             <Duration>{props.duration}</Duration>
             <Price>{props.price}</Price>
         </Container>
