@@ -50,6 +50,7 @@ const GlobalStyle = createGlobalStyle`
         border: none;
         background-color: transparent;
         cursor: pointer;
+        padding: 0;
     }
 `;
 
