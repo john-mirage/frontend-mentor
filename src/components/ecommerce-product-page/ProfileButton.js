@@ -10,12 +10,23 @@ const Container = styled.button`
     &:hover {
         background-color: rgba(0, 0, 0, 0.1);
     }
+
+    @media screen and (min-width: 992px) {
+        &:hover {
+            background-color: ${props => props.theme.color.primary.orange};
+        }
+    }
 `;
 
 const Image = styled.img`
     margin: auto;
     width: 2.6rem;
     height: 2.6rem;
+
+    @media screen and (min-width: 992px) {
+        width: 4.4rem;
+        height: 4.4rem;
+    }
 `;
 
 function Profile(props) {

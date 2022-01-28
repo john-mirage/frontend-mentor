@@ -130,7 +130,7 @@ const Thumbnails = styled.div`
     @media screen and (min-width: 576px) {
         display: grid;
         grid-template-columns: repeat(${props => props.numberOfPictures}, 1fr);
-        gap: 4rem;
+        gap: 3rem;
         margin-top: 4rem;
     }
 `;

@@ -9,15 +9,29 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Container = styled.main`
     width: 100%;
+    height: auto;
     padding-top: 7rem;
+    padding-bottom: 10rem;
 
     @media screen and (min-width: 576px) {
         width: 54rem;
         margin-left: auto;
         margin-right: auto;
         padding-top: 15rem;
-        padding-left: 1.8rem;
-        padding-right: 1.8rem;
+    }
+
+    @media screen and (min-width: 992px) {
+        padding-top: 0;
+        width: 96rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 114rem;
     }
 `;
 
@@ -26,6 +40,44 @@ const TopAppBar = styled(BaseTopAppBar)`
     z-index: 80;
     top: 0;
     left: 0;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    @media screen and (min-width: 992px) {
+        position: static;
+        margin-bottom: 10rem;
+        padding-left: 0;
+        padding-right: 0;
+        box-shadow: none;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+    }
+`;
+
+const Gallery = styled(BaseGallery)`
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: 992px) {
+        width: 50%;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+`;
+
+const Product = styled(BaseProduct)`
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    @media screen and (min-width: 576px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media screen and (min-width: 992px) {
+        width: 50%;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
 `;
 
 const Drawer = styled(motion(BaseDrawer))`
@@ -34,10 +86,6 @@ const Drawer = styled(motion(BaseDrawer))`
     top: 0;
     left: 0;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-`;
-
-const Gallery = styled(BaseGallery)`
-    margin-bottom: 2rem;
 `;
 
 const Lightbox = styled(motion(BaseGallery))`
@@ -53,16 +101,6 @@ const Lightbox = styled(motion(BaseGallery))`
     }
 `;
 
-const Product = styled(BaseProduct)`
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-    @media screen and (min-width: 576px) {
-        padding-left: 0;
-        padding-right: 0;
-    }
-`;
-
 const Scrim = styled(motion.div)`
     position: fixed;
     z-index: 90;
@@ -71,7 +109,6 @@ const Scrim = styled(motion.div)`
     width: 100%;
     height: 100%;
     background-color: ${props => props.theme.color.neutral.black};
-    cursor: pointer;
 `;
 
 class Page extends React.Component {
@@ -94,9 +131,9 @@ class Page extends React.Component {
         return (
             <Container>
                 <PageContext.Provider value={this.state}>
+                    <TopAppBar />
                     <Gallery />
                     <Product />
-                    <TopAppBar />
                     <AnimatePresence>
                         {this.state.lightboxIsOpen && (
                             <Lightbox

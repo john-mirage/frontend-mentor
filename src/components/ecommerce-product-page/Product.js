@@ -7,7 +7,8 @@ import BaseCartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
 import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.div`
-    padding-bottom: 10rem;
+    width: 100%;
+    height: auto;
 `;
 
 const Company = styled.p`

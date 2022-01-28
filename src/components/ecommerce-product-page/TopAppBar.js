@@ -18,12 +18,9 @@ const Container = styled.header`
     align-items: center;
     width: 100%;
     height: 7rem;
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
     background-color: ${props => props.theme.color.neutral.white};
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 992px) {
         height: 10rem;
     }
 `;
@@ -32,7 +29,7 @@ const Logo = styled(BaseLogo)`
     height: 2rem;
     fill: ${props => props.theme.color.neutral.veryDarkBlue};
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 992px) {
         margin-right: 6rem;
     }
 `;
@@ -41,7 +38,7 @@ const MenuButton = styled(IconButton)`
     margin-left: -1.6rem;
     margin-right: 0.4rem;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 992px) {
         display: none;
     }
 `;
@@ -54,6 +51,11 @@ const MenuIcon = styled(BaseMenuIcon)`
 
 const CartButton = styled(IconButton)`
     margin-left: auto;
+    margin-right: 0.4rem;
+    
+    @media screen and (min-width: 992px) {
+        margin-right: 1.2rem;
+    }
 `;
 
 const CartIcon = styled(BaseCartIcon)`
@@ -64,7 +66,7 @@ const CartIcon = styled(BaseCartIcon)`
 const Navigation = styled(BaseNavigation)`
     display: none;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 992px) {
         display: flex;
     }
 `;
@@ -87,7 +89,7 @@ const Cart = styled(BaseCart)`
         transform: translateX(0);
     }
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 992px) {
         top: 11rem;
     }
 `;
