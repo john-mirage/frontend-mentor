@@ -9,6 +9,7 @@ const HeadShake = keyframes`
 `;
 
 const Container = styled.div`
+    display: flex;
     width: auto;
     height: 1.4rem;
     border-radius: 0.7rem;
@@ -21,9 +22,9 @@ const Container = styled.div`
 `;
 
 const Label = styled.span`
+    margin: auto;
     font-size: 1rem;
     font-weight: 700;
-    line-height: 1.4rem;
     color: ${props => props.theme.color.neutral.white};
 `;
 
