@@ -10,7 +10,7 @@ import productImageThumbnail3 from "@assets/ecommerce-product-page/image-product
 import productImageThumbnail4 from "@assets/ecommerce-product-page/image-product-4-thumbnail.jpg";
 import previousIcon from "@assets/ecommerce-product-page/icon-previous.svg";
 import nextIcon from "@assets/ecommerce-product-page/icon-next.svg";
-import closeIcon from "@assets/ecommerce-product-page/icon-close.svg";
+import BaseCloseIcon from "@assets/ecommerce-product-page/icon-close.svg?react";
 import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const pictures = [
@@ -113,15 +113,25 @@ const NextButton = styled(Button)`
 `;
 
 const CloseButton = styled.button`
-    display: block;
-    width: 2.4rem;
-    height: 2.4rem;
+    display: flex;
+    width: 5.6rem;
+    height: 5.6rem;
     margin-left: auto;
-    margin-bottom: 2rem;
-    background-image: url(${closeIcon});
-    background-size: 2.4rem;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin-right: -1.6rem;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    transition: background-color 300ms;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+`;
+
+const CloseIcon = styled(BaseCloseIcon)`
+    width: 2.4rem;
+    height: auto;
+    margin: auto;
+    fill: ${props => props.theme.color.neutral.white};
 `;
 
 const Thumbnails = styled.div`
@@ -139,6 +149,8 @@ const Thumbnail = styled.img`
     width: 100%;
     height: auto;
     border-radius: 1rem;
+    cursor: pointer;
+    ${props => props.isActive && `border: 0.2rem solid ${props.theme.color.primary.orange};`}
 `;
 
 const Gallery = React.forwardRef((props, ref) => {
@@ -171,7 +183,11 @@ const Gallery = React.forwardRef((props, ref) => {
     return (
         <Container className={props.className} ref={ref}>
 
-            {props.lightbox && <CloseButton onClick={closeLightbox} />}
+            {props.lightbox &&
+                <CloseButton onClick={closeLightbox}>
+                    <CloseIcon />
+                </CloseButton>
+            }
 
             <Display>
                 <View>
@@ -200,6 +216,7 @@ const Gallery = React.forwardRef((props, ref) => {
                             src={picture.thumbnail}
                             onClick={() => showPicture(index + 1)}
                             key={index}
+                            isActive={currentSlide === index + 1}
                         />
                     );
                 })}
