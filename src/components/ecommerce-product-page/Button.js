@@ -20,7 +20,7 @@ const Label = styled.span`
 
 function Button(props) {
     return (
-        <Container onClick={props.action}>
+        <Container className={props.className} onClick={props.action}>
             {props.children}
             <Label>{props.label}</Label>
         </Container>

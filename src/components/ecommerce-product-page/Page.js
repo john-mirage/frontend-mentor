@@ -45,7 +45,7 @@ const TopAppBar = styled(BaseTopAppBar)`
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
     @media screen and (min-width: 992px) {
-        position: static;
+        position: relative;
         margin-bottom: 10rem;
         padding-left: 0;
         padding-right: 0;
@@ -60,7 +60,7 @@ const Gallery = styled(BaseGallery)`
     @media screen and (min-width: 992px) {
         width: 50%;
         padding-left: 4rem;
-        padding-right: 4rem;
+        padding-right: 8rem;
     }
 `;
 
@@ -75,7 +75,6 @@ const Product = styled(BaseProduct)`
 
     @media screen and (min-width: 992px) {
         width: 50%;
-        padding-left: 4rem;
         padding-right: 4rem;
     }
 `;
@@ -116,12 +115,15 @@ class Page extends React.Component {
         super(props);
         this.setDrawerIsOpen = (drawerIsOpen) => this.setState({ drawerIsOpen: drawerIsOpen });
         this.setLightboxIsOpen = (lightboxIsOpen) => this.setState({ lightboxIsOpen: lightboxIsOpen });
+        this.setCartIsOpen = (cartIsOpen) => this.setState({ cartIsOpen: cartIsOpen });
         this.setCartItemsNumber = (cartItemsNumber) => this.setState({ cartItemsNumber: cartItemsNumber });
         this.state = {
             drawerIsOpen: false,
             setDrawerIsOpen: this.setDrawerIsOpen,
             lightboxIsOpen: false,
             setLightboxIsOpen: this.setLightboxIsOpen,
+            cartIsOpen: false,
+            setCartIsOpen: this.setCartIsOpen,
             cartItemsNumber: 0,
             setCartItemsNumber: this.setCartItemsNumber,
         }

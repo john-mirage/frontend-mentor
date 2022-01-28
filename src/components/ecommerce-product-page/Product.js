@@ -25,6 +25,10 @@ const Name = styled.h1`
     font-weight: 700;
     color: ${props => props.theme.color.neutral.veryDarkBlue};
     margin-bottom: 1.6rem;
+
+    @media screen and (min-width: 1200px) {
+        font-size: 4.8rem;
+    }
 `;
 
 const Description = styled.p`
@@ -39,8 +43,28 @@ const Price = styled(BasePrice)`
     margin-bottom: 2rem;
 `;
 
+const Form = styled.div`
+    @media screen and (min-width: 1200px) {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+`;
+
 const CountInput = styled(BaseCountInput)`
     margin-bottom: 1.6rem;
+
+    @media screen and (min-width: 1200px) {
+        flex: 1 1 35%;
+        margin-bottom: 0;
+        margin-right: 2rem;
+    }
+`;
+
+const CartButton = styled(Button)`
+    @media screen and (min-width: 1200px) {
+        flex: 1 1 65%;
+    }
 `;
 
 const CartIcon = styled(BaseCartIcon)`
@@ -57,6 +81,7 @@ function Product(props) {
     function handleCartUpdate(event) {
         event.preventDefault();
         pageContext.setCartItemsNumber(pageContext.cartItemsNumber + itemsNumber);
+        pageContext.setCartIsOpen(true);
     }
 
     return (
@@ -65,10 +90,12 @@ function Product(props) {
             <Name>Fall Limited Edition Sneakers</Name>
             <Description>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</Description>
             <Price />
-            <CountInput itemsNumber={itemsNumber} setItemsNumber={setItemsNumber}/>
-            <Button action={handleCartUpdate} label="Add to cart">
-                <CartIcon />
-            </Button>
+            <Form>
+                <CountInput itemsNumber={itemsNumber} setItemsNumber={setItemsNumber}/>
+                <CartButton action={handleCartUpdate} label="Add to cart">
+                    <CartIcon />
+                </CartButton>
+            </Form>
         </Container>
     );
 }

@@ -5,6 +5,8 @@ export const PageContext = createContext({
     setDrawerIsOpen: () => {},
     lightboxIsOpen: false,
     setLightboxIsOpen: () => {},
+    cartIsOpen: false,
+    setCartIsOpen: () => {},
     cartItemsNumber: 0,
     setCartItemsNumber: () => {},
 });

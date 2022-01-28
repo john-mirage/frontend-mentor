@@ -4,6 +4,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
     height: auto;
 `;
@@ -33,6 +34,11 @@ const InitialPrice = styled.p`
     text-decoration-line: line-through;
     color: ${props => props.theme.color.neutral.grayishBlue};
     margin-left: auto;
+
+    @media screen and (min-width: 1200px) {
+        margin-top: 1rem;
+        width: 100%;
+    }
 `;
 
 function Price(props) {

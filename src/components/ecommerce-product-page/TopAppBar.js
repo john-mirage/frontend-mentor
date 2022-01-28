@@ -9,6 +9,7 @@ import BaseBadge from "@components/ecommerce-product-page/Badge";
 import BaseMenuIcon from "@assets/ecommerce-product-page/icon-menu.svg?react";
 import BaseLogo from "@assets/ecommerce-product-page/logo.svg?react";
 import BaseCartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
+import Tippy from "@tippyjs/react/headless";
 
 
 const Container = styled.header`
@@ -72,26 +73,7 @@ const Navigation = styled(BaseNavigation)`
 `;
 
 const Cart = styled(BaseCart)`
-    visibility: ${props => props.cartIsOpen ? "visible" : "hidden"};
-    opacity: ${props => props.cartIsOpen ? "1" : "0"};
-    position: absolute;
-    z-index: 80;
-    top: 8rem;
-    right: 50%;
-    transform: translateX(50%);
-    width: calc(100% - 2rem);
-    transition-property: visibility, opacity;
-    transition-duration: 300ms;
-
-    @media screen and (min-width: 520px) {
-        right: 1rem;
-        width: 50rem;
-        transform: translateX(0);
-    }
-
-    @media screen and (min-width: 992px) {
-        top: 11rem;
-    }
+    width: 40rem;
 `;
 
 const Badge = styled(BaseBadge)`
@@ -101,7 +83,6 @@ const Badge = styled(BaseBadge)`
 `;
 
 function TopAppBar(props) {
-    const [cartIsOpen, setCartIsOpen] = useState(false);
     const pageContext = useContext(PageContext);
 
     function handleMenu(event) {
@@ -111,7 +92,7 @@ function TopAppBar(props) {
 
     function handleCart(event) {
         event.preventDefault();
-        setCartIsOpen(!cartIsOpen);
+        pageContext.setCartIsOpen(!pageContext.cartIsOpen);
     }
 
     return (
@@ -124,14 +105,20 @@ function TopAppBar(props) {
 
             <Navigation type="TopAppBar" />
 
-            <CartButton action={handleCart}>
-                <CartIcon />
-                {pageContext.cartItemsNumber > 0 && <Badge key={pageContext.cartItemsNumber} label={pageContext.cartItemsNumber}/>}
-            </CartButton>
+            <Tippy
+                render={attrs => (<Cart {...attrs}/>)}
+                interactive={true}
+                visible={pageContext.cartIsOpen}
+                onClickOutside={() => pageContext.setCartIsOpen(false)}
+                appendTo="parent"
+            >
+                <CartButton action={handleCart}>
+                    <CartIcon />
+                    {pageContext.cartItemsNumber > 0 && <Badge key={pageContext.cartItemsNumber} label={pageContext.cartItemsNumber}/>}
+                </CartButton>
+            </Tippy>
 
             <ProfileButton />
-
-            <Cart cartIsOpen={cartIsOpen}/>
         </Container>
     );
 }

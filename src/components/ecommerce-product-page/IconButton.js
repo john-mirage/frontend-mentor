@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.button`
@@ -17,17 +18,18 @@ const Icon = styled.div`
     margin: auto;
 `;
 
-function IconButton(props) {
+const IconButton = React.forwardRef((props, ref) => {
     return (
         <Container
             className={props.className}
             onClick={props.action}
+            ref={ref}
         >
             <Icon>
                 {props.children}
             </Icon>
         </Container>
     );
-}
+})
 
 export default IconButton;
