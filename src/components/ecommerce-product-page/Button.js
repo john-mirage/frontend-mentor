@@ -18,11 +18,11 @@ const Label = styled.span`
     color: ${props => props.theme.color.neutral.white};
 `;
 
-function Button(props) {
+function Button({ className, action, children, label }) {
     return (
-        <Container className={props.className} onClick={props.action}>
-            {props.children}
-            <Label>{props.label}</Label>
+        <Container className={className} onClick={action}>
+            {children}
+            <Label>{label}</Label>
         </Container>
     );
 }

@@ -59,11 +59,11 @@ const TopAppBarLine = styled.div`
 
 const links = ["Collections", "Men", "Women", "About", "Contact"];
 
-function Navigation(props) {
-    switch (props.type) {
+function Navigation({ className, type }) {
+    switch (type) {
         case "Drawer":
             return (
-                <DrawerNavigation className={props.className}>
+                <DrawerNavigation className={className}>
                     {links.map((link, index) =>
                         <DrawerLink key={index}>{link}</DrawerLink>
                     )}
@@ -71,7 +71,7 @@ function Navigation(props) {
             );
         case "TopAppBar":
             return (
-                <TopAppBarNavigation className={props.className}>
+                <TopAppBarNavigation className={className}>
                     {links.map((link, index) => (
                         <TopAppBarLink key={index}>
                             <TopAppBarText>{link}</TopAppBarText>

@@ -41,9 +41,9 @@ const InitialPrice = styled.p`
     }
 `;
 
-function Price(props) {
+function Price({ className }) {
     return (
-        <Container className={props.className}>
+        <Container className={className}>
             <CurrentPrice>$125.00</CurrentPrice>
             <Discount>50%</Discount>
             <InitialPrice>$250.00</InitialPrice>

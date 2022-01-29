@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import BasePrice from "@components/ecommerce-product-page/Price";
 import BaseCountInput from "@components/ecommerce-product-page/CountInput";
 import Button from "@components/ecommerce-product-page/Button";
 import BaseCartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
-import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.div`
     width: 100%;
@@ -74,25 +73,30 @@ const CartIcon = styled(BaseCartIcon)`
     fill: ${props => props.theme.color.neutral.white};
 `;
 
-function Product(props) {
+function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber }) {
     const [itemsNumber, setItemsNumber] = useState(0);
-    const pageContext = useContext(PageContext);
 
     function handleCartUpdate(event) {
         event.preventDefault();
-        pageContext.setCartItemsNumber(pageContext.cartItemsNumber + itemsNumber);
-        pageContext.setCartIsOpen(true);
+        setCartItemsNumber(cartItemsNumber + itemsNumber);
+        setCartIsOpen(true);
     }
 
     return (
-        <Container className={props.className}>
+        <Container className={className}>
             <Company>sneaker company</Company>
             <Name>Fall Limited Edition Sneakers</Name>
             <Description>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</Description>
             <Price />
             <Form>
-                <CountInput itemsNumber={itemsNumber} setItemsNumber={setItemsNumber}/>
-                <CartButton action={handleCartUpdate} label="Add to cart">
+                <CountInput
+                    itemsNumber={itemsNumber}
+                    setItemsNumber={setItemsNumber}
+                />
+                <CartButton
+                    action={handleCartUpdate}
+                    label="Add to cart"
+                >
                     <CartIcon />
                 </CartButton>
             </Form>

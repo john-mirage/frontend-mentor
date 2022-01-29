@@ -28,10 +28,10 @@ const Label = styled.span`
     color: ${props => props.theme.color.neutral.white};
 `;
 
-function Badge(props) {
+function Badge({ className, children }) {
     return (
-        <Container className={props.className}>
-            <Label>{props.label}</Label>
+        <Container className={className}>
+            <Label>{children}</Label>
         </Container>
     );
 }

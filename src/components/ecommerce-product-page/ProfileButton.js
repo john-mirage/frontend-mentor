@@ -29,10 +29,13 @@ const Image = styled.img`
     }
 `;
 
-function Profile(props) {
+function Profile({ className }) {
     return (
-        <Container className={props.className}>
-            <Image src={profilePicture.src} alt="Profile picture" />
+        <Container className={className}>
+            <Image
+                src={profilePicture.src}
+                alt="Profile picture"
+            />
         </Container>
     );
 }

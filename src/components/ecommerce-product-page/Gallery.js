@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import Thumbnail from "@components/ecommerce-product-page/Thumbnail";
 import productImage1 from "@assets/ecommerce-product-page/image-product-1.jpg";
 import productImage2 from "@assets/ecommerce-product-page/image-product-2.jpg";
 import productImage3 from "@assets/ecommerce-product-page/image-product-3.jpg";
@@ -11,7 +12,6 @@ import productImageThumbnail4 from "@assets/ecommerce-product-page/image-product
 import previousIcon from "@assets/ecommerce-product-page/icon-previous.svg";
 import nextIcon from "@assets/ecommerce-product-page/icon-next.svg";
 import BaseCloseIcon from "@assets/ecommerce-product-page/icon-close.svg?react";
-import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const pictures = [
     {
@@ -120,11 +120,6 @@ const CloseButton = styled.button`
     margin-right: -1.6rem;
     margin-bottom: 1rem;
     border-radius: 50%;
-    transition: background-color 300ms;
-
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
 `;
 
 const CloseIcon = styled(BaseCloseIcon)`
@@ -132,6 +127,11 @@ const CloseIcon = styled(BaseCloseIcon)`
     height: auto;
     margin: auto;
     fill: ${props => props.theme.color.neutral.white};
+    transition: fill 300ms;
+
+    ${CloseButton}:hover & {
+        fill: ${props => props.theme.color.primary.orange};
+    }
 `;
 
 const Thumbnails = styled.div`
@@ -142,20 +142,15 @@ const Thumbnails = styled.div`
         grid-template-columns: repeat(${props => props.numberOfPictures}, 1fr);
         gap: 3rem;
         margin-top: 4rem;
+        ${props => props.lightbox && `
+            padding-left: 4rem;
+            padding-right: 4rem;
+        `}
     }
 `;
 
-const Thumbnail = styled.img`
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    cursor: pointer;
-    ${props => props.isActive && `border: 0.2rem solid ${props.theme.color.primary.orange};`}
-`;
-
-const Gallery = React.forwardRef((props, ref) => {
+const Gallery = React.forwardRef(({ className, lightbox, setLightboxIsOpen }, ref) => {
     const [currentSlide, setCurrentSlide] = useState(1);
-    const pageContext = useContext(PageContext);
 
     function showPicture(index) {
         if (currentSlide !== index) setCurrentSlide(index);
@@ -172,18 +167,18 @@ const Gallery = React.forwardRef((props, ref) => {
     }
 
     function openLightbox(event) {
-        if (!props.lightbox && window.matchMedia('(min-width: 820px)').matches) pageContext.setLightboxIsOpen(true);
+        if (!lightbox && window.matchMedia('(min-width: 992px)').matches) setLightboxIsOpen(true);
     }
 
     function closeLightbox(event) {
         event.preventDefault();
-        pageContext.setLightboxIsOpen(false);
+        setLightboxIsOpen(false);
     }
 
     return (
-        <Container className={props.className} ref={ref}>
+        <Container className={className} ref={ref}>
 
-            {props.lightbox &&
+            {lightbox &&
                 <CloseButton onClick={closeLightbox}>
                     <CloseIcon />
                 </CloseButton>
@@ -205,18 +200,20 @@ const Gallery = React.forwardRef((props, ref) => {
                         )}
                     </Slider>
                 </View>
-                <PreviousButton lightbox={props.lightbox} onClick={showPreviousPicture} />
-                <NextButton lightbox={props.lightbox} onClick={showNextPicture} />
+                <PreviousButton lightbox={lightbox} onClick={showPreviousPicture} />
+                <NextButton lightbox={lightbox} onClick={showNextPicture} />
             </Display>
 
-            <Thumbnails numberOfPictures={pictures.length}>
+            <Thumbnails lightbox={lightbox} numberOfPictures={pictures.length}>
                 {pictures.map((picture, index) => {
+                    const slide = index + 1;
+                    const isActive = currentSlide === slide;
                     return (
                         <Thumbnail
-                            src={picture.thumbnail}
-                            onClick={() => showPicture(index + 1)}
                             key={index}
-                            isActive={currentSlide === index + 1}
+                            thumbnail={picture.thumbnail}
+                            action={() => showPicture(slide)}
+                            isActive={isActive}
                         />
                     );
                 })}

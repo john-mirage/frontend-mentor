@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import CartProduct from "@components/ecommerce-product-page/CartProduct";
-import { useContext } from "react";
-import { PageContext } from "@components/ecommerce-product-page/PageContext";
 
 const Container = styled.div`
     display: flex;
@@ -40,17 +38,15 @@ const EmptyCartText = styled.p`
     color: ${props => props.theme.color.neutral.darkGrayishBlue};
 `;
 
-function Cart(props) {
-    const pageContext = useContext(PageContext);
-
+function Cart({ className, cartItemsNumber, setCartItemsNumber }) {
     return (
-        <Container className={props.className}>
+        <Container className={className}>
             <Header>
                 <Title>Cart</Title>
             </Header>
             <Body>
-                {pageContext.cartItemsNumber > 0
-                    ? <CartProduct />
+                {cartItemsNumber > 0
+                    ? <CartProduct cartItemsNumber={cartItemsNumber} setCartItemsNumber={setCartItemsNumber}/>
                     : <EmptyCartText>Your cart is empty</EmptyCartText>
                 }
             </Body>

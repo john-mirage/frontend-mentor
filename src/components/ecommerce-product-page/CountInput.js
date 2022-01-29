@@ -1,7 +1,7 @@
-import styled, { useTheme } from "styled-components";
+import styled, { css } from "styled-components";
 import IconButton from "@components/ecommerce-product-page/IconButton";
-import MinusButton from "@assets/ecommerce-product-page/icon-minus.svg?react";
-import PlusButton from "@assets/ecommerce-product-page/icon-plus.svg?react";
+import BaseMinusIcon from "@assets/ecommerce-product-page/icon-minus.svg?react";
+import BasePlusIcon from "@assets/ecommerce-product-page/icon-plus.svg?react";
 
 const Container = styled.div`
     width: 100%;
@@ -23,29 +23,35 @@ const Count = styled.p`
     color: ${props => props.theme.color.neutral.veryDarkBlue};
 `;
 
-function CountInput(props) {
-    const theme = useTheme();
+const Icon = css`
+    width: 1.2rem;
+    height: auto;
+    fill: ${props => props.theme.color.primary.orange};
+`;
+
+const MinusIcon = styled(BaseMinusIcon)`${Icon}`;
+const PlusIcon = styled(BasePlusIcon)`${Icon}`;
+
+function CountInput({ className, itemsNumber, setItemsNumber }) {
 
     function handleMinusButton(event) {
         event.preventDefault();
-        if (props.itemsNumber > 0) {
-            props.setItemsNumber(props.itemsNumber - 1);
-        }
+        if (itemsNumber > 0) setItemsNumber(itemsNumber - 1);
     }
 
     function handlePlusButton(event) {
         event.preventDefault();
-        props.setItemsNumber(props.itemsNumber + 1);
+        setItemsNumber(itemsNumber + 1);
     }
 
     return (
-        <Container className={props.className}>
+        <Container className={className}>
             <IconButton action={handleMinusButton}>
-                <MinusButton width="1.2rem" fill={theme.color.primary.orange} />
+                <MinusIcon />
             </IconButton>
-            <Count>{props.itemsNumber}</Count>
+            <Count>{itemsNumber}</Count>
             <IconButton action={handlePlusButton}>
-                <PlusButton width="1.2rem" fill={theme.color.primary.orange} />
+                <PlusIcon />
             </IconButton>
         </Container>
     );

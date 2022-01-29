@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useContext, useState } from "react";
-import { PageContext } from "@components/ecommerce-product-page/PageContext";
+import Tippy from "@tippyjs/react/headless";
 import IconButton from "@components/ecommerce-product-page/IconButton";
 import ProfileButton from "@components/ecommerce-product-page/ProfileButton";
 import BaseCart from "@components/ecommerce-product-page/Cart";
@@ -9,8 +8,6 @@ import BaseBadge from "@components/ecommerce-product-page/Badge";
 import BaseMenuIcon from "@assets/ecommerce-product-page/icon-menu.svg?react";
 import BaseLogo from "@assets/ecommerce-product-page/logo.svg?react";
 import BaseCartIcon from "@assets/ecommerce-product-page/icon-cart.svg?react";
-import Tippy from "@tippyjs/react/headless";
-
 
 const Container = styled.header`
     position: relative;
@@ -22,7 +19,7 @@ const Container = styled.header`
     background-color: ${props => props.theme.color.neutral.white};
 
     @media screen and (min-width: 992px) {
-        height: 10rem;
+        height: 12rem;
     }
 `;
 
@@ -55,7 +52,7 @@ const CartButton = styled(IconButton)`
     margin-right: 0.4rem;
     
     @media screen and (min-width: 992px) {
-        margin-right: 1.2rem;
+        margin-right: 2.5rem;
     }
 `;
 
@@ -82,21 +79,20 @@ const Badge = styled(BaseBadge)`
     right: 0.4rem;
 `;
 
-function TopAppBar(props) {
-    const pageContext = useContext(PageContext);
+function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, setCartIsOpen, setCartItemsNumber }) {
 
     function handleMenu(event) {
         event.preventDefault();
-        pageContext.setDrawerIsOpen(true);
+        setDrawerIsOpen(true);
     }
 
     function handleCart(event) {
         event.preventDefault();
-        pageContext.setCartIsOpen(!pageContext.cartIsOpen);
+        setCartIsOpen(!cartIsOpen);
     }
 
     return (
-        <Container className={props.className}>
+        <Container className={className}>
             <MenuButton action={handleMenu}>
                 <MenuIcon />
             </MenuButton>
@@ -106,15 +102,23 @@ function TopAppBar(props) {
             <Navigation type="TopAppBar" />
 
             <Tippy
-                render={attrs => (<Cart {...attrs}/>)}
+                render={attrs => (
+                    <Cart
+                        cartItemsNumber={cartItemsNumber}
+                        setCartItemsNumber={setCartItemsNumber}
+                        {...attrs}
+                    />
+                )}
                 interactive={true}
-                visible={pageContext.cartIsOpen}
-                onClickOutside={() => pageContext.setCartIsOpen(false)}
+                visible={cartIsOpen}
+                onClickOutside={() => setCartIsOpen(false)}
                 appendTo="parent"
             >
                 <CartButton action={handleCart}>
                     <CartIcon />
-                    {pageContext.cartItemsNumber > 0 && <Badge key={pageContext.cartItemsNumber} label={pageContext.cartItemsNumber}/>}
+                    {cartItemsNumber > 0 &&
+                        <Badge key={cartItemsNumber}>{cartItemsNumber}</Badge>
+                    }
                 </CartButton>
             </Tippy>
 

@@ -8,25 +8,21 @@ const Container = styled.button`
     height: 4.8rem;
     border-radius: 50%;
     cursor: pointer;
-
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
 `;
 
 const Icon = styled.div`
     margin: auto;
 `;
 
-const IconButton = React.forwardRef((props, ref) => {
+const IconButton = React.forwardRef(({ className, action, children }, ref) => {
     return (
         <Container
-            className={props.className}
-            onClick={props.action}
+            className={className}
+            onClick={action}
             ref={ref}
         >
             <Icon>
-                {props.children}
+                {children}
             </Icon>
         </Container>
     );

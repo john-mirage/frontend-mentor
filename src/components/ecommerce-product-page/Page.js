@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import BaseTopAppBar from "@components/ecommerce-product-page/TopAppBar";
 import BaseGallery from "@components/ecommerce-product-page/Gallery";
 import BaseDrawer from "@components/ecommerce-product-page/Drawer";
 import BaseProduct from "@components/ecommerce-product-page/Product";
-import { PageContext } from "@components/ecommerce-product-page/PageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Container = styled.main`
@@ -61,6 +60,7 @@ const Gallery = styled(BaseGallery)`
         width: 50%;
         padding-left: 4rem;
         padding-right: 8rem;
+        margin-bottom: 0;
     }
 `;
 
@@ -95,8 +95,8 @@ const Lightbox = styled(motion(BaseGallery))`
     transform: translate(-50%, -50%);
     width: calc(100% - 6rem);
 
-    @media screen and (min-width: 820px) {
-        width: 76rem;
+    @media screen and (min-width: 992px) {
+        width: 70rem;
     }
 `;
 
@@ -110,65 +110,66 @@ const Scrim = styled(motion.div)`
     background-color: ${props => props.theme.color.neutral.black};
 `;
 
-class Page extends React.Component {
-    constructor(props) {
-        super(props);
-        this.setDrawerIsOpen = (drawerIsOpen) => this.setState({ drawerIsOpen: drawerIsOpen });
-        this.setLightboxIsOpen = (lightboxIsOpen) => this.setState({ lightboxIsOpen: lightboxIsOpen });
-        this.setCartIsOpen = (cartIsOpen) => this.setState({ cartIsOpen: cartIsOpen });
-        this.setCartItemsNumber = (cartItemsNumber) => this.setState({ cartItemsNumber: cartItemsNumber });
-        this.state = {
-            drawerIsOpen: false,
-            setDrawerIsOpen: this.setDrawerIsOpen,
-            lightboxIsOpen: false,
-            setLightboxIsOpen: this.setLightboxIsOpen,
-            cartIsOpen: false,
-            setCartIsOpen: this.setCartIsOpen,
-            cartItemsNumber: 0,
-            setCartItemsNumber: this.setCartItemsNumber,
-        }
+function Page() {
+    const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+    const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+    const [cartIsOpen, setCartIsOpen] = useState(false);
+    const [cartItemsNumber, setCartItemsNumber] = useState(0);
+
+    function handleScrim() {
+        if (drawerIsOpen) setDrawerIsOpen(false);
     }
 
-    render() {
-        return (
-            <Container>
-                <PageContext.Provider value={this.state}>
-                    <TopAppBar />
-                    <Gallery />
-                    <Product />
-                    <AnimatePresence>
-                        {this.state.lightboxIsOpen && (
-                            <Lightbox
-                                key="lightbox"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                lightbox
-                            />
-                        )}
-                        {this.state.drawerIsOpen && (
-                            <Drawer
-                                key="drawer"
-                                initial={{ x: "-100%" }}
-                                animate={{ x: 0 }}
-                                exit={{ x: "-100%" }}
-                                transition={{ type: "tween" }}
-                            />
-                        )}
-                        {(this.state.lightboxIsOpen || this.state.drawerIsOpen) && (
-                            <Scrim
-                                key="scrim"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => this.setDrawerIsOpen(false)}
-                            />
-                        )}
-                    </AnimatePresence>
-                </PageContext.Provider>
-            </Container>
-        );
-    }
+    return (
+        <Container>
+            <TopAppBar
+                cartIsOpen={cartIsOpen}
+                cartItemsNumber={cartItemsNumber}
+                setDrawerIsOpen={setDrawerIsOpen}
+                setCartIsOpen={setCartIsOpen}
+                setCartItemsNumber={setCartItemsNumber}
+            />
+            <Gallery
+                setLightboxIsOpen={setLightboxIsOpen}
+            />
+            <Product
+                cartItemsNumber={cartItemsNumber}
+                setCartIsOpen={setCartIsOpen}
+                setCartItemsNumber={setCartItemsNumber}
+            />
+            <AnimatePresence>
+                {lightboxIsOpen && (
+                    <Lightbox
+                        key="lightbox"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        lightbox
+                        setLightboxIsOpen={setLightboxIsOpen}
+                    />
+                )}
+                {drawerIsOpen && (
+                    <Drawer
+                        key="drawer"
+                        initial={{ x: "-100%" }}
+                        animate={{ x: 0 }}
+                        exit={{ x: "-100%" }}
+                        transition={{ type: "tween" }}
+                        setDrawerIsOpen={setDrawerIsOpen}
+                    />
+                )}
+                {(lightboxIsOpen || drawerIsOpen) && (
+                    <Scrim
+                        key="scrim"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={handleScrim}
+                    />
+                )}
+            </AnimatePresence>
+        </Container>
+    );
 }
 
 export default Page;

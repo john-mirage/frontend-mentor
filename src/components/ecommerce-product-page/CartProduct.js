@@ -1,10 +1,8 @@
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import IconButton from "@components/ecommerce-product-page/IconButton";
 import Button from "@components/ecommerce-product-page/Button";
 import productThumbnail from "@assets/ecommerce-product-page/image-product-1-thumbnail.jpg";
-import DeleteIcon from "@assets/ecommerce-product-page/icon-delete.svg?react";
-import { useContext } from "react";
-import { PageContext } from "@components/ecommerce-product-page/PageContext";
+import BaseDeleteIcon from "@assets/ecommerce-product-page/icon-delete.svg?react";
 
 const Container = styled.div`
     width: 100%;
@@ -53,7 +51,7 @@ const Price = styled.p`
 
 const TotalPrice = styled.span`
     font-weight: 700;
-    color: ${props => props.theme.color.neutral.verydarkBlue};
+    color: ${props => props.theme.color.neutral.veryDarkBlue};
 `;
 
 const DeleteButton = styled(IconButton)`
@@ -62,15 +60,18 @@ const DeleteButton = styled(IconButton)`
     margin-right: -1.7rem;
 `;
 
-function CartProduct(props) {
-    const pageContext = useContext(PageContext);
-    const totalPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(pageContext.cartItemsNumber * 125);
-    const theme = useTheme();
-    
+const DeleteIcon = styled(BaseDeleteIcon)`
+    width: 1.4rem;
+    height: auto;
+    fill: ${props => props.theme.color.neutral.grayishBlue};
+`;
+
+function CartProduct({ cartItemsNumber, setCartItemsNumber }) {
+    const totalPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(cartItemsNumber * 125);
 
     function handleCartReset(event) {
         event.preventDefault();
-        pageContext.setCartItemsNumber(0);
+        setCartItemsNumber(0);
     }
 
     return (
@@ -79,15 +80,13 @@ function CartProduct(props) {
                 <Thumbnail src={productThumbnail.src} />
                 <Info>
                     <Title>Autumn Limited Edition...</Title>
-                    <Price>$125 x {pageContext.cartItemsNumber} <TotalPrice>{totalPrice}</TotalPrice></Price>
+                    <Price>$125 x {cartItemsNumber} <TotalPrice>{totalPrice}</TotalPrice></Price>
                 </Info>
                 <DeleteButton action={handleCartReset}>
-                    <DeleteIcon width="14" fill={theme.color.neutral.grayishBlue} />
+                    <DeleteIcon />
                 </DeleteButton>
             </Product>
-            <Button
-                label="Checkout"
-            />
+            <Button label="Checkout" />
         </Container>
     );
 }
