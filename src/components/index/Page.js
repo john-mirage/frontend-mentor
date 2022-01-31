@@ -1,86 +1,45 @@
 import styled from "styled-components";
-import Header from "@components/index/Header";
-import Hero from "@components/index/Hero";
-import Challenge from "@components/index/Challenge";
-import challenges from "@data/challenges";
+import { useState } from 'react';
+import BaseTopAppBar from "@components/index/TopAppBar";
+import BaseHero from "@components/index/Hero";
+import CardList from "@components/index/CardList";
+
+const Screen = styled.div`
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: ${props => props.theme.color.neutral.veryDarkGray};
+`;
 
 const Container = styled.main`
-    width: 100%;
-    min-height: 100vh;
-    background-color: ${props => props.theme.color.primary.darkGray};
-    padding-bottom: 10rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-    @media screen and (min-width: 580px) {
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
+    max-width: 128rem;
+    flex: 1 1 100%;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    padding-bottom: 4.8rem;
 `;
 
-const Content = styled.div`
-    width: 100%;
-    height: auto;
-
-    @media screen and (min-width: 1080px) {
-        width: 100rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
+const TopAppBar = styled(BaseTopAppBar)`
+    margin-bottom: 4rem;
 `;
 
-const StyledHeader = styled(Header)`
-    margin-bottom: 10rem;
-`;
-
-const StyledHero = styled(Hero)`
-    margin-bottom: 10rem;
-`;
-
-const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    width: 100%;
-    height: auto;
-
-    @media screen and (min-width: 424px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media screen and (min-width: 1080px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
+const Hero = styled(BaseHero)`
+    margin-bottom: 4rem;
 `;
 
 function Page() {
+    const [activeCard, setActiveCard] = useState(false);
+
     return (
-        <Container>
-            <Content>
-                <StyledHeader />
-                <StyledHero />
-
-                <Grid>
-                    {challenges.map((challenge, index) =>
-                        <Challenge
-                            title={challenge.title}
-                            description={challenge.description}
-                            link={challenge.link}
-                            image={challenge.image}
-                            imageAlt={challenge.imageAlt}
-                            inputId={`modal-trigger${index + 1}`}
-                            key={index}
-                        />
-                    )}
-                </Grid>
-
-            </Content>
-        </Container>
+        <Screen>
+            <Container>
+                <TopAppBar />
+                <Hero />
+                <CardList activeCard={activeCard} setActiveCard={setActiveCard} />
+            </Container>
+            
+        </Screen>
     );
 }
 
 export default Page;
-
-/*
-                
-*/
