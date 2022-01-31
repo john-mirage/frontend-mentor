@@ -6,16 +6,13 @@ import Page from "@components/index/Page";
 const theme = {
     color: {
         primary: {
-            darkGray: "#0f172a",
-            gray: "#1e293b",
-            lightGray: "#334155",
             purple: "#c084fc",
-            darkPurple: "#581c87",
-            divider: "#334155",
         },
         neutral: {
-            white: "#f8fafc",
+            veryDarkGray: "#0f172a",
+            darkGray: "#1e293b",
             gray: "#94a3b8",
+            white: "#ffffff",
         },
     },
 };
