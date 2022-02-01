@@ -1,28 +1,26 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 42rem;
+
 `;
 
 const Image = styled.img`
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
 `;
 
-function Picture({ imageSrc, imageAlt }) {
+const Picture = forwardRef(({ imageSrc, imageAlt }, ref) => {
     return (
-        <Container>
+        <Container
+            ref={ref}
+        >
             <Image
                 src={imageSrc}
                 alt={imageAlt}
             />
         </Container>
     );
-}
+});
 
 export default Picture;

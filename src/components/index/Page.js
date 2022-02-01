@@ -5,18 +5,35 @@ import BaseHero from "@components/index/Hero";
 import CardList from "@components/index/CardList";
 
 const Screen = styled.div`
-    display: flex;
-    justify-content: center;
+    width: 100%;
     min-height: 100vh;
     background-color: ${props => props.theme.color.neutral.veryDarkGray};
+    padding-bottom: 10rem;
 `;
 
 const Container = styled.main`
-    max-width: 128rem;
-    flex: 1 1 100%;
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
-    padding-bottom: 4.8rem;
+    width: 100%;
+    height: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        width: 54rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+        width: 72rem;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        width: 96rem;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.xl}) {
+        width: 114rem;
+    }
 `;
 
 const TopAppBar = styled(BaseTopAppBar)`
@@ -31,13 +48,12 @@ function Page() {
     const [activeCard, setActiveCard] = useState(false);
 
     return (
-        <Screen>
+        <Screen id="screen">
             <Container>
                 <TopAppBar />
                 <Hero />
                 <CardList activeCard={activeCard} setActiveCard={setActiveCard} />
             </Container>
-            
         </Screen>
     );
 }
