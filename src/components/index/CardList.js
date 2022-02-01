@@ -17,7 +17,6 @@ const cards = [
         link: "/order-summary",
         imageSrc: orderSummaryImage.src,
         imageAlt:"Order Summary Component design illustration",
-        pointOfInterest: 100,
     },
     {
         id: 2,
@@ -26,7 +25,6 @@ const cards = [
         link: "/nft-preview-card",
         imageSrc: nftPreviewCardImage.src,
         imageAlt:"NFT Preview Card Component design illustration",
-        pointOfInterest: 100,
     },
     {
         id: 3,
@@ -35,7 +33,6 @@ const cards = [
         link: "/faq-accordion-card",
         imageSrc: faqAccordionCardImage.src,
         imageAlt:"FAQ Accordion Card Component design illustration",
-        pointOfInterest: 100,
     },
     {
         id: 4,
@@ -44,7 +41,6 @@ const cards = [
         link: "/chat-app-css-illustration",
         imageSrc: chatAppCSSIllustrationImage.src,
         imageAlt:"Chat App CSS design illustration",
-        pointOfInterest: 100,
     },
     {
         id: 5,
@@ -53,7 +49,6 @@ const cards = [
         link: "/fylo-data-storage",
         imageSrc: fyloDataStorageImage.src,
         imageAlt:"Fylo data storage design illustration",
-        pointOfInterest: 100,
     },
     {
         id: 6,
@@ -62,7 +57,6 @@ const cards = [
         link: "/interactive-pricing",
         imageSrc: interactivePricingImage.src,
         imageAlt:"Interactive Pricing component illustration",
-        pointOfInterest: 100,
     },
     {
         id: 7,
@@ -71,7 +65,6 @@ const cards = [
         link: "/launch-countdown-timer",
         imageSrc: launchCountdownTimerImage.src,
         imageAlt:"Launch Countdown Timer component Illustration",
-        pointOfInterest: 100,
     },
     {
         id: 8,
@@ -80,7 +73,6 @@ const cards = [
         link: "/ecommerce-product-page",
         imageSrc: ecommerceProductPageImage.src,
         imageAlt:"E-commerce Product Page Illustration",
-        pointOfInterest: 100,
     },
 ];
 
@@ -91,6 +83,10 @@ const Container = styled.ul`
 
     @media screen and (min-width: ${props => props.theme.screen.sm}) {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
+        grid-template-columns: repeat(3, 1fr);
     }
 `;
 

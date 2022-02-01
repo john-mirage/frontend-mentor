@@ -7,6 +7,7 @@ const Container = styled.article`
     background-color: ${props => props.theme.color.neutral.darkGray};
     border-radius: 2rem;
     overflow: hidden;
+    pointer-events: none;
 `;
 
 const Header = styled.header`
