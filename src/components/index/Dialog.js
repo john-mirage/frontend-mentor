@@ -62,7 +62,7 @@ const Description = styled.p`
 `;
 
 const Footer = styled.div`
-    flex: 0 0 4rem;
+    flex: 0 0 8rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
