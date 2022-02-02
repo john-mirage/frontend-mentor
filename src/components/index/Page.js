@@ -37,11 +37,11 @@ const Container = styled.main`
 `;
 
 const TopAppBar = styled(BaseTopAppBar)`
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 `;
 
 const Hero = styled(BaseHero)`
-    margin-bottom: 4rem;
+    margin-bottom: 10rem;
 `;
 
 function Page() {

@@ -13,8 +13,9 @@ const Container = styled(motion.li)`
     cursor: pointer;
 `;
 
-const Image = styled.img`
+const Image = styled(motion.img)`
     position: absolute;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -35,7 +36,7 @@ function Card({
     return (
         <>
             <Container
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.06, z: 0 }}
                 onClick={() => setActiveCard(id)}
             >
                 <Image

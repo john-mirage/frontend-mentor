@@ -7,20 +7,30 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-    font-size: 6rem;
+    font-size: 4rem;
     font-weight: 700;
     color: ${props => props.theme.color.neutral.white};
     margin-bottom: 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+        font-size: 6rem;
+    }
 `;
 
 const Description = styled.p`
-    width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 2rem;
-    line-height: 3rem;
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     font-weight: 400;
     color: ${props => props.theme.color.neutral.gray};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+        width: 50rem;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 2rem;
+        line-height: 3rem;
+    }
 `;
 
 const Link = styled.a`

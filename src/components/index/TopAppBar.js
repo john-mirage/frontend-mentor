@@ -12,17 +12,25 @@ const Container = styled.header`
 
 const Author = styled.p`
     font-family: "Expletus Sans", cursive;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 400;
     letter-spacing: 0.05rem;
     color: ${props => props.theme.color.neutral.gray};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        font-size: 2rem;
+    }
 `;
 
 const Logo = styled(BaseLogo)`
-    width: 4rem;
+    width: 3rem;
     height: auto;
     margin-right: 1rem;
     fill: ${props => props.theme.color.neutral.white};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        width: 4rem;
+    }
 `;
 
 const GithubButton = styled(IconButton)`
