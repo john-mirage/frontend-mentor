@@ -34,6 +34,13 @@ export function getFilenameWithExtension(filenameWithoutExtension, filenames) {
     return filename;
 }
 
+/**
+ * Get a file.
+ * 
+ * @param {string} filename - The filename.
+ * @param {string} relativePath - The relative directory path of the filename.
+ * @returns {object} The file raw data.
+ */
 export function getFile(filename, relativePath) {
     const directoryPath = getAbsolutePath(relativePath);
     const filePath = join(directoryPath, filename);
