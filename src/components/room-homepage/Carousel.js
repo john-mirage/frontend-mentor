@@ -56,8 +56,8 @@ const Controller = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
-    height: 4.8rem;
+    width: 11.6rem;
+    height: 6rem;
     background-color: ${props => props.theme.color.primary.black};
 `;
 
