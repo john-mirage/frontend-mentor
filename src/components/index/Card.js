@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "@components/index/Modal";
 
 
-const Container = styled(motion.li)`
+const Container = styled.li`
     position: relative;
     width: 100%;
     height: auto;
@@ -21,6 +21,7 @@ const Image = styled(motion.img)`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    backface-visibility: hidden;
 `;
 
 function Card({
@@ -35,13 +36,12 @@ function Card({
 }) {
     return (
         <>
-            <Container
-                whileHover={{ scale: 1.06, z: 0 }}
-                onClick={() => setActiveCard(id)}
-            >
+            <Container onClick={() => setActiveCard(id)}>
                 <Image
                     src={imageSrc}
                     alt={imageAlt}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "tween", duration: 0.1 }}
                 />
             </Container>
             <AnimatePresence>
