@@ -8,6 +8,7 @@
             "@components/*": ["src/components/*"],
             "@api/*": ["src/lib/api/*"],
             "@utils/*": ["src/lib/utils/*"],
+            "@docs/*": ["src/docs/*"],
         }
     }
 }

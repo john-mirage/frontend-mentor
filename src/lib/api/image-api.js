@@ -1,27 +1,51 @@
 import dynamic from 'next/dynamic';
+import { join } from 'path';
 import { getImageFilenames } from '@utils/image-utils';
 import { getFilenameWithExtension } from '@utils/file-utils';
 
 /**
- * Get the image corresponding to a image name.
- * 
- * @param {string} imageName - The image name.
- * @param {string} relativePath - The relative directory path.
- * @returns {object} The image.
+ * @constant {string} The image base directory.
  */
-export function getImage(imageName, relativePath) {
-    const imageFilenames = getImageFilenames(relativePath);
-    const imageFilename = getFilenameWithExtension(imageName, imageFilenames);
-    return dynamic(() => import(`@assets/index/${imageFilename}`));
-}
+const IMAGE_BASE_RELATIVE_DIR = 'assets/index';
 
 /**
- * Get all the images.
- * 
- * @param {string} relativePath - The relative directory path.
- * @returns {object[]} The images.
+ * @class ImageApi
  */
- export function getAllImages(relativePath) {
-    const imageFilenames = getImageFilenames(relativePath);
-    return imageFilenames.map((imageFilename) => dynamic(() => import(`@assets/index/${imageFilename}`)));
+class ImageApi {
+    constructor(relativePath) {
+        this.relativePath = join(IMAGE_BASE_RELATIVE_DIR, relativePath);
+        this.filenames = getImageFilenames(this.relativePath);
+    }
+
+    /**
+     * Get an image by dynamicaly importing it.
+     * 
+     * @param {string} filename - The filename of the image.
+     * @returns {object} The image object.
+     */
+    getImageFromDynamicImport(filename) {
+        return dynamic(() => import(`@assets/index/${filename}`));
+    }
+
+    /**
+     * Get the image corresponding to a image name.
+     * 
+     * @param {string} name - The image name.
+     * @returns {object} The image.
+     */
+    getImage(name) {
+        const filename = getFilenameWithExtension(name, this.filenames);
+        return this.getImageFromDynamicImport(filename);
+    }
+
+    /**
+     * Get all the images.
+     * 
+     * @returns {object[]} The images.
+     */
+    getAllImages() {
+        return this.filenames.map((filename) => this.getImageFromDynamicImport(filename));
+    }
 }
+
+export default ImageApi;
