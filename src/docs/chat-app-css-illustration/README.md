@@ -1,3 +1,9 @@
+---
+name: 'Chat app CSS illustration'
+date: '2022-01-16T15:30:00'
+tags: ['html', 'css']
+---
+
 # Frontend Mentor - Chat app CSS illustration solution
 
 This is a solution to the [Chat app CSS illustration challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/chat-app-css-illustration-O5auMkFqY). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 

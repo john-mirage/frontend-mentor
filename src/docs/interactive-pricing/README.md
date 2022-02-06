@@ -1,3 +1,9 @@
+---
+name: 'Interactive pricing component'
+date: '2022-01-23T15:30:00'
+tags: ['html', 'css']
+---
+
 # Frontend Mentor - Interactive pricing component solution
 
 This is a solution to the [Interactive pricing component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 

@@ -1,3 +1,9 @@
+---
+name: 'Order summary card'
+date: '2022-01-20T15:30:00'
+tags: ['html', 'css']
+---
+
 # Frontend Mentor - Order summary card solution
 
 This is a solution to the [Order summary card challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
