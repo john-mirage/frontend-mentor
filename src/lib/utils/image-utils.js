@@ -1,9 +1,4 @@
-import { getDirEntityNames } from "@utils/fs-utils";
-
-/**
- * @constant {string[]} The picture file extensions.
- */
- export const IMAGE_EXTENSIONS = ['png', "jpg", "jpeg"];
+import { getDirectoryNames } from "@utils/fs-utils";
 
 /**
  * Get the images filenames of a directory.
@@ -12,7 +7,7 @@ import { getDirEntityNames } from "@utils/fs-utils";
  * @returns {string[]} The image filenames.
  */
  export function getImageFilenames(directory) {
-    const filenames = getDirEntityNames(directory, false);
+    const filenames = getDirectoryNames(directory);
     const imageFilenames = filenames.filter((filename) => {
         return IMAGE_EXTENSIONS.some((imageExtension) => filename.endsWith(`.${imageExtension}`));
     });

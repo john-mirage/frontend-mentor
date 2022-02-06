@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { join } from 'path';
 import { getAbsolutePath } from '@utils/path-utils';
-import { getDirEntityNames, getFile, removeFilenameExtension, searchFilename } from '@utils/fs-utils';
+import { getDirectoryNames, getFile, removeFilenameExtension } from '@utils/fs-utils';
 
 jest.mock('fs', () => {
     return {
@@ -35,24 +35,6 @@ describe('RemoveFilenameExtension', () => {
         expect(() => {
             removeFilenameExtension('file');
         }).toThrow('file does not include a file extension');
-    });
-
-});
-
-describe('SearchFilename', () => {
-
-    const FILENAMES = ['file.pdf', 'filename.md', 'file.md'];
-    const EXTENSIONS = ['markdown', 'md'];
-
-    it('should return the filename corresponding to a name', () => {
-        const filename = searchFilename('file', FILENAMES, EXTENSIONS);
-        expect(filename).toBe('file.md');
-    });
-
-    it('should throw an error if the name is not found in the filenames', () => {
-        expect(() => {
-            searchFilename('wrongFile', FILENAMES, EXTENSIONS);
-        }).toThrow('wrongFile does not correspond to any filenames');
     });
 
 });
@@ -106,7 +88,7 @@ describe('GetDirEntityNames', () => {
             { name: 'directory', isDirectory: isDirectoryMock },
             { name: 'file.md', isDirectory: isDirectoryMock },
         ]);
-        const directories = getDirEntityNames(DIRECTORY, true);
+        const directories = getDirectoryNames(DIRECTORY, true);
         expect(directories).toEqual(['directory']);
         expect(getAbsolutePath).toHaveBeenCalledTimes(1);
         expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
@@ -123,7 +105,7 @@ describe('GetDirEntityNames', () => {
             { name: 'directory', isDirectory: isDirectoryMock },
             { name: 'file.md', isDirectory: isDirectoryMock },
         ]);
-        const files = getDirEntityNames(DIRECTORY);
+        const files = getDirectoryNames(DIRECTORY);
         expect(files).toEqual(['file.md']);
         expect(getAbsolutePath).toHaveBeenCalledTimes(1);
         expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
@@ -141,7 +123,7 @@ describe('GetDirEntityNames', () => {
             { name: 'directory2', isDirectory: isDirectoryMock },
         ]);
         expect(() => {
-            getDirEntityNames(DIRECTORY);
+            getDirectoryNames(DIRECTORY);
         }).toThrow(`There is no files in the ${DIRECTORY} folder`);
         expect(getAbsolutePath).toHaveBeenCalledTimes(1);
         expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
@@ -159,7 +141,7 @@ describe('GetDirEntityNames', () => {
             { name: 'file.md', isDirectory: isDirectoryMock },
         ]);
         expect(() => {
-            getDirEntityNames(DIRECTORY, true);
+            getDirectoryNames(DIRECTORY, true);
         }).toThrow(`There is no directories in the ${DIRECTORY} folder`);
         expect(getAbsolutePath).toHaveBeenCalledTimes(1);
         expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);

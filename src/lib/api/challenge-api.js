@@ -1,92 +1,83 @@
-import { checkISODate } from "@utils/date-utils";
-import { getFilenameWithExtension, getFilenameWithoutExtension } from "@utils/file-utils";
-import { checkMarkdownFileFrontmatter, getMarkdownFile, getMarkdownFilenames } from "@utils/markdown-utils";
+import { checkIsoDate } from '@utils/date-utils';
+import { getDirectoryNames } from '@utils/fs-utils';
+import { checkFrontmatter, getMarkdownFile } from '@utils/markdown-utils';
+import { join } from 'path';
 
 /**
  * @constant {string} The Challenge directory relative to the src folder.
  */
-const CHALLENGE_RELATIVE_PATH = "docs";
+const CHALLENGE_BASE_DIR = 'src/docs';
+
+/**
+ * @constant {string} The challenge markdown file name.
+ */
+const CHALLENGE_README_FILENAME = 'README.md';
 
 /**
  * @constant {string} The default challenge order.
  */
-const CHALLENGE_DEFAULT_ORDER = "descending";
+const CHALLENGE_DEFAULT_ORDER = 'descending';
 
 /**
- * @class ChallengApi
+ * Sort the challenges by date.
+ * 
+ * @param {object[]} challenges - The challenges.
+ * @param {string} order - The challenge order.
+ * @returns {object[]} The sorted challenges.
  */
-class ChallengeApi {
-
-    /**
-     * @constructor
-     */
-    constructor() {
-        this.filenames = getMarkdownFilenames(CHALLENGE_RELATIVE_PATH);
-    }
-
-    /**
-     * Sort the challenges by date.
-     * 
-     * @param {object[]} challenges - The challenges.
-     * @param {string} order - The challenge order.
-     * @returns {object[]} The sorted challenges.
-     */
-    sortChallengesByDate(challenges, order = CHALLENGE_DEFAULT_ORDER) {
-        return challenges.sort((challengeA, challengeB) => {
-            switch (order) {
-                case 'descending': {
-                    return challengeA.date > challengeB.date ? -1 : 1;
-                }
-                case 'ascending': {
-                    return challengeA.date < challengeB.date ? -1 : 1;
-                }
-                default: {
-                    throw new Error('The order is invalid');
-                }
+export function sortChallengesByDate(challenges, order = CHALLENGE_DEFAULT_ORDER) {
+    return challenges.sort((challengeA, challengeB) => {
+        switch (order) {
+            case 'descending': {
+                return challengeA.date > challengeB.date ? -1 : 1;
             }
-        });
-    }
-
-    /**
-     * Get a challenge from a Markdown file.
-     * 
-     * @param {string} filename - The challenge filename of the Markdown file.
-     * @returns {object} The challenge object.
-     */
-    getChallengeFromMarkdownFile(filename) {
-        const markdownFile = getMarkdownFile(filename, CHALLENGE_RELATIVE_PATH);
-        checkMarkdownFileFrontmatter(filename, markdownFile.data, ["pictures", "date", "tags"]);
-        checkISODate(markdownFile.data.date);
-        return {
-            name: getFilenameWithoutExtension(filename),
-            content: markdownFile.content,
-            pictures: markdownFile.data.pictures,
-            date: markdownFile.data.date,
-            tags: markdownFile.data.tags,
-        };
-    }
-
-    /**
-     * Get The challenge corresponding to a name.
-     * 
-     * @param {string} name - The challenge name.
-     * @returns {object} The challenge object.
-     */
-    getChallenge(name) {
-        const filename = getFilenameWithExtension(name, this.filenames);
-        return this.getChallengeFromMarkdownFile(filename);
-    }
-
-    /**
-     * Get all the challenges.
-     * 
-     * @param {string} order - The challenges order.
-     * @returns {object[]} The challenge objects.
-     */
-    getAllChallenges(order = CHALLENGE_DEFAULT_ORDER) {
-        const challenges = this.filenames.map((filename) => this.getChallengeFromMarkdownFile(filename));
-        return this.sortChallengesByDate(challenges, order);
-    }
+            case 'ascending': {
+                return challengeA.date < challengeB.date ? -1 : 1;
+            }
+            default: {
+                throw new Error('The order is invalid');
+            }
+        }
+    });
 }
 
-export default ChallengeApi;
+/**
+ * Get the challenge names based on the folders in src/docs.
+ * 
+ * @returns {string[]} The challenge names.
+ */
+export function getAllChallengeSlugs() {
+    return getDirectoryNames(CHALLENGE_BASE_DIR);
+}
+
+/**
+ * Get The challenge corresponding to a name.
+ * 
+ * @param {string} slug - The challenge slug.
+ * @returns {object} The challenge object.
+ */
+export function getChallenge(slug) {
+    const directory = join(CHALLENGE_BASE_DIR, slug);
+    const markdownFile =  getMarkdownFile(CHALLENGE_README_FILENAME, directory);
+    checkFrontmatter(markdownFile.filename, markdownFile.frontmatter);
+    checkIsoDate(markdownFile.frontmatter.date);
+    return {
+        slug: slug,
+        name: markdownFile.frontmatter.name,
+        date: markdownFile.frontmatter.date,
+        tags: markdownFile.frontmatter.tags,
+        markdown: markdownFile.markdown,
+    };
+}
+
+/**
+ * Get all the challenges.
+ * 
+ * @param {string} order - The challenges order.
+ * @returns {object[]} The challenge objects.
+ */
+export function getAllChallenges() {
+    const directoryNames = getAllChallengeSlugs();
+    const challenges = directoryNames.map((directoryName) => getChallenge(directoryName));
+    return sortChallengesByDate(challenges);
+}

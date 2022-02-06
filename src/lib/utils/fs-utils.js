@@ -3,40 +3,6 @@ import fs from 'fs';
 import { getAbsolutePath } from '@utils/path-utils';
 
 /**
- * Remove the extension of a filename.
- * 
- * @param {string} filename - The filename with extension (markdown-file.md).
- * @throws {Error} The filename must be valid.
- * @returns {string} The filename without extension (markdown-file).
- */
-export function removeFilenameExtension(filename) {
-    const regex = /(?<=^.+)\.[A-Za-z0-9]+$/;
-    if (filename.search(regex) === -1) throw new Error(`${filename} does not include a file extension`);
-    return filename.replace(regex, '');
-}
-
-/**
- * Search a name in a list of filenames and return the corresponding filename.
- * To match, the name must correspond to everything in the filename except the file extension
- * wich is not included in the name.
- * 
- * @param {string} name - A name that should correspond to a filename.
- * @param {string[]} filenames - A list of correct filenames.
- * @throws {Error} The name need to be found in the filenames.
- * @returns {string} The filename.
- */
-export function searchFilename(name, filenames, extensions) {
-    const result = filenames.find((filename) => {
-        return extensions.some((extension) => {
-            const regex = new RegExp(`^${name}\\.${extension}$`);
-            return filename.search(regex) !== -1;
-        });
-    });
-    if (!result) throw new Error(`${name} does not correspond to any filenames`);
-    return result;
-}
-
-/**
  * Get a file.
  * 
  * @param {string} filename - The filename.
@@ -50,17 +16,32 @@ export function getFile(filename, directory) {
 }
 
 /**
- * Get the entities of a directory.
+ * Get the directory names of a directory.
+ * 
+ * @param {string} directory - The directory.
+ * @returns {string[]} The directory names.
+ */
+export function getDirectoryNames(directory) {
+    const absolutePath = getAbsolutePath(directory);
+    const directories = fs
+        .readdirSync(absolutePath, { withFileTypes: true })
+        .filter(dirent => dirent.isDirectory());
+    if (directories.length <= 0) throw new Error(`There is no directories in the ${directory} folder`);
+    return directories.map(dirent => dirent.name);
+}
+
+/**
+ * Get the file names of a directory.
  * 
  * @param {string} directory - The directory.
  * @param {boolean=false} isDirectory - The search type (directory or files).
- * @returns {string[]} The directories or files names.
+ * @returns {string[]} The file names.
  */
-export function getDirEntityNames(directory, isDirectory = false) {
+ export function getFileNames(directory) {
     const absolutePath = getAbsolutePath(directory);
-    const entities = fs
+    const files = fs
         .readdirSync(absolutePath, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory() === isDirectory);
-    if (entities.length <= 0) throw new Error(`There is no ${isDirectory ? 'directories' : 'files'} in the ${directory} folder`);
-    return entities.map(dirent => dirent.name);
+        .filter(dirent => !dirent.isDirectory());
+    if (files.length <= 0) throw new Error(`There is no files in the ${directory} folder`);
+    return files.map(dirent => dirent.name);
 }
