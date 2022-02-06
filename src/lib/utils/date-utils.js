@@ -1,7 +1,7 @@
 /**
  * @constant {Intl.DateTimeFormatOptions} The date format option.
  */
-const DATE_FORMAT_OPTIONS = {
+export const DATE_FORMAT_OPTIONS = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -28,7 +28,7 @@ export function getLocaleDate(dateLocale, dateString) {
  * @param {string} ISODateString - The ISO date formated string.
  * @throws {Error} The ISO date string must be valid. 
  */
-export function checkISODate(ISODateString) {
+export function checkIsoDate(ISODateString) {
     const ISODateRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
     if (ISODateString.search(ISODateRegex) === -1) throw new Error(`The ISO date (${ISODateString}) is not valid`);
 }
