@@ -4,13 +4,14 @@ import Layout from "@components/layout";
 import BaseHero from "@components/hero";
 import CardList from "@components/card-list";
 import { getLocaleDate } from "@utils/date-utils";
-import { getAllChallenges } from "@api/challenge-api";
+import { getChallenge, getChallengeSlugs, sortChallengesByDate } from "@api/challenge-api";
 
 const Hero = styled(BaseHero)`
     margin-bottom: 10rem;
 `;
 
 function Index({ challenges }) {
+    console.log(challenges);
     return (
         <>
             <Head>
@@ -25,12 +26,13 @@ function Index({ challenges }) {
 }
 
 export const getStaticProps = async () => {
-    const challenges = getAllChallenges();
-    const challengeDtos = challenges.map((challenge) => {
+    const challengeSlugs = getChallengeSlugs();
+    const challenges = challengeSlugs.map((challengeSlug) => getChallenge(challengeSlug));
+    const sortedChallenges = sortChallengesByDate(challenges);
+    const challengeDtos = sortedChallenges.map((challenge) => {
         return {
             name: challenge.name,
             date: getLocaleDate('en-US', challenge.date),
-            tags: challenge.tags,
         }
     });
     return {

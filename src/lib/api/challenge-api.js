@@ -1,22 +1,27 @@
-import { checkIsoDate } from '@utils/date-utils';
-import { getDirectoryNames } from '@utils/fs-utils';
-import { checkFrontmatter, getMarkdownFile } from '@utils/markdown-utils';
 import { join } from 'path';
+import { getAbsolutePath, getDirectoryNames, getFile } from '@utils/fs-utils';
+import { checkFrontmatter, extractFrontmatter } from '@utils/markdown-utils';
+import { checkIsoDate } from '@utils/date-utils';
 
 /**
- * @constant {string} The Challenge directory relative to the src folder.
+ * @constant BASE_DIR - The base directory of the challenges.
  */
-const CHALLENGE_BASE_DIR = 'src/docs';
+const BASE_DIR = 'src/docs';
 
 /**
- * @constant {string} The challenge markdown file name.
+ * @constant README_FILENAME - The challenge Markdown file.
  */
-const CHALLENGE_README_FILENAME = 'README.md';
+const README_FILENAME = 'README.md';
 
 /**
- * @constant {string} The default challenge order.
+ * @constant DEFAULT_ORDER - The default order of the challenges.
  */
-const CHALLENGE_DEFAULT_ORDER = 'descending';
+const DEFAULT_ORDER = 'descending';
+
+/**
+ * @constant MENDATORY_FIELDS - The mendatory fields of the frontmatter.
+ */
+const MENDATORY_FIELDS = ['name', 'tags', 'date'];
 
 /**
  * Sort the challenges by date.
@@ -25,7 +30,7 @@ const CHALLENGE_DEFAULT_ORDER = 'descending';
  * @param {string} order - The challenge order.
  * @returns {object[]} The sorted challenges.
  */
-export function sortChallengesByDate(challenges, order = CHALLENGE_DEFAULT_ORDER) {
+export function sortChallengesByDate(challenges, order = DEFAULT_ORDER) {
     return challenges.sort((challengeA, challengeB) => {
         switch (order) {
             case 'descending': {
@@ -42,42 +47,30 @@ export function sortChallengesByDate(challenges, order = CHALLENGE_DEFAULT_ORDER
 }
 
 /**
- * Get the challenge names based on the folders in src/docs.
+ * Get the challenge slugs based on the directories inside the base directory.
  * 
- * @returns {string[]} The challenge names.
+ * @returns {string[]} The challenge slugs.
  */
-export function getAllChallengeSlugs() {
-    return getDirectoryNames(CHALLENGE_BASE_DIR);
+export function getChallengeSlugs() {
+    return getDirectoryNames(BASE_DIR);
 }
 
 /**
- * Get The challenge corresponding to a name.
+ * Get the challenge corresponding to a slug.
  * 
  * @param {string} slug - The challenge slug.
- * @returns {object} The challenge object.
+ * @returns {object} The challenge.
  */
 export function getChallenge(slug) {
-    const directory = join(CHALLENGE_BASE_DIR, slug);
-    const markdownFile =  getMarkdownFile(CHALLENGE_README_FILENAME, directory);
-    checkFrontmatter(markdownFile.filename, markdownFile.frontmatter);
+    const relativePath = join(BASE_DIR, slug, README_FILENAME);
+    const absolutePath = getAbsolutePath(relativePath);
+    const file = getFile(absolutePath);
+    const markdownFile = extractFrontmatter(file);
+    checkFrontmatter(markdownFile.frontmatter, MENDATORY_FIELDS);
     checkIsoDate(markdownFile.frontmatter.date);
     return {
         slug: slug,
-        name: markdownFile.frontmatter.name,
-        date: markdownFile.frontmatter.date,
-        tags: markdownFile.frontmatter.tags,
         markdown: markdownFile.markdown,
-    };
-}
-
-/**
- * Get all the challenges.
- * 
- * @param {string} order - The challenges order.
- * @returns {object[]} The challenge objects.
- */
-export function getAllChallenges() {
-    const directoryNames = getAllChallengeSlugs();
-    const challenges = directoryNames.map((directoryName) => getChallenge(directoryName));
-    return sortChallengesByDate(challenges);
+        ...markdownFile.frontmatter,
+    }
 }

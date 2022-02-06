@@ -2,7 +2,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import Layout from "@components/layout";
 import BaseHero from "@components/hero";
-import { getAllChallengeSlugs, getChallenge } from "@api/challenge-api";
+import { getChallenge, getChallengeSlugs } from "@api/challenge-api";
 import { getHtmlFromMarkdown } from "@utils/html-utils";
 
 const Hero = styled(BaseHero)`
@@ -60,7 +60,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-    const challengeSlugs = getAllChallengeSlugs();
+    const challengeSlugs = getChallengeSlugs();
     return {
         paths: challengeSlugs.map((challengeSlug) => {
             return {

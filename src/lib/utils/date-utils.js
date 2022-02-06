@@ -25,10 +25,10 @@ export function getLocaleDate(dateLocale, dateString) {
  * If the ISO date string is valid, the function will not return.
  * If the ISO date string is not valid, the function will throw an error and stop the app.
  * 
- * @param {string} ISODateString - The ISO date formated string.
+ * @param {string} IsoDateString - The ISO date formated string.
  * @throws {Error} The ISO date string must be valid. 
  */
-export function checkIsoDate(ISODateString) {
+export function checkIsoDate(IsoDateString) {
     const ISODateRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
-    if (ISODateString.search(ISODateRegex) === -1) throw new Error(`The ISO date (${ISODateString}) is not valid`);
+    if (IsoDateString.search(ISODateRegex) === -1) throw new Error(`The ISO date (${IsoDateString}) is not valid`);
 }

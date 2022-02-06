@@ -1,47 +1,40 @@
 import { join } from 'path';
 import fs from 'fs';
-import { getAbsolutePath } from '@utils/path-utils';
 
 /**
  * Get a file.
  * 
- * @param {string} filename - The filename.
- * @param {string} directory - The relative directory path of the filename.
+ * @param {string} absolutePath - The absolute path.
  * @returns {object} The file raw data.
  */
-export function getFile(filename, directory) {
-    const fileRelativePath = join(directory, filename);
-    const fileAbsolutePath = getAbsolutePath(fileRelativePath);
-    return fs.readFileSync(fileAbsolutePath, 'utf8');
+export function getFile(absolutePath) {
+    return fs.readFileSync(absolutePath, 'utf8');
 }
 
 /**
- * Get the directory names of a directory.
+ * Get the directory names inside a directory.
  * 
- * @param {string} directory - The directory.
- * @returns {string[]} The directory names.
+ * @param {string} absolutePath - The absolute path of the directory.
+ * @returns {string[]} The name of the directories.
  */
-export function getDirectoryNames(directory) {
-    const absolutePath = getAbsolutePath(directory);
+export function getDirectoryNames(absolutePath) {
     const directories = fs
         .readdirSync(absolutePath, { withFileTypes: true })
         .filter(dirent => dirent.isDirectory());
-    if (directories.length <= 0) throw new Error(`There is no directories in the ${directory} folder`);
+    if (directories.length <= 0) throw new Error(`There is no directories in the ${absolutePath} folder`);
     return directories.map(dirent => dirent.name);
 }
 
 /**
- * Get the file names of a directory.
+ * Get the absolute path of a relative path.
+ * The relative path must be relative to the project root folder.
  * 
- * @param {string} directory - The directory.
- * @param {boolean=false} isDirectory - The search type (directory or files).
- * @returns {string[]} The file names.
+ * @param {string} relativePath - The relative path.
+ * @throws {Error} The absolute path must correspond to a real directory or file on the host system.
+ * @returns {string} The absolute path.
  */
- export function getFileNames(directory) {
-    const absolutePath = getAbsolutePath(directory);
-    const files = fs
-        .readdirSync(absolutePath, { withFileTypes: true })
-        .filter(dirent => !dirent.isDirectory());
-    if (files.length <= 0) throw new Error(`There is no files in the ${directory} folder`);
-    return files.map(dirent => dirent.name);
+export function getAbsolutePath(relativePath) {
+    const absolutePath = join(process.cwd(), relativePath);
+    if (!fs.existsSync(absolutePath)) throw new Error(`${relativePath} does not exist on your system`);
+    return absolutePath;
 }

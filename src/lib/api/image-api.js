@@ -1,51 +1,27 @@
 import dynamic from 'next/dynamic';
-import { join } from 'path';
-import { getImageFilenames } from '@utils/image-utils';
-import { getFilenameWithExtension } from '@utils/file-utils';
+
+const BASE_DIR = 'src/docs';
+const IMAGE_DIR = 'images';
 
 /**
- * @constant {string} The image base directory.
+ * Get the optimized version of an image.
+ * 
+ * @param {object} image - The image as object.
+ * @returns {object} The optimized version of the image. 
  */
-const IMAGE_BASE_RELATIVE_DIR = 'assets/index';
-
-/**
- * @class ImageApi
- */
-class ImageApi {
-    constructor(relativePath) {
-        this.relativePath = join(IMAGE_BASE_RELATIVE_DIR, relativePath);
-        this.filenames = getImageFilenames(this.relativePath);
-    }
-
-    /**
-     * Get an image by dynamicaly importing it.
-     * 
-     * @param {string} filename - The filename of the image.
-     * @returns {object} The image object.
-     */
-    getImageFromDynamicImport(filename) {
-        return dynamic(() => import(`@assets/index/${filename}`));
-    }
-
-    /**
-     * Get the image corresponding to a image name.
-     * 
-     * @param {string} name - The image name.
-     * @returns {object} The image.
-     */
-    getImage(name) {
-        const filename = getFilenameWithExtension(name, this.filenames);
-        return this.getImageFromDynamicImport(filename);
-    }
-
-    /**
-     * Get all the images.
-     * 
-     * @returns {object[]} The images.
-     */
-    getAllImages() {
-        return this.filenames.map((filename) => this.getImageFromDynamicImport(filename));
-    }
+export function getOptimizedImage(image) {
+    // optional: optimize the image (webp)
 }
 
-export default ImageApi;
+/**
+ * Get the image corresponding to a folder and a filename.
+ * 
+ * @param {string} slug - The slug corresponding to the directory where the image live.
+ * @param {string} filename - The filename of the image.
+ */
+export function getImage(slug, filename) {
+    // join the base dir with the slug and the images dir and the filename (src/docs /room-homepage /images /desktop-design.jpg)
+    // get the absolute path of the file and check it
+    // dynamic import the image
+    // optional: get the optimized version of the image
+}
