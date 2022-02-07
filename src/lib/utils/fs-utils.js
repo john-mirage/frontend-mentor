@@ -12,15 +12,27 @@ export function getFile(absolutePath) {
 }
 
 /**
- * Get the directory names inside a directory.
+ * Remove the file extension in a filename.
+ * 
+ * @param {string} filename - The filename. 
+ * @returns {string} The filename without file extension.
+ */
+export function removeFilenameExtension(filename) {
+    const regex = /(?<=^.+)\.[A-Za-z0-9]+$/;
+    if (filename.search(regex) === -1) throw new Error(`${filename} does not include a file extension`);
+    return filename.replace(regex, '');
+}
+
+/**
+ * Get the filenames inside a directory.
  * 
  * @param {string} absolutePath - The absolute path of the directory.
- * @returns {string[]} The name of the directories.
+ * @returns {string[]} The name of the files.
  */
-export function getDirectoryNames(absolutePath) {
+export function getFilenames(absolutePath) {
     const directories = fs
         .readdirSync(absolutePath, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory());
+        .filter(dirent => !dirent.isDirectory());
     if (directories.length <= 0) throw new Error(`There is no directories in the ${absolutePath} folder`);
     return directories.map(dirent => dirent.name);
 }

@@ -2,8 +2,8 @@ import Head from "next/head";
 import styled from "styled-components";
 import Layout from "@components/layout";
 import BaseHero from "@components/hero";
-import { getChallenge, getChallengeSlugs } from "@api/challenge-api";
 import { getHtmlFromMarkdown } from "@utils/html-utils";
+import { getChallenge, getChallengeSlugs, searchChallengeFilename } from "@api/challenge-api";
 
 const Hero = styled(BaseHero)`
     margin-bottom: 10rem;
@@ -47,7 +47,8 @@ function Challenge({ challenge }) {
 
 export const getStaticProps = async ({ params }) => {
     const challengeSlug = String(params?.slug);
-    const challenge = getChallenge(challengeSlug);
+    const challengeFilename = searchChallengeFilename(challengeSlug);
+    const challenge = getChallenge(challengeFilename);
     const challengeDto = {
         name: challenge.name,
         html: await getHtmlFromMarkdown(challenge.markdown),
