@@ -1,12 +1,61 @@
 ---
-name: 'Launch countdown timer'
-date: '2022-01-22T15:30:00'
-tags: ['html', 'css']
+name: 'Fylo data storage component'
+date: '2022-01-24T15:30:00'
+tags:
+  - 'html'
+  - 'css'
+
+style:
+  layout:
+    mobile: '375px'
+    desktop: '1440px'
+
+  colors:
+    - name: 'Gradient'
+      description: 'Primary'
+      value: 'hsl(6, 100%, 80%) to hsl(335, 100%, 65%)'
+
+    - name: 'Pale Blue'
+      description: 'Neutral 1'
+      value: 'hsl(243, 100%, 93%)'
+
+    - name: 'Grayish Blue'
+      description: 'Neutral 2'
+      value: 'hsl(229, 7%, 55%)'
+
+    - name: 'Dark Blue'
+      description: 'Neutral 3'
+      value: 'hsl(228, 56%, 26%)'
+
+    - name: 'Very Dark Blue'
+      description: 'Neutral 4'
+      value: 'hsl(229, 57%, 11%)'
+
+  font:
+    family: 'Raleway'
+    size: '14px'
+    weights:
+      - '400'
+      - '700'
+
+gallery:
+  preview:
+    src: './challenge/fylo-date-storage/desktop-preview.jpg'
+    alt: 'Fylo data storage component desktop preview'
+  
+  images:
+    - name: 'Desktop design'
+      src: './challenge/fylo-date-storage/desktop-design.jpg'
+      alt: 'Fylo data storage component desktop design'
+
+    - name: 'Mobile design'
+      src: './challenge/fylo-date-storage/mobile-design.jpg'
+      alt: 'Fylo data storage component mobile design'
 ---
 
-# Frontend Mentor - Launch countdown timer solution
+# Fylo data storage component solution
 
-This is a solution to the [Launch countdown timer challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/launch-countdown-timer-N0XkGfyz-). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Fylo data storage component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/fylo-data-storage-component-1dZPRbV5n). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 ## Table of contents
 
@@ -30,9 +79,7 @@ This is a solution to the [Launch countdown timer challenge on Frontend Mentor](
 
 Users should be able to:
 
-- See hover states for all interactive elements on the page
-- See a live countdown timer that ticks down every second (start the count at 14 days)
-- **Bonus**: When a number changes, make the card flip from the middle
+- View the optimal layout for the site depending on their device's screen size
 
 ### Screenshot
 
