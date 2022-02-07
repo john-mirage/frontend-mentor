@@ -36,21 +36,17 @@ const Image = styled.img`
     }
 `;
 
-function Card({
-    link,
-    imageSrc,
-    imageAlt,
-}) {
+function Card({ slug, gallery }) {
     return (
         <>
             <Container>
-                <Link href={link} passHref>
+                <Link href={`/challenge/${slug}`} passHref>
                     <ChallengeLink />
                 </Link>
 
                 <Image
-                    src={imageSrc}
-                    alt={imageAlt}
+                    src={gallery.preview.src}
+                    alt={gallery.preview.alt}
                 />
             </Container>
         </>

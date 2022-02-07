@@ -42,12 +42,13 @@ const Link = styled.a`
     }
 `;
 
-function Hero(props) {
+function Hero({ className, title, description }) {
     return (
-        <Container className={props.className}>
-            <Title>Frontend Mentor challenges</Title>
-            <Description>
-                All the challenges are made with <Link href="https://nextjs.org/">Next.js</Link> / <Link href="https://reactjs.org/">React</Link> and <Link href="https://styled-components.com/">Styled components</Link></Description>
+        <Container className={className}>
+            <Title>{title}</Title>
+            {description && (
+                <Description>All the challenges are made with <Link href="https://nextjs.org/">Next.js</Link> / <Link href="https://reactjs.org/">React</Link> and <Link href="https://styled-components.com/">Styled components</Link></Description>
+            )}
         </Container>
     );
 }

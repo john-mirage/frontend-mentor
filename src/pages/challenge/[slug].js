@@ -1,5 +1,6 @@
 import Head from "next/head";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled, { css } from "styled-components";
 import Layout from "@components/layout";
 import BaseHero from "@components/hero";
 import { getHtmlFromMarkdown } from "@utils/html-utils";
@@ -28,7 +29,26 @@ const Markdown = styled.article`
 
     p {
         margin-bottom: 1rem;
+        line-height: 2.4rem;
+        color: ${props => props.theme.color.neutral.gray};
     }
+`;
+
+const Button = styled.button`
+    max-width: 20rem;
+    height: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: ${props => props.border ? "3.6rem" : "4rem"};
+    letter-spacing: 0.02rem;
+    color: ${props => props.theme.color.primary.purple};
+    border-radius: 1rem;
+    ${props => props.border && css`
+        border: 0.2rem solid ${props => props.theme.color.primary.purple};
+    `}
 `;
 
 function Challenge({ challenge }) {
@@ -38,8 +58,10 @@ function Challenge({ challenge }) {
                 <title>Frontend Mentor | {challenge.name}</title>
             </Head>
             <Layout>
-                <Hero />
-                <Markdown dangerouslySetInnerHTML={{ __html: challenge.html || '' }} />
+                <Hero title={challenge.name} />
+                <Link href={`/solution/${challenge.slug}`} passHref>
+                    <Button as="a" border>Open project</Button>
+                </Link>
             </Layout>
         </>
     );
@@ -50,7 +72,9 @@ export const getStaticProps = async ({ params }) => {
     const challengeFilename = searchChallengeFilename(challengeSlug);
     const challenge = getChallenge(challengeFilename);
     const challengeDto = {
+        slug: challenge.slug,
         name: challenge.name,
+        gallery: challenge.gallery,
         html: await getHtmlFromMarkdown(challenge.markdown),
     }
     return {

@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { getAbsolutePath, getFile, getFilenames, removeFilenameExtension } from '@utils/fs-utils';
-import { checkFrontmatter, extractFrontmatter, getMarkdownFilenames } from '@utils/markdown-utils';
+import { checkFrontmatter, extractFrontmatter, getMarkdownFilenames, MARKDOWN_EXTENSION } from '@utils/markdown-utils';
 import { checkIsoDate } from '@utils/date-utils';
 
 /**
@@ -16,7 +16,7 @@ const DEFAULT_ORDER = 'descending';
 /**
  * @constant MENDATORY_FIELDS - The mendatory fields of the frontmatter.
  */
-const MENDATORY_FIELDS = ['name', 'tags', 'date', 'styleGuide', 'featuredImage'];
+const MENDATORY_FIELDS = ['name', 'tags', 'date', 'style', 'gallery'];
 
 /**
  * Sort the challenges by date.

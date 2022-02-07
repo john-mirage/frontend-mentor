@@ -2,6 +2,7 @@ import styled from "styled-components";
 import IconButton from "@components/icon-button";
 import BaseLogo from "@assets/logo.svg?react";
 import BaseGithubIcon from "@assets/icon-github.svg?react";
+import Link from "next/link";
 
 const Container = styled.header`
     display: flex;
@@ -20,6 +21,13 @@ const Author = styled.p`
     @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
         font-size: 2rem;
     }
+`;
+
+const HomeButton = styled.a`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
 `;
 
 const Logo = styled(BaseLogo)`
@@ -47,14 +55,21 @@ const GithubIcon = styled(BaseGithubIcon)`
 function TopAppBar(props) {
     return (
         <Container className={props.className}>
-            <Logo />
-            <Author>Chaosdynamix</Author>
+
+            <Link href="/" passHref>
+                <HomeButton>
+                    <Logo />
+                    <Author>Chaosdynamix</Author>
+                </HomeButton>
+            </Link>
+
             <GithubButton
                 forwardedAs="a"
                 href="https://github.com/ChaosDynamix/frontend-mentor"
             >
                 <GithubIcon />
             </GithubButton>
+
         </Container>
     );
 }
