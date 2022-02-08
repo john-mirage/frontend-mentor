@@ -16,7 +16,7 @@ jest.mock('rehype-sanitize', () => {
   return { default: jest.fn(), defaultSchema: jest.fn() };
 });
 
-describe('GetHtmlFromMarkdown', () => {
+describe('Html utils: get html from markdown', () => {
 
     it('should return HTML content from Markdown content', async () => {
     const useMock = jest.fn().mockReturnThis();

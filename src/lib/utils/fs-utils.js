@@ -33,7 +33,7 @@ export function getFilenames(absolutePath) {
     const directories = fs
         .readdirSync(absolutePath, { withFileTypes: true })
         .filter(dirent => !dirent.isDirectory());
-    if (directories.length <= 0) throw new Error(`There is no directories in the ${absolutePath} folder`);
+    if (directories.length <= 0) throw new Error(`There is no files in the folder`);
     return directories.map(dirent => dirent.name);
 }
 

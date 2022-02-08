@@ -1,12 +1,12 @@
+import { getAbsolutePath, getFile, getFilenames, removeFilenameExtension } from '@utils/fs-utils';
 import fs from 'fs';
 import { join } from 'path';
-import { getAbsolutePath } from '@utils/path-utils';
-import { getDirectoryNames, getFile, removeFilenameExtension } from '@utils/fs-utils';
 
 jest.mock('fs', () => {
     return {
         readdirSync: jest.fn(),
         readFileSync: jest.fn(),
+        existsSync: jest.fn(),
     };
 });
 
@@ -16,138 +16,124 @@ jest.mock('path', () => {
     };
 });
 
-jest.mock('@utils/path-utils', () => {
-    return {
-        getAbsolutePath: jest.fn(),
-    };
-});
-
 const isDirectoryMock = jest.fn();
 
-describe('RemoveFilenameExtension', () => {
-
-    it('should return a filename without the extension', () => {
-        const filenameWithoutExtension = removeFilenameExtension('file.md');
-        expect(filenameWithoutExtension).toBe('file');
-    });
-
-    it('should throw an error if the filename does not have an extension', () => {
-        expect(() => {
-            removeFilenameExtension('file');
-        }).toThrow('file does not include a file extension');
-    });
-
-});
-
-describe('GetFile', () => {
-
-    const FILENAME = 'file.md';
-    const DIRECTORY = 'docs';
-    const RELATIVE_PATH = 'docs/file.md';
-    const ABSOLUTE_PATH = 'project/src/docs/file.md';
-    const FILE_CONTENT = 'file content';
+describe('Fs utils: get file', () => {
 
     afterEach(() => {
-        join.mockClear();
-        getAbsolutePath.mockClear();
         fs.readFileSync.mockClear();
     });
 
     it('should return a file', () => {
-        join.mockReturnValueOnce(RELATIVE_PATH);
-        getAbsolutePath.mockReturnValueOnce(ABSOLUTE_PATH);
-        fs.readFileSync.mockReturnValueOnce(FILE_CONTENT);
-        const fileContent = getFile(FILENAME, DIRECTORY);
-        expect(fileContent).toBe(FILE_CONTENT);
-        expect(join).toHaveBeenCalledTimes(1);
-        expect(join).toHaveBeenNthCalledWith(1, DIRECTORY, FILENAME);
-        expect(getAbsolutePath).toHaveBeenCalledTimes(1);
-        expect(getAbsolutePath).toHaveBeenNthCalledWith(1, RELATIVE_PATH);
+        const ABSOLUTE_PATH = 'absolute path';
+        const FILE = 'file content';
+        fs.readFileSync.mockReturnValueOnce(FILE);
+        const file = getFile(ABSOLUTE_PATH);
+        expect(file).toBe(FILE);
         expect(fs.readFileSync).toHaveBeenCalledTimes(1);
         expect(fs.readFileSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH, 'utf8');
     });
 
 });
 
-describe('GetDirEntityNames', () => {
+describe('Fs utils: remove filename extension', () => {
+
+    it('should remove the file extension of a valid filename', () => {
+        const VALID_FILENAME = 'file.md';
+        const filenameWithoutExtension = removeFilenameExtension(VALID_FILENAME);
+        expect(filenameWithoutExtension).toBe('file');
+    });
+
+    it('should throw an error if the filename is not valid', () => {
+        const INVALID_FILENAME = 'file';
+        expect(() => {
+            removeFilenameExtension(INVALID_FILENAME);
+        }).toThrow('file does not include a file extension');
+    });
+
+});
+
+describe('Fs utils: get filenames', () => {
 
     afterEach(() => {
-        getAbsolutePath.mockClear();
         fs.readdirSync.mockClear();
         isDirectoryMock.mockClear();
     });
-    
-    const DIRECTORY = 'docs';
-    const ABSOLUTE_PATH = 'project/src/docs';
 
-    it('should return a list of directory names', () => {
-        getAbsolutePath.mockReturnValueOnce(ABSOLUTE_PATH);
+    const ABSOLUTE_PATH = 'absolute path';
+
+    it('should return the filenames of a directory', () => {
         isDirectoryMock.mockReturnValueOnce(true);
+        isDirectoryMock.mockReturnValueOnce(false);
         isDirectoryMock.mockReturnValueOnce(false);
         fs.readdirSync.mockReturnValueOnce([
             { name: 'directory', isDirectory: isDirectoryMock },
             { name: 'file.md', isDirectory: isDirectoryMock },
+            { name: 'file.mp3', isDirectory: isDirectoryMock },
         ]);
-        const directories = getDirectoryNames(DIRECTORY, true);
-        expect(directories).toEqual(['directory']);
-        expect(getAbsolutePath).toHaveBeenCalledTimes(1);
-        expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
+        const filenames = getFilenames(ABSOLUTE_PATH);
+        expect(filenames).toEqual(['file.md', 'file.mp3']);
         expect(fs.readdirSync).toHaveBeenCalledTimes(1);
         expect(fs.readdirSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH, { withFileTypes: true });
-        expect(isDirectoryMock).toHaveBeenCalledTimes(2);
+        expect(isDirectoryMock).toHaveBeenCalledTimes(3);
     });
 
-    it('should return a list of file names', () => {
-        getAbsolutePath.mockReturnValueOnce(ABSOLUTE_PATH);
+    it('should throw an error if there is no files in the directory', () => {
         isDirectoryMock.mockReturnValueOnce(true);
-        isDirectoryMock.mockReturnValueOnce(false);
-        fs.readdirSync.mockReturnValueOnce([
-            { name: 'directory', isDirectory: isDirectoryMock },
-            { name: 'file.md', isDirectory: isDirectoryMock },
-        ]);
-        const files = getDirectoryNames(DIRECTORY);
-        expect(files).toEqual(['file.md']);
-        expect(getAbsolutePath).toHaveBeenCalledTimes(1);
-        expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
-        expect(fs.readdirSync).toHaveBeenCalledTimes(1);
-        expect(fs.readdirSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH, { withFileTypes: true });
-        expect(isDirectoryMock).toHaveBeenCalledTimes(2);
-    });
-
-    it('should throw an error if the directory has no files for a file search', () => {
-        getAbsolutePath.mockReturnValueOnce(ABSOLUTE_PATH);
         isDirectoryMock.mockReturnValueOnce(true);
         isDirectoryMock.mockReturnValueOnce(true);
         fs.readdirSync.mockReturnValueOnce([
             { name: 'directory1', isDirectory: isDirectoryMock },
             { name: 'directory2', isDirectory: isDirectoryMock },
+            { name: 'directory3', isDirectory: isDirectoryMock },
         ]);
         expect(() => {
-            getDirectoryNames(DIRECTORY);
-        }).toThrow(`There is no files in the ${DIRECTORY} folder`);
-        expect(getAbsolutePath).toHaveBeenCalledTimes(1);
-        expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
-        expect(fs.readdirSync).toHaveBeenCalledTimes(1);
-        expect(fs.readdirSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH, { withFileTypes: true });
-        expect(isDirectoryMock).toHaveBeenCalledTimes(2);
+            getFilenames(ABSOLUTE_PATH);
+        }).toThrow('There is no files in the folder');
     });
 
-    it('should throw an error if the directory has no directories for a directory search', () => {
-        getAbsolutePath.mockReturnValueOnce(ABSOLUTE_PATH);
-        isDirectoryMock.mockReturnValueOnce(false);
-        isDirectoryMock.mockReturnValueOnce(false);
-        fs.readdirSync.mockReturnValueOnce([
-            { name: 'file.pdf', isDirectory: isDirectoryMock },
-            { name: 'file.md', isDirectory: isDirectoryMock },
-        ]);
+});
+
+describe('Fs utils: get absolute path', () => {
+
+    afterEach(() => {
+        join.mockClear();
+        fs.existsSync.mockClear();
+    });
+
+    const RELATIVE_PATH = 'docs';
+    const CURRENT_WORKING_DIR = '/project/src/';
+    const ABSOLUTE_PATH = CURRENT_WORKING_DIR + RELATIVE_PATH;
+
+    it('should return the absolute path of a relative path', () => {
+        const cwdSpy = jest.spyOn(process, 'cwd');
+        cwdSpy.mockReturnValueOnce(CURRENT_WORKING_DIR);
+        join.mockReturnValueOnce(ABSOLUTE_PATH);
+        fs.existsSync.mockReturnValueOnce(true);
+        const absolutePath = getAbsolutePath(RELATIVE_PATH);
+        expect(absolutePath).toBe(ABSOLUTE_PATH);
+        expect(cwdSpy).toHaveBeenCalledTimes(1);
+        expect(join).toHaveBeenCalledTimes(1);
+        expect(join).toHaveBeenNthCalledWith(1, CURRENT_WORKING_DIR, RELATIVE_PATH);
+        expect(fs.existsSync).toHaveBeenCalledTimes(1);
+        expect(fs.existsSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH);
+        cwdSpy.mockRestore();
+    });
+
+    it('should throw an error if the absolute path does not exist on the host system', () => {
+        const cwdSpy = jest.spyOn(process, 'cwd');
+        cwdSpy.mockReturnValueOnce(CURRENT_WORKING_DIR);
+        join.mockReturnValueOnce(ABSOLUTE_PATH);
+        fs.existsSync.mockReturnValueOnce(false);
         expect(() => {
-            getDirectoryNames(DIRECTORY, true);
-        }).toThrow(`There is no directories in the ${DIRECTORY} folder`);
-        expect(getAbsolutePath).toHaveBeenCalledTimes(1);
-        expect(getAbsolutePath).toHaveBeenNthCalledWith(1, DIRECTORY);
-        expect(fs.readdirSync).toHaveBeenCalledTimes(1);
-        expect(fs.readdirSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH, { withFileTypes: true });
-        expect(isDirectoryMock).toHaveBeenCalledTimes(2);
+            getAbsolutePath(RELATIVE_PATH);
+        }).toThrow(`${RELATIVE_PATH} does not exist on your system`);
+        expect(cwdSpy).toHaveBeenCalledTimes(1);
+        expect(join).toHaveBeenCalledTimes(1);
+        expect(join).toHaveBeenNthCalledWith(1, CURRENT_WORKING_DIR, RELATIVE_PATH);
+        expect(fs.existsSync).toHaveBeenCalledTimes(1);
+        expect(fs.existsSync).toHaveBeenNthCalledWith(1, ABSOLUTE_PATH);
+        cwdSpy.mockRestore();
     });
 
 });
