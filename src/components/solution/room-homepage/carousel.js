@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import IconButton from '@components/solution/room-homepage/icon-button';
+import BaseIconButton from '@components/solution/room-homepage/icon-button';
 import Button from '@components/solution/room-homepage/button';
 import Image1 from '@assets/solution/room-homepage/desktop-image-hero-1.jpg';
 import BaseLeftArrowIcon from '@assets/solution/room-homepage/icon-angle-left.svg?react';
@@ -8,13 +8,14 @@ import BaseRightArrowIcon from '@assets/solution/room-homepage/icon-angle-right.
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
     @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
         flex-direction: row;
     }
 `;
 
-const Picture = styled.div`
+const ImageSection = styled.div`
     position: relative;
     width: 100%;
     height: auto;
@@ -25,9 +26,22 @@ const Picture = styled.div`
     }
 
     @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        flex: 1 1 50%;
-        width: 50%;
-        padding-top: 0;
+        flex: 0 0 60%;
+        width: 60%;
+        padding-top: 40%;
+    }
+`;
+
+const TextSection = styled.div`
+    width: 100%;
+    height: auto;
+    padding: 6rem 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 0 0 40%;
+        display: flex;
+        width: 40%;
+        padding: 0 2rem;
     }
 `;
 
@@ -41,14 +55,11 @@ const Slide = styled.img`
 `;
 
 const Info = styled.section`
-    width: 100%;
-    height: auto;
-    padding: 6rem 2rem;
+    max-width: 43rem;
+    margin: auto;
 
     @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        flex: 1 1 50%;
-        width: 50%;
-        padding: 10rem 5rem;
+        width: 80%;
     }
 `;
 
@@ -58,6 +69,11 @@ const Title = styled.h2`
     line-height: 3.2rem;
     color: ${props => props.theme.color.primary.black};
     margin-bottom: 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.xl}) {
+        font-size: 4rem;
+        line-height: 4.8rem;
+    }
 `;
 
 const Description = styled.p`
@@ -65,15 +81,7 @@ const Description = styled.p`
     font-weight: 500;
     line-height: 2.2rem;
     color: ${props => props.theme.color.primary.darkGray};
-    margin-bottom: 4rem;
-
-    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
-        width: 54rem;
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        width: auto;
-    }
+    margin-bottom: 2rem;
 `;
 
 const Controller = styled.div`
@@ -82,22 +90,28 @@ const Controller = styled.div`
     right: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 11.6rem;
+    width: 12rem;
     height: 6rem;
     background-color: ${props => props.theme.color.primary.black};
 
     @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        width: 14rem;
-        height: 8rem;
+        width: 10vw;
+        height: 5vw;
         transform: translateX(100%);
     }
 `;
 
+const IconButton = styled(BaseIconButton)`
+    width: 50%;
+    height: 100%;
+`;
+
+const LeftIconButton = styled(IconButton)`left: 1rem;`;
+const RightIconButton = styled(IconButton)`right: 1rem;`;
+
 const arrow = css`
-    width: 1rem;
-    height: auto;
+    width: 2rem;
+    height: 2rem;
     stroke: ${props => props.theme.color.primary.white};
     fill: none;
 `;
@@ -108,26 +122,28 @@ const RightArrowIcon = styled(BaseRightArrowIcon)`${arrow}`;
 function Carousel({ className }) {
     return (
         <Container className={className}>
-            <Picture>
+            <ImageSection>
                 <Slide
                     src={Image1.src}
                     alt="image 1"
                 />
                 <Controller>
-                    <IconButton>
+                    <LeftIconButton>
                         <LeftArrowIcon />
-                    </IconButton>
-                    <IconButton>
+                    </LeftIconButton>
+                    <RightIconButton>
                         <RightArrowIcon />
-                    </IconButton>
+                    </RightIconButton>
                 </Controller>
-            </Picture>
+            </ImageSection>
 
-            <Info>
-                <Title>Discover innovative ways to decorate</Title>
-                <Description>We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you and what you love.</Description>
-                <Button />
-            </Info>
+            <TextSection>
+                <Info>
+                    <Title>Discover innovative ways to decorate</Title>
+                    <Description>We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you and what you love.</Description>
+                    <Button />
+                </Info>
+            </TextSection>
         </Container>
     );
 }

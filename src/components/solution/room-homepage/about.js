@@ -19,8 +19,24 @@ const ImageSection = styled.div`
     padding-top: 56.25%;
 
     @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        flex: 1 1 0;
-        padding-top: 0;
+        flex: 0 0 30%;
+        width: 30%;
+        padding-top: 20%;
+    }
+`;
+
+const TextSection = styled.div`
+    width: 100%;
+    height: auto;
+    padding: 6rem 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        display: flex;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 0 0 40%;
+        width: 40%;
     }
 `;
 
@@ -33,18 +49,12 @@ const Image = styled.img`
     object-fit: cover;
 `;
 
-const TextSection = styled.section`
-    width: 100%;
-    height: auto;
-    padding: 6rem 2rem;
+const Info = styled.section`
+    max-width: 50rem;
+    margin: auto;
 
     @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        width: 50rem;
-        padding: 8rem 6rem;
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.screen.xl}) {
-        width: 70rem;
+        width: 90%;
     }
 `;
 
@@ -62,14 +72,6 @@ const Description = styled.p`
     font-weight: 500;
     line-height: 2.2rem;
     color: ${props => props.theme.color.primary.darkGray};
-
-    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
-        width: 54rem;
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        width: auto;
-    }
 `;
 
 function About({ className }) {
@@ -80,8 +82,10 @@ function About({ className }) {
             </ImageSection>
 
             <TextSection>
-                <Title>about our furniture</Title>
-                <Description>Our multifunctional collection blends design and function to suit your individual taste. Make each room unique, or pick a cohesive theme that best express your interests and what inspires you. Find the furniture pieces you need, from traditional to contemporary styles or anything in between. Product specialists are available to help you create your dream space.</Description>
+                <Info>
+                    <Title>about our furniture</Title>
+                    <Description>Our multifunctional collection blends design and function to suit your individual taste. Make each room unique, or pick a cohesive theme that best express your interests and what inspires you. Find the furniture pieces you need, from traditional to contemporary styles or anything in between. Product specialists are available to help you create your dream space.</Description>
+                </Info>
             </TextSection>
 
             <ImageSection>
