@@ -12,6 +12,12 @@ const theme = {
             veryDarkGray: "hsl(0, 0%, 27%)",
         },
     },
+    screen: {
+        sm: "576px",
+        md: "768px",
+        lg: "992px",
+        xl: "1200px",
+    }
 }
 
 function RoomHomepage() {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BaseNavigation from '@components/solution/room-homepage/navigation';
 import BaseIconButton from '@components/solution/room-homepage/icon-button';
 import BaseMenuIcon from '@assets/solution/room-homepage/icon-hamburger.svg?react';
 import BaseLogo from '@assets/solution/room-homepage/logo.svg?react';
@@ -13,12 +14,22 @@ const Container = styled.header`
 
 const LeftSection = styled.div`
     flex: 0 0 25%;
-    max-width: 25%;
+    width: 25%;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 0 0 auto;
+        width: auto;
+    }
 `;
 
 const RightSection = styled.div`
     flex: 0 0 50%;
-    max-width: 50%;
+    width: 50%;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 0 0 auto;
+        width: auto;
+    }
 `;
 
 const MenuButton = styled(BaseIconButton)`
@@ -37,11 +48,16 @@ const Logo = styled(BaseLogo)`
     width: 6rem;
     height: auto;
     fill: ${props => props.theme.color.primary.white};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        margin-left: 4rem;
+    }
 `;
 
 function TopAppBar({ className }) {
     return (
         <Container className={className}>
+
             <LeftSection>
                 <MenuButton>
                     <MenuIcon />
@@ -51,6 +67,7 @@ function TopAppBar({ className }) {
             <RightSection>
                 <Logo />
             </RightSection>
+
         </Container>
     );
 }

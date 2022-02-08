@@ -5,6 +5,11 @@ import LightImage from '@assets/solution/room-homepage/image-about-light.jpg';
 const Container = styled.div`
     width: 100%;
     height: auto;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        display: flex;
+        flex-direction: row;
+    }
 `;
 
 const ImageSection = styled.div`
@@ -12,6 +17,11 @@ const ImageSection = styled.div`
     width: 100%;
     height: auto;
     padding-top: 56.25%;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 1 1 0;
+        padding-top: 0;
+    }
 `;
 
 const Image = styled.img`
@@ -20,12 +30,22 @@ const Image = styled.img`
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
 `;
 
 const TextSection = styled.section`
     width: 100%;
     height: auto;
     padding: 6rem 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        width: 50rem;
+        padding: 8rem 6rem;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.xl}) {
+        width: 70rem;
+    }
 `;
 
 const Title = styled.h3`
@@ -42,6 +62,14 @@ const Description = styled.p`
     font-weight: 500;
     line-height: 2.2rem;
     color: ${props => props.theme.color.primary.darkGray};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        width: 54rem;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        width: auto;
+    }
 `;
 
 function About({ className }) {

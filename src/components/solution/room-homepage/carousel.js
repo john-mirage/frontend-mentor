@@ -8,6 +8,10 @@ import BaseRightArrowIcon from '@assets/solution/room-homepage/icon-angle-right.
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex-direction: row;
+    }
 `;
 
 const Picture = styled.div`
@@ -15,6 +19,16 @@ const Picture = styled.div`
     width: 100%;
     height: auto;
     padding-top: 100%;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        padding-top: 56.25%;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 1 1 50%;
+        width: 50%;
+        padding-top: 0;
+    }
 `;
 
 const Slide = styled.img`
@@ -30,6 +44,12 @@ const Info = styled.section`
     width: 100%;
     height: auto;
     padding: 6rem 2rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        flex: 1 1 50%;
+        width: 50%;
+        padding: 10rem 5rem;
+    }
 `;
 
 const Title = styled.h2`
@@ -46,6 +66,14 @@ const Description = styled.p`
     line-height: 2.2rem;
     color: ${props => props.theme.color.primary.darkGray};
     margin-bottom: 4rem;
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
+        width: 54rem;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        width: auto;
+    }
 `;
 
 const Controller = styled.div`
@@ -59,6 +87,12 @@ const Controller = styled.div`
     width: 11.6rem;
     height: 6rem;
     background-color: ${props => props.theme.color.primary.black};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+        width: 14rem;
+        height: 8rem;
+        transform: translateX(100%);
+    }
 `;
 
 const arrow = css`
