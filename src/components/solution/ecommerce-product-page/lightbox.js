@@ -47,6 +47,11 @@ const CloseIcon = styled(BaseCloseIcon)`
     width: 2rem;
     height: auto;
     fill: ${props => props.theme.color.neutral.white};
+    transition: fill 300ms;
+
+    ${CloseButton}:hover & {
+        fill: ${props => props.theme.color.primary.orange};
+    }
 `;
 
 const ctrlButton = css`

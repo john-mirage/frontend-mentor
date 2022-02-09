@@ -8,7 +8,23 @@ import BaseBadge from "@components/solution/ecommerce-product-page/badge";
 import BaseMenuIcon from "@assets/solution/ecommerce-product-page/icon-menu.svg?react";
 import BaseLogo from "@assets/solution/ecommerce-product-page/logo.svg?react";
 import BaseCartIcon from "@assets/solution/ecommerce-product-page/icon-cart.svg?react";
-import { motion, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useSpring } from "framer-motion";
+
+const badgeAnimations = {
+    bounce: {
+        scale: [1, 1.3, 1, 1.3, 1],
+        transition: {
+            duration: 1.3,
+            times: [0, 0.14, 0.28, 0.42, 0.7],
+        },
+    },
+    hidden: {
+        scale: 0,
+        transition: {
+            duration: 0.3,
+        },
+    },
+}
 
 const Container = styled.header`
     position: relative;
@@ -74,7 +90,7 @@ const Cart = styled(motion(BaseCart))`
     width: 40rem;
 `;
 
-const Badge = styled(BaseBadge)`
+const Badge = styled(motion(BaseBadge))`
     position: absolute;
     top: 0.6rem;
     right: 0.4rem;
@@ -141,9 +157,17 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
             >
                 <CartButton action={handleCart}>
                     <CartIcon />
-                    {cartItemsNumber > 0 &&
-                        <Badge key={cartItemsNumber}>{cartItemsNumber}</Badge>
-                    }
+                    <AnimatePresence>
+                        {cartItemsNumber > 0 &&
+                            <Badge
+                                variants={badgeAnimations}
+                                animate="bounce"
+                                exit="hidden"
+                            >
+                                {cartItemsNumber}
+                            </Badge>
+                        }
+                    </AnimatePresence>
                 </CartButton>
             </Tippy>
 

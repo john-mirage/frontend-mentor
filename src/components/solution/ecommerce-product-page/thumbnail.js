@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.li`
     position: relative;
@@ -7,6 +7,9 @@ const Container = styled.li`
     border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
+    ${props => props.isActive && css`
+        outline: 0.2rem solid ${props.theme.color.primary.orange};
+    `}
 `;
 
 const Image = styled.img`
@@ -20,13 +23,17 @@ const Overlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    transition: background-color 300ms;
+    ${props => props.isActive && css`
+        background-color: rgba(255, 255, 255, 0.5);
+    `}
 `;
 
-function Thumbnail({ className, thumbnail, action }) {
+function Thumbnail({ className, thumbnail, action, isActive }) {
     return (
-        <Container className={className} onClick={action}>
+        <Container className={className} onClick={action} isActive={isActive}>
             <Image src={thumbnail.src} alt={thumbnail.alt} />
-            <Overlay />
+            <Overlay isActive={isActive} />
         </Container>
     );
 }
