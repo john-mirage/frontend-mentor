@@ -18,6 +18,12 @@ const theme = {
             black: "rgba(0, 0, 0, 0.75)",
         },
     },
+    screen: {
+        sm: "576px",
+        md: "768px",
+        lg: "992px",
+        xl: "1200px",
+    },
 }
 
 function EcommerceProductPage() {

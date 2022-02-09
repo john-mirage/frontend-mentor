@@ -2,9 +2,32 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import BaseTopAppBar from "@components/solution/ecommerce-product-page/top-app-bar";
 import BaseGallery from "@components/solution/ecommerce-product-page/gallery";
+import BaseLightbox from "@components/solution/ecommerce-product-page/lightbox";
 import BaseDrawer from "@components/solution/ecommerce-product-page/drawer";
 import BaseProduct from "@components/solution/ecommerce-product-page/product";
 import { motion, AnimatePresence } from "framer-motion";
+import productImage1 from "@assets/solution/ecommerce-product-page/image-product-1.jpg";
+import productImage2 from "@assets/solution/ecommerce-product-page/image-product-2.jpg";
+import productImage3 from "@assets/solution/ecommerce-product-page/image-product-3.jpg";
+import productImage4 from "@assets/solution/ecommerce-product-page/image-product-4.jpg";
+import productThumbnail1 from "@assets/solution/ecommerce-product-page/image-product-1-thumbnail.jpg";
+import productThumbnail2 from "@assets/solution/ecommerce-product-page/image-product-2-thumbnail.jpg";
+import productThumbnail3 from "@assets/solution/ecommerce-product-page/image-product-3-thumbnail.jpg";
+import productThumbnail4 from "@assets/solution/ecommerce-product-page/image-product-4-thumbnail.jpg";
+
+const thumbnails = [
+    { src: productThumbnail1.src, alt: '' },
+    { src: productThumbnail2.src, alt: '' },
+    { src: productThumbnail3.src, alt: '' },
+    { src: productThumbnail4.src, alt: '' },
+];
+
+const images = [
+    { src: productImage1.src, alt: '' },
+    { src: productImage2.src, alt: '' },
+    { src: productImage3.src, alt: '' },
+    { src: productImage4.src, alt: '' },
+];
 
 const Container = styled.main`
     width: 100%;
@@ -54,7 +77,7 @@ const TopAppBar = styled(BaseTopAppBar)`
 `;
 
 const Gallery = styled(BaseGallery)`
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 
     @media screen and (min-width: 992px) {
         width: 50%;
@@ -87,13 +110,13 @@ const Drawer = styled(motion(BaseDrawer))`
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
-const Lightbox = styled(motion(BaseGallery))`
+const Lightbox = styled(motion(BaseLightbox))`
     position: fixed;
     z-index: 100;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: calc(100% - 6rem);
+    width: calc(100% - 10rem);
 
     @media screen and (min-width: 992px) {
         width: 70rem;
@@ -115,6 +138,7 @@ function Page() {
     const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
     const [cartIsOpen, setCartIsOpen] = useState(false);
     const [cartItemsNumber, setCartItemsNumber] = useState(0);
+    const [lightBoxImage, setLightboxImage] = useState(1);
 
     function handleScrim() {
         if (drawerIsOpen) setDrawerIsOpen(false);
@@ -130,7 +154,10 @@ function Page() {
                 setCartItemsNumber={setCartItemsNumber}
             />
             <Gallery
+                images={images}
+                thumbnails={thumbnails}
                 setLightboxIsOpen={setLightboxIsOpen}
+                setLightboxImage={setLightboxImage}
             />
             <Product
                 cartItemsNumber={cartItemsNumber}
@@ -144,7 +171,10 @@ function Page() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        lightbox
+                        transition={{ type: "spring", duration: 0.3 }}
+                        images={images}
+                        thumbnails={thumbnails}
+                        initialFeaturedImage={lightBoxImage}
                         setLightboxIsOpen={setLightboxIsOpen}
                     />
                 )}
@@ -154,7 +184,7 @@ function Page() {
                         initial={{ x: "-100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
-                        transition={{ type: "tween" }}
+                        transition={{ type: "spring", duration: 0.3 }}
                         setDrawerIsOpen={setDrawerIsOpen}
                     />
                 )}
@@ -164,6 +194,7 @@ function Page() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ type: "spring", duration: 0.3 }}
                         onClick={handleScrim}
                     />
                 )}

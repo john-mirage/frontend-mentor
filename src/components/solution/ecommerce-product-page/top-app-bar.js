@@ -8,6 +8,7 @@ import BaseBadge from "@components/solution/ecommerce-product-page/badge";
 import BaseMenuIcon from "@assets/solution/ecommerce-product-page/icon-menu.svg?react";
 import BaseLogo from "@assets/solution/ecommerce-product-page/logo.svg?react";
 import BaseCartIcon from "@assets/solution/ecommerce-product-page/icon-cart.svg?react";
+import { motion, useSpring } from "framer-motion";
 
 const Container = styled.header`
     position: relative;
@@ -69,7 +70,7 @@ const Navigation = styled(BaseNavigation)`
     }
 `;
 
-const Cart = styled(BaseCart)`
+const Cart = styled(motion(BaseCart))`
     width: 40rem;
 `;
 
@@ -80,6 +81,9 @@ const Badge = styled(BaseBadge)`
 `;
 
 function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, setCartIsOpen, setCartItemsNumber }) {
+    const springConfig = { damping: 15, stiffness: 300 };
+    const opacity = useSpring(0, springConfig);
+    const y = useSpring(-20, springConfig);
 
     function handleMenu(event) {
         event.preventDefault();
@@ -89,6 +93,23 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
     function handleCart(event) {
         event.preventDefault();
         setCartIsOpen(!cartIsOpen);
+    }
+
+    function onCartMount() {
+        opacity.set(1);
+        y.set(0);
+    }
+
+    function onCartHide({ unmount }) {
+        const cleanup = opacity.onChange(value => {
+            if (value <= 0) {
+                cleanup();
+                unmount();
+            }
+        });
+
+        opacity.set(0);
+        y.set(-20);
     }
 
     return (
@@ -104,6 +125,7 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
             <Tippy
                 render={attrs => (
                     <Cart
+                        style={{ opacity, y }}
                         cartItemsNumber={cartItemsNumber}
                         setCartItemsNumber={setCartItemsNumber}
                         {...attrs}
@@ -113,6 +135,9 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
                 visible={cartIsOpen}
                 onClickOutside={() => setCartIsOpen(false)}
                 appendTo="parent"
+                animation={true}
+                onMount={onCartMount}
+                onHide={onCartHide}
             >
                 <CartButton action={handleCart}>
                     <CartIcon />

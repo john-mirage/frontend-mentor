@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import styled, { css } from "styled-components";
-import Slider from "@components/solution/ecommerce-product-page/slider";
+import { forwardRef, useState } from 'react';
+import styled, { css } from 'styled-components';
+import BaseSlider from '@components/solution/ecommerce-product-page/slider';
 import Thumbnail from "@components/solution/ecommerce-product-page/thumbnail";
-import IconButton from '@components/solution/ecommerce-product-page/icon-button';
+import IconButton from "@components/solution/ecommerce-product-page/icon-button";
+import BaseCloseIcon from "@assets/solution/ecommerce-product-page/icon-close.svg?react";
 import BasePreviousIcon from "@assets/solution/ecommerce-product-page/icon-previous.svg?react";
 import BaseNextIcon from "@assets/solution/ecommerce-product-page/icon-next.svg?react";
 
 const Container = styled.div`
+    position: relative;
     width: 100%;
     height: auto;
 `;
@@ -16,44 +18,46 @@ const Featured = styled.div`
     width: 100%;
     height: auto;
     padding-top: 100%;
-    overflow: hidden;
+`;
 
-    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
-        border-radius: 2rem;
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
-        cursor: pointer;
-    }
+const Slider = styled(BaseSlider)`
+    border-radius: 2rem;
 `;
 
 const Thumbnails = styled.ul`
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(${props => props.thumbnailNumber}, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+`;
 
-    @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
-        display: grid;
-        grid-template-columns: repeat(${props => props.thumbnailNumber}, 1fr);
-        gap: 3rem;
-        margin-top: 3rem;
-    }
+const CloseButton = styled(IconButton)`
+    position: absolute;
+    top: -1rem;
+    right: 0;
+    transform: translateY(-100%);
+    width: 6rem;
+    height: 6rem;
+    margin-right: -2rem;
+`;
+
+const CloseIcon = styled(BaseCloseIcon)`
+    width: 2rem;
+    height: auto;
+    fill: ${props => props.theme.color.neutral.white};
 `;
 
 const ctrlButton = css`
     position: absolute;
     z-index: 20;
     top: 50%;
-    width: 4rem;
-    height: 4rem;
-    transform: translateY(-50%);
     background-color: ${props => props.theme.color.neutral.white};
-
-    @media screen and (min-width: ${props => props.theme.screen.sm}) {
-        display: none;
-    }
 `;
 
 const ctrlIcon = css`
-    width: 1rem;
+    width: 1.2rem;
     height: auto;
     fill: none;
     stroke: ${props => props.theme.color.neutral.black};
@@ -61,7 +65,8 @@ const ctrlIcon = css`
 
 const PreviousButton = styled(IconButton)`
     ${ctrlButton}
-    left: 2rem;
+    left: 0;
+    transform: translate(-50%, -50%);
 `;
 
 const PreviousIcon = styled(BasePreviousIcon)`
@@ -70,15 +75,16 @@ const PreviousIcon = styled(BasePreviousIcon)`
 
 const NextButton = styled(IconButton)`
     ${ctrlButton}
-    right: 2rem;
+    right: 0;
+    transform: translate(50%, -50%);
 `;
 
 const NextIcon = styled(BaseNextIcon)`
     ${ctrlIcon}
 `;
 
-function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxIsOpen }) {
-    const [featuredImage, setFeaturedImage] = useState(1);
+const Lightbox = forwardRef(({ className, thumbnails, images, initialFeaturedImage, setLightboxIsOpen }, ref) => {
+    const [featuredImage, setFeaturedImage] = useState(initialFeaturedImage);
 
     function showPreviousImage(event) {
         event.preventDefault();
@@ -90,19 +96,14 @@ function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxI
         setFeaturedImage(featuredImage >= images.length ? 1 : featuredImage + 1);
     }
 
-    function showPicture(imageIndex) {
-        setFeaturedImage(imageIndex);
-        setLightboxImage(imageIndex);
-    }
-
-    function openLightbox() {
-        if (window.matchMedia('(min-width: 992px)').matches) setLightboxIsOpen(true);
-    }
-
     return (
-        <Container className={className}>
+        <Container className={className} ref={ref}>
 
-            <Featured onClick={openLightbox}>
+            <CloseButton action={() => setLightboxIsOpen(false)}>
+                <CloseIcon />
+            </CloseButton>
+
+            <Featured>
                 <Slider images={images} currentImage={featuredImage} >
                     <PreviousButton action={showPreviousImage}>
                         <PreviousIcon />
@@ -121,7 +122,7 @@ function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxI
                         <Thumbnail
                             key={index}
                             thumbnail={thumbnail}
-                            action={() => showPicture(imageIndex)}
+                            action={() => setFeaturedImage(imageIndex)}
                             isActive={isActive}
                         />
                     );
@@ -130,6 +131,6 @@ function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxI
 
         </Container>
     );
-};
+});
 
-export default Gallery;
+export default Lightbox;
