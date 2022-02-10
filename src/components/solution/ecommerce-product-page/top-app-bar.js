@@ -170,6 +170,7 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
                     <AnimatePresence>
                         {cartItemsNumber > 0 &&
                             <Badge
+                                key="cart-badge"
                                 variants={badgeAnimations}
                                 animate="bounce"
                                 exit="hidden"

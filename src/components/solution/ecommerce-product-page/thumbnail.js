@@ -45,7 +45,7 @@ const Overlay = styled(motion.div)`
     ${layer}
     z-index: 70;
     border-radius: 1rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4);
 `;
 
 function Thumbnail({ className, thumbnail, action, isActive }) {

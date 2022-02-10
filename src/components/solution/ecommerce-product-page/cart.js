@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import CartProduct from "@components/solution/ecommerce-product-page/cart-product";
-import { motion } from "framer-motion";
+import BaseCartProduct from "@components/solution/ecommerce-product-page/cart-product";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 24rem;
+    min-height: 25rem;
     border-radius: 1rem;
     background-color: ${props => props.theme.color.neutral.white};
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -32,8 +32,16 @@ const Body = styled.div`
     padding: 2.4rem;
 `;
 
-const EmptyCartText = styled.p`
+const CartProduct = styled(motion(BaseCartProduct))`
+    width: 100%;
+    height: auto;
+`;
+
+const EmptyCartText = styled(motion.p)`
+    width: 100%;
+    height: auto;
     margin: auto;
+    text-align: center;
     font-size: 1.4rem;
     font-weight: 700;
     color: ${props => props.theme.color.neutral.darkGrayishBlue};
@@ -50,10 +58,28 @@ function Cart({ className, cartItemsNumber, setCartItemsNumber, opacity, y, tipp
                 <Title>Cart</Title>
             </Header>
             <Body>
-                {cartItemsNumber > 0
-                    ? <CartProduct cartItemsNumber={cartItemsNumber} setCartItemsNumber={setCartItemsNumber}/>
-                    : <EmptyCartText>Your cart is empty</EmptyCartText>
-                }
+                <AnimatePresence exitBeforeEnter>
+                    {cartItemsNumber > 0
+                        ? <CartProduct
+                              key="cart-product"
+                              cartItemsNumber={cartItemsNumber}
+                              setCartItemsNumber={setCartItemsNumber}
+                              initial={{ opacity: 0}}
+                              animate={{ opacity: 1}}
+                              exit={{ opacity: 0}}
+                              transition={{ type: 'spring', duration: 0.3 }}
+                          />
+                        : <EmptyCartText
+                              key="empty-cart-text"
+                              initial={{ opacity: 0}}
+                              animate={{ opacity: 1}}
+                              exit={{ opacity: 0}}
+                              transition={{ type: 'spring', duration: 0.3 }}
+                          >
+                              Your cart is empty
+                          </EmptyCartText>
+                    }
+                </AnimatePresence>
             </Body>
         </Container>
     );
