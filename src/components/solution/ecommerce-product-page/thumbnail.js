@@ -1,7 +1,17 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
-const Container = styled.li`
+const overlayOnHover = {
+    hover: {
+        opacity: 1,
+        transition: {
+            type: 'spring',
+            duration: 0.3,
+        },
+    },
+};
+
+const Container = styled(motion.li)`
     position: relative;
     width: 100%;
     height: auto;
@@ -43,11 +53,12 @@ function Thumbnail({ className, thumbnail, action, isActive }) {
         <Container
             className={className}
             onClick={action}
+            whileHover="hover"
         >
             <Background
                 initial={false}
                 animate={{ scale: isActive ? 1.05 : 0.8 }}
-                transition={{ type: "spring", duration: 0.3 }}
+                transition={{ type: 'spring', duration: 0.3 }}
             />
             <Image
                 src={thumbnail.src}
@@ -56,7 +67,8 @@ function Thumbnail({ className, thumbnail, action, isActive }) {
             <Overlay
                 initial={false}
                 animate={{ opacity: isActive ? 1 : 0 }}
-                transition={{ type: "spring", duration: 0.3 }}
+                transition={{ type: 'spring', duration: 0.3 }}
+                variants={overlayOnHover}
             />
         </Container>
     );
