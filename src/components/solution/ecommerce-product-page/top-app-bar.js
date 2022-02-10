@@ -87,7 +87,7 @@ const Navigation = styled(BaseNavigation)`
 `;
 
 const Cart = styled(motion(BaseCart))`
-    width: 40rem;
+    
 `;
 
 const Badge = styled(motion(BaseBadge))`
@@ -154,6 +154,19 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
                 animation={true}
                 onMount={onCartMount}
                 onHide={onCartHide}
+                popperOptions={{
+                    modifiers: [
+                        {
+                            name: 'RootCustomStyle',
+                            enabled: true,
+                            phase: 'write',
+                            fn({ state }) {
+                                state.elements.popper.style.maxWidth = "40rem";
+                                state.elements.popper.style.width = "calc(100% - 1rem)";
+                            }
+                        },
+                    ]
+                }}
             >
                 <CartButton action={handleCart}>
                     <CartIcon />

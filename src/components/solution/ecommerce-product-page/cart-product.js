@@ -11,11 +11,17 @@ const Container = styled.div`
 
 const Product = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     height: auto;
     margin-bottom: 2.5rem;
+    text-align: center;
+
+    @media screen and (min-width: 300px) {
+        flex-direction: row;
+        text-align: start;
+    }
 `;
 
 const Thumbnail = styled.img`
@@ -24,7 +30,12 @@ const Thumbnail = styled.img`
     height: 5rem;
     object-fit: cover;
     border-radius: 0.4rem;
-    margin-right: 2rem;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: 300px) {
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
 `;
 
 const Info = styled.div`
@@ -35,6 +46,12 @@ const Info = styled.div`
     height: 5rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: 300px) {
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
 `;
 
 const Title = styled.h4`
@@ -56,8 +73,10 @@ const TotalPrice = styled.span`
 
 const DeleteButton = styled(IconButton)`
     flex: 0 0 4.8rem;
-    margin-left: auto;
-    margin-right: -1.7rem;
+
+    @media screen and (min-width: 300px) {
+        margin-right: -1.7rem;
+    }
 `;
 
 const DeleteIcon = styled(BaseDeleteIcon)`
