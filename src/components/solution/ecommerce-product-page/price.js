@@ -35,7 +35,7 @@ const InitialPrice = styled.p`
     color: ${props => props.theme.color.neutral.grayishBlue};
     margin-left: auto;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
         margin-top: 1rem;
         width: 100%;
     }

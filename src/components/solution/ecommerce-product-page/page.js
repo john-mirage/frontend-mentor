@@ -36,14 +36,14 @@ const Container = styled.main`
     padding-top: 7rem;
     padding-bottom: 10rem;
 
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: ${props => props.theme.screen.sm}) {
         width: 54rem;
         margin-left: auto;
         margin-right: auto;
         padding-top: 15rem;
     }
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         padding-top: 0;
         width: 96rem;
         display: flex;
@@ -53,7 +53,7 @@ const Container = styled.main`
         flex-wrap: wrap;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
         width: 114rem;
     }
 `;
@@ -67,7 +67,7 @@ const TopAppBar = styled(BaseTopAppBar)`
     padding-right: 2.4rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         position: relative;
         margin-bottom: 10rem;
         padding-left: 0;
@@ -80,7 +80,7 @@ const TopAppBar = styled(BaseTopAppBar)`
 const Gallery = styled(BaseGallery)`
     margin-bottom: 3rem;
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         width: 50%;
         padding-left: 4rem;
         padding-right: 8rem;
@@ -92,12 +92,12 @@ const Product = styled(BaseProduct)`
     padding-left: 2rem;
     padding-right: 2rem;
 
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: ${props => props.theme.screen.sm}) {
         padding-left: 0;
         padding-right: 0;
     }
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         width: 50%;
         padding-right: 4rem;
     }
@@ -119,7 +119,7 @@ const Lightbox = styled(motion(BaseLightbox))`
     transform: translate(-50%, -50%);
     width: calc(100% - 10rem);
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         width: 70rem;
     }
 `;

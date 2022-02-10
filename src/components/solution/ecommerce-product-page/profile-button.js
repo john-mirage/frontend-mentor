@@ -11,7 +11,7 @@ const Container = styled.button`
         background-color: rgba(0, 0, 0, 0.1);
     }
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         &:hover {
             background-color: ${props => props.theme.color.primary.orange};
         }
@@ -23,7 +23,7 @@ const Image = styled.img`
     width: 2.6rem;
     height: 2.6rem;
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         width: 4.4rem;
         height: 4.4rem;
     }

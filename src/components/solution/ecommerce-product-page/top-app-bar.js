@@ -35,7 +35,7 @@ const Container = styled.header`
     height: 7rem;
     background-color: ${props => props.theme.color.neutral.white};
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         height: 12rem;
     }
 `;
@@ -44,7 +44,7 @@ const Logo = styled(BaseLogo)`
     height: 2rem;
     fill: ${props => props.theme.color.neutral.veryDarkBlue};
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         margin-right: 6rem;
     }
 `;
@@ -53,7 +53,7 @@ const MenuButton = styled(IconButton)`
     margin-left: -1.6rem;
     margin-right: 0.4rem;
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         display: none;
     }
 `;
@@ -68,7 +68,7 @@ const CartButton = styled(IconButton)`
     margin-left: auto;
     margin-right: 0.4rem;
     
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         margin-right: 2.5rem;
     }
 `;
@@ -81,7 +81,7 @@ const CartIcon = styled(BaseCartIcon)`
 const Navigation = styled(BaseNavigation)`
     display: none;
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
         display: flex;
     }
 `;

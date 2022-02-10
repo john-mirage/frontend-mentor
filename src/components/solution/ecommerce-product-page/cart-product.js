@@ -18,7 +18,7 @@ const Product = styled.div`
     margin-bottom: 2.5rem;
     text-align: center;
 
-    @media screen and (min-width: 300px) {
+    @media screen and (min-width: ${props => props.theme.screen.cart}) {
         flex-direction: row;
         text-align: start;
     }
@@ -32,7 +32,7 @@ const Thumbnail = styled.img`
     border-radius: 0.4rem;
     margin-bottom: 1rem;
 
-    @media screen and (min-width: 300px) {
+    @media screen and (min-width: ${props => props.theme.screen.cart}) {
         margin-right: 2rem;
         margin-bottom: 0;
     }
@@ -48,7 +48,7 @@ const Info = styled.div`
     padding-bottom: 0.2rem;
     margin-bottom: 1rem;
 
-    @media screen and (min-width: 300px) {
+    @media screen and (min-width: ${props => props.theme.screen.cart}) {
         margin-right: 2rem;
         margin-bottom: 0;
     }
@@ -74,7 +74,7 @@ const TotalPrice = styled.span`
 const DeleteButton = styled(IconButton)`
     flex: 0 0 4.8rem;
 
-    @media screen and (min-width: 300px) {
+    @media screen and (min-width: ${props => props.theme.screen.cart}) {
         margin-right: -1.7rem;
     }
 `;

@@ -25,7 +25,7 @@ const Name = styled.h1`
     color: ${props => props.theme.color.neutral.veryDarkBlue};
     margin-bottom: 1.6rem;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
         font-size: 4.8rem;
     }
 `;
@@ -43,7 +43,7 @@ const Price = styled(BasePrice)`
 `;
 
 const Form = styled.div`
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
@@ -53,7 +53,7 @@ const Form = styled.div`
 const CountInput = styled(BaseCountInput)`
     margin-bottom: 1.6rem;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
         flex: 1 1 35%;
         margin-bottom: 0;
         margin-right: 2rem;
@@ -61,7 +61,7 @@ const CountInput = styled(BaseCountInput)`
 `;
 
 const CartButton = styled(Button)`
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: ${props => props.theme.screen.xl}) {
         flex: 1 1 65%;
     }
 `;
