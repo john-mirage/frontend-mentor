@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Tippy from "@tippyjs/react/headless";
 import IconButton from "@components/solution/ecommerce-product-page/icon-button";
 import ProfileButton from "@components/solution/ecommerce-product-page/profile-button";
-import BaseCart from "@components/solution/ecommerce-product-page/cart";
+import Cart from "@components/solution/ecommerce-product-page/cart";
 import BaseNavigation from "@components/solution/ecommerce-product-page/navigation";
 import BaseBadge from "@components/solution/ecommerce-product-page/badge";
 import BaseMenuIcon from "@assets/solution/ecommerce-product-page/icon-menu.svg?react";
@@ -86,10 +86,6 @@ const Navigation = styled(BaseNavigation)`
     }
 `;
 
-const Cart = styled(motion(BaseCart))`
-    
-`;
-
 const Badge = styled(motion(BaseBadge))`
     position: absolute;
     top: 0.6rem;
@@ -141,10 +137,11 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
             <Tippy
                 render={attrs => (
                     <Cart
-                        style={{ opacity, y }}
+                        opacity={opacity}
+                        y={y}
                         cartItemsNumber={cartItemsNumber}
                         setCartItemsNumber={setCartItemsNumber}
-                        {...attrs}
+                        tippyAttrs={attrs}
                     />
                 )}
                 interactive={true}

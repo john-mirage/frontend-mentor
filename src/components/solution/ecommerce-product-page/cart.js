@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import CartProduct from "@components/solution/ecommerce-product-page/cart-product";
-import { forwardRef } from "react";
+import { motion } from "framer-motion";
 
-const Container = styled.div`
+const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -39,9 +39,13 @@ const EmptyCartText = styled.p`
     color: ${props => props.theme.color.neutral.darkGrayishBlue};
 `;
 
-const Cart = forwardRef(({ className, cartItemsNumber, setCartItemsNumber}, ref) => {
+function Cart({ className, cartItemsNumber, setCartItemsNumber, opacity, y, tippyAttrs}) {
     return (
-        <Container className={className} ref={ref}>
+        <Container
+            className={className}
+            style={{ opacity, y }}
+            {...tippyAttrs}
+        >
             <Header>
                 <Title>Cart</Title>
             </Header>
@@ -53,6 +57,6 @@ const Cart = forwardRef(({ className, cartItemsNumber, setCartItemsNumber}, ref)
             </Body>
         </Container>
     );
-});
+};
 
 export default Cart;
