@@ -14,6 +14,7 @@ import productThumbnail1 from "@assets/solution/ecommerce-product-page/image-pro
 import productThumbnail2 from "@assets/solution/ecommerce-product-page/image-product-2-thumbnail.jpg";
 import productThumbnail3 from "@assets/solution/ecommerce-product-page/image-product-3-thumbnail.jpg";
 import productThumbnail4 from "@assets/solution/ecommerce-product-page/image-product-4-thumbnail.jpg";
+import Head from "next/head";
 
 const thumbnails = [
     { src: productThumbnail1.src, alt: '' },
@@ -145,61 +146,69 @@ function Page() {
     }
 
     return (
-        <Container>
-            <TopAppBar
-                cartIsOpen={cartIsOpen}
-                cartItemsNumber={cartItemsNumber}
-                setDrawerIsOpen={setDrawerIsOpen}
-                setCartIsOpen={setCartIsOpen}
-                setCartItemsNumber={setCartItemsNumber}
-            />
-            <Gallery
-                images={images}
-                thumbnails={thumbnails}
-                setLightboxIsOpen={setLightboxIsOpen}
-                setLightboxImage={setLightboxImage}
-            />
-            <Product
-                cartItemsNumber={cartItemsNumber}
-                setCartIsOpen={setCartIsOpen}
-                setCartItemsNumber={setCartItemsNumber}
-            />
-            <AnimatePresence>
-                {lightboxIsOpen && (
-                    <Lightbox
-                        key="lightbox"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ type: "spring", duration: 0.3 }}
-                        images={images}
-                        thumbnails={thumbnails}
-                        initialFeaturedImage={lightBoxImage}
-                        setLightboxIsOpen={setLightboxIsOpen}
-                    />
-                )}
-                {drawerIsOpen && (
-                    <Drawer
-                        key="drawer"
-                        initial={{ x: "-100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "-100%" }}
-                        transition={{ type: "spring", duration: 0.3 }}
-                        setDrawerIsOpen={setDrawerIsOpen}
-                    />
-                )}
-                {(lightboxIsOpen || drawerIsOpen) && (
-                    <Scrim
-                        key="scrim"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ type: "spring", duration: 0.3 }}
-                        onClick={handleScrim}
-                    />
-                )}
-            </AnimatePresence>
-        </Container>
+        <>
+            <Head>
+                <link rel="preload" as="image" href={productImage1.src} />
+                <link rel="preload" as="image" href={productImage2.src} />
+                <link rel="preload" as="image" href={productImage3.src} />
+                <link rel="preload" as="image" href={productImage4.src} />
+            </Head>
+            <Container>
+                <TopAppBar
+                    cartIsOpen={cartIsOpen}
+                    cartItemsNumber={cartItemsNumber}
+                    setDrawerIsOpen={setDrawerIsOpen}
+                    setCartIsOpen={setCartIsOpen}
+                    setCartItemsNumber={setCartItemsNumber}
+                />
+                <Gallery
+                    images={images}
+                    thumbnails={thumbnails}
+                    setLightboxIsOpen={setLightboxIsOpen}
+                    setLightboxImage={setLightboxImage}
+                />
+                <Product
+                    cartItemsNumber={cartItemsNumber}
+                    setCartIsOpen={setCartIsOpen}
+                    setCartItemsNumber={setCartItemsNumber}
+                />
+                <AnimatePresence>
+                    {lightboxIsOpen && (
+                        <Lightbox
+                            key="lightbox"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ type: "spring", duration: 0.3 }}
+                            images={images}
+                            thumbnails={thumbnails}
+                            initialFeaturedImage={lightBoxImage}
+                            setLightboxIsOpen={setLightboxIsOpen}
+                        />
+                    )}
+                    {drawerIsOpen && (
+                        <Drawer
+                            key="drawer"
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", duration: 0.3 }}
+                            setDrawerIsOpen={setDrawerIsOpen}
+                        />
+                    )}
+                    {(lightboxIsOpen || drawerIsOpen) && (
+                        <Scrim
+                            key="scrim"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ type: "spring", duration: 0.3 }}
+                            onClick={handleScrim}
+                        />
+                    )}
+                </AnimatePresence>
+            </Container>
+        </>
     );
 }
 
