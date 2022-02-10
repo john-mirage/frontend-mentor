@@ -78,8 +78,10 @@ function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber
 
     function handleCartUpdate(event) {
         event.preventDefault();
-        setCartItemsNumber(cartItemsNumber + itemsNumber);
-        setCartIsOpen(true);
+        if (itemsNumber > 0) {
+            setCartItemsNumber(cartItemsNumber + itemsNumber);
+            setCartIsOpen(true);
+        }
     }
 
     return (
