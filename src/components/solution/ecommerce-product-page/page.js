@@ -34,7 +34,7 @@ const Container = styled.main`
     width: 100%;
     height: auto;
     padding-top: 7rem;
-    padding-bottom: 10rem;
+    padding-bottom: 14rem;
 
     @media screen and (min-width: ${props => props.theme.screen.sm}) {
         width: 54rem;

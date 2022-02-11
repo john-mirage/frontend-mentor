@@ -1,11 +1,29 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import BasePrice from "@components/solution/ecommerce-product-page/price";
 import BaseCountInput from "@components/solution/ecommerce-product-page/count-input";
 import Button from "@components/solution/ecommerce-product-page/button";
 import BaseCartIcon from "@assets/solution/ecommerce-product-page/icon-cart.svg?react";
 
+const errorMessageMotion = {
+    bounce: {
+        scale: [1, 1.3, 1, 1.3, 1],
+        transition: {
+            duration: 1.3,
+            times: [0, 0.14, 0.28, 0.42, 0.7],
+        },
+    },
+    hidden: {
+        scale: 0,
+        transition: {
+            duration: 0.3,
+        },
+    },
+}
+
 const Container = styled.div`
+    position: relative;
     width: 100%;
     height: auto;
 `;
@@ -73,14 +91,28 @@ const CartIcon = styled(BaseCartIcon)`
     fill: ${props => props.theme.color.neutral.white};
 `;
 
+const ErrorMessage = styled(motion.p)`
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: ${props => props.theme.color.primary.orange};
+`;
+
 function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber }) {
     const [itemsNumber, setItemsNumber] = useState(0);
+    const [formIsNotValid, setFormIsNotValid] = useState(false);
 
     function handleCartUpdate(event) {
         event.preventDefault();
         if (itemsNumber > 0) {
+            if (formIsNotValid) setFormIsNotValid(false);
             setCartItemsNumber(cartItemsNumber + itemsNumber);
             setCartIsOpen(true);
+        } else {
+            if (!formIsNotValid) setFormIsNotValid(true);
         }
     }
 
@@ -102,6 +134,19 @@ function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber
                     <CartIcon />
                 </CartButton>
             </Form>
+            <AnimatePresence>
+                {formIsNotValid && (
+                    <ErrorMessage
+                        key="form-error-message"
+                        initial="hidden"
+                        animate="bounce"
+                        exit="hidden"
+                        variants={errorMessageMotion}
+                        transition={{ type: "spring", duration: 0.3 }}
+                        style={{ x: '-50%', y: 'calc(100% + 2rem)' }}
+                    >You cannot add 0 items in the cart.</ErrorMessage>
+                )}
+            </AnimatePresence>
         </Container>
     );
 }
