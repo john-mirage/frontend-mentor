@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Tippy from "@tippyjs/react/headless";
 import IconButton from "@components/solution/ecommerce-product-page/icon-button";
-import ProfileButton from "@components/solution/ecommerce-product-page/profile-button";
+import BaseProfileButton from "@components/solution/ecommerce-product-page/profile-button";
 import Cart from "@components/solution/ecommerce-product-page/cart";
 import BaseNavigation from "@components/solution/ecommerce-product-page/navigation";
 import BaseBadge from "@components/solution/ecommerce-product-page/badge";
@@ -26,17 +26,30 @@ const Container = styled.header`
 `;
 
 const Logo = styled(BaseLogo)`
-    height: 2rem;
+    flex: 0 1 auto;
+    width: 10rem;
     fill: ${props => props.theme.color.neutral.veryDarkBlue};
+    margin-right: 1rem;
+
+    @media screen and (min-width: ${props => props.theme.screen.sm}) {
+        width: 12rem;
+    }
 
     @media screen and (min-width: ${props => props.theme.screen.lg}) {
+        width: 16rem;
         margin-right: 6rem;
     }
 `;
 
 const MenuButton = styled(IconButton)`
+    flex: 0 0 4.8rem;
     margin-left: -1.6rem;
     margin-right: 0.4rem;
+    transition: background-color 300ms;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 
     @media screen and (min-width: ${props => props.theme.screen.lg}) {
         display: none;
@@ -50,8 +63,14 @@ const MenuIcon = styled(BaseMenuIcon)`
 `;
 
 const CartButton = styled(IconButton)`
+    flex: 0 0 4.8rem;
     margin-left: auto;
     margin-right: 0.4rem;
+    transition: background-color 300ms;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
     
     @media screen and (min-width: ${props => props.theme.screen.lg}) {
         margin-right: 2.5rem;
@@ -75,6 +94,15 @@ const Badge = styled(motion(BaseBadge))`
     position: absolute;
     top: 0.6rem;
     right: 0.4rem;
+`;
+
+const ProfileButton = styled(BaseProfileButton)`
+    flex: 0 0 4.8rem;
+    margin-right: -1.2rem;
+
+    @media screen and (min-width: ${props => props.theme.screen.lg}) {
+        margin-right: 0;
+    }
 `;
 
 function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, setCartIsOpen, setCartItemsNumber }) {
@@ -105,7 +133,6 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
                 unmount();
             }
         });
-
         opacity.set(0);
         y.set(-20);
     }

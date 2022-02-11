@@ -24,10 +24,12 @@ const Count = styled.p`
 `;
 
 const IconButton = styled(BaseIconButton)`
-    transition: opacity 300ms;
+    transition-property: opacity background-color;
+    transition-duration:  300ms;
 
     &:hover {
         opacity: 0.6;
+        background-color: rgba(0, 0, 0, 0.1);
     }
 `;
 

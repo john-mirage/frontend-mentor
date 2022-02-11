@@ -12,6 +12,11 @@ const Container = styled.aside`
 
 const CloseButton = styled(BaseIconButton)`
     margin-bottom: 1rem;
+    transition: background-color 300ms;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 `;
 
 const CloseIcon = styled(BaseCloseIcon)`

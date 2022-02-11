@@ -73,6 +73,11 @@ const TotalPrice = styled.span`
 
 const DeleteButton = styled(IconButton)`
     flex: 0 0 4.8rem;
+    transition: background-color 300ms;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 
     @media screen and (min-width: ${props => props.theme.screen.cart}) {
         margin-right: -1.7rem;

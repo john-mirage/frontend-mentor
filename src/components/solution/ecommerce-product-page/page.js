@@ -63,8 +63,8 @@ const TopAppBar = styled(BaseTopAppBar)`
     z-index: 80;
     top: 0;
     left: 0;
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
     @media screen and (min-width: ${props => props.theme.screen.lg}) {
