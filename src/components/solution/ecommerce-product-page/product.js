@@ -98,12 +98,13 @@ const ErrorMessage = styled(motion.p)`
     left: 0;
     transform: translateY(calc(100% + 1rem));
     padding-left: 2rem;
+    padding-right: 2rem;
     font-size: 1.4rem;
     font-weight: 700;
     color: ${props => props.theme.color.primary.orange};
 
     @media screen and (min-width: ${props => props.theme.screen.sm}) {
-        padding-left: 0;
+        padding: 0;
     }
 `;
 
