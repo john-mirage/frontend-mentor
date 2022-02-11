@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import BaseSlider from '@components/solution/ecommerce-product-page/slider';
 import Thumbnail from "@components/solution/ecommerce-product-page/thumbnail";
@@ -8,9 +8,17 @@ import BasePreviousIcon from "@assets/solution/ecommerce-product-page/icon-previ
 import BaseNextIcon from "@assets/solution/ecommerce-product-page/icon-next.svg?react";
 
 const Container = styled.div`
-    position: relative;
     width: 100%;
     height: auto;
+    padding-top: 12rem;
+    padding-bottom: 5rem;
+`;
+
+const Dialog = styled.div`
+    position: relative;
+    width: 70rem;
+    height: auto;
+    margin: auto;
 `;
 
 const Featured = styled.div`
@@ -101,39 +109,62 @@ const Lightbox = forwardRef(({ className, thumbnails, images, initialFeaturedIma
         setFeaturedImage(featuredImage >= images.length ? 1 : featuredImage + 1);
     }
 
+    function closeLightBox(event) {
+        if (event) event.preventDefault();
+        const body = document.body;
+        const scrollY = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.width = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        setLightboxIsOpen(false);
+    }
+
+    function listenResize() {
+        if (window.innerWidth < 976) closeLightBox();  
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', listenResize);
+        return function cleanUp() {
+            window.removeEventListener('resize', listenResize);
+        }
+    }, []);
+
     return (
         <Container className={className} ref={ref}>
+            <Dialog>
+                <CloseButton action={closeLightBox}>
+                    <CloseIcon />
+                </CloseButton>
 
-            <CloseButton action={() => setLightboxIsOpen(false)}>
-                <CloseIcon />
-            </CloseButton>
+                <Featured>
+                    <Slider images={images} currentImage={featuredImage} >
+                        <PreviousButton action={showPreviousImage}>
+                            <PreviousIcon />
+                        </PreviousButton>
+                        <NextButton action={showNextImage}>
+                            <NextIcon />
+                        </NextButton>
+                    </Slider>
+                </Featured>
 
-            <Featured>
-                <Slider images={images} currentImage={featuredImage} >
-                    <PreviousButton action={showPreviousImage}>
-                        <PreviousIcon />
-                    </PreviousButton>
-                    <NextButton action={showNextImage}>
-                        <NextIcon />
-                    </NextButton>
-                </Slider>
-            </Featured>
-
-            <Thumbnails thumbnailNumber={thumbnails.length}>
-                {thumbnails.map((thumbnail, index) => {
-                    const imageIndex = index + 1;
-                    const isActive = featuredImage === imageIndex;
-                    return (
-                        <Thumbnail
-                            key={index}
-                            thumbnail={thumbnail}
-                            action={() => setFeaturedImage(imageIndex)}
-                            isActive={isActive}
-                        />
-                    );
-                })}
-            </Thumbnails>
-
+                <Thumbnails thumbnailNumber={thumbnails.length}>
+                    {thumbnails.map((thumbnail, index) => {
+                        const imageIndex = index + 1;
+                        const isActive = featuredImage === imageIndex;
+                        return (
+                            <Thumbnail
+                                key={index}
+                                thumbnail={thumbnail}
+                                action={() => setFeaturedImage(imageIndex)}
+                                isActive={isActive}
+                            />
+                        );
+                    })}
+                </Thumbnails>
+            </Dialog>
         </Container>
     );
 });

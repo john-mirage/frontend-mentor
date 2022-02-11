@@ -77,7 +77,7 @@ const NextIcon = styled(BaseNextIcon)`
     ${ctrlIcon}
 `;
 
-function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxIsOpen }) {
+function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxIsOpen, scrollY }) {
     const [featuredImage, setFeaturedImage] = useState(1);
 
     function showPreviousImage(event) {
@@ -96,7 +96,14 @@ function Gallery({ className, thumbnails, images, setLightboxImage, setLightboxI
     }
 
     function openLightbox() {
-        if (window.matchMedia('(min-width: 992px)').matches) setLightboxIsOpen(true);
+        if (window.matchMedia('(min-width: 992px)').matches) {
+            setLightboxIsOpen(true);
+            const body = document.body;
+            body.style.position = 'fixed';
+            body.style.top = `-${scrollY}`;
+            body.style.left = '0px';
+            body.style.width = '100%';
+        }
     }
 
     return (

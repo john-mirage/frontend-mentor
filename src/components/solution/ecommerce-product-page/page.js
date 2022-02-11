@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BaseTopAppBar from "@components/solution/ecommerce-product-page/top-app-bar";
 import BaseGallery from "@components/solution/ecommerce-product-page/gallery";
 import BaseLightbox from "@components/solution/ecommerce-product-page/lightbox";
@@ -113,15 +113,13 @@ const Drawer = styled(motion(BaseDrawer))`
 
 const Lightbox = styled(motion(BaseLightbox))`
     position: fixed;
+    display: flex;
     z-index: 100;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 10rem);
-
-    @media screen and (min-width: ${props => props.theme.screen.lg}) {
-        width: 70rem;
-    }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 `;
 
 const Scrim = styled(motion.div)`
@@ -140,10 +138,23 @@ function Page() {
     const [cartIsOpen, setCartIsOpen] = useState(false);
     const [cartItemsNumber, setCartItemsNumber] = useState(0);
     const [lightBoxImage, setLightboxImage] = useState(1);
+    const [scrollY, setScrollY] = useState('0px');
 
-    function handleScrim() {
+    function handleScrim(event) {
+        event.preventDefault();
         if (drawerIsOpen) setDrawerIsOpen(false);
     }
+
+    function listenScroll() {
+        setScrollY(`${window.scrollY}px`);
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', listenScroll);
+        return function cleanUp() {
+            window.removeEventListener('scroll', listenScroll);
+        }
+    }, []);
 
     return (
         <>
@@ -166,6 +177,7 @@ function Page() {
                     thumbnails={thumbnails}
                     setLightboxIsOpen={setLightboxIsOpen}
                     setLightboxImage={setLightboxImage}
+                    scrollY={scrollY}
                 />
                 <Product
                     cartItemsNumber={cartItemsNumber}
@@ -184,6 +196,7 @@ function Page() {
                             thumbnails={thumbnails}
                             initialFeaturedImage={lightBoxImage}
                             setLightboxIsOpen={setLightboxIsOpen}
+
                         />
                     )}
                     {drawerIsOpen && (
