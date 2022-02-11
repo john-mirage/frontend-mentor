@@ -8,23 +8,8 @@ import BaseBadge from "@components/solution/ecommerce-product-page/badge";
 import BaseMenuIcon from "@assets/solution/ecommerce-product-page/icon-menu.svg?react";
 import BaseLogo from "@assets/solution/ecommerce-product-page/logo.svg?react";
 import BaseCartIcon from "@assets/solution/ecommerce-product-page/icon-cart.svg?react";
-import { AnimatePresence, motion, useSpring } from "framer-motion";
-
-const badgeAnimations = {
-    bounce: {
-        scale: [1, 1.3, 1, 1.3, 1],
-        transition: {
-            duration: 1.3,
-            times: [0, 0.14, 0.28, 0.42, 0.7],
-        },
-    },
-    hidden: {
-        scale: 0,
-        transition: {
-            duration: 0.3,
-        },
-    },
-}
+import { AnimatePresence, motion, useAnimation, useSpring } from "framer-motion";
+import { useEffect } from "react";
 
 const Container = styled.header`
     position: relative;
@@ -96,6 +81,7 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
     const springConfig = { damping: 15, stiffness: 300 };
     const opacity = useSpring(0, springConfig);
     const y = useSpring(-20, springConfig);
+    const badgeMotionControls = useAnimation();
 
     function handleMenu(event) {
         event.preventDefault();
@@ -123,6 +109,18 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
         opacity.set(0);
         y.set(-20);
     }
+
+    useEffect(() => {
+        if (cartItemsNumber > 0) {
+            badgeMotionControls.start({
+                scale: [1, 1.3, 1, 1.3, 1],
+                transition: {
+                    duration: 1.3,
+                    times: [0, 0.14, 0.28, 0.42, 0.7],
+                },
+            });
+        }
+    }, [cartItemsNumber]);
 
     return (
         <Container className={className}>
@@ -172,9 +170,8 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
                         {cartItemsNumber > 0 &&
                             <Badge
                                 key="cart-badge"
-                                variants={badgeAnimations}
-                                animate="bounce"
-                                exit="hidden"
+                                animate={badgeMotionControls}
+                                exit={{ scale: 0 }}
                             >
                                 {cartItemsNumber}
                             </Badge>
