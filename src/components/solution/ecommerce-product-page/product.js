@@ -7,15 +7,16 @@ import Button from "@components/solution/ecommerce-product-page/button";
 import BaseCartIcon from "@assets/solution/ecommerce-product-page/icon-cart.svg?react";
 
 const errorMessageMotion = {
-    bounce: {
-        scale: [1, 1.3, 1, 1.3, 1],
+    flash: {
+        opacity: [1, 0, 1, 0, 1],
         transition: {
-            duration: 1.3,
-            times: [0, 0.14, 0.28, 0.42, 0.7],
+            type: 'tween',
+            duration: 1,
+            times: [0, 0.25, 0.5, 0.75, 1],
         },
     },
     hidden: {
-        scale: 0,
+        opacity: 0,
         transition: {
             duration: 0.3,
         },
@@ -94,14 +95,19 @@ const CartIcon = styled(BaseCartIcon)`
 const ErrorMessage = styled(motion.p)`
     position: absolute;
     bottom: 0;
-    left: 50%;
-    text-align: center;
+    left: 0;
+    transform: translateY(calc(100% + 1rem));
+    padding-left: 2rem;
     font-size: 1.4rem;
     font-weight: 700;
     color: ${props => props.theme.color.primary.orange};
+
+    @media screen and (min-width: ${props => props.theme.screen.sm}) {
+        padding-left: 0;
+    }
 `;
 
-function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber }) {
+function Product({ className, cartItemsNumber, cartIsOpen, setCartIsOpen, setCartItemsNumber }) {
     const [itemsNumber, setItemsNumber] = useState(0);
     const [formIsNotValid, setFormIsNotValid] = useState(false);
 
@@ -110,7 +116,7 @@ function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber
         if (itemsNumber > 0) {
             if (formIsNotValid) setFormIsNotValid(false);
             setCartItemsNumber(cartItemsNumber + itemsNumber);
-            setCartIsOpen(true);
+            if (!cartIsOpen) setCartIsOpen(true);
         } else {
             if (!formIsNotValid) setFormIsNotValid(true);
         }
@@ -139,11 +145,9 @@ function Product({ className, cartItemsNumber, setCartIsOpen, setCartItemsNumber
                     <ErrorMessage
                         key="form-error-message"
                         initial="hidden"
-                        animate="bounce"
+                        animate="flash"
                         exit="hidden"
                         variants={errorMessageMotion}
-                        transition={{ type: "spring", duration: 0.3 }}
-                        style={{ x: '-50%', y: 'calc(100% + 2rem)' }}
                     >You cannot add 0 items in the cart.</ErrorMessage>
                 )}
             </AnimatePresence>

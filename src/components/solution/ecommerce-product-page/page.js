@@ -180,6 +180,7 @@ function Page() {
                     scrollY={scrollY}
                 />
                 <Product
+                    cartIsOpen={cartIsOpen}
                     cartItemsNumber={cartItemsNumber}
                     setCartIsOpen={setCartIsOpen}
                     setCartItemsNumber={setCartItemsNumber}
