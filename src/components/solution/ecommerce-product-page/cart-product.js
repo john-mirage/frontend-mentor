@@ -3,7 +3,6 @@ import IconButton from "@components/solution/ecommerce-product-page/icon-button"
 import Button from "@components/solution/ecommerce-product-page/button";
 import productThumbnail from "@assets/solution/ecommerce-product-page/image-product-1-thumbnail.jpg";
 import BaseDeleteIcon from "@assets/solution/ecommerce-product-page/icon-delete.svg?react";
-import { forwardRef } from 'react';
 
 const Container = styled.div`
     width: 100%;
@@ -86,7 +85,7 @@ const DeleteIcon = styled(BaseDeleteIcon)`
     fill: ${props => props.theme.color.neutral.grayishBlue};
 `;
 
-const CartProduct = forwardRef(({className, cartItemsNumber, setCartItemsNumber }, ref) => {
+function CartProduct({className, cartItemsNumber, setCartItemsNumber }) {
     const totalPrice = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(cartItemsNumber * 125);
 
     function handleCartReset(event) {
@@ -95,7 +94,7 @@ const CartProduct = forwardRef(({className, cartItemsNumber, setCartItemsNumber 
     }
 
     return (
-        <Container className={className} ref={ref}>
+        <Container className={className}>
             <Product>
                 <Thumbnail src={productThumbnail.src} />
                 <Info>
@@ -109,6 +108,6 @@ const CartProduct = forwardRef(({className, cartItemsNumber, setCartItemsNumber 
             <Button label="Checkout" />
         </Container>
     );
-});
+}
 
 export default CartProduct;

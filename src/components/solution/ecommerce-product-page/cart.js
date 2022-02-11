@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import BaseCartProduct from "@components/solution/ecommerce-product-page/cart-product";
-import { AnimatePresence, motion } from "framer-motion";
+import CartProduct from "@components/solution/ecommerce-product-page/cart-product";
+import { motion } from "framer-motion";
 
 const Container = styled(motion.div)`
     display: flex;
@@ -32,12 +32,7 @@ const Body = styled.div`
     padding: 2.4rem;
 `;
 
-const CartProduct = styled(motion(BaseCartProduct))`
-    width: 100%;
-    height: auto;
-`;
-
-const EmptyCartText = styled(motion.p)`
+const EmptyCartText = styled.p`
     width: 100%;
     height: auto;
     margin: auto;
@@ -58,28 +53,10 @@ function Cart({ className, cartItemsNumber, setCartItemsNumber, opacity, y, tipp
                 <Title>Cart</Title>
             </Header>
             <Body>
-                <AnimatePresence exitBeforeEnter>
-                    {cartItemsNumber > 0
-                        ? <CartProduct
-                              key="cart-product"
-                              cartItemsNumber={cartItemsNumber}
-                              setCartItemsNumber={setCartItemsNumber}
-                              initial={{ opacity: 0}}
-                              animate={{ opacity: 1}}
-                              exit={{ opacity: 0}}
-                              transition={{ type: 'spring', duration: 0.3 }}
-                          />
-                        : <EmptyCartText
-                              key="empty-cart-text"
-                              initial={{ opacity: 0}}
-                              animate={{ opacity: 1}}
-                              exit={{ opacity: 0}}
-                              transition={{ type: 'spring', duration: 0.3 }}
-                          >
-                              Your cart is empty
-                          </EmptyCartText>
-                    }
-                </AnimatePresence>
+                {cartItemsNumber > 0
+                    ? <CartProduct cartItemsNumber={cartItemsNumber} setCartItemsNumber={setCartItemsNumber}/>
+                    : <EmptyCartText>Your cart is empty</EmptyCartText>
+                }
             </Body>
         </Container>
     );
