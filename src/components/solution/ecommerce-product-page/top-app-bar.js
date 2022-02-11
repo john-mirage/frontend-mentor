@@ -151,6 +151,7 @@ function TopAppBar({ className, cartIsOpen, cartItemsNumber, setDrawerIsOpen, se
                 animation={true}
                 onMount={onCartMount}
                 onHide={onCartHide}
+                placement="bottom"
                 popperOptions={{
                     modifiers: [
                         {
