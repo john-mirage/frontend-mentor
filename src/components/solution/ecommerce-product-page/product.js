@@ -149,7 +149,7 @@ function Product({ className, cartItemsNumber, cartIsOpen, setCartIsOpen, setCar
                         animate="flash"
                         exit="hidden"
                         variants={errorMessageMotion}
-                    >You cannot add 0 items in the cart.</ErrorMessage>
+                    >Click on the plus button to add at least one item.</ErrorMessage>
                 )}
             </AnimatePresence>
         </Container>

@@ -9,6 +9,7 @@ const Container = styled.button`
     height: 6rem;
     border-radius: 1rem;
     background-color: ${props => props.theme.color.primary.orange};
+    box-shadow: 0 10px 30px -10px ${props => props.theme.color.primary.orange};
     cursor: pointer;
 `;
 

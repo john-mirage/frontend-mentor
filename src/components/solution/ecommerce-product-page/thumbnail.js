@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const overlayOnHover = {
     hover: {
-        opacity: 1,
+        opacity: 0.6,
         transition: {
             type: 'spring',
             duration: 0.3,
@@ -45,7 +45,7 @@ const Overlay = styled(motion.div)`
     ${layer}
     z-index: 70;
     border-radius: 1rem;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.7);
 `;
 
 function Thumbnail({ className, thumbnail, action, isActive }) {

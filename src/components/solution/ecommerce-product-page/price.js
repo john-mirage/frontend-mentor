@@ -18,7 +18,7 @@ const CurrentPrice = styled.p`
 `;
 
 const Discount = styled.p`
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 1rem;
     border-radius: 0.4rem;
     font-size: 1.6rem;
     font-weight: 700;
