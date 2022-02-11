@@ -74,6 +74,7 @@ const ctrlIcon = css`
     height: auto;
     fill: none;
     stroke: ${props => props.theme.color.neutral.black};
+    transition: stroke 300ms;
 `;
 
 const PreviousButton = styled(IconButton)`
@@ -84,6 +85,10 @@ const PreviousButton = styled(IconButton)`
 
 const PreviousIcon = styled(BasePreviousIcon)`
     ${ctrlIcon}
+
+    ${PreviousButton}:hover & {
+        stroke: ${props => props.theme.color.primary.orange};
+    }
 `;
 
 const NextButton = styled(IconButton)`
@@ -94,6 +99,10 @@ const NextButton = styled(IconButton)`
 
 const NextIcon = styled(BaseNextIcon)`
     ${ctrlIcon}
+
+    ${NextButton}:hover & {
+        stroke: ${props => props.theme.color.primary.orange};
+    }
 `;
 
 const Lightbox = forwardRef(({ className, thumbnails, images, initialFeaturedImage, setLightboxIsOpen }, ref) => {

@@ -12,6 +12,8 @@ const Container = styled.button`
     }
 
     @media screen and (min-width: ${props => props.theme.screen.lg}) {
+        transition: background-color 300ms;
+        
         &:hover {
             background-color: ${props => props.theme.color.primary.orange};
         }

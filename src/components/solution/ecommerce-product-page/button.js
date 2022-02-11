@@ -11,6 +11,11 @@ const Container = styled.button`
     background-color: ${props => props.theme.color.primary.orange};
     box-shadow: 0 10px 30px -10px ${props => props.theme.color.primary.orange};
     cursor: pointer;
+    transition: opacity 300ms;
+
+    &:hover {
+        opacity: 0.6;
+    }
 `;
 
 const Label = styled.span`

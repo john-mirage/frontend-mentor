@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import IconButton from "@components/solution/ecommerce-product-page/icon-button";
+import BaseIconButton from "@components/solution/ecommerce-product-page/icon-button";
 import BaseMinusIcon from "@assets/solution/ecommerce-product-page/icon-minus.svg?react";
 import BasePlusIcon from "@assets/solution/ecommerce-product-page/icon-plus.svg?react";
 
@@ -21,6 +21,14 @@ const Count = styled.p`
     font-weight: 700;
     text-transform: uppercase;
     color: ${props => props.theme.color.neutral.veryDarkBlue};
+`;
+
+const IconButton = styled(BaseIconButton)`
+    transition: opacity 300ms;
+
+    &:hover {
+        opacity: 0.6;
+    }
 `;
 
 const Icon = css`
