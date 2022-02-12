@@ -4,12 +4,13 @@ import BaseTodoInput from '@components/solution/todo-app-hub/todo-input';
 import BaseTodoList from '@components/solution/todo-app-hub/todo-list';
 import BaseTodoFilter from '@components/solution/todo-app-hub/todo-filter';
 import backgroundMobileLight from '@assets/solution/todo-app-hub/bg-mobile-light.jpg';
+import backgroundMobileDark from '@assets/solution/todo-app-hub/bg-mobile-dark.jpg';
 
 const Container = styled.main`
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-image: url(${backgroundMobileLight.src});
+    background-image: url(${props => props.isDarkTheme ? backgroundMobileDark.src : backgroundMobileLight.src});
     background-color: ${props => props.theme.neutral.background};
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -75,7 +76,7 @@ const todos = [
 
 function Page({ isDarkTheme, setIsDarkTheme }) {
     return (
-        <Container>
+        <Container isDarkTheme={isDarkTheme}>
             <TopAppBar isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
             <TodoInput />
             <TodoList todos={todos} />
