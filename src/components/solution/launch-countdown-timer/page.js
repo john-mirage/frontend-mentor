@@ -12,7 +12,7 @@ const Container = styled.main`
         url(${starsIllustration}),
         url(${hillsIllustration});
     background-repeat: repeat-x;
-    background-size: auto calc(80%), auto 20%;
+    background-size: auto 80%, auto 20%;
     background-position: top, bottom right;
 
     @media screen and (min-width: 848px) {
