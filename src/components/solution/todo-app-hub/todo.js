@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Reorder } from 'framer-motion';
 
-const Container = styled.li`
+const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -9,6 +10,7 @@ const Container = styled.li`
     padding-left: 2rem;
     padding-right: 2rem;
     border-bottom: 0.1rem solid ${props => props.theme.neutral.divider};
+    cursor: pointer;
 `;
 
 const Value = styled.p`
@@ -19,11 +21,13 @@ const Value = styled.p`
     padding-bottom: 2rem;
 `;
 
-function Todo({ className, todo }) {
+function Todo({ todo }) {
     return (
-        <Container className={className}>
-            <Value>{todo.content}</Value>
-        </Container>
+        <Reorder.Item value={todo}>
+            <Container>
+                <Value>{todo}</Value>
+            </Container>
+        </Reorder.Item>
     );
 }
 
