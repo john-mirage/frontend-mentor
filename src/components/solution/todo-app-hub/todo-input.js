@@ -22,7 +22,6 @@ const SubmitButton = styled.button`
     height: 3rem;
     border-radius: 50%;
     background-color: ${props => props.theme.primary.brightBlue};
-    margin-right: 2rem;
 `;
 
 const TextInput = styled.input`
@@ -33,6 +32,10 @@ const TextInput = styled.input`
     padding: 1rem 2rem;
     background-color: inherit;
     color: ${props => props.theme.neutral.primaryText};
+
+    &::placeholder {
+        color: ${props => props.theme.neutral.secondaryText};
+    }
 `;
 
 function TodoInput({ className, addTodo }) {
@@ -42,11 +45,12 @@ function TodoInput({ className, addTodo }) {
         event.preventDefault();
         const todoContent = textInputRef.current.value;
         if (todoContent.length > 0) addTodo(todoContent);
+        textInputRef.current.value = "";
     }
 
     return (
         <Container className={className}>
-            <TextInput type="text" ref={textInputRef} />
+            <TextInput type="text" placeholder='Create a new todo...' ref={textInputRef} />
             <SubmitButton onClick={handleTodoCreation} />
         </Container>
     );
