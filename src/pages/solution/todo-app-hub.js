@@ -29,7 +29,7 @@ const darkTheme = {
         foreground: 'hsl(235, 24%, 19%)',
         background: 'hsl(235, 21%, 11%)',
         primaryText: 'hsl(234, 39%, 85%)',
-        secondaryText: 'hsl(233, 14%, 35%)',
+        secondaryText: 'hsl(234, 11%, 52%)',
         divider: 'hsl(237, 14%, 26%)'
     }
 }

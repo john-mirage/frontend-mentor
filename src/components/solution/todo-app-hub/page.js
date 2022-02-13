@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import BaseTopAppBar from '@components/solution/todo-app-hub/top-app-bar';
-import BaseTodoInput from '@components/solution/todo-app-hub/todo-input';
-import BaseTodoList from '@components/solution/todo-app-hub/todo-list';
-import BaseTodoFilter from '@components/solution/todo-app-hub/todo-filter';
+import TodoInput from '@components/solution/todo-app-hub/todo-input';
+import TodoList from '@components/solution/todo-app-hub/todo-list';
+import TodoFilter from '@components/solution/todo-app-hub/todo-filter';
 import lightThemeMobileImage from '@assets/solution/todo-app-hub/bg-mobile-light.jpg';
 import darkThemeMobileImage from '@assets/solution/todo-app-hub/bg-mobile-dark.jpg';
 import lightThemeDesktopImage from '@assets/solution/todo-app-hub/bg-desktop-light.jpg';
 import darkThemeDesktopImage from '@assets/solution/todo-app-hub/bg-desktop-dark.jpg';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 const Screen = styled.div`
     position: relative;
@@ -40,13 +42,6 @@ const Container = styled.main`
     }
 `;
 
-const TopAppBar = styled(BaseTopAppBar)`
-    position: absolute;
-    z-index: 100;
-    top: 0;
-    left: 0;
-`;
-
 const Background = styled(motion.div)`
     position: absolute;
     z-index: 90;
@@ -64,21 +59,45 @@ const Background = styled(motion.div)`
     }
 `;
 
-const TodoInput = styled(BaseTodoInput)`
+const Section = styled.div`
+    width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    transition: background-color 300ms;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     margin-bottom: 2rem;
 `;
 
-const TodoList = styled(BaseTodoList)`
-    margin-bottom: 2rem;
+const TopSection = styled(Section)`
+    background-color: ${props => props.theme.neutral.foreground};
 `;
 
-const TodoFilter = styled(BaseTodoFilter)`
-    margin-bottom: 5rem;
+const MiddleSection = styled(Section)`
+    background-color: ${props => props.theme.neutral.divider};
+`;
+
+const BottomSection = styled(Section)`
+    background-color: ${props => props.theme.neutral.foreground};
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    @media screen and (min-width: 992px) {
+        display: none;
+    }
+`;
+
+const TopAppBar = styled(BaseTopAppBar)`
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
 `;
 
 const Advice = styled.p`
     width: 100%;
     height: auto;
+    margin-top: 5rem;
     text-align: center;
     font-size: 1.4rem;
     font-weight: 700;
@@ -87,32 +106,41 @@ const Advice = styled.p`
 
 const todos = [
     {
+        id: nanoid(),
         content: 'Complete online JavaScript course',
-        isDone: true,
+        completed: true,
     },
     {
+        id: nanoid(),
         content: 'Jog around the park 3x',
-        isDone: false,
+        completed: false,
     },
     {
+        id: nanoid(),
         content: '10 minutes meditation',
-        isDone: false,
+        completed: false,
     },
     {
+        id: nanoid(),
         content: 'Read for 1 hour',
-        isDone: false,
+        completed: false,
     },
     {
+        id: nanoid(),
         content: 'Pick up groceries',
-        isDone: false,
+        completed: false,
     },
     {
+        id: nanoid(),
         content: 'Complete Todo App on Frontend Mentor',
-        isDone: false,
+        completed: false,
     },
 ];
 
 function Page({ isDarkTheme, setIsDarkTheme }) {
+    const [todoList, setTodoList] = useState(todos);
+    const [todoListFilter, setTodoListFilter] = useState('all');
+
     return (
         <Screen isDarkTheme={isDarkTheme}>
 
@@ -122,7 +150,7 @@ function Page({ isDarkTheme, setIsDarkTheme }) {
                 container={Container}
             />
 
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
                 <Background
                     key={isDarkTheme ? 'dark-theme-image' : 'light-theme-image'}
                     initial={{ opacity: 0.2 }}
@@ -134,9 +162,26 @@ function Page({ isDarkTheme, setIsDarkTheme }) {
             </AnimatePresence>
 
             <Container>
-                <TodoInput />
-                <TodoList todos={todos} />
-                <TodoFilter />
+                <TopSection>
+                    <TodoInput />
+                </TopSection>
+
+                <MiddleSection>
+                    <TodoList
+                        todoList={todoList}
+                        todoListFilter={todoListFilter}
+                        setTodoList={setTodoList}
+                        setTodoListFilter={setTodoListFilter}
+                    />
+                </MiddleSection>
+
+                <BottomSection>
+                    <TodoFilter
+                        todoListFilter={todoListFilter}
+                        setTodoListFilter={setTodoListFilter}
+                    />
+                </BottomSection>
+                
                 <Advice>Drag and drop to reorder list</Advice>
             </Container>
 

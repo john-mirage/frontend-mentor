@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { Reorder } from 'framer-motion';
+import styled, { css } from 'styled-components';
+import { Reorder, useMotionValue } from 'framer-motion';
+import useRaisedShadow from '@hooks/use-raised-shadow';
 
 const Container = styled.div`
     display: flex;
@@ -9,23 +10,39 @@ const Container = styled.div`
     height: auto;
     padding-left: 2rem;
     padding-right: 2rem;
-    border-bottom: 0.1rem solid ${props => props.theme.neutral.divider};
     cursor: pointer;
+    background-color: ${props => props.theme.neutral.foreground};
 `;
 
-const Value = styled.p`
+const State = styled.input`
+
+`;
+
+const Content = styled.p`
     font-size: 1.4rem;
     font-weight: 400;
-    color: ${props => props.theme.neutral.primaryText};
+    color: ${props => props.todoIsCompleted ? props.theme.neutral.secondaryText : props.theme.neutral.primaryText};
     padding-top: 2rem;
     padding-bottom: 2rem;
+    ${props => props.todoIsCompleted && css`
+        text-decoration-line: line-through;
+    `}
 `;
 
-function Todo({ todo }) {
+function Todo({ className, todo, handleTodoListChange }) {
+    const y = useMotionValue(0);
+    const boxShadow = useRaisedShadow(y);
+
+    function handleTodoCompletedState(event) {
+        const todoNewCompletedState = event.target.checked;
+        handleTodoListChange({ id: todo.id, content: todo.content, completed: todoNewCompletedState });
+    }
+
     return (
-        <Reorder.Item value={todo}>
-            <Container>
-                <Value>{todo}</Value>
+        <Reorder.Item value={todo.id} style={{ boxShadow, y }}>
+            <Container className={className}>
+                <State type="checkbox" checked={todo.completed} onChange={handleTodoCompletedState} />
+                <Content todoIsCompleted={todo.completed}>{todo.content}</Content>
             </Container>
         </Reorder.Item>
     );

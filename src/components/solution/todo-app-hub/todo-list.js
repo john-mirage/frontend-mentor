@@ -1,28 +1,60 @@
 import styled from 'styled-components';
-import Todo from '@components/solution/todo-app-hub/todo';
 import { useState } from 'react';
 import { Reorder } from 'framer-motion';
+import BaseTodoMenu from '@components/solution/todo-app-hub/todo-menu';
+import BaseTodo from '@components/solution/todo-app-hub/todo';
 
-const Container = styled.div`
-    width: 100%;
-    height: auto;
-    transition: background-color 300ms;
+const TodoMenu = styled(BaseTodoMenu)`
     background-color: ${props => props.theme.neutral.foreground};
-    border-radius: 0.6rem;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
-function TodoList({ className }) {
-    const [todos, setTodos] = useState(['first', 'second', 'third', 'fourth', 'fifth']);
+const Todo = styled(BaseTodo)`
+    margin-bottom: 0.1rem;
+`;
+
+function TodoList({ todoList, todoListFilter, setTodoList, setTodoListFilter }) {
+    const [todoOrderList, setTodoOrderList] = useState(todoList.map(todo => todo.id));
+    const filteredTodoList = getFilteredTodoList();
+
+    function getFilteredTodoList() {
+        switch (todoListFilter) {
+            case 'all':
+                return todoList;
+            case 'active':
+                return todoList.map(todo => !todo.completed);
+            case 'completed':
+                return todoList.map(todo => todo.completed);
+            default:
+                throw new Error('The todo list filter is not valid');
+        }
+    }
+
+    function handleTodoListChange(updatedTodo) {
+        setTodoList(todoList.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
+    }
+
+    function handleTodoListOrder(newTodoOrderList) {
+        setTodoList(newTodoOrderList.map(todoId => todoList.find(todo => todo.id === todoId)));
+        setTodoOrderList(newTodoOrderList);
+    }
 
     return (
-        <Container className={className}>
-            <Reorder.Group axis="y" onReorder={setTodos} values={todos}>
-                {todos.map((todo) => (
-                    <Todo key={todo} todo={todo} />
-                ))}
+        <>
+            <Reorder.Group axis="y" onReorder={handleTodoListOrder} values={todoOrderList}>
+                {todoOrderList.map((todoId) => {
+                    const todo = todoList.find(todo => todoId === todo.id);
+                    if (!todo) throw new Error("Todo does not exist");
+                    return (
+                        <Todo
+                            key={todo.id}
+                            todo={todo}
+                            handleTodoListChange={handleTodoListChange}
+                        />
+                    )
+                })}
             </Reorder.Group>
-        </Container>
+            <TodoMenu />
+        </>
     );
 }
 
