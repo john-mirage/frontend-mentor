@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
-import { Reorder, useMotionValue } from 'framer-motion';
-import useRaisedShadow from '@hooks/use-raised-shadow';
+import { Reorder } from 'framer-motion';
+import IconButton from '@components/solution/todo-app-hub/icon-button';
+import BaseDeleteIcon from '@assets/solution/todo-app-hub/icon-cross.svg?react';
 
 const Container = styled.div`
     display: flex;
@@ -29,20 +30,36 @@ const Content = styled.p`
     `}
 `;
 
-function Todo({ className, todo, handleTodoListChange }) {
-    const y = useMotionValue(0);
-    const boxShadow = useRaisedShadow(y);
+const DeleteButton = styled(IconButton)`
+    margin-left: auto;
+    margin-right: -1.8rem;
+`;
 
-    function handleTodoCompletedState(event) {
+const DeleteIcon = styled(BaseDeleteIcon)`
+    width: 1.2rem;
+    height: auto;
+    fill: ${props => props.theme.neutral.secondaryText};
+`;
+
+function Todo({ className, todo, handleTodoListChange, deleteTodo }) {
+    function handleTodoCompletion(event) {
         const todoNewCompletedState = event.target.checked;
         handleTodoListChange({ id: todo.id, content: todo.content, completed: todoNewCompletedState });
     }
 
+    function handleTodoDeletion(event) {
+        event.preventDefault();
+        deleteTodo(todo.id)
+    }
+
     return (
-        <Reorder.Item value={todo.id} style={{ boxShadow, y }}>
+        <Reorder.Item value={todo.id}>
             <Container className={className}>
-                <State type="checkbox" checked={todo.completed} onChange={handleTodoCompletedState} />
+                <State type="checkbox" checked={todo.completed} onChange={handleTodoCompletion} />
                 <Content todoIsCompleted={todo.completed}>{todo.content}</Content>
+                <DeleteButton action={handleTodoDeletion}>
+                    <DeleteIcon />
+                </DeleteButton>
             </Container>
         </Reorder.Item>
     );

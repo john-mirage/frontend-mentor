@@ -37,11 +37,11 @@ const ClearButton = styled.button`
     color: ${props => props.theme.neutral.secondaryText};
 `;
 
-function TodoMenu({ className }) {
+function TodoMenu({ className, clearCompletedTodos, remainingTodos }) {
     return (
         <Container className={className}>
             <Section>
-                <Remaining>5 items left</Remaining>
+                <Remaining>{remainingTodos} item{remainingTodos > 1 ? 's' : ''} left</Remaining>
             </Section>
 
             <DesktopSection>
@@ -49,7 +49,7 @@ function TodoMenu({ className }) {
             </DesktopSection>
 
             <Section>
-                <ClearButton>Clear Completed</ClearButton>
+                <ClearButton onClick={clearCompletedTodos}>Clear Completed</ClearButton>
             </Section>
         </Container>
     );

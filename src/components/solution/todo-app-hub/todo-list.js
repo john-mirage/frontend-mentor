@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { Reorder } from 'framer-motion';
 import BaseTodoMenu from '@components/solution/todo-app-hub/todo-menu';
 import BaseTodo from '@components/solution/todo-app-hub/todo';
@@ -12,22 +11,9 @@ const Todo = styled(BaseTodo)`
     margin-bottom: 0.1rem;
 `;
 
-function TodoList({ todoList, todoListFilter, setTodoList, setTodoListFilter }) {
-    const [todoOrderList, setTodoOrderList] = useState(todoList.map(todo => todo.id));
-    const filteredTodoList = getFilteredTodoList();
-
-    function getFilteredTodoList() {
-        switch (todoListFilter) {
-            case 'all':
-                return todoList;
-            case 'active':
-                return todoList.map(todo => !todo.completed);
-            case 'completed':
-                return todoList.map(todo => todo.completed);
-            default:
-                throw new Error('The todo list filter is not valid');
-        }
-    }
+function TodoList({ todoList, todoListFilter, setTodoList, setTodoListFilter, clearCompletedTodos, deleteTodo }) {
+    let todoOrderList = todoList.map(todo => todo.id);
+    const remainingTodos = todoList.filter(todo => !todo.completed).length;
 
     function handleTodoListChange(updatedTodo) {
         setTodoList(todoList.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
@@ -35,7 +21,6 @@ function TodoList({ todoList, todoListFilter, setTodoList, setTodoListFilter }) 
 
     function handleTodoListOrder(newTodoOrderList) {
         setTodoList(newTodoOrderList.map(todoId => todoList.find(todo => todo.id === todoId)));
-        setTodoOrderList(newTodoOrderList);
     }
 
     return (
@@ -49,11 +34,15 @@ function TodoList({ todoList, todoListFilter, setTodoList, setTodoListFilter }) 
                             key={todo.id}
                             todo={todo}
                             handleTodoListChange={handleTodoListChange}
+                            deleteTodo={deleteTodo}
                         />
                     )
                 })}
             </Reorder.Group>
-            <TodoMenu />
+            <TodoMenu
+                remainingTodos={remainingTodos}
+                clearCompletedTodos={clearCompletedTodos}
+            />
         </>
     );
 }

@@ -10,6 +10,7 @@ import darkThemeDesktopImage from '@assets/solution/todo-app-hub/bg-desktop-dark
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
+import Head from 'next/head';
 
 const Screen = styled.div`
     position: relative;
@@ -64,7 +65,8 @@ const Section = styled.div`
     height: auto;
     border-radius: 0.6rem;
     overflow: hidden;
-    transition: background-color 300ms;
+    transition-property: background-color, color;
+    transition-duration: 300ms;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     margin-bottom: 2rem;
 `;
@@ -141,51 +143,76 @@ function Page({ isDarkTheme, setIsDarkTheme }) {
     const [todoList, setTodoList] = useState(todos);
     const [todoListFilter, setTodoListFilter] = useState('all');
 
+    function addTodo(todoContent) {
+        const newTodo = { id: nanoid(), content: todoContent, completed: false };
+        setTodoList([...todoList, newTodo]);
+    }
+
+    function deleteTodo(todoId) {
+        setTodoList(todoList.filter(todo => todo.id !== todoId));
+    }
+
+    function clearCompletedTodos(event) {
+        event.preventDefault();
+        const newTodoList = todoList.filter(todo => !todo.completed);
+        if (todoList.length !== newTodoList.length) setTodoList(newTodoList);
+    }
+
     return (
-        <Screen isDarkTheme={isDarkTheme}>
+        <>
+            <Head>
+                <link rel="preload" as="image" href={darkThemeMobileImage.src} />
+                <link rel="preload" as="image" href={darkThemeDesktopImage.src} />
+                <link rel="preload" as="image" href={lightThemeMobileImage.src} />
+                <link rel="preload" as="image" href={lightThemeDesktopImage.src} />
+            </Head>
+            <Screen isDarkTheme={isDarkTheme}>
 
-            <TopAppBar
-                isDarkTheme={isDarkTheme}
-                setIsDarkTheme={setIsDarkTheme}
-                container={Container}
-            />
-
-            <AnimatePresence initial={false}>
-                <Background
-                    key={isDarkTheme ? 'dark-theme-image' : 'light-theme-image'}
-                    initial={{ opacity: 0.2 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0.2 }}
-                    transition={{ type: "tween", duration: 0.3 }}
-                    $isDarkTheme={isDarkTheme}
+                <TopAppBar
+                    isDarkTheme={isDarkTheme}
+                    setIsDarkTheme={setIsDarkTheme}
+                    container={Container}
                 />
-            </AnimatePresence>
 
-            <Container>
-                <TopSection>
-                    <TodoInput />
-                </TopSection>
-
-                <MiddleSection>
-                    <TodoList
-                        todoList={todoList}
-                        todoListFilter={todoListFilter}
-                        setTodoList={setTodoList}
-                        setTodoListFilter={setTodoListFilter}
+                <AnimatePresence initial={false}>
+                    <Background
+                        key={isDarkTheme ? 'dark-theme-image' : 'light-theme-image'}
+                        initial={{ opacity: 0.2 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0.2 }}
+                        transition={{ type: "tween", duration: 0.3 }}
+                        $isDarkTheme={isDarkTheme}
                     />
-                </MiddleSection>
+                </AnimatePresence>
 
-                <BottomSection>
-                    <TodoFilter
-                        todoListFilter={todoListFilter}
-                        setTodoListFilter={setTodoListFilter}
-                    />
-                </BottomSection>
-                
-                <Advice>Drag and drop to reorder list</Advice>
-            </Container>
+                <Container>
+                    <TopSection>
+                        <TodoInput addTodo={addTodo} />
+                    </TopSection>
 
-        </Screen>
+                    <MiddleSection>
+                        <TodoList
+                            todoList={todoList}
+                            todoListFilter={todoListFilter}
+                            setTodoList={setTodoList}
+                            setTodoListFilter={setTodoListFilter}
+                            clearCompletedTodos={clearCompletedTodos}
+                            deleteTodo={deleteTodo}
+                        />
+                    </MiddleSection>
+
+                    <BottomSection>
+                        <TodoFilter
+                            todoListFilter={todoListFilter}
+                            setTodoListFilter={setTodoListFilter}
+                        />
+                    </BottomSection>
+                    
+                    <Advice>Drag and drop to reorder list</Advice>
+                </Container>
+
+            </Screen>
+        </>
     );
 }
 
