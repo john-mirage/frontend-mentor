@@ -41,7 +41,7 @@ const DeleteIcon = styled(BaseDeleteIcon)`
     fill: ${props => props.theme.neutral.secondaryText};
 `;
 
-function Todo({ className, todo, handleTodoListChange, deleteTodo }) {
+function Todo({ className, todo, handleTodoListChange, deleteTodo, constraintsRef }) {
     function handleTodoCompletion(event) {
         const todoNewCompletedState = event.target.checked;
         handleTodoListChange({ id: todo.id, content: todo.content, completed: todoNewCompletedState });
@@ -53,10 +53,20 @@ function Todo({ className, todo, handleTodoListChange, deleteTodo }) {
     }
 
     return (
-        <Reorder.Item value={todo.id}>
+        <Reorder.Item
+            value={todo.id}
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+        >
             <Container className={className}>
-                <State type="checkbox" checked={todo.completed} onChange={handleTodoCompletion} />
+                <State
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={handleTodoCompletion}
+                />
+
                 <Content todoIsCompleted={todo.completed}>{todo.content}</Content>
+
                 <DeleteButton action={handleTodoDeletion}>
                     <DeleteIcon />
                 </DeleteButton>
