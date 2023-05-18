@@ -4,20 +4,49 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "inputs": ["default", "^default"]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
       ]
+    }
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "style": "none",
+        "linter": "eslint",
+        "bundler": "vite",
+        "e2eTestRunner": "none",
+        "babel": true
+      },
+      "component": {
+        "style": "none",
+        "directory": "components",
+        "export": false
+      },
+      "hook": {
+        "directory": "hooks",
+        "export": true
+      },
+      "library": {
+        "style": "none",
+        "linter": "eslint",
+        "bundler": "vite",
+        "unitTestRunner": "vitest"
+      }
     }
   }
 }
