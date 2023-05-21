@@ -2,9 +2,9 @@ import Period from "../period";
 
 /* eslint-disable-next-line */
 export interface ResultProps {
-  years?: number;
-  months?: number;
-  days?: number;
+  years: number;
+  months: number;
+  days: number;
 }
 
 export function Result(props: ResultProps) {

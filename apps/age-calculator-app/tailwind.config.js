@@ -90,6 +90,14 @@ module.exports = {
           fontWeight: "600",
         },
       ],
+      "body-sm": [
+        theme("spacing[12]"),
+        {
+          lineHeight: theme("spacing[20]"),
+          letterSpacing: "0",
+          fontWeight: "400",
+        },
+      ],
     }),
     extend: {
       fontFamily: {
