@@ -3,24 +3,30 @@ import Form from "../form";
 import Result from "../result";
 import { intervalToDuration } from "date-fns";
 
+export interface FormValues {
+  day?: string;
+  month?: string;
+  year?: string;
+}
+
 /* eslint-disable-next-line */
 export interface CardProps {}
 
 export function Card(props: CardProps) {
-  const [days, setDays] = useState(0);
-  const [months, setMonths] = useState(0);
-  const [years, setYears] = useState(0);
+  const [days, setDays] = useState<number>(0);
+  const [months, setMonths] = useState<number>(0);
+  const [years, setYears] = useState<number>(0);
 
-  const handleForm = (values) => {
+  const handleForm = (values: FormValues) => {
     const date = new Date(`${values.year}-${values.month}-${values.day}`);
     const interval = intervalToDuration({
       start: date,
       end: Date.now(),
     });
     console.log(interval);
-    setYears(interval.years);
-    setMonths(interval.months);
-    setDays(interval.days);
+    setYears(interval.years ?? 0);
+    setMonths(interval.months ?? 0);
+    setDays(interval.days ?? 0);
   };
 
   return (
