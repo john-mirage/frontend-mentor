@@ -1,7 +1,7 @@
 {
-  "name": "nft-preview-card-component",
+  "name": "age-calculator-app",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/nft-preview-card-component/src",
+  "sourceRoot": "apps/age-calculator-app/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/nft-preview-card-component"
+        "outputPath": "dist/apps/age-calculator-app"
       },
       "configurations": {
         "development": {
@@ -24,15 +24,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "nft-preview-card-component:build"
+        "buildTarget": "age-calculator-app:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "nft-preview-card-component:build:development",
+          "buildTarget": "age-calculator-app:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "nft-preview-card-component:build:production",
+          "buildTarget": "age-calculator-app:build:production",
           "hmr": false
         }
       }
@@ -41,32 +41,30 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "nft-preview-card-component:build"
+        "buildTarget": "age-calculator-app:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "nft-preview-card-component:build:development"
+          "buildTarget": "age-calculator-app:build:development"
         },
         "production": {
-          "buildTarget": "nft-preview-card-component:build:production"
+          "buildTarget": "age-calculator-app:build:production"
         }
       }
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/nft-preview-card-component"],
+      "outputs": ["coverage/apps/age-calculator-app"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/nft-preview-card-component"
+        "reportsDirectory": "../../coverage/apps/age-calculator-app"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/nft-preview-card-component/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["apps/age-calculator-app/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

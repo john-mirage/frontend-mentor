@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  cacheDir: "../../node_modules/.vite/nft-preview-card-component",
+  cacheDir: "../../node_modules/.vite/age-calculator-app",
 
   server: {
     port: 4200,
