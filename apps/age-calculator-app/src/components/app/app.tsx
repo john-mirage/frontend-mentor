@@ -1,14 +1,11 @@
-import { useCounter } from "@frontend-mentor/common-hooks";
+import Card from "../card";
 
 export function App() {
-  const { count, increment } = useCounter();
-
   return (
-    <>
-      <h1>QR code component</h1>
-      <button onClick={increment}>count</button>
-      <p>{count}</p>
-    </>
+    <main className="flex flex-col justify-center items-center">
+      <h1 className="sr-only">Age calculator app</h1>
+      <Card />
+    </main>
   );
 }
 
