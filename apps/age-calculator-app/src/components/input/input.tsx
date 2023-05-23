@@ -1,10 +1,8 @@
-import { FieldInputProps } from "formik";
-
 /* eslint-disable-next-line */
 export interface InputProps {
   label: string;
   placeholder: string;
-  formikProps: FieldInputProps<any>;
+  reactHookForm: any;
 }
 
 export function Input(props: InputProps) {
@@ -17,7 +15,7 @@ export function Input(props: InputProps) {
         className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
         type="text"
         placeholder={props.placeholder}
-        {...props.formikProps}
+        {...props.reactHookForm}
       />
     </label>
   );
