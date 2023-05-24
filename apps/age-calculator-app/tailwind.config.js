@@ -24,9 +24,6 @@ module.exports = {
       "lg": "840px",
       "hover-device": { raw: "(hover: hover)" },
     },
-    containers: {
-      card: "840px",
-    },
     colors: {
       "transparent": "transparent",
       "purple": "hsl(259, 100%, 65%)",
@@ -41,18 +38,28 @@ module.exports = {
       0: "0px",
       1: pxToRem(1),
       4: pxToRem(4),
+      8: pxToRem(8),
       12: pxToRem(12),
+      14: pxToRem(14),
       16: pxToRem(16),
       18: pxToRem(18),
       20: pxToRem(20),
       24: pxToRem(24),
       32: pxToRem(32),
+      44: pxToRem(44),
       48: pxToRem(48),
       56: pxToRem(56),
       64: pxToRem(64),
       88: pxToRem(88),
+      96: pxToRem(96),
+      104: pxToRem(104),
+      110: pxToRem(110),
+    },
+    gridTemplateColumns: {
+      form: "repeat(3, minmax(0, 160px))",
     },
     maxWidth: {
+      160: pxToRem(160),
       840: pxToRem(840),
     },
     borderWidth: {
@@ -66,6 +73,14 @@ module.exports = {
       full: "9999px",
     },
     fontSize: ({ theme }) => ({
+      "display-lg": [
+        theme("spacing[104]"),
+        {
+          lineHeight: theme("spacing[110]"),
+          letterSpacing: "-0.4px",
+          fontWeight: "800",
+        },
+      ],
       "display-md": [
         theme("spacing[56]"),
         {
@@ -74,15 +89,23 @@ module.exports = {
           fontWeight: "800",
         },
       ],
-      "label-md": [
-        theme("spacing[12]"),
+      "display-sm": [
+        theme("spacing[48]"),
         {
-          lineHeight: theme("spacing[18]"),
-          letterSpacing: "1px",
+          lineHeight: theme("spacing[56]"),
+          letterSpacing: "-0.1px",
+          fontWeight: "800",
+        },
+      ],
+      "heading-md": [
+        theme("spacing[32]"),
+        {
+          lineHeight: theme("spacing[48]"),
+          letterSpacing: "0.2px",
           fontWeight: "600",
         },
       ],
-      "body-md": [
+      "heading-sm": [
         theme("spacing[20]"),
         {
           lineHeight: theme("spacing[32]"),
@@ -90,7 +113,31 @@ module.exports = {
           fontWeight: "600",
         },
       ],
-      "body-sm": [
+      "label-lg": [
+        theme("spacing[12]"),
+        {
+          lineHeight: theme("spacing[18]"),
+          letterSpacing: "2px",
+          fontWeight: "600",
+        },
+      ],
+      "label-md": [
+        theme("spacing[14]"),
+        {
+          lineHeight: theme("spacing[24]"),
+          letterSpacing: "2px",
+          fontWeight: "600",
+        },
+      ],
+      "body-lg": [
+        theme("spacing[14]"),
+        {
+          lineHeight: theme("spacing[24]"),
+          letterSpacing: "0",
+          fontWeight: "400",
+        },
+      ],
+      "body-md": [
         theme("spacing[12]"),
         {
           lineHeight: theme("spacing[20]"),

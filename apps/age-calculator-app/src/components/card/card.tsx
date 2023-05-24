@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { intervalToDuration, isFuture, isValid, getYear } from "date-fns";
+import { useState, useEffect } from "react";
+import { intervalToDuration, isFuture, isValid } from "date-fns";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { clsx } from "clsx";
 
 const schema = yup
   .object({
@@ -33,9 +34,11 @@ export function Card() {
 
   const {
     register,
+    reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
     setError,
+    getValues,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -65,99 +68,143 @@ export function Card() {
     setDays(undefined);
   };
 
+  useEffect(() => {
+    reset({
+      year: getValues("year"),
+      month: getValues("month"),
+      day: getValues("day"),
+    });
+  }, [isSubmitSuccessful, reset, getValues]);
+
   return (
     <article className="@container w-full max-w-840">
-      <div className="px-24 py-48 bg-white rounded-tl-24 rounded-tr-24 rounded-bl-24 rounded-br-100 @card:rounded-br-200">
+      <div className="px-24 py-48 bg-white rounded-tl-24 rounded-tr-24 rounded-bl-24 rounded-br-100 @2xl:rounded-br-200 @2xl:p-56">
         <form className="mb-32" onSubmit={handleSubmit(onSubmit, onError)}>
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid gap-16 @sm:grid-cols-form @2xl:gap-32">
             <div>
               <label>
-                <span className="mb-4 block text-label-md text-smokey-grey uppercase">
+                <span
+                  className={clsx(
+                    errors.day || errors.root?.invalidDate
+                      ? "text-light-red"
+                      : "text-smokey-grey",
+                    "mb-4 block text-label-md uppercase @2xl:mb-8"
+                  )}
+                >
                   day
                 </span>
                 <input
-                  className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
+                  className={clsx(
+                    errors.day || errors.root?.invalidDate
+                      ? "border-light-red focus-visible:outline-light-red"
+                      : "border-light-grey focus-visible:outline-purple",
+                    "w-full px-16 py-12 border-1 text-heading-sm text-off-black rounded-8 @2xl:px-24 @2xl:text-heading-md"
+                  )}
                   type="text"
-                  placeholder="24"
+                  placeholder="DD"
                   {...register("day")}
                 />
               </label>
               {errors.day && (
-                <p className="mt-4 text-body-sm text-light-red italic">
-                  {errors.day.message}
+                <p className="mt-4 text-body-md text-light-red italic @2xl:mt-8 @2xl:text-body-lg">
+                  {errors.day?.message}
                 </p>
               )}
             </div>
             <div>
               <label>
-                <span className="mb-4 block text-label-md text-smokey-grey uppercase">
+                <span
+                  className={clsx(
+                    errors.month || errors.root?.invalidDate
+                      ? "text-light-red"
+                      : "text-smokey-grey",
+                    "mb-4 block text-label-md uppercase @2xl:mb-8"
+                  )}
+                >
                   month
                 </span>
                 <input
-                  className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
+                  className={clsx(
+                    errors.month || errors.root?.invalidDate
+                      ? "border-light-red focus-visible:outline-light-red"
+                      : "border-light-grey focus-visible:outline-purple",
+                    "w-full px-16 py-12 border-1 text-heading-sm text-off-black rounded-8 @2xl:px-24 @2xl:text-heading-md"
+                  )}
                   type="text"
-                  placeholder="09"
+                  placeholder="MM"
                   {...register("month")}
                 />
               </label>
               {errors.month && (
-                <p className="mt-4 text-body-sm text-light-red italic">
-                  {errors.month.message}
+                <p className="mt-4 text-body-md text-light-red italic @2xl:mt-8 @2xl:text-body-lg">
+                  {errors.month?.message}
                 </p>
               )}
             </div>
             <div>
               <label>
-                <span className="mb-4 block text-label-md text-smokey-grey uppercase">
+                <span
+                  className={clsx(
+                    errors.year || errors.root?.invalidDate
+                      ? "text-light-red"
+                      : "text-smokey-grey",
+                    "mb-4 block text-label-md uppercase @2xl:mb-8"
+                  )}
+                >
                   year
                 </span>
                 <input
-                  className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
+                  className={clsx(
+                    errors.year || errors.root?.invalidDate
+                      ? "border-light-red focus-visible:outline-light-red"
+                      : "border-light-grey focus-visible:outline-purple",
+                    "w-full px-16 py-12 border-1 text-heading-sm text-off-black rounded-8 @2xl:px-24 @2xl:text-heading-md"
+                  )}
                   type="text"
-                  placeholder="1984"
+                  placeholder="YYYY"
                   {...register("year")}
                 />
               </label>
               {errors.year && (
-                <p className="mt-4 text-body-sm text-light-red italic">
-                  {errors.year.message}
+                <p className="mt-4 text-body-md text-light-red italic @2xl:mt-8 @2xl:text-body-lg">
+                  {errors.year?.message}
                 </p>
               )}
             </div>
           </div>
-          <p className="mt-4 text-body-sm text-light-red italic">
-            {errors.root?.invalidDate.message}
-          </p>
-          <div className="mt-32 relative flex flex-row justify-center">
+          {errors.root?.invalidDate && (
+            <p className="mt-4 text-body-md text-light-red italic @2xl:text-body-lg">
+              {errors.root?.invalidDate.message}
+            </p>
+          )}
+          <div className="mt-32 relative flex flex-row justify-center @2xl:justify-end">
             <div className="absolute z-10 top-1/2 left-0 -translate-y-1/2 w-full h-1 bg-light-grey"></div>
-            <div className="relative z-20">
-              <button
-                type="submit"
-                className="flex justify-center items-center w-64 h-64 rounded-full bg-purple"
+            <button
+              type="submit"
+              className="relative z-20 flex justify-center items-center w-64 h-64 rounded-full bg-purple @2xl:w-96 @2xl:h-96"
+            >
+              <svg
+                className="w-24 h-24 @2xl:w-44 @2xl:h-44"
+                xmlns="http://www.w3.org/2000/svg"
+                width={46}
+                height={44}
+                viewBox="0 0 46 44"
               >
-                <svg
-                  className="w-24 h-24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={46}
-                  height={44}
-                  viewBox="0 0 46 44"
-                >
-                  <g fill="none" stroke="#FFF" strokeWidth={2}>
-                    <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
-                  </g>
-                </svg>
-              </button>
-            </div>
+                <g fill="none" stroke="#FFF" strokeWidth={2}>
+                  <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
+                </g>
+              </svg>
+            </button>
           </div>
         </form>
         <div>
-          <p className="text-display-md italic text-off-black">
+          <p className="text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
             <span className="text-purple">{years ?? "--"}</span> years
           </p>
-          <p className="text-display-md italic text-off-black">
+          <p className="text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
             <span className="text-purple">{months ?? "--"}</span> months
           </p>
-          <p className="text-display-md italic text-off-black">
+          <p className="text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
             <span className="text-purple">{days ?? "--"}</span> days
           </p>
         </div>
