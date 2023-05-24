@@ -79,7 +79,10 @@ export function Card() {
   return (
     <article className="@container w-full max-w-840">
       <div className="px-24 py-48 bg-white rounded-tl-24 rounded-tr-24 rounded-bl-24 rounded-br-100 @2xl:rounded-br-200 @2xl:p-56">
-        <form className="mb-32" onSubmit={handleSubmit(onSubmit, onError)}>
+        <form
+          className="mb-32 @2xl:mb-0"
+          onSubmit={handleSubmit(onSubmit, onError)}
+        >
           <div className="grid gap-16 @sm:grid-cols-form @2xl:gap-32">
             <div>
               <label>
@@ -177,11 +180,11 @@ export function Card() {
               {errors.root?.invalidDate.message}
             </p>
           )}
-          <div className="mt-32 relative flex flex-row justify-center @2xl:justify-end">
+          <div className="mt-32 relative flex flex-row justify-center @3xl:mt-0 @2xl:justify-end">
             <div className="absolute z-10 top-1/2 left-0 -translate-y-1/2 w-full h-1 bg-light-grey"></div>
             <button
               type="submit"
-              className="relative z-20 flex justify-center items-center w-64 h-64 rounded-full bg-purple @2xl:w-96 @2xl:h-96"
+              className="relative z-20 flex justify-center items-center w-64 h-64 rounded-full bg-purple transition-colors focus-visible:outline-offset-8 focus-visible:outline-purple hover-device:hover:bg-off-black @2xl:w-96 @2xl:h-96"
             >
               <svg
                 className="w-24 h-24 @2xl:w-44 @2xl:h-44"
@@ -198,13 +201,13 @@ export function Card() {
           </div>
         </form>
         <div>
-          <p className="text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
+          <p className="min-w-full truncate text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
             <span className="text-purple">{years ?? "--"}</span> years
           </p>
-          <p className="text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
+          <p className="min-w-full truncate text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
             <span className="text-purple">{months ?? "--"}</span> months
           </p>
-          <p className="text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
+          <p className="min-w-full truncate text-display-sm italic text-off-black @sm:text-display-md @2xl:text-display-lg">
             <span className="text-purple">{days ?? "--"}</span> days
           </p>
         </div>
