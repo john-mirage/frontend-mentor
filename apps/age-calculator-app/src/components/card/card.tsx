@@ -180,7 +180,7 @@ export function Card() {
               {errors.root?.invalidDate.message}
             </p>
           )}
-          <div className="mt-32 relative flex flex-row justify-center @3xl:mt-0 @2xl:justify-end">
+          <div className="mt-32 relative flex flex-row justify-center @3xl:mt-0 @3xl:justify-end">
             <div className="absolute z-10 top-1/2 left-0 -translate-y-1/2 w-full h-1 bg-light-grey"></div>
             <button
               type="submit"
