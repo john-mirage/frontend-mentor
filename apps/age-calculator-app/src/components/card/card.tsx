@@ -1,12 +1,30 @@
 import { useState } from "react";
-import { intervalToDuration, isFuture } from "date-fns";
+import { intervalToDuration, isFuture, isValid, getYear } from "date-fns";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-export interface FormValues {
-  year?: string;
-  month?: string;
-  day?: string;
-}
+const schema = yup
+  .object({
+    year: yup
+      .string()
+      .required("Must not be empty")
+      .length(4, "Must be 4 characters")
+      .matches(/^\d{4}$/, "Must be 4 digits"),
+    month: yup
+      .string()
+      .required("Must not be empty")
+      .length(2, "Must be 2 characters")
+      .matches(/^\d{2}$/, "Must be 2 digits"),
+    day: yup
+      .string()
+      .required("Must not be empty")
+      .length(2, "Must be 2 characters")
+      .matches(/^\d{2}$/, "Must be 2 digits"),
+  })
+  .required();
+
+type FormData = yup.InferType<typeof schema>;
 
 export function Card() {
   const [years, setYears] = useState<number | undefined>(undefined);
@@ -17,39 +35,34 @@ export function Card() {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
-  } = useForm<FormValues>();
+    setError,
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
 
-  const onSubmit: SubmitHandler<FormValues> = (values) => {
-    const date = new Date(`${values.year}-${values.month}-${values.day}`);
-    const interval = intervalToDuration({
-      start: date,
-      end: Date.now(),
-    });
-    setYears(interval.years);
-    setMonths(interval.months);
-    setDays(interval.days);
+  const onSubmit: SubmitHandler<FormData> = ({ year, month, day }) => {
+    const date = new Date(`${year}-${month}-${day}`);
+    if (!isValid(date)) {
+      setError("root.invalidDate", { message: "The date is not valid" });
+      onError();
+    } else if (isFuture(date)) {
+      setError("root.invalidDate", { message: "The date is in the future" });
+      onError();
+    } else {
+      const interval = intervalToDuration({
+        start: date,
+        end: Date.now(),
+      });
+      setYears(interval.years);
+      setMonths(interval.months);
+      setDays(interval.days);
+    }
   };
 
   const onError = () => {
     setYears(undefined);
     setMonths(undefined);
     setDays(undefined);
-  };
-
-  const checkDate = (year: string) => {
-    const day = getValues("day");
-    const month = getValues("month");
-    if (day && month) {
-      const date = new Date(`${year}-${month}-${day}`);
-      if (isFuture(date)) {
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      return true;
-    }
   };
 
   return (
@@ -66,21 +79,7 @@ export function Card() {
                   className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
                   type="text"
                   placeholder="24"
-                  {...register("day", {
-                    required: "Must enter the day",
-                    minLength: {
-                      value: 2,
-                      message: "Must be 2 characters",
-                    },
-                    maxLength: {
-                      value: 2,
-                      message: "Must be 2 characters",
-                    },
-                    pattern: {
-                      value: /^0[1-9]$|^[12]\d$|^3[01]$/,
-                      message: "Must be a valid day",
-                    },
-                  })}
+                  {...register("day")}
                 />
               </label>
               {errors.day && (
@@ -98,21 +97,7 @@ export function Card() {
                   className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
                   type="text"
                   placeholder="09"
-                  {...register("month", {
-                    required: "Must enter the month",
-                    minLength: {
-                      value: 2,
-                      message: "Must be 2 characters",
-                    },
-                    maxLength: {
-                      value: 2,
-                      message: "Must be 2 characters",
-                    },
-                    pattern: {
-                      value: /^0[1-9]$|^1[012]$/,
-                      message: "Must be a valid month",
-                    },
-                  })}
+                  {...register("month")}
                 />
               </label>
               {errors.month && (
@@ -130,25 +115,7 @@ export function Card() {
                   className="w-full px-16 py-12 border-1 text-body-md text-off-black border-light-grey rounded-8"
                   type="text"
                   placeholder="1984"
-                  {...register("year", {
-                    required: "Must enter the year",
-                    minLength: {
-                      value: 4,
-                      message: "Must be 4 characters",
-                    },
-                    maxLength: {
-                      value: 4,
-                      message: "Must be 4 characters",
-                    },
-                    pattern: {
-                      value: /^\d{4}$/,
-                      message: "Must be 4 digits",
-                    },
-                    validate: {
-                      checkDate: (v) =>
-                        checkDate(v ?? "") || "Must be in the past",
-                    },
-                  })}
+                  {...register("year")}
                 />
               </label>
               {errors.year && (
@@ -158,6 +125,9 @@ export function Card() {
               )}
             </div>
           </div>
+          <p className="mt-4 text-body-sm text-light-red italic">
+            {errors.root?.invalidDate.message}
+          </p>
           <div className="mt-32 relative flex flex-row justify-center">
             <div className="absolute z-10 top-1/2 left-0 -translate-y-1/2 w-full h-1 bg-light-grey"></div>
             <div className="relative z-20">
