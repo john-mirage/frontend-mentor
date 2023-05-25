@@ -1,0 +1,11 @@
+export { default as IconAge } from "./IconAge";
+export { default as IconEating } from "./IconEating";
+export { default as IconExercise } from "./IconExercise";
+export { default as IconGender } from "./IconGender";
+export { default as IconMuscle } from "./IconMuscle";
+export { default as IconPregnancy } from "./IconPregnancy";
+export { default as IconRace } from "./IconRace";
+export { default as IconSleep } from "./IconSleep";
+export { default as Logo } from "./Logo";
+export { default as PatternCurvedLineLeft } from "./PatternCurvedLineLeft";
+export { default as PatternCurvedLineRight } from "./PatternCurvedLineRight";
