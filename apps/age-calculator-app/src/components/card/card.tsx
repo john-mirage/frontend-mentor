@@ -88,9 +88,7 @@ export function Card() {
               <label>
                 <span
                   className={clsx(
-                    errors.day || errors.root?.invalidDate
-                      ? "text-light-red"
-                      : "text-smokey-grey",
+                    errors.day ? "text-light-red" : "text-smokey-grey",
                     "mb-4 block text-label-md uppercase @2xl:mb-8"
                   )}
                 >
@@ -98,7 +96,7 @@ export function Card() {
                 </span>
                 <input
                   className={clsx(
-                    errors.day || errors.root?.invalidDate
+                    errors.day
                       ? "border-light-red focus-visible:outline-light-red"
                       : "border-light-grey focus-visible:outline-purple",
                     "w-full px-16 py-12 border-1 text-heading-sm text-off-black rounded-8 @2xl:px-24 @2xl:text-heading-md"
@@ -118,9 +116,7 @@ export function Card() {
               <label>
                 <span
                   className={clsx(
-                    errors.month || errors.root?.invalidDate
-                      ? "text-light-red"
-                      : "text-smokey-grey",
+                    errors.month ? "text-light-red" : "text-smokey-grey",
                     "mb-4 block text-label-md uppercase @2xl:mb-8"
                   )}
                 >
@@ -128,7 +124,7 @@ export function Card() {
                 </span>
                 <input
                   className={clsx(
-                    errors.month || errors.root?.invalidDate
+                    errors.month
                       ? "border-light-red focus-visible:outline-light-red"
                       : "border-light-grey focus-visible:outline-purple",
                     "w-full px-16 py-12 border-1 text-heading-sm text-off-black rounded-8 @2xl:px-24 @2xl:text-heading-md"
@@ -148,9 +144,7 @@ export function Card() {
               <label>
                 <span
                   className={clsx(
-                    errors.year || errors.root?.invalidDate
-                      ? "text-light-red"
-                      : "text-smokey-grey",
+                    errors.year ? "text-light-red" : "text-smokey-grey",
                     "mb-4 block text-label-md uppercase @2xl:mb-8"
                   )}
                 >
@@ -158,7 +152,7 @@ export function Card() {
                 </span>
                 <input
                   className={clsx(
-                    errors.year || errors.root?.invalidDate
+                    errors.year
                       ? "border-light-red focus-visible:outline-light-red"
                       : "border-light-grey focus-visible:outline-purple",
                     "w-full px-16 py-12 border-1 text-heading-sm text-off-black rounded-8 @2xl:px-24 @2xl:text-heading-md"
