@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { intervalToDuration, isFuture, isValid } from "date-fns";
+import { intervalToDuration, isFuture } from "date-fns";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -11,17 +11,21 @@ const schema = yup
       .string()
       .required("Must not be empty")
       .length(4, "Must be 4 characters")
-      .matches(/^\d{4}$/, "Must be 4 digits"),
+      .matches(/^\d{4}$/, "Must be a valid year")
+      .test("is-in-the-past", "Must be in the past", (value, { parent }) => {
+        const date = new Date(`${value}-${parent.month}-${parent.day}`);
+        return !isFuture(date);
+      }),
     month: yup
       .string()
       .required("Must not be empty")
       .length(2, "Must be 2 characters")
-      .matches(/^\d{2}$/, "Must be 2 digits"),
+      .matches(/^0[1-9]$|^1[012]$/, "Must be a valid month"),
     day: yup
       .string()
       .required("Must not be empty")
       .length(2, "Must be 2 characters")
-      .matches(/^\d{2}$/, "Must be 2 digits"),
+      .matches(/^0[1-9]$|^[12]\d$|^3[01]$/, "Must be a valid day"),
   })
   .required();
 
@@ -37,7 +41,6 @@ export function Card() {
     reset,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
-    setError,
     getValues,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -45,21 +48,13 @@ export function Card() {
 
   const onSubmit: SubmitHandler<FormData> = ({ year, month, day }) => {
     const date = new Date(`${year}-${month}-${day}`);
-    if (!isValid(date)) {
-      setError("root.invalidDate", { message: "The date is not valid" });
-      onError();
-    } else if (isFuture(date)) {
-      setError("root.invalidDate", { message: "The date is in the future" });
-      onError();
-    } else {
-      const interval = intervalToDuration({
-        start: date,
-        end: Date.now(),
-      });
-      setYears(interval.years);
-      setMonths(interval.months);
-      setDays(interval.days);
-    }
+    const interval = intervalToDuration({
+      start: date,
+      end: Date.now(),
+    });
+    setYears(interval.years);
+    setMonths(interval.months);
+    setDays(interval.days);
   };
 
   const onError = () => {
@@ -169,11 +164,6 @@ export function Card() {
               )}
             </div>
           </div>
-          {errors.root?.invalidDate && (
-            <p className="mt-4 text-body-md text-light-red italic @2xl:text-body-lg">
-              {errors.root?.invalidDate.message}
-            </p>
-          )}
           <div className="mt-32 relative flex flex-row justify-center @3xl:mt-0 @3xl:justify-end">
             <div className="absolute z-10 top-1/2 left-0 -translate-y-1/2 w-full h-1 bg-light-grey"></div>
             <button
