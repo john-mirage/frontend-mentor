@@ -40,6 +40,8 @@ module.exports = {
       "hero-to": "hsl(216, 95%, 92%)",
       "form-from": "hsl(227, 92%, 59%)",
       "form-to": "hsl(227, 92%, 67%)",
+      "explanation-from": "hsla(216, 95%, 92%, 25%)",
+      "explanation-to": "hsla(184, 95%, 92%, 0%)",
     },
     spacing: {
       0: "0px",
@@ -50,9 +52,11 @@ module.exports = {
       24: pxToRem(24),
       28: pxToRem(28),
       32: pxToRem(32),
+      36: pxToRem(36),
       40: pxToRem(40),
       48: pxToRem(48),
       52: pxToRem(52),
+      56: pxToRem(56),
       64: pxToRem(64),
       70: pxToRem(70),
       72: pxToRem(72),
@@ -87,6 +91,14 @@ module.exports = {
         theme("spacing[48]"),
         {
           lineHeight: theme("spacing[52]"),
+          letterSpacing: "-0.05em",
+          fontWeight: "600",
+        },
+      ],
+      "heading-l-sm": [
+        theme("spacing[32]"),
+        {
+          lineHeight: theme("spacing[36]"),
           letterSpacing: "-0.05em",
           fontWeight: "600",
         },

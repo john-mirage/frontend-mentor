@@ -11,7 +11,7 @@ export function Form(props: FormProps) {
   };
 
   return (
-    <div className="-mt-168 container">
+    <div className="mb-72 -mt-168 container">
       <div className="rounded-16 p-24 bg-pure-white shadow-form">
         <h2 className="mb-24 text-heading-m text-gun-metal">
           Enter your details below
