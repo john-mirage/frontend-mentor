@@ -21,12 +21,14 @@ module.exports = {
   ],
   theme: {
     screens: {
+      "md": "768px",
       "hover-device": { raw: "(hover: hover)" },
     },
     container: {
       center: true,
       padding: {
         DEFAULT: pxToRem(24),
+        md: pxToRem(40),
       },
     },
     colors: {
@@ -61,8 +63,12 @@ module.exports = {
       70: pxToRem(70),
       72: pxToRem(72),
       96: pxToRem(96),
+      116: pxToRem(116),
       168: pxToRem(168),
       216: pxToRem(216),
+    },
+    maxWidth: {
+      432: pxToRem(432),
     },
     borderWidth: {
       1: pxToRem(1),

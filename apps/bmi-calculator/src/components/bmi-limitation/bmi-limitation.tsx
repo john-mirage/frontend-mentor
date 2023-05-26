@@ -21,8 +21,8 @@ export function BmiLimitation(props: BmiLimitationProps) {
         BMI outcomes, and in certain cases, the measurement may not be
         beneficial to use.
       </p>
-      <ul className="grid gap-16">
-        <li className="bg-pure-white p-24 rounded-16 shadow-form">
+      <ul className="grid gap-16 md:gap-y-24 md:grid-cols-4 md:gap-x-16">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconGender className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Gender</h3>
@@ -33,7 +33,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             evaluating their BMI.
           </p>
         </li>
-        <li className="bg-pure-white p-24 rounded-16 shadow-form">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconAge className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Age</h3>
@@ -43,7 +43,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             BMI to underestimate body fat content.
           </p>
         </li>
-        <li className="bg-pure-white p-24 rounded-16 shadow-form">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconMuscle className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Muscle</h3>
@@ -53,7 +53,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             it doesn't differentiate muscle from fat.
           </p>
         </li>
-        <li className="bg-pure-white p-24 rounded-16 shadow-form">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconPregnancy className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Pregnancy</h3>
@@ -64,7 +64,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             health risks for both mother and child.
           </p>
         </li>
-        <li className="bg-pure-white p-24 rounded-16 shadow-form">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 md:col-start-2">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconRace className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Race</h3>
