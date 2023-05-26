@@ -36,8 +36,10 @@ module.exports = {
       "dark-electric-blue": "hsl(215, 17%, 45%)",
       "borders": "hsl(200, 24%, 88%)",
       "pure-white": "hsl(0, 0%, 100%)",
-      "gradient-from": "hsla(184, 95%, 92%, 0%)",
-      "gradient-to": "hsl(216, 95%, 92%)",
+      "hero-from": "hsla(184, 95%, 92%, 0%)",
+      "hero-to": "hsl(216, 95%, 92%)",
+      "form-from": "hsl(227, 92%, 59%)",
+      "form-to": "hsl(227, 92%, 67%)",
     },
     spacing: {
       0: "0px",
@@ -53,6 +55,7 @@ module.exports = {
       52: pxToRem(52),
       64: pxToRem(64),
       70: pxToRem(70),
+      72: pxToRem(72),
       96: pxToRem(96),
       168: pxToRem(168),
       216: pxToRem(216),
@@ -62,11 +65,14 @@ module.exports = {
     },
     borderRadius: {
       full: "9999px",
+      12: pxToRem(12),
       16: pxToRem(16),
       35: pxToRem(35),
     },
     boxShadow: {
+      none: "0 0 #0000;",
       form: "16px 32px 56px 0 hsla(211, 40%, 69%, 25%)",
+      radio: "0 0 1px 1px hsl(200, 24%, 88%)",
     },
     fontSize: ({ theme }) => ({
       "heading-xl": [
@@ -127,6 +133,9 @@ module.exports = {
       ],
     }),
     extend: {
+      transitionProperty: {
+        radio: "background-color, box-shadow",
+      },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },

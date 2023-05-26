@@ -5,7 +5,7 @@ export interface HeroProps {}
 
 export function Hero(props: HeroProps) {
   return (
-    <header className="pt-32 pb-216 text-center rounded-b-35 bg-gradient-to-br from-gradient-from to-gradient-to">
+    <header className="pt-32 pb-216 text-center rounded-b-35 bg-gradient-to-br from-hero-from to-hero-to">
       <div className="container">
         <a className="inline-block mx-auto mb-24" href="#">
           <Logo className="w-40 h-40" />
