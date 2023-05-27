@@ -11,8 +11,8 @@ export function Form(props: FormProps) {
   };
 
   return (
-    <div className="-mt-168 relative z-50 container lg:mt-0 lg:absolute lg:top-168 lg:left-0">
-      <div className="rounded-16 p-24 bg-pure-white shadow-form lg:absolute lg:top-0 lg:right-0 lg:w-full lg:max-w-564">
+    <div className="-mt-168 container lg:mt-0 lg:mx-0 lg:absolute lg:z-50 lg:top-168 lg:left-1/2 lg:-translate-x-1/2 lg:flex lg:flex-row lg:justify-end">
+      <div className="relative z-50 rounded-16 p-24 bg-pure-white shadow-form lg:w-full lg:max-w-564">
         <h2 className="mb-24 text-heading-m text-gun-metal">
           Enter your details below
         </h2>
@@ -48,7 +48,7 @@ export function Form(props: FormProps) {
           <div className="grid grid-cols-2 gap-16 items-end">
             {isMetric ? (
               <>
-                <label className="col-span-2">
+                <label className="col-span-2 lg:col-auto">
                   <span className="mb-8 block text-body-s text-dark-electric-blue">
                     Height
                   </span>
@@ -63,7 +63,7 @@ export function Form(props: FormProps) {
                     />
                   </span>
                 </label>
-                <label className="col-span-2">
+                <label className="col-span-2 lg:col-auto">
                   <span className="mb-8 block text-body-s text-dark-electric-blue">
                     Weight
                   </span>
