@@ -11,8 +11,8 @@ export function Form(props: FormProps) {
   };
 
   return (
-    <div className="mb-72 -mt-168 container">
-      <div className="rounded-16 p-24 bg-pure-white shadow-form">
+    <div className="-mt-168 relative z-50 container lg:mt-0 lg:absolute lg:top-168 lg:left-0">
+      <div className="rounded-16 p-24 bg-pure-white shadow-form lg:absolute lg:top-0 lg:right-0 lg:w-full lg:max-w-564">
         <h2 className="mb-24 text-heading-m text-gun-metal">
           Enter your details below
         </h2>

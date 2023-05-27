@@ -11,18 +11,20 @@ export interface BmiLimitationProps {}
 
 export function BmiLimitation(props: BmiLimitationProps) {
   return (
-    <section className="container pb-96">
-      <h2 className="mb-32 text-heading-l-sm text-gun-metal">
-        Limitations of BMI
-      </h2>
-      <p className="mb-56 text-body-m text-dark-electric-blue">
-        Although BMI is often a practical indicator of healthy weight, it is not
-        suited for every person. Specific groups should carefully consider their
-        BMI outcomes, and in certain cases, the measurement may not be
-        beneficial to use.
-      </p>
-      <ul className="grid gap-16 md:gap-y-24 md:grid-cols-4 md:gap-x-16">
-        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
+    <section className="container pb-96 lg:relative lg:pb-120 bg-curved-line-right bg-no-repeat">
+      <div className="text-center lg:absolute lg:top-0 lg:left-60 lg:max-w-564 lg:text-left">
+        <h2 className="mb-32 text-heading-l-sm text-gun-metal lg:text-heading-l">
+          Limitations of BMI
+        </h2>
+        <p className="mb-56 text-body-m text-dark-electric-blue">
+          Although BMI is often a practical indicator of healthy weight, it is
+          not suited for every person. Specific groups should carefully consider
+          their BMI outcomes, and in certain cases, the measurement may not be
+          beneficial to use.
+        </p>
+      </div>
+      <ul className="grid gap-16 md:gap-y-24 md:grid-cols-4 md:gap-x-16 lg:ml-auto lg:w-961 lg:grid-cols-10 lg:gap-32">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 lg:col-start-6 lg:col-span-4">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconGender className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Gender</h3>
@@ -33,7 +35,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             evaluating their BMI.
           </p>
         </li>
-        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 lg:col-start-3 lg:col-span-4">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconAge className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Age</h3>
@@ -43,7 +45,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             BMI to underestimate body fat content.
           </p>
         </li>
-        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 lg:col-span-4">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconMuscle className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Muscle</h3>
@@ -53,7 +55,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             it doesn't differentiate muscle from fat.
           </p>
         </li>
-        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 lg:col-span-4">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconPregnancy className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Pregnancy</h3>
@@ -64,7 +66,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
             health risks for both mother and child.
           </p>
         </li>
-        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 md:col-start-2">
+        <li className="w-full bg-pure-white p-24 rounded-16 shadow-form md:col-span-2 md:col-start-2 lg:col-span-4">
           <div className="mb-16 flex flex-row items-center gap-16">
             <IconRace className="w-32 h-32" />
             <h3 className="text-heading-s text-gun-metal">Race</h3>

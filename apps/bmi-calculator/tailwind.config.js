@@ -22,6 +22,7 @@ module.exports = {
   theme: {
     screens: {
       "md": "768px",
+      "lg": "1280px",
       "hover-device": { raw: "(hover: hover)" },
     },
     container: {
@@ -29,6 +30,7 @@ module.exports = {
       padding: {
         DEFAULT: pxToRem(24),
         md: pxToRem(40),
+        lg: pxToRem(60),
       },
     },
     colors: {
@@ -56,19 +58,25 @@ module.exports = {
       32: pxToRem(32),
       36: pxToRem(36),
       40: pxToRem(40),
+      44: pxToRem(44),
       48: pxToRem(48),
       52: pxToRem(52),
       56: pxToRem(56),
+      60: pxToRem(60),
       64: pxToRem(64),
       70: pxToRem(70),
       72: pxToRem(72),
       96: pxToRem(96),
       116: pxToRem(116),
+      120: pxToRem(120),
+      128: pxToRem(128),
       168: pxToRem(168),
       216: pxToRem(216),
+      961: pxToRem(961),
     },
     maxWidth: {
       432: pxToRem(432),
+      564: pxToRem(564),
     },
     borderWidth: {
       1: pxToRem(1),
@@ -151,6 +159,15 @@ module.exports = {
       ],
     }),
     extend: {
+      backgroundImage: {
+        "curved-line-left": "url('./src/images/pattern-curved-line-left.svg')",
+        "curved-line-right":
+          "url('./src/images/pattern-curved-line-right.svg')",
+      },
+      backgroundPosition: {
+        "curved-line-left": "top 0 right 60px",
+        "curved-line-right": "top 250px left 220px",
+      },
       transitionProperty: {
         radio: "background-color, box-shadow",
       },

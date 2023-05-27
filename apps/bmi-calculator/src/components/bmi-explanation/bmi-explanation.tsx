@@ -7,14 +7,14 @@ export interface BmiExplanationProps {}
 export function BmiExplanation(props: BmiExplanationProps) {
   return (
     <section className="mb-72">
-      <div className="container px-0 md:mb-96 md:flex md:flex-row md:items-center md:gap-72">
+      <div className="container pt-72 px-0 md:mb-96 md:flex md:flex-row md:items-center md:gap-72 lg:px-60 lg:pt-64 lg:bg-curved-line-left lg:bg-no-repeat">
         <img
-          className="mb-48 md:max-w-432 md:mb-0 md:-ml-116"
+          className="mb-48 md:max-w-432 md:mb-0 md:-ml-116 lg:ml-0 lg:max-w-564"
           src={image}
           alt="Man eating"
         />
         <div className="px-24 md:pl-0 md:pr-40">
-          <h2 className="mb-32 text-heading-l-sm text-gun-metal">
+          <h2 className="mb-32 text-heading-l-sm text-gun-metal lg:mt-116 lg:text-heading-l">
             What your BMI result means
           </h2>
           <p className="mb-72 text-body-m text-dark-electric-blue md:mb-0">
@@ -29,9 +29,9 @@ export function BmiExplanation(props: BmiExplanationProps) {
         </div>
       </div>
       <div className="py-56 bg-gradient-to-br from-explanation-from to-explanation-to">
-        <ul className="container grid gap-40">
-          <li className="md:flex md:flex-row md:items-center md:gap-40">
-            <IconEating className="mb-32 w-64 h-64 md:mb-0 md:flex-0" />
+        <ul className="container grid gap-40 lg:grid-cols-3">
+          <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
+            <IconEating className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
             <div className="md:flex-1">
               <h3 className="mb-24 text-heading-m text-gun-metal">
                 Healthy eating
@@ -42,8 +42,8 @@ export function BmiExplanation(props: BmiExplanationProps) {
               </p>
             </div>
           </li>
-          <li className="md:flex md:flex-row md:items-center md:gap-40">
-            <IconExercise className="mb-32 w-64 h-64 md:mb-0 md:flex-0" />
+          <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
+            <IconExercise className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
             <div className="md:flex-1">
               <h3 className="mb-24 text-heading-m text-gun-metal">
                 Regular exercise
@@ -54,8 +54,8 @@ export function BmiExplanation(props: BmiExplanationProps) {
               </p>
             </div>
           </li>
-          <li className="md:flex md:flex-row md:items-center md:gap-40">
-            <IconSleep className="mb-32 w-64 h-64 md:mb-0 md:flex-0" />
+          <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
+            <IconSleep className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
             <div className="md:flex-1">
               <h3 className="mb-24 text-heading-m text-gun-metal">
                 Adequate sleep

@@ -6,8 +6,10 @@ import Hero from "../hero";
 export function App() {
   return (
     <div className="pb-96">
-      <Hero />
-      <Form />
+      <div className="relative">
+        <Hero />
+        <Form />
+      </div>
       <BmiExplanation />
       <BmiLimitation />
     </div>
