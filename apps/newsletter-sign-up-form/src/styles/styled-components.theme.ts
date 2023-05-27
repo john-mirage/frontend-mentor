@@ -19,6 +19,7 @@ const FONT_STACK = [
 const theme = {
   color: {
     tomato: "hsl(4, 100%, 67%)",
+    lightTomato: "hsla(4, 100%, 67%, 15%)",
     darkSlateGrey: "hsl(234, 29%, 20%)",
     charcoalGrey: "hsl(235, 18%, 26%)",
     grey: "hsl(231, 7%, 60%)",
