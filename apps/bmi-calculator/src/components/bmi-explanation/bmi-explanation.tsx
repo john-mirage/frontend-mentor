@@ -1,13 +1,17 @@
 import { IconEating, IconExercise, IconSleep } from "../icons";
 import image from "../../images/image-man-eating.webp";
+import clsx from "clsx";
+import BmiExplanationAdvice from "../bmi-explanation-advice";
 
 /* eslint-disable-next-line */
-export interface BmiExplanationProps {}
+export interface BmiExplanationProps {
+  classname?: string;
+}
 
 export function BmiExplanation(props: BmiExplanationProps) {
   return (
-    <section className="mb-72">
-      <div className="container pt-72 px-0 md:mb-96 md:flex md:flex-row md:items-center md:gap-72 lg:px-60 lg:pt-64 lg:bg-curved-line-left lg:bg-no-repeat">
+    <section className={clsx(props.classname)}>
+      <div className="pt-72 px-0 md:mb-96 md:flex md:flex-row md:items-center md:gap-72 lg:pt-64 lg:bg-curved-line-left lg:bg-no-repeat">
         <img
           className="mb-48 md:max-w-432 md:mb-0 md:-ml-116 lg:ml-0 lg:max-w-564"
           src={image}
@@ -28,44 +32,29 @@ export function BmiExplanation(props: BmiExplanationProps) {
           </p>
         </div>
       </div>
-      <div className="py-56 bg-gradient-to-br from-explanation-from to-explanation-to">
-        <ul className="container grid gap-40 lg:grid-cols-3">
-          <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
-            <IconEating className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
-            <div className="md:flex-1">
-              <h3 className="mb-24 text-heading-m text-gun-metal">
-                Healthy eating
-              </h3>
-              <p className="text-body-m text-dark-electric-blue">
-                Healthy eating promotes weight control, disease prevention,
-                better digestion, immunity, mental clarity, and mood.
-              </p>
-            </div>
-          </li>
-          <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
-            <IconExercise className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
-            <div className="md:flex-1">
-              <h3 className="mb-24 text-heading-m text-gun-metal">
-                Regular exercise
-              </h3>
-              <p className="text-body-m text-dark-electric-blue">
-                Exercise improves fitness, aids weight control, elevates mood,
-                and reduces disease risk, fostering wellness and longevity.
-              </p>
-            </div>
-          </li>
-          <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
-            <IconSleep className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
-            <div className="md:flex-1">
-              <h3 className="mb-24 text-heading-m text-gun-metal">
-                Adequate sleep
-              </h3>
-              <p className="text-body-m text-dark-electric-blue">
-                Sleep enhances mental clarity, emotional stability, and physical
-                wellness, promoting overall restoration and rejuvenation.
-              </p>
-            </div>
-          </li>
+      <div className="py-56">
+        <ul className="grid gap-40 lg:grid-cols-3">
+          <BmiExplanationAdvice
+            name="Healthy eating"
+            description="Healthy eating promotes weight control, disease prevention, better digestion, immunity, mental clarity, and mood."
+            icon={
+              <IconEating className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
+            }
+          />
+          <BmiExplanationAdvice
+            name="Regular exercise"
+            description="Exercise improves fitness, aids weight control, elevates mood, and reduces disease risk, fostering wellness and longevity."
+            icon={
+              <IconExercise className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
+            }
+          />
+          <BmiExplanationAdvice
+            name="Adequate sleep"
+            description="Sleep enhances mental clarity, emotional stability, and physical wellness, promoting overall restoration and rejuvenation."
+            icon={
+              <IconSleep className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
+            }
+          />
         </ul>
       </div>
     </section>

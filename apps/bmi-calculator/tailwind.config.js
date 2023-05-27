@@ -72,7 +72,10 @@ module.exports = {
       128: pxToRem(128),
       168: pxToRem(168),
       216: pxToRem(216),
-      961: pxToRem(961),
+      564: pxToRem(564),
+      640: pxToRem(640),
+      737: pxToRem(737),
+      960: pxToRem(960),
     },
     maxWidth: {
       432: pxToRem(432),
@@ -166,7 +169,7 @@ module.exports = {
       },
       backgroundPosition: {
         "curved-line-left": "top 0 right 60px",
-        "curved-line-right": "top 250px left 220px",
+        "curved-line-right": "top 250px left 160px",
       },
       transitionProperty: {
         radio: "background-color, box-shadow",
