@@ -17,14 +17,14 @@ export function Form(props: FormProps) {
     <div
       className={clsx(
         props.className,
-        "rounded-16 p-24 bg-pure-white shadow-form"
+        "rounded-16 p-24 bg-pure-white shadow-form md:p-32"
       )}
     >
-      <h2 className="mb-24 text-heading-m text-gun-metal">
+      <h2 className="mb-24 text-heading-m text-gun-metal md:mb-32">
         Enter your details below
       </h2>
-      <form className="mb-24">
-        <div className="mb-24 grid grid-cols-2 gap-24">
+      <form className="mb-24 md:mb-32">
+        <div className="mb-24 grid grid-cols-2 gap-24 md:mb-32">
           <label className="relative flex flex-row items-center gap-16">
             <input
               className="absolute top-0 left-0 w-full h-full opacity-0 peer"
@@ -55,7 +55,7 @@ export function Form(props: FormProps) {
         <div className="grid grid-cols-2 gap-16 items-end">
           {isMetric ? (
             <>
-              <label className="col-span-2 lg:col-auto">
+              <label className="col-span-2 md:col-auto">
                 <span className="mb-8 block text-body-s text-dark-electric-blue">
                   Height
                 </span>
@@ -70,7 +70,7 @@ export function Form(props: FormProps) {
                   />
                 </span>
               </label>
-              <label className="col-span-2 lg:col-auto">
+              <label className="col-span-2 md:col-auto">
                 <span className="mb-8 block text-body-s text-dark-electric-blue">
                   Weight
                 </span>

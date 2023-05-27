@@ -18,7 +18,7 @@ export function BmiLimitation(props: BmiLimitationProps) {
     <section
       className={clsx(
         props.classname,
-        "lg:relative bg-curved-line-right bg-no-repeat"
+        "lg:relative lg:bg-curved-line-right lg:bg-no-repeat"
       )}
     >
       <div className="text-center lg:absolute lg:top-0 lg:left-0 lg:max-w-564 lg:text-left">

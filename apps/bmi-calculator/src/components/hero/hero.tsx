@@ -14,7 +14,7 @@ export function Hero(props: HeroProps) {
         "pt-32 text-center lg:text-left lg:pt-72 lg:pb-216"
       )}
     >
-      <a className="inline-block mx-auto mb-24 lg:mb-128" href="#">
+      <a className="inline-block mx-auto mb-24 md:mb-40 lg:mb-128" href="#">
         <Logo className="w-40 h-40 lg:w-64 lg:h-64" />
       </a>
       <h1 className="mb-24 text-heading-l text-gun-metal lg:text-heading-xl lg:max-w-564">
