@@ -1,0 +1,74 @@
+{
+  "name": "newsletter-sign-up-form",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/newsletter-sign-up-form/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/newsletter-sign-up-form"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "newsletter-sign-up-form:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "newsletter-sign-up-form:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "newsletter-sign-up-form:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "newsletter-sign-up-form:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "newsletter-sign-up-form:build:development"
+        },
+        "production": {
+          "buildTarget": "newsletter-sign-up-form:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/newsletter-sign-up-form"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/newsletter-sign-up-form"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/newsletter-sign-up-form/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -26,14 +26,14 @@
   "generators": {
     "@nx/react": {
       "application": {
-        "style": "none",
+        "style": "styled-components",
         "linter": "eslint",
         "bundler": "vite",
         "e2eTestRunner": "none",
         "babel": true
       },
       "component": {
-        "style": "none",
+        "style": "styled-components",
         "directory": "components",
         "export": false
       },
@@ -42,7 +42,7 @@
         "export": true
       },
       "library": {
-        "style": "none",
+        "style": "styled-components",
         "linter": "eslint",
         "bundler": "vite",
         "unitTestRunner": "vitest"
