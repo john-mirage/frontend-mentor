@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ScreenReaderOnly } from "../../styles/styled-components.mixins";
 
-export const App = styled.div`
+export const App = styled.main`
   min-height: 100vh;
   background-color: ${(props) => props.theme.color.white};
 
