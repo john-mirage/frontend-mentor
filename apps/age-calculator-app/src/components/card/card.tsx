@@ -92,6 +92,7 @@ export function Card() {
           <div className="grid gap-16 @sm:grid-cols-form @2xl:gap-32">
             <div>
               <Input
+                label="day"
                 hasError={!!errors.day}
                 inputProps={register("day")}
                 placeholder="DD"
@@ -100,6 +101,7 @@ export function Card() {
             </div>
             <div>
               <Input
+                label="month"
                 hasError={!!errors.month}
                 inputProps={register("month")}
                 placeholder="MM"
@@ -108,6 +110,7 @@ export function Card() {
             </div>
             <div>
               <Input
+                label="year"
                 hasError={!!errors.year}
                 inputProps={register("year")}
                 placeholder="YYYY"

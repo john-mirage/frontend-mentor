@@ -6,6 +6,7 @@ export interface InputProps {
   hasError: boolean;
   inputProps: UseFormRegisterReturn;
   placeholder: string;
+  label: string;
 }
 
 export function Input({ hasError, inputProps, placeholder }: InputProps) {
