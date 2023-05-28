@@ -78,7 +78,7 @@ export const Title = styled.h2`
   margin-bottom: ${(props) => props.theme.pxToRem(24)};
   color: ${(props) => props.theme.color.darkSlateGrey};
 
-  @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
     ${largeHeadingText}
   }
 `;
