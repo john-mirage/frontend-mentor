@@ -8,6 +8,7 @@ import { useEffect } from "react";
 /* eslint-disable-next-line */
 export interface FormProps {
   setSuccess: (success: boolean) => void;
+  setEmail: (email: string) => void;
 }
 
 const schema = yup
@@ -32,6 +33,7 @@ export function Form(props: FormProps) {
   });
 
   const onSubmit: SubmitHandler<FormData> = ({ email }) => {
+    props.setEmail(email);
     props.setSuccess(true);
   };
 

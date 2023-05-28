@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import FeatureList from "../feature-list";
+import {
+  mediumHeadingText,
+  bodyText,
+  largeHeadingText,
+} from "../../styles/styled-components.mixins";
 
 interface CardProps {
   isSuccess: boolean;
 }
 
-export const Card = styled.main<CardProps>`
+export const Card = styled.article<CardProps>`
   width: 100%;
   min-height: 100vh;
   background-color: ${(props) => props.theme.color.white};
@@ -69,20 +74,18 @@ export const Body = styled.div`
 `;
 
 export const Title = styled.h2`
+  ${mediumHeadingText}
   margin-bottom: ${(props) => props.theme.pxToRem(24)};
-  font-size: ${(props) => props.theme.pxToRem(40)};
-  line-height: ${(props) => props.theme.pxToRem(40)};
-  font-weight: 700;
-  letter-spacing: 0;
   color: ${(props) => props.theme.color.darkSlateGrey};
+
+  @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
+    ${largeHeadingText}
+  }
 `;
 
 export const Subtitle = styled.p`
+  ${bodyText}
   margin-bottom: ${(props) => props.theme.pxToRem(24)};
-  font-size: ${(props) => props.theme.pxToRem(16)};
-  line-height: ${(props) => props.theme.pxToRem(24)};
-  font-weight: 400;
-  letter-spacing: 0;
   color: ${(props) => props.theme.color.darkSlateGrey};
 `;
 

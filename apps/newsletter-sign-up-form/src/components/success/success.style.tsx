@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { IconSuccess } from "../icons";
 import BaseButton from "../button";
+import {
+  mediumHeadingText,
+  bodyText,
+  largeHeadingText,
+} from "../../styles/styled-components.mixins";
 
 export const Container = styled.div`
   display: flex;
@@ -24,20 +29,18 @@ export const Icon = styled(IconSuccess)`
 `;
 
 export const Title = styled.h2`
+  ${mediumHeadingText}
   margin-bottom: ${({ theme }) => theme.pxToRem(24)};
-  font-size: ${({ theme }) => theme.pxToRem(40)};
-  line-height: ${({ theme }) => theme.pxToRem(40)};
-  font-weight: 700;
-  letter-spacing: 0;
   color: ${({ theme }) => theme.color.darkSlateGrey};
+
+  @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
+    ${largeHeadingText}
+  }
 `;
 
 export const Subtitle = styled.p`
+  ${bodyText}
   margin-bottom: ${({ theme }) => theme.pxToRem(24)};
-  font-size: ${({ theme }) => theme.pxToRem(16)};
-  line-height: ${({ theme }) => theme.pxToRem(24)};
-  font-weight: 400;
-  letter-spacing: 0;
   color: ${({ theme }) => theme.color.darkSlateGrey};
 `;
 

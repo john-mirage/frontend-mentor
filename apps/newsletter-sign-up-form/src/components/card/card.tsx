@@ -12,16 +12,17 @@ export interface CardProps {
 
 export function Card({ className }: CardProps) {
   const [success, setSuccess] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
 
   return (
     <Styled.Card isSuccess={success} className={className}>
       {success ? (
-        <Success email="email@company.com" setSuccess={setSuccess} />
+        <Success email={email} setSuccess={setSuccess} />
       ) : (
         <>
           <Styled.Picture>
             <source srcSet={desktopIllustration} media="(min-width: 992px)" />
-            <Styled.Image src={mobileIllustration} alt="" />
+            <Styled.Image src={mobileIllustration} alt="" draggable="false" />
           </Styled.Picture>
           <Styled.Body>
             <Styled.Title>Stay updated!</Styled.Title>
@@ -29,7 +30,7 @@ export function Card({ className }: CardProps) {
               Join 60,000+ product managers receiving monthly updates on:
             </Styled.Subtitle>
             <Styled.List />
-            <Form setSuccess={setSuccess} />
+            <Form setEmail={setEmail} setSuccess={setSuccess} />
           </Styled.Body>
         </>
       )}

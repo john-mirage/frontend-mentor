@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ScreenReaderOnly } from "../../styles/styled-components.mixins";
 
 export const App = styled.div`
   min-height: 100vh;
@@ -18,4 +19,8 @@ export const App = styled.div`
     padding: ${(props) =>
       `${props.theme.pxToRem(64)} ${props.theme.pxToRem(32)}`};
   }
+`;
+
+export const Title = styled.h1`
+  ${ScreenReaderOnly}
 `;

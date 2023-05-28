@@ -25,6 +25,9 @@ const theme = {
     grey: "hsl(231, 7%, 60%)",
     white: "hsl(0, 0%, 100%)",
     border: "hsla(243, 28%, 13%, 25%)",
+    buttonFrom: "hsl(14, 100%, 61%)",
+    buttonTo: "hsl(346, 100%, 66%)",
+    buttonShadow: "hsla(4, 100%, 67%, 50%)",
   },
   font: {
     root: FONT_ROOT,

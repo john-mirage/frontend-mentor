@@ -10,6 +10,7 @@ const App = () => {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Styled.App>
+          <Styled.Title>Newsletter sign up form</Styled.Title>
           <Card />
         </Styled.App>
       </ThemeProvider>

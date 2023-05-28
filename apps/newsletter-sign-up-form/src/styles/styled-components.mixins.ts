@@ -11,3 +11,38 @@ export const ScreenReaderOnly = css`
   white-space: nowrap;
   border-width: 0;
 `;
+
+export const largeHeadingText = css`
+  font-size: ${(props) => props.theme.pxToRem(56)};
+  line-height: ${(props) => props.theme.pxToRem(56)};
+  font-weight: 700;
+  letter-spacing: 0;
+`;
+
+export const mediumHeadingText = css`
+  font-size: ${(props) => props.theme.pxToRem(40)};
+  line-height: ${(props) => props.theme.pxToRem(40)};
+  font-weight: 700;
+  letter-spacing: 0;
+`;
+
+export const bodyText = css`
+  font-size: ${(props) => props.theme.pxToRem(16)};
+  line-height: ${(props) => props.theme.pxToRem(24)};
+  font-weight: 400;
+  letter-spacing: 0;
+`;
+
+export const boldBodyText = css`
+  font-size: ${(props) => props.theme.pxToRem(16)};
+  line-height: ${(props) => props.theme.pxToRem(24)};
+  font-weight: 700;
+  letter-spacing: 0;
+`;
+
+export const smallBodyText = css`
+  font-size: ${(props) => props.theme.pxToRem(12)};
+  line-height: ${(props) => props.theme.pxToRem(18)};
+  font-weight: 700;
+  letter-spacing: 0;
+`;

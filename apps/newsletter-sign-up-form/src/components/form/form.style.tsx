@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { bodyText, smallBodyText } from "../../styles/styled-components.mixins";
 
 interface InputProps {
   readonly hasError: boolean;
@@ -18,10 +19,7 @@ export const Row = styled.span`
 `;
 
 export const Label = styled.span`
-  font-size: ${(props) => props.theme.pxToRem(12)};
-  line-height: ${(props) => props.theme.pxToRem(18)};
-  font-weight: 700;
-  letter-spacing: 0;
+  ${smallBodyText}
   color: ${(props) => props.theme.color.darkSlateGrey};
 `;
 
@@ -30,6 +28,7 @@ export const Error = styled(Label)`
 `;
 
 export const Input = styled.input<InputProps>`
+  ${bodyText}
   width: 100%;
   padding: ${(props) =>
     `${props.theme.pxToRem(16)} ${props.theme.pxToRem(24)}`};
@@ -37,10 +36,6 @@ export const Input = styled.input<InputProps>`
   border: ${(props) => props.theme.pxToRem(1)} solid
     ${(props) =>
       props.hasError ? props.theme.color.tomato : props.theme.color.border};
-  font-size: ${(props) => props.theme.pxToRem(16)};
-  line-height: ${(props) => props.theme.pxToRem(24)};
-  font-weight: 400;
-  letter-spacing: 0;
   color: ${(props) =>
     props.hasError
       ? props.theme.color.tomato
