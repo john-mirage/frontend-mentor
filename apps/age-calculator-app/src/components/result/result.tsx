@@ -10,9 +10,18 @@ export interface ResultProps {
 export function Result({ years, months, days }: ResultProps) {
   return (
     <div>
-      <Period value={years ? String(years) : "--"} label="years" />
-      <Period value={months ? String(months) : "--"} label="months" />
-      <Period value={days ? String(days) : "--"} label="days" />
+      <Period
+        value={typeof years === "number" ? String(years) : "--"}
+        label="years"
+      />
+      <Period
+        value={typeof months === "number" ? String(months) : "--"}
+        label="months"
+      />
+      <Period
+        value={typeof days === "number" ? String(days) : "--"}
+        label="days"
+      />
     </div>
   );
 }
