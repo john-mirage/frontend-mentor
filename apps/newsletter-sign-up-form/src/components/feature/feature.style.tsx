@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IconSuccess } from "../icons";
+import { IconList } from "../icons";
 import { bodyText } from "../../styles/styled-components.mixins";
 
 export const Item = styled.li`
@@ -10,7 +10,7 @@ export const Item = styled.li`
   gap: ${(props) => props.theme.pxToRem(16)};
 `;
 
-export const Icon = styled(IconSuccess)`
+export const Icon = styled(IconList)`
   flex: none;
   width: ${(props) => props.theme.pxToRem(21)};
   height: ${(props) => props.theme.pxToRem(21)};
