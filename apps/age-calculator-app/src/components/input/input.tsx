@@ -9,7 +9,12 @@ export interface InputProps {
   label: string;
 }
 
-export function Input({ hasError, inputProps, placeholder }: InputProps) {
+export function Input({
+  hasError,
+  inputProps,
+  placeholder,
+  label,
+}: InputProps) {
   return (
     <label>
       <span
@@ -18,7 +23,7 @@ export function Input({ hasError, inputProps, placeholder }: InputProps) {
           "mb-4 block text-label-md uppercase @2xl:mb-8"
         )}
       >
-        day
+        {label}
       </span>
       <input
         className={clsx(
