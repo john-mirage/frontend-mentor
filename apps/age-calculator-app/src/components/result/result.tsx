@@ -12,15 +12,15 @@ export function Result({ years, months, days }: ResultProps) {
     <div>
       <Period
         value={typeof years === "number" ? String(years) : "--"}
-        label="years"
+        label={years === 1 ? "year" : "years"}
       />
       <Period
         value={typeof months === "number" ? String(months) : "--"}
-        label="months"
+        label={months === 1 ? "month" : "months"}
       />
       <Period
         value={typeof days === "number" ? String(days) : "--"}
-        label="days"
+        label={days === 1 ? "day" : "days"}
       />
     </div>
   );
