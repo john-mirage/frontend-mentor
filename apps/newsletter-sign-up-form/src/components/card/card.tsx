@@ -6,21 +6,23 @@ import Success from "../success";
 import { useState } from "react";
 
 /* eslint-disable-next-line */
-export interface CardProps {}
+export interface CardProps {
+  className?: string;
+}
 
-export function Card(props: CardProps) {
+export function Card({ className }: CardProps) {
   const [success, setSuccess] = useState<boolean>(false);
 
   return (
-    <Styled.Card>
+    <Styled.Card isSuccess={success} className={className}>
       {success ? (
         <Success email="email@company.com" setSuccess={setSuccess} />
       ) : (
         <>
-          <picture>
-            <source srcSet={desktopIllustration} media="(min-width: 576px)" />
-            <img src={mobileIllustration} alt="" />
-          </picture>
+          <Styled.Picture>
+            <source srcSet={desktopIllustration} media="(min-width: 992px)" />
+            <Styled.Image src={mobileIllustration} alt="" />
+          </Styled.Picture>
           <Styled.Body>
             <Styled.Title>Stay updated!</Styled.Title>
             <Styled.Subtitle>

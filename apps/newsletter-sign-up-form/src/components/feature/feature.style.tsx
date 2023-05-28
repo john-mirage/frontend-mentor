@@ -10,11 +10,13 @@ export const Item = styled.li`
 `;
 
 export const Icon = styled(IconSuccess)`
+  flex: none;
   width: ${(props) => props.theme.pxToRem(21)};
   height: ${(props) => props.theme.pxToRem(21)};
 `;
 
 export const Text = styled.p`
+  flex: 1;
   font-size: ${(props) => props.theme.pxToRem(16)};
   line-height: ${(props) => props.theme.pxToRem(24)};
   font-weight: 400;

@@ -1,5 +1,4 @@
 import * as Styled from "./success.style";
-import Button from "../button";
 
 /* eslint-disable-next-line */
 export interface SuccessProps {
@@ -13,7 +12,7 @@ export function Success(props: SuccessProps) {
   };
 
   return (
-    <>
+    <Styled.Container>
       <Styled.Icon />
       <Styled.Title>Thanks for subscribing!</Styled.Title>
       <Styled.Subtitle>
@@ -21,8 +20,8 @@ export function Success(props: SuccessProps) {
         <Styled.Email>{props.email}</Styled.Email>. Please open it and click the
         button inside to confirm your subscription
       </Styled.Subtitle>
-      <Button onClick={handleButtonClick}>Dismiss message</Button>
-    </>
+      <Styled.Button onClick={handleButtonClick}>Dismiss message</Styled.Button>
+    </Styled.Container>
   );
 }
 
