@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 import dts from "vite-plugin-dts";
-import { joinPathFragments } from "@nx/devkit";
+import { join } from "path";
 
 export default defineConfig({
   cacheDir: "../../node_modules/.vite/common-hooks",
@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     dts({
       entryRoot: "src",
-      tsConfigFilePath: joinPathFragments(__dirname, "tsconfig.lib.json"),
+      tsConfigFilePath: join(__dirname, "tsconfig.lib.json"),
       skipDiagnostics: true,
     }),
     react(),
