@@ -1,5 +1,7 @@
 /* eslint-disable-next-line */
-export interface ResultProps {}
+export interface ResultProps {
+  bmi: number;
+}
 
 export function Result(props: ResultProps) {
   return (

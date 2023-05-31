@@ -12,6 +12,7 @@ export interface BmiProps {
 
 export function Bmi(props: BmiProps) {
   const [isMetric, setIsMetric] = useState<boolean>(true);
+  const [bmi, setBmi] = useState<number>(0);
 
   return (
     <div
@@ -29,11 +30,11 @@ export function Bmi(props: BmiProps) {
         setIsMetric={setIsMetric}
       />
       {isMetric ? (
-        <MetricForm className="mb-24 md:mb-32" />
+        <MetricForm className="mb-24 md:mb-32" setBmi={setBmi} />
       ) : (
-        <ImperialForm className="mb-24 md:mb-32" />
+        <ImperialForm className="mb-24 md:mb-32" setBmi={setBmi} />
       )}
-      <Result />
+      <Result bmi={bmi} />
     </div>
   );
 }

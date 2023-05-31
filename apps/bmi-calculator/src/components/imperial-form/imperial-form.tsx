@@ -4,6 +4,7 @@ import Input from "../input";
 /* eslint-disable-next-line */
 export interface ImperialFormProps {
   className?: string;
+  setBmi: (bmi: number) => void;
 }
 
 export function ImperialForm(props: ImperialFormProps) {
