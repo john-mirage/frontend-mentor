@@ -165,11 +165,6 @@ module.exports = {
       ],
     }),
     extend: {
-      backgroundImage: {
-        "curved-line-left": "url('./src/images/pattern-curved-line-left.svg')",
-        "curved-line-right":
-          "url('./src/images/pattern-curved-line-right.svg')",
-      },
       backgroundPosition: {
         "curved-line-left": "top 0 right 60px",
         "curved-line-right": "top 250px left 160px",

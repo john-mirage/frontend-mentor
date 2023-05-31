@@ -12,7 +12,7 @@ export function ImperialForm(props: ImperialFormProps) {
     <form
       className={clsx(
         props.className,
-        "grid grid-cols-2 gap-16 items-end lg:gap-24"
+        "grid grid-cols-2 gap-16 items-end lg:gap-y-16 lg:gap-x-24"
       )}
     >
       <Input label="Height" labelIsVisible={true} unit="ft" />

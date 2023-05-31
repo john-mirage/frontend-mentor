@@ -13,7 +13,7 @@ export function AdviceList(props: AdviceListProps) {
     <section
       className={clsx(
         props.classname,
-        "lg:pt-48 lg:bg-curved-line-left lg:bg-no-repeat"
+        "lg:pt-48 lg:bg-curved-line-left lg:bg-[url('/src/images/pattern-curved-line-left.svg')] lg:bg-no-repeat"
       )}
     >
       <div className="mb-128 md:mb-156 md:flex md:flex-row md:items-center md:gap-72">
