@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 /* eslint-disable-next-line */
-export interface BmiExplanationAdviceProps {
+export interface AdviceProps {
   name: string;
   description: string;
   icon: ReactNode;
 }
 
-export function BmiExplanationAdvice(props: BmiExplanationAdviceProps) {
+export function Advice(props: AdviceProps) {
   return (
     <li className="md:flex md:flex-row md:items-center md:gap-40 lg:block">
       {props.icon}
@@ -20,4 +20,4 @@ export function BmiExplanationAdvice(props: BmiExplanationAdviceProps) {
   );
 }
 
-export default BmiExplanationAdvice;
+export default Advice;

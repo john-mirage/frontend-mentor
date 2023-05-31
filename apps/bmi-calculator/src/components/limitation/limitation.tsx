@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-export interface BmiLimitationCardProps {
+export interface LimitationProps {
   className?: string;
   name: string;
   description: string;
   icon: ReactNode;
 }
 
-export function BmiLimitationCard(props: BmiLimitationCardProps) {
+export function Limitation(props: LimitationProps) {
   return (
     <li
       className={clsx(
@@ -25,4 +25,4 @@ export function BmiLimitationCard(props: BmiLimitationCardProps) {
   );
 }
 
-export default BmiLimitationCard;
+export default Limitation;

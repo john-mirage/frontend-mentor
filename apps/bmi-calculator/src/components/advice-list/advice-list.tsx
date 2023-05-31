@@ -1,14 +1,14 @@
 import { IconEating, IconExercise, IconSleep } from "../icons";
 import image from "../../images/image-man-eating.webp";
 import clsx from "clsx";
-import BmiExplanationAdvice from "../bmi-explanation-advice";
+import Advice from "../advice";
 
 /* eslint-disable-next-line */
-export interface BmiExplanationProps {
+export interface AdviceListProps {
   classname?: string;
 }
 
-export function BmiExplanation(props: BmiExplanationProps) {
+export function AdviceList(props: AdviceListProps) {
   return (
     <section
       className={clsx(
@@ -38,21 +38,21 @@ export function BmiExplanation(props: BmiExplanationProps) {
         </div>
       </div>
       <ul className="grid gap-40 lg:grid-cols-3">
-        <BmiExplanationAdvice
+        <Advice
           name="Healthy eating"
           description="Healthy eating promotes weight control, disease prevention, better digestion, immunity, mental clarity, and mood."
           icon={
             <IconEating className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
           }
         />
-        <BmiExplanationAdvice
+        <Advice
           name="Regular exercise"
           description="Exercise improves fitness, aids weight control, elevates mood, and reduces disease risk, fostering wellness and longevity."
           icon={
             <IconExercise className="mb-32 w-64 h-64 md:mb-0 md:flex-0 lg:mb-44" />
           }
         />
-        <BmiExplanationAdvice
+        <Advice
           name="Adequate sleep"
           description="Sleep enhances mental clarity, emotional stability, and physical wellness, promoting overall restoration and rejuvenation."
           icon={
@@ -64,4 +64,4 @@ export function BmiExplanation(props: BmiExplanationProps) {
   );
 }
 
-export default BmiExplanation;
+export default AdviceList;

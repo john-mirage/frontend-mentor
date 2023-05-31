@@ -1,7 +1,7 @@
-import BmiExplanation from "../bmi-explanation";
-import BmiLimitation from "../bmi-limitation";
-import Form from "../form";
+import AdviceList from "../advice-list";
+import LimitationList from "../limitation-list";
 import Hero from "../hero";
+import Bmi from "../bmi";
 
 export function App() {
   return (
@@ -10,10 +10,10 @@ export function App() {
       <div className="relative z-50 container">
         <div className="lg:flex lg:flex-row lg:justify-between lg:items-start">
           <Hero className="mb-48 lg:mb-0" />
-          <Form className="mb-72 md:mb-96 lg:mt-168 lg:mb-0 lg:w-564" />
+          <Bmi className="mb-72 md:mb-96 lg:mt-168 lg:mb-0 lg:w-564" />
         </div>
-        <BmiExplanation classname="mb-128 md:mb-156 lg:mb-216" />
-        <BmiLimitation />
+        <AdviceList classname="mb-128 md:mb-156 lg:mb-216" />
+        <LimitationList />
       </div>
     </div>
   );
