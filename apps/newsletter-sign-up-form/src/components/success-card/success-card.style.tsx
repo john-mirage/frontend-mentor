@@ -5,19 +5,21 @@ import {
   mediumHeadingText,
   bodyText,
   largeHeadingText,
+  CardBase,
 } from "../../styles/styled-components.mixins";
+import { motion } from "framer-motion";
 
-export const Container = styled.div`
+export const Card = styled(motion.div)`
+  ${CardBase}
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   padding: ${(props) =>
     `${props.theme.pxToRem(148)} ${props.theme.pxToRem(
       24
     )} ${props.theme.pxToRem(40)} ${props.theme.pxToRem(24)}`};
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
-    min-height: auto;
+    max-width: ${({ theme }) => theme.pxToRem(528)};
     padding: ${({ theme }) => theme.pxToRem(64)};
   }
 `;

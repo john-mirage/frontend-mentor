@@ -1,4 +1,4 @@
-import * as Styled from "./success.style";
+import * as Styled from "./success-card.style";
 
 /* eslint-disable-next-line */
 export interface SuccessProps {
@@ -6,13 +6,18 @@ export interface SuccessProps {
   setSuccess: (success: boolean) => void;
 }
 
-export function Success(props: SuccessProps) {
+export function SuccessCard(props: SuccessProps) {
   const handleButtonClick = () => {
     props.setSuccess(false);
   };
 
   return (
-    <Styled.Container>
+    <Styled.Card
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.15 }}
+    >
       <Styled.Icon />
       <Styled.Title>Thanks for subscribing!</Styled.Title>
       <Styled.Subtitle>
@@ -21,8 +26,8 @@ export function Success(props: SuccessProps) {
         button inside to confirm your subscription
       </Styled.Subtitle>
       <Styled.Button onClick={handleButtonClick}>Dismiss message</Styled.Button>
-    </Styled.Container>
+    </Styled.Card>
   );
 }
 
-export default Success;
+export default SuccessCard;
