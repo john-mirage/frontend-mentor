@@ -51,6 +51,7 @@ export function Form(props: FormProps) {
         <Styled.Input
           hasError={!!errors.email}
           placeholder="email@company.com"
+          autoComplete="email"
           {...register("email")}
         />
       </Styled.Container>
