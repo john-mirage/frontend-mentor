@@ -4,33 +4,23 @@ import {
   mediumHeadingText,
   bodyText,
   largeHeadingText,
+  CardBase,
 } from "../../styles/styled-components.mixins";
+import { motion } from "framer-motion";
 
-interface CardProps {
-  isSuccess: boolean;
-}
-
-export const Card = styled.article<CardProps>`
-  width: 100%;
-  min-height: 100vh;
-  background-color: ${(props) => props.theme.color.white};
+export const Card = styled(motion.article)`
+  ${CardBase}
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
-    min-height: auto;
     max-width: ${({ theme }) => theme.pxToRem(528)};
-    height: auto;
-    overflow: hidden;
-    border-radius: ${({ theme }) => theme.pxToRem(24)};
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    max-width: ${(props) =>
-      props.isSuccess ? props.theme.pxToRem(528) : props.theme.pxToRem(928)};
+    max-width: ${(props) => props.theme.pxToRem(928)};
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-    border-radius: ${({ theme }) => theme.pxToRem(36)};
   }
 `;
 

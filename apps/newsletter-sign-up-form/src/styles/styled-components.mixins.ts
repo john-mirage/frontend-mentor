@@ -12,6 +12,23 @@ export const ScreenReaderOnly = css`
   border-width: 0;
 `;
 
+export const CardBase = css`
+  width: 100%;
+  min-height: 100vh;
+  background-color: ${(props) => props.theme.color.white};
+
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
+    min-height: auto;
+    height: auto;
+    overflow: hidden;
+    border-radius: ${({ theme }) => theme.pxToRem(24)};
+  }
+
+  @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
+    border-radius: ${({ theme }) => theme.pxToRem(36)};
+  }
+`;
+
 export const largeHeadingText = css`
   font-size: ${(props) => props.theme.pxToRem(56)};
   line-height: ${(props) => props.theme.pxToRem(56)};
