@@ -92,6 +92,7 @@ module.exports = {
       12: pxToRem(12),
       16: pxToRem(16),
       35: pxToRem(35),
+      100: pxToRem(100),
     },
     boxShadow: {
       none: "0 0 #0000;",
@@ -161,6 +162,14 @@ module.exports = {
           lineHeight: theme("spacing[24]"),
           letterSpacing: "0",
           fontWeight: "400",
+        },
+      ],
+      "body-s-bold": [
+        theme("spacing[14]"),
+        {
+          lineHeight: theme("spacing[24]"),
+          letterSpacing: "0",
+          fontWeight: "600",
         },
       ],
     }),

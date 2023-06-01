@@ -6,11 +6,18 @@ export interface TypeFormProps {
   className?: string;
   isMetric: boolean;
   setIsMetric: (isMetric: boolean) => void;
+  setBmi: (bmi: number | undefined) => void;
 }
 
-export function TypeForm({ className, isMetric, setIsMetric }: TypeFormProps) {
+export function TypeForm({
+  className,
+  isMetric,
+  setIsMetric,
+  setBmi,
+}: TypeFormProps) {
   const handleRadioChange = () => {
     setIsMetric(!isMetric);
+    setBmi(undefined);
   };
 
   return (
