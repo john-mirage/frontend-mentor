@@ -19,15 +19,31 @@ export function Result({
   isMetric,
 }: ResultProps) {
   let bmi = "";
+  let status = "";
+
+  const calculateStatus = (bmiInt: number) => {
+    if (bmiInt) {
+      if (bmiInt < 18.5) {
+        status = "Underweight";
+      } else if (bmiInt < 24.9) {
+        status = "Healthy weight";
+      } else if (bmiInt < 29.9) {
+        status = "Overweight";
+      } else {
+        status = "Obese";
+      }
+    }
+  };
 
   if (isMetric && centimeters && kilograms) {
     const meters = Number(centimeters) / 100;
-    bmi = String(
-      Math.round((Number(kilograms) / Math.pow(meters, 2)) * 10) / 10
-    );
+    const bmiInt =
+      Math.round((Number(kilograms) / Math.pow(meters, 2)) * 10) / 10;
+    calculateStatus(bmiInt);
+    bmi = String(bmiInt);
   }
 
-  if (!isMetric && feets && inches && stones && pounds) {
+  if (!isMetric && (feets || inches) && (stones || pounds)) {
     const feetsInt = Number(feets);
     const inchesInt = Number(inches);
     const stonesInt = Number(stones);
@@ -36,7 +52,9 @@ export function Result({
       const fullInches = feetsInt * 12 + inchesInt;
       const fullPounds = stonesInt * 14 + poundsInt;
       const notRoundedBmi = (fullPounds / Math.pow(fullInches, 2)) * 703;
-      bmi = String(Math.round(notRoundedBmi * 10) / 10);
+      const bmiInt = Math.round(notRoundedBmi * 10) / 10;
+      calculateStatus(bmiInt);
+      bmi = String(bmiInt);
     }
   }
 
@@ -53,7 +71,7 @@ export function Result({
             </p>
           </div>
           <p className="text-body-s text-pure-white lg:flex-1">
-            Your BMI suggests you’re a. Your ideal weight is between{" "}
+            Your BMI suggests you’re a {status}. Your ideal weight is between{" "}
             <span className="text-body-s-bold">9st 6lbs - 12st 10lbs</span>.
           </p>
         </div>

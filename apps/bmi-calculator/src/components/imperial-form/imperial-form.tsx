@@ -15,10 +15,8 @@ export interface ImperialFormProps {
 
 const unitSchema = yup
   .string()
-  .required("Must not be empty")
-  .min(1, "Must be 1 digit min")
   .max(3, "Must be 3 digits max")
-  .matches(/^\d+$/, "Must be a number");
+  .matches(/^\d*$/, "Must be a number");
 
 const schema = yup
   .object({
@@ -51,10 +49,15 @@ export function ImperialForm({
 
   useEffect(() => {
     if (!isValidating && isValid) {
-      setFeets(watchFields.feets);
-      setInches(watchFields.inches);
-      setStones(watchFields.stones);
-      setPounds(watchFields.pounds);
+      if (
+        (watchFields.feets || watchFields.inches) &&
+        (watchFields.stones || watchFields.pounds)
+      ) {
+        setFeets(watchFields.feets || "");
+        setInches(watchFields.inches || "");
+        setStones(watchFields.stones || "");
+        setPounds(watchFields.pounds || "");
+      }
     }
   }, [
     watchFields,
