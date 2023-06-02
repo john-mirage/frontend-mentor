@@ -5,32 +5,33 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useEffect } from "react";
 
-/* eslint-disable-next-line */
 export interface MetricFormProps {
   className?: string;
-  setBmi: (bmi: number | undefined) => void;
+  setCentimeters: (centimeters: string) => void;
+  setKilograms: (kilograms: string) => void;
 }
+
+const unitSchema = yup
+  .string()
+  .required("Must not be empty")
+  .min(1, "Must be 1 digit min")
+  .max(3, "Must be 3 digits max")
+  .matches(/^[1-9]\d*$/, "Must be a number");
 
 const schema = yup
   .object({
-    centimeter: yup
-      .string()
-      .required("Must not be empty")
-      .min(1, "Must be 1 digit min")
-      .max(3, "Must be 3 digits max")
-      .matches(/^[1-9]\d*$/, "Must be positive"),
-    kilogram: yup
-      .string()
-      .required("Must not be empty")
-      .min(1, "Must be 1 digit min")
-      .max(3, "Must be 3 digits max")
-      .matches(/^[1-9]\d*$/, "Must be positive"),
+    centimeter: unitSchema,
+    kilogram: unitSchema,
   })
   .required();
 
 type FormData = yup.InferType<typeof schema>;
 
-export function MetricForm({ className, setBmi }: MetricFormProps) {
+export function MetricForm({
+  className,
+  setCentimeters,
+  setKilograms,
+}: MetricFormProps) {
   const {
     register,
     watch,
@@ -44,34 +45,36 @@ export function MetricForm({ className, setBmi }: MetricFormProps) {
 
   useEffect(() => {
     if (!isValidating && isValid) {
-      const meters = Number(watchFields.centimeter) / 100;
-      const squaredMeters = meters * meters;
-      const bmi = Math.round(Number(watchFields.kilogram) / squaredMeters);
-      setBmi(bmi);
+      setCentimeters(watchFields.centimeter);
+      setKilograms(watchFields.kilogram);
     }
-  }, [watchFields, isValid, isValidating, setBmi]);
+  }, [watchFields, isValid, isValidating, setCentimeters, setKilograms]);
 
   return (
     <form
       className={clsx(className, "grid grid-cols-2 gap-16 items-end lg:gap-24")}
     >
-      <div>
+      <div className="relative">
         <Input
           label="Height"
           labelIsVisible={true}
           unit="cm"
           inputProps={register("centimeter")}
         />
-        <p>{errors.centimeter?.message}</p>
+        <p className="absolute text-body-s-bold text-red">
+          {errors.centimeter?.message}
+        </p>
       </div>
-      <div>
+      <div className="relative">
         <Input
           label="Weight"
           labelIsVisible={true}
           unit="kg"
           inputProps={register("kilogram")}
         />
-        <p>{errors.kilogram?.message}</p>
+        <p className="absolute text-body-s-bold text-red">
+          {errors.kilogram?.message}
+        </p>
       </div>
     </form>
   );

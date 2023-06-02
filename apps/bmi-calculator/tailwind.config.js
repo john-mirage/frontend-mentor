@@ -46,6 +46,7 @@ module.exports = {
       "form-to": "hsl(227, 92%, 67%)",
       "explanation-from": "hsla(216, 95%, 92%, 25%)",
       "explanation-to": "hsla(184, 95%, 92%, 0%)",
+      "red": "#ef4444",
     },
     spacing: {
       0: "0px",

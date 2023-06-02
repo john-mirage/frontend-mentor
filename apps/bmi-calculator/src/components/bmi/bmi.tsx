@@ -1,18 +1,34 @@
 import clsx from "clsx";
 import MetricForm from "../metric-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImperialForm from "../imperial-form";
 import Result from "../result";
 import TypeForm from "../type-form";
 
-/* eslint-disable-next-line */
 export interface BmiProps {
   className?: string;
 }
 
 export function Bmi(props: BmiProps) {
   const [isMetric, setIsMetric] = useState<boolean>(true);
-  const [bmi, setBmi] = useState<number | undefined>(undefined);
+  const [centimeters, setCentimeters] = useState<string>("");
+  const [kilograms, setKilograms] = useState<string>("");
+  const [feets, setFeets] = useState<string>("");
+  const [inches, setInches] = useState<string>("");
+  const [stones, setStones] = useState<string>("");
+  const [pounds, setPounds] = useState<string>("");
+
+  useEffect(() => {
+    if (isMetric) {
+      setFeets("");
+      setInches("");
+      setStones("");
+      setPounds("");
+    } else {
+      setCentimeters("");
+      setKilograms("");
+    }
+  }, [isMetric]);
 
   return (
     <div
@@ -28,14 +44,31 @@ export function Bmi(props: BmiProps) {
         className="mb-24 md:mb-32"
         isMetric={isMetric}
         setIsMetric={setIsMetric}
-        setBmi={setBmi}
       />
       {isMetric ? (
-        <MetricForm className="mb-24 md:mb-32" setBmi={setBmi} />
+        <MetricForm
+          className="mb-24 md:mb-32"
+          setCentimeters={setCentimeters}
+          setKilograms={setKilograms}
+        />
       ) : (
-        <ImperialForm className="mb-24 md:mb-32" setBmi={setBmi} />
+        <ImperialForm
+          className="mb-24 md:mb-32"
+          setFeets={setFeets}
+          setInches={setInches}
+          setStones={setStones}
+          setPounds={setPounds}
+        />
       )}
-      <Result bmi={bmi} />
+      <Result
+        centimeters={centimeters}
+        kilograms={kilograms}
+        feets={feets}
+        inches={inches}
+        stones={stones}
+        pounds={pounds}
+        isMetric={isMetric}
+      />
     </div>
   );
 }

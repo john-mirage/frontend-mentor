@@ -1,26 +1,48 @@
 /* eslint-disable-next-line */
 export interface ResultProps {
-  bmi?: number;
+  centimeters: string;
+  kilograms: string;
+  feets: string;
+  inches: string;
+  stones: string;
+  pounds: string;
+  isMetric: boolean;
 }
 
-export function Result({ bmi }: ResultProps) {
-  let status = "";
+export function Result({
+  centimeters,
+  kilograms,
+  feets,
+  inches,
+  stones,
+  pounds,
+  isMetric,
+}: ResultProps) {
+  let bmi = "";
 
-  if (bmi) {
-    if (bmi < 18.5) {
-      status = "Underweight";
-    } else if (bmi < 24.9) {
-      status = "Healthy weight";
-    } else if (bmi < 29.9) {
-      status = "Overweight";
-    } else {
-      status = "Obese";
+  if (isMetric && centimeters && kilograms) {
+    const meters = Number(centimeters) / 100;
+    bmi = String(
+      Math.round((Number(kilograms) / Math.pow(meters, 2)) * 10) / 10
+    );
+  }
+
+  if (!isMetric && feets && inches && stones && pounds) {
+    const feetsInt = Number(feets);
+    const inchesInt = Number(inches);
+    const stonesInt = Number(stones);
+    const poundsInt = Number(pounds);
+    if ((feetsInt || inchesInt) && (stonesInt || poundsInt)) {
+      const fullInches = feetsInt * 12 + inchesInt;
+      const fullPounds = stonesInt * 14 + poundsInt;
+      const notRoundedBmi = (fullPounds / Math.pow(fullInches, 2)) * 703;
+      bmi = String(Math.round(notRoundedBmi * 10) / 10);
     }
   }
 
   return (
     <div className="p-32 rounded-16 bg-gradient-to-r from-form-from to-form-to lg:rounded-l-16 lg:rounded-r-100">
-      {typeof bmi === "number" ? (
+      {bmi ? (
         <div className="lg:flex lg:flex-row lg:items-center lg:gap-24">
           <div className="lg:flex-1">
             <p className="mb-8 text-body-m-bold text-pure-white">
@@ -31,7 +53,7 @@ export function Result({ bmi }: ResultProps) {
             </p>
           </div>
           <p className="text-body-s text-pure-white lg:flex-1">
-            Your BMI suggests you’re a {status}. Your ideal weight is between{" "}
+            Your BMI suggests you’re a. Your ideal weight is between{" "}
             <span className="text-body-s-bold">9st 6lbs - 12st 10lbs</span>.
           </p>
         </div>
