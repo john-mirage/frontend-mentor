@@ -31,7 +31,7 @@ export function Bmi(props: BmiProps) {
   }, [isMetric]);
 
   return (
-    <div
+    <section
       className={clsx(
         props.className,
         "rounded-16 p-24 bg-pure-white shadow-form md:p-32"
@@ -69,7 +69,7 @@ export function Bmi(props: BmiProps) {
         pounds={pounds}
         isMetric={isMetric}
       />
-    </div>
+    </section>
   );
 }
 
