@@ -1,4 +1,11 @@
-/* eslint-disable-next-line */
+import {
+  getBmiFromMetric,
+  getBmiFromImperial,
+  getBmiState,
+  getWeightAreaForMetric,
+  getWeightAreaForImperial,
+} from "../../utils/bmi";
+
 export interface ResultProps {
   centimeters: string;
   kilograms: string;
@@ -19,28 +26,15 @@ export function Result({
   isMetric,
 }: ResultProps) {
   let bmi = "";
-  let status = "";
-
-  const calculateStatus = (bmiInt: number) => {
-    if (bmiInt) {
-      if (bmiInt < 18.5) {
-        status = "Underweight";
-      } else if (bmiInt < 24.9) {
-        status = "Healthy weight";
-      } else if (bmiInt < 29.9) {
-        status = "Overweight";
-      } else {
-        status = "Obese";
-      }
-    }
-  };
+  let bmiState = "";
+  let weightArea = "";
 
   if (isMetric && centimeters && kilograms) {
     const meters = Number(centimeters) / 100;
-    const bmiInt =
-      Math.round((Number(kilograms) / Math.pow(meters, 2)) * 10) / 10;
-    calculateStatus(bmiInt);
-    bmi = String(bmiInt);
+    const bmiAsNumber = getBmiFromMetric(meters, Number(kilograms));
+    bmi = String(bmiAsNumber);
+    bmiState = getBmiState(bmiAsNumber);
+    weightArea = getWeightAreaForMetric(Number(kilograms), bmiAsNumber);
   }
 
   if (!isMetric && (feets || inches) && (stones || pounds)) {
@@ -51,10 +45,10 @@ export function Result({
     if ((feetsInt || inchesInt) && (stonesInt || poundsInt)) {
       const fullInches = feetsInt * 12 + inchesInt;
       const fullPounds = stonesInt * 14 + poundsInt;
-      const notRoundedBmi = (fullPounds / Math.pow(fullInches, 2)) * 703;
-      const bmiInt = Math.round(notRoundedBmi * 10) / 10;
-      calculateStatus(bmiInt);
-      bmi = String(bmiInt);
+      const bmiAsNumber = getBmiFromImperial(fullInches, fullPounds);
+      bmi = String(bmiAsNumber);
+      bmiState = getBmiState(bmiAsNumber);
+      weightArea = getWeightAreaForImperial(fullPounds, bmiAsNumber);
     }
   }
 
@@ -71,8 +65,8 @@ export function Result({
             </p>
           </div>
           <p className="text-body-s text-pure-white lg:flex-1">
-            Your BMI suggests you’re a {status}. Your ideal weight is between{" "}
-            <span className="text-body-s-bold">9st 6lbs - 12st 10lbs</span>.
+            Your BMI suggests you’re a {bmiState}. Your ideal weight is between{" "}
+            <span className="text-body-s-bold">{weightArea}</span>.
           </p>
         </div>
       ) : (
