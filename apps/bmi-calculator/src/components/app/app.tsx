@@ -12,8 +12,10 @@ export function App() {
           <Hero className="mb-48 lg:mb-0" />
           <Bmi className="mb-72 md:mb-96 lg:mt-168 lg:mb-0 lg:w-564" />
         </div>
-        <AdviceList classname="mb-128 md:mb-156 lg:mb-216" />
-        <LimitationList />
+        <main>
+          <AdviceList classname="mb-128 md:mb-156 lg:mb-216" />
+          <LimitationList />
+        </main>
       </div>
     </div>
   );
