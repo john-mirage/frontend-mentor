@@ -29,6 +29,7 @@
         "style": "styled-components",
         "linter": "eslint",
         "bundler": "vite",
+        "compiler": "swc",
         "e2eTestRunner": "none",
         "babel": true
       },

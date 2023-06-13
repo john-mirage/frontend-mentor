@@ -46,7 +46,7 @@ export function Form(props: FormProps) {
       <Styled.Container>
         <Styled.Row>
           <Styled.Label>Email address</Styled.Label>
-          {errors.email && <Styled.Error>{errors.email?.message}</Styled.Error>}
+          {errors.email && <Styled.Error>{errors.email.message}</Styled.Error>}
         </Styled.Row>
         <Styled.Input
           hasError={!!errors.email}
