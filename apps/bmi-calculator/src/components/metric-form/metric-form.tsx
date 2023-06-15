@@ -52,7 +52,10 @@ export function MetricForm({
 
   return (
     <form
-      className={clsx(className, "grid grid-cols-2 gap-16 items-end lg:gap-24")}
+      className={clsx(
+        className,
+        "grid sm:grid-cols-2 gap-16 items-end lg:gap-24"
+      )}
     >
       <div className="relative">
         <Input

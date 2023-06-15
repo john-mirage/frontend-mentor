@@ -21,6 +21,7 @@ module.exports = {
   ],
   theme: {
     screens: {
+      "sm": "592px",
       "md": "768px",
       "lg": "1280px",
       "hover-device": { raw: "(hover: hover)" },
@@ -44,8 +45,8 @@ module.exports = {
       "hero-to": "hsl(216, 95%, 92%)",
       "form-from": "hsl(227, 92%, 59%)",
       "form-to": "hsl(227, 92%, 67%)",
-      "explanation-from": "hsla(216, 95%, 92%, 25%)",
-      "explanation-to": "hsla(184, 95%, 92%, 0%)",
+      "advice-from": "hsla(216, 95%, 92%, 30%)",
+      "advice-to": "hsla(184, 95%, 92%, 20%)",
       "red": "#ef4444",
     },
     spacing: {

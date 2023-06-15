@@ -18,7 +18,7 @@ export function LimitationList(props: LimitationListProps) {
     <section
       className={clsx(
         props.classname,
-        "lg:relative lg:bg-curved-line-right lg:bg-[url('/src/images/pattern-curved-line-right.svg')] lg:bg-no-repeat"
+        "container lg:relative lg:bg-curved-line-right lg:bg-[url('/src/images/pattern-curved-line-right.svg')] lg:bg-no-repeat"
       )}
     >
       <div className="text-center lg:absolute lg:top-0 lg:left-0 lg:max-w-564 lg:text-left">

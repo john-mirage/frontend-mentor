@@ -10,13 +10,8 @@ export interface AdviceListProps {
 
 export function AdviceList(props: AdviceListProps) {
   return (
-    <section
-      className={clsx(
-        props.classname,
-        "lg:pt-48 lg:bg-curved-line-left lg:bg-[url('/src/images/pattern-curved-line-left.svg')] lg:bg-no-repeat"
-      )}
-    >
-      <div className="mb-128 md:mb-156 md:flex md:flex-row md:items-center md:gap-72">
+    <section className={clsx(props.classname)}>
+      <div className="mb-72 md:mb-96 container md:flex md:flex-row md:items-center md:gap-72 lg:pt-48 lg:bg-curved-line-left lg:bg-[url('/src/images/pattern-curved-line-left.svg')] lg:bg-no-repeat">
         <img
           className="mb-48 -mx-24 w-image max-w-none md:w-full md:max-w-432 md:mb-0 md:-ml-116 lg:ml-0 lg:max-w-564"
           src={image}
@@ -37,7 +32,7 @@ export function AdviceList(props: AdviceListProps) {
           </p>
         </div>
       </div>
-      <ul className="grid gap-40 lg:grid-cols-3">
+      <ul className="container py-56 md:pt-72 md:pb-96 bg-gradient-to-br from-advice-from to-advice-to grid gap-40 md:rounded-35 lg:grid-cols-3">
         <Advice
           name="Healthy eating"
           description="Healthy eating promotes weight control, disease prevention, better digestion, immunity, mental clarity, and mood."
