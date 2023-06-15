@@ -17,7 +17,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Styled.App>
           <Styled.Title>Newsletter sign up form</Styled.Title>
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             {success ? (
               <SuccessCard
                 key="success-card"
