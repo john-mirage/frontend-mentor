@@ -60,7 +60,6 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizespeed;
     line-height: 1.5;
     font-family: ${theme.font.stack};
-    background-color: ${theme.color.background}
   }
 
   a {
