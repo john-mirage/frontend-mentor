@@ -10,17 +10,17 @@ export const Container = styled.div`
 `;
 
 export const CurrentPrice = styled.p`
-  font-size: 3rem;
+  font-size: ${({ theme }) => theme.pxToRem(30)};
   font-weight: 700;
   text-transform: uppercase;
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
-  margin-right: 1.6rem;
+  margin-right: ${({ theme }) => theme.pxToRem(16)};
 `;
 
 export const Discount = styled.p`
-  padding: 0.4rem 1rem;
-  border-radius: 0.4rem;
-  font-size: 1.6rem;
+  padding: ${({ theme }) => `${theme.pxToRem(4)} ${theme.pxToRem(10)}`};
+  border-radius: ${({ theme }) => theme.pxToRem(4)};
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 700;
   text-transform: uppercase;
   color: ${(props) => props.theme.color.primary.orange};
@@ -28,7 +28,7 @@ export const Discount = styled.p`
 `;
 
 export const InitialPrice = styled.p`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 700;
   text-transform: uppercase;
   text-decoration-line: line-through;
@@ -36,7 +36,7 @@ export const InitialPrice = styled.p`
   margin-left: auto;
 
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
-    margin-top: 1rem;
+    margin-top: ${({ theme }) => theme.pxToRem(10)};
     width: 100%;
   }
 `;

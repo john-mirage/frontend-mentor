@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.button`
   position: relative;
   display: flex;
-  width: 4.8rem;
-  height: 4.8rem;
+  width: ${({ theme }) => theme.pxToRem(48)};
+  height: ${({ theme }) => theme.pxToRem(48)};
   border-radius: 50%;
   cursor: pointer;
   border: none;

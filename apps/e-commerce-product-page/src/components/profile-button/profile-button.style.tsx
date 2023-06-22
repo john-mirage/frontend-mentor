@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   display: flex;
-  width: 4.8rem;
-  height: 4.8rem;
+  width: ${({ theme }) => theme.pxToRem(48)};
+  height: ${({ theme }) => theme.pxToRem(48)};
   border-radius: 50%;
   transition: background-color 300ms;
   padding: 0;
@@ -22,11 +22,11 @@ export const Container = styled.button`
 
 export const Image = styled.img`
   margin: auto;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: ${({ theme }) => theme.pxToRem(26)};
+  height: ${({ theme }) => theme.pxToRem(26)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    width: 4.4rem;
-    height: 4.4rem;
+    width: ${({ theme }) => theme.pxToRem(44)};
+    height: ${({ theme }) => theme.pxToRem(44)};
   }
 `;

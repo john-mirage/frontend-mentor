@@ -12,35 +12,35 @@ export const Container = styled.div`
 `;
 
 export const Company = styled.p`
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.pxToRem(12)};
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
+  letter-spacing: ${({ theme }) => theme.pxToRem(1)};
   color: ${(props) => props.theme.color.primary.orange};
-  margin-bottom: 1rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(10)};
 `;
 
 export const Name = styled.h1`
-  font-size: 2.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(26)};
   font-weight: 700;
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
-  margin-bottom: 1.6rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(16)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
-    font-size: 4.8rem;
+    font-size: ${({ theme }) => theme.pxToRem(48)};
   }
 `;
 
 export const Description = styled.p`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 400;
-  line-height: 2.6rem;
+  line-height: ${({ theme }) => theme.pxToRem(26)};
   color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
-  margin-bottom: 2.4rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(24)};
 `;
 
 export const Price = styled(BasePrice)`
-  margin-bottom: 2rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(20)};
 `;
 
 export const Form = styled.div`
@@ -52,12 +52,12 @@ export const Form = styled.div`
 `;
 
 export const CountInput = styled(BaseCountInput)`
-  margin-bottom: 1.6rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(16)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
     flex: 1 1 35%;
     margin-bottom: 0;
-    margin-right: 2rem;
+    margin-right: ${({ theme }) => theme.pxToRem(20)};
   }
 `;
 
@@ -68,8 +68,8 @@ export const CartButton = styled(BaseButton)`
 `;
 
 export const CartIcon = styled(IconCart)`
-  margin-right: 1.6rem;
-  width: 2rem;
+  margin-right: ${({ theme }) => theme.pxToRem(16)};
+  width: ${({ theme }) => theme.pxToRem(20)};
   height: auto;
   fill: ${(props) => props.theme.color.neutral.white};
 `;
@@ -78,10 +78,10 @@ export const ErrorMessage = styled(motion.p)`
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translateY(calc(100% + 1rem));
-  padding-left: 2rem;
-  padding-right: 2rem;
-  font-size: 1.4rem;
+  transform: translateY(calc(100% + ${({ theme }) => theme.pxToRem(10)}));
+  padding-left: ${({ theme }) => theme.pxToRem(20)};
+  padding-right: ${({ theme }) => theme.pxToRem(20)};
+  font-size: ${({ theme }) => theme.pxToRem(14)};
   font-weight: 700;
   color: ${(props) => props.theme.color.primary.orange};
 

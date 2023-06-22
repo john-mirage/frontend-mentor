@@ -21,19 +21,19 @@ export const Background = styled(motion.div)`
   ${layer}
   z-index: 50;
   background-color: ${(props) => props.theme.color.primary.orange};
-  border-radius: 1.2rem;
+  border-radius: ${({ theme }) => theme.pxToRem(12)};
 `;
 
 export const Image = styled.img`
   ${layer}
   z-index: 60;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: ${({ theme }) => theme.pxToRem(10)};
 `;
 
 export const Overlay = styled(motion.div)`
   ${layer}
   z-index: 70;
-  border-radius: 1rem;
+  border-radius: ${({ theme }) => theme.pxToRem(10)};
   background-color: rgba(255, 255, 255, 0.5);
 `;

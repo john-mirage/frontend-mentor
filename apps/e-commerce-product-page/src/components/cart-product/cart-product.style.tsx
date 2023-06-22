@@ -13,7 +13,7 @@ export const Product = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
-  margin-bottom: 2.5rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(25)};
   text-align: center;
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
@@ -23,15 +23,15 @@ export const Product = styled.div`
 `;
 
 export const Thumbnail = styled.img`
-  flex: 0 0 5rem;
-  width: 5rem;
-  height: 5rem;
+  flex: 0 0 ${({ theme }) => theme.pxToRem(50)};
+  width: ${({ theme }) => theme.pxToRem(50)};
+  height: ${({ theme }) => theme.pxToRem(50)};
   object-fit: cover;
-  border-radius: 0.4rem;
-  margin-bottom: 1rem;
+  border-radius: ${({ theme }) => theme.pxToRem(4)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(10)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
-    margin-right: 2rem;
+    margin-right: ${({ theme }) => theme.pxToRem(20)};
     margin-bottom: 0;
   }
 `;
@@ -41,25 +41,25 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 5rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  margin-bottom: 1rem;
+  height: ${({ theme }) => theme.pxToRem(50)};
+  padding-top: ${({ theme }) => theme.pxToRem(2)};
+  padding-bottom: ${({ theme }) => theme.pxToRem(2)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(10)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
-    margin-right: 2rem;
+    margin-right: ${({ theme }) => theme.pxToRem(20)};
     margin-bottom: 0;
   }
 `;
 
 export const Title = styled.h4`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 400;
   color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
 `;
 
 export const Price = styled.p`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 400;
   color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
 `;
@@ -70,7 +70,7 @@ export const TotalPrice = styled.span`
 `;
 
 export const DeleteButton = styled(IconButton)`
-  flex: 0 0 4.8rem;
+  flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
   transition: background-color 300ms;
 
   &:hover {
@@ -78,12 +78,12 @@ export const DeleteButton = styled(IconButton)`
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
-    margin-right: -1.7rem;
+    margin-right: ${({ theme }) => theme.pxToRem(-17)};
   }
 `;
 
 export const DeleteIcon = styled(IconDelete)`
-  width: 1.4rem;
+  width: ${({ theme }) => theme.pxToRem(14)};
   height: auto;
   fill: ${(props) => props.theme.color.neutral.grayishBlue};
 `;

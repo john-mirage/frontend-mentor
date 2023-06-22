@@ -6,7 +6,7 @@ export const Container = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 6rem;
+  height: ${({ theme }) => theme.pxToRem(60)};
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.color.primary.orange};
   box-shadow: 0 10px 30px -10px ${({ theme }) => theme.color.primary.orange};
@@ -21,7 +21,7 @@ export const Container = styled.button`
 `;
 
 export const Label = styled.span`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 700;
   color: ${({ theme }) => theme.color.neutral.white};
 `;

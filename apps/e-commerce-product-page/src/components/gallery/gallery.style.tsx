@@ -15,7 +15,7 @@ export const Featured = styled.div`
   overflow: hidden;
 
   @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
-    border-radius: 2rem;
+    border-radius: ${({ theme }) => theme.pxToRem(20)};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
@@ -33,8 +33,8 @@ export const Thumbnails = styled.ul<ThumbnailsProps>`
   @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
     display: grid;
     grid-template-columns: repeat(${(props) => props.thumbnailNumber}, 1fr);
-    gap: 3rem;
-    margin-top: 3rem;
+    gap: ${({ theme }) => theme.pxToRem(30)};
+    margin-top: ${({ theme }) => theme.pxToRem(30)};
     list-style: none;
     padding: 0;
   }
@@ -44,8 +44,8 @@ const ctrlButton = css`
   position: absolute;
   z-index: 20;
   top: 50%;
-  width: 4rem;
-  height: 4rem;
+  width: ${({ theme }) => theme.pxToRem(40)};
+  height: ${({ theme }) => theme.pxToRem(40)};
   transform: translateY(-50%);
   background-color: ${(props) => props.theme.color.neutral.white};
 
@@ -55,7 +55,7 @@ const ctrlButton = css`
 `;
 
 export const ctrlIcon = css`
-  width: 1rem;
+  width: ${({ theme }) => theme.pxToRem(10)};
   height: auto;
   fill: none;
   stroke: ${(props) => props.theme.color.neutral.black};
@@ -63,7 +63,7 @@ export const ctrlIcon = css`
 
 export const PreviousButton = styled(IconButton)`
   ${ctrlButton}
-  left: 2rem;
+  left: ${({ theme }) => theme.pxToRem(20)};
 `;
 
 export const PreviousIcon = styled(IconPrevious)`
@@ -72,7 +72,7 @@ export const PreviousIcon = styled(IconPrevious)`
 
 export const NextButton = styled(IconButton)`
   ${ctrlButton}
-  right: 2rem;
+  right: ${({ theme }) => theme.pxToRem(20)};
 `;
 
 export const NextIcon = styled(IconNext)`

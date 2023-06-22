@@ -4,19 +4,19 @@ import { IconMinus, IconPlus } from "../icons";
 
 export const Container = styled.div`
   width: 100%;
-  height: 6rem;
-  border-radius: 1rem;
+  height: ${({ theme }) => theme.pxToRem(60)};
+  border-radius: ${({ theme }) => theme.pxToRem(10)};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.theme.color.neutral.lightGrayishBlue};
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
+  padding-left: ${({ theme }) => theme.pxToRem(4)};
+  padding-right: ${({ theme }) => theme.pxToRem(4)};
 `;
 
 export const Count = styled.p`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 700;
   text-transform: uppercase;
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
@@ -33,7 +33,7 @@ export const IconButton = styled(BaseIconButton)`
 `;
 
 const Icon = css`
-  width: 1.2rem;
+  width: ${({ theme }) => theme.pxToRem(12)};
   height: auto;
   fill: ${(props) => props.theme.color.primary.orange};
 `;

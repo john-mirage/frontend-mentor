@@ -12,11 +12,11 @@ export const Container = styled.header`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 7rem;
+  height: ${({ theme }) => theme.pxToRem(70)};
   background-color: ${(props) => props.theme.color.neutral.white};
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    height: 12rem;
+    height: ${({ theme }) => theme.pxToRem(120)};
   }
 `;
 
@@ -42,24 +42,24 @@ export const RightSection = styled(Section)`
 
 export const Logo = styled(BaseLogo)`
   flex: 0 1 auto;
-  width: 10rem;
+  width: ${({ theme }) => theme.pxToRem(100)};
   fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
-  margin-right: 1rem;
+  margin-right: ${({ theme }) => theme.pxToRem(10)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
-    width: 12rem;
+    width: ${({ theme }) => theme.pxToRem(120)};
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    width: 16rem;
-    margin-right: 6rem;
+    width: ${({ theme }) => theme.pxToRem(160)};
+    margin-right: ${({ theme }) => theme.pxToRem(60)};
   }
 `;
 
 export const MenuButton = styled(IconButton)`
-  flex: 0 0 4.8rem;
-  margin-left: -1.6rem;
-  margin-right: 0.4rem;
+  flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
+  margin-left: ${({ theme }) => theme.pxToRem(-16)};
+  margin-right: ${({ theme }) => theme.pxToRem(4)};
   transition: background-color 300ms;
 
   &:hover {
@@ -72,15 +72,15 @@ export const MenuButton = styled(IconButton)`
 `;
 
 export const MenuIcon = styled(IconMenu)`
-  width: 1.4rem;
+  width: ${({ theme }) => theme.pxToRem(14)};
   height: auto;
   fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
 `;
 
 export const CartButton = styled(IconButton)`
-  flex: 0 0 4.8rem;
+  flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
   margin-left: auto;
-  margin-right: 0.4rem;
+  margin-right: ${({ theme }) => theme.pxToRem(4)};
   transition: background-color 300ms;
 
   &:hover {
@@ -88,12 +88,12 @@ export const CartButton = styled(IconButton)`
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    margin-right: 2.5rem;
+    margin-right: ${({ theme }) => theme.pxToRem(25)};
   }
 `;
 
 export const CartIcon = styled(IconCart)`
-  width: 2rem;
+  width: ${({ theme }) => theme.pxToRem(20)};
   fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
 `;
 
@@ -107,13 +107,13 @@ export const Navigation = styled(BaseNavigation)`
 
 export const Badge = styled(motion(BaseBadge))`
   position: absolute;
-  top: 0.6rem;
-  right: 0.4rem;
+  top: ${({ theme }) => theme.pxToRem(6)};
+  right: ${({ theme }) => theme.pxToRem(4)};
 `;
 
 export const ProfileButton = styled(BaseProfileButton)`
-  flex: 0 0 4.8rem;
-  margin-right: -1.2rem;
+  flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
+  margin-right: ${({ theme }) => theme.pxToRem(-12)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     margin-right: 0;

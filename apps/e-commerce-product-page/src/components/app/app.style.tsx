@@ -14,19 +14,19 @@ export const Title = styled.h1`
 export const Container = styled.main`
   width: 100%;
   height: auto;
-  padding-top: 7rem;
-  padding-bottom: 14rem;
+  padding-top: ${({ theme }) => theme.pxToRem(70)};
+  padding-bottom: ${({ theme }) => theme.pxToRem(140)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
-    width: 54rem;
+    width: ${({ theme }) => theme.pxToRem(540)};
     margin-left: auto;
     margin-right: auto;
-    padding-top: 15rem;
+    padding-top: ${({ theme }) => theme.pxToRem(150)};
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     padding-top: 0;
-    width: 96rem;
+    width: ${({ theme }) => theme.pxToRem(960)};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,7 +35,7 @@ export const Container = styled.main`
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
-    width: 114rem;
+    width: ${({ theme }) => theme.pxToRem(1140)};
   }
 `;
 
@@ -44,13 +44,13 @@ export const TopAppBar = styled(BaseTopAppBar)`
   z-index: 80;
   top: 0;
   left: 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: ${({ theme }) => theme.pxToRem(20)};
+  padding-right: ${({ theme }) => theme.pxToRem(20)};
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     position: relative;
-    margin-bottom: 10rem;
+    margin-bottom: ${({ theme }) => theme.pxToRem(100)};
     padding-left: 0;
     padding-right: 0;
     box-shadow: none;
@@ -59,19 +59,19 @@ export const TopAppBar = styled(BaseTopAppBar)`
 `;
 
 export const Gallery = styled(BaseGallery)`
-  margin-bottom: 3rem;
+  margin-bottom: ${({ theme }) => theme.pxToRem(30)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     width: 50%;
-    padding-left: 4rem;
-    padding-right: 8rem;
+    padding-left: ${({ theme }) => theme.pxToRem(40)};
+    padding-right: ${({ theme }) => theme.pxToRem(80)};
     margin-bottom: 0;
   }
 `;
 
 export const Product = styled(BaseProduct)`
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: ${({ theme }) => theme.pxToRem(20)};
+  padding-right: ${({ theme }) => theme.pxToRem(20)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
     padding-left: 0;
@@ -80,7 +80,7 @@ export const Product = styled(BaseProduct)`
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     width: 50%;
-    padding-right: 4rem;
+    padding-right: ${({ theme }) => theme.pxToRem(40)};
   }
 `;
 

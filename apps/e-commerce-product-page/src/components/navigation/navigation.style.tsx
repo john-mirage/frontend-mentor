@@ -6,9 +6,9 @@ export const DrawerNavigation = styled.nav`
 `;
 
 export const DrawerLink = styled.a`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 700;
-  line-height: 3.6rem;
+  line-height: ${({ theme }) => theme.pxToRem(36)};
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
 `;
 
@@ -23,7 +23,7 @@ export const TopAppBarLink = styled.a`
   position: relative;
   display: flex;
   height: 100%;
-  margin-right: 3rem;
+  margin-right: ${({ theme }) => theme.pxToRem(30)};
 
   &:last-child {
     margin-right: 0;
@@ -33,7 +33,7 @@ export const TopAppBarLink = styled.a`
 export const TopAppBarText = styled.span`
   margin-top: auto;
   margin-bottom: auto;
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 400;
   color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
 
@@ -48,9 +48,9 @@ export const TopAppBarLine = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0.4rem;
+  height: ${({ theme }) => theme.pxToRem(4)};
   background-color: ${(props) => props.theme.color.primary.orange};
-  transform: translateY(0.4rem);
+  transform: translateY(${({ theme }) => theme.pxToRem(4)});
   transition: transform 300ms;
 
   ${TopAppBarLink}:hover & {
