@@ -7,6 +7,7 @@ const SvgIconDelete = (
   <svg
     width={14}
     height={16}
+    viewBox="0 0 14 16"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     ref={ref}
@@ -18,7 +19,11 @@ const SvgIconDelete = (
         id="icon-delete_svg__a"
       />
     </defs>
-    <use fill="#C3CAD9" fillRule="nonzero" xlinkHref="#icon-delete_svg__a" />
+    <use
+      fill="currentColor"
+      fillRule="nonzero"
+      xlinkHref="#icon-delete_svg__a"
+    />
   </svg>
 );
 const ForwardRef = forwardRef(SvgIconDelete);

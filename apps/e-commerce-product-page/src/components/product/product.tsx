@@ -34,7 +34,7 @@ const Product = ({
   setCartIsOpen,
   setCartItemsNumber,
 }: ProductProps) => {
-  const [itemsNumber, setItemsNumber] = useState(0);
+  const [itemsNumber, setItemsNumber] = useState(1);
   const [formIsNotValid, setFormIsNotValid] = useState(false);
 
   function handleCartUpdate() {

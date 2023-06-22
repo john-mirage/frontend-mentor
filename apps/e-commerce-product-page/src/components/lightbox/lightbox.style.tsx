@@ -39,6 +39,7 @@ export const Thumbnails = styled.ul<ThumbnailsProps>`
   margin-top: 3rem;
   padding-left: 6rem;
   padding-right: 6rem;
+  list-style: none;
 `;
 
 export const CloseButton = styled(IconButton)`

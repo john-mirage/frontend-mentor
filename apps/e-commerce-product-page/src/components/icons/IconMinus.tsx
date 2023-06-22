@@ -7,6 +7,7 @@ const SvgIconMinus = (
   <svg
     width={12}
     height={4}
+    viewBox="0 0 12 4"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     ref={ref}
@@ -18,7 +19,11 @@ const SvgIconMinus = (
         id="icon-minus_svg__a"
       />
     </defs>
-    <use fill="#FF7E1B" fillRule="nonzero" xlinkHref="#icon-minus_svg__a" />
+    <use
+      fill="currentColor"
+      fillRule="nonzero"
+      xlinkHref="#icon-minus_svg__a"
+    />
   </svg>
 );
 const ForwardRef = forwardRef(SvgIconMinus);

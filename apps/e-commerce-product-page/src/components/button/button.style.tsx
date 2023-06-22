@@ -12,6 +12,8 @@ export const Container = styled.button`
   box-shadow: 0 10px 30px -10px ${({ theme }) => theme.color.primary.orange};
   cursor: pointer;
   transition: opacity 300ms;
+  border: none;
+  padding: 0;
 
   &:hover {
     opacity: 0.6;

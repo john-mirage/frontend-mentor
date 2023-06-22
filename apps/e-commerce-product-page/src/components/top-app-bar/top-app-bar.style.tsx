@@ -20,6 +20,26 @@ export const Container = styled.header`
   }
 `;
 
+const Section = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+`;
+
+export const LeftSection = styled(Section)`
+  justify-content: flex-start;
+`;
+
+export const MiddleSection = styled(Section)`
+  justify-content: center;
+`;
+
+export const RightSection = styled(Section)`
+  justify-content: flex-end;
+`;
+
 export const Logo = styled(BaseLogo)`
   flex: 0 1 auto;
   width: 10rem;

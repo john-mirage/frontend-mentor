@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const DrawerNavigation = styled.nav``;
+export const DrawerNavigation = styled.nav`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const DrawerLink = styled.a`
   font-size: 1.6rem;

@@ -12,7 +12,7 @@ function CountInput({
   setItemsNumber,
 }: CountInputProps) {
   function handleMinusButton() {
-    if (itemsNumber > 0) setItemsNumber(itemsNumber - 1);
+    if (itemsNumber > 1) setItemsNumber(itemsNumber - 1);
   }
 
   function handlePlusButton() {

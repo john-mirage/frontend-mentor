@@ -63,15 +63,18 @@ const TopAppBar = ({
 
   return (
     <Styled.Container className={className}>
-      <Styled.MenuButton action={handleMenu}>
-        <Styled.MenuIcon />
-      </Styled.MenuButton>
-
-      <Styled.Logo />
-
-      <Styled.Navigation isTopAppBar={true} />
-
-      <Styled.ProfileButton />
+      <Styled.LeftSection>
+        <Styled.MenuButton action={handleMenu}>
+          <Styled.MenuIcon />
+        </Styled.MenuButton>
+        <Styled.Logo />
+      </Styled.LeftSection>
+      <Styled.MiddleSection>
+        <Styled.Navigation isTopAppBar={true} />
+      </Styled.MiddleSection>
+      <Styled.RightSection>
+        <Styled.ProfileButton />
+      </Styled.RightSection>
     </Styled.Container>
   );
 };

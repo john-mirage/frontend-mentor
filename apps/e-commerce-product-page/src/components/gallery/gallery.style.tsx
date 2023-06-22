@@ -35,6 +35,8 @@ export const Thumbnails = styled.ul<ThumbnailsProps>`
     grid-template-columns: repeat(${(props) => props.thumbnailNumber}, 1fr);
     gap: 3rem;
     margin-top: 3rem;
+    list-style: none;
+    padding: 0;
   }
 `;
 
