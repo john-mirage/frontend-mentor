@@ -36,7 +36,8 @@
       "component": {
         "style": "styled-components",
         "directory": "components",
-        "export": false
+        "export": false,
+        "skipTests": true
       },
       "hook": {
         "directory": "hooks",
@@ -46,7 +47,15 @@
         "style": "styled-components",
         "linter": "eslint",
         "bundler": "vite",
+        "compiler": "swc",
         "unitTestRunner": "vitest"
+      }
+    },
+    "@nx/js": {
+      "library": {
+        "linter": "eslint",
+        "bundler": "none",
+        "unitTestRunner": "none"
       }
     }
   }
