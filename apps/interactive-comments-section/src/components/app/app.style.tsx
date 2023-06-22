@@ -1,8 +1,8 @@
-import { srOnlyMixin } from "../../styles/mixins";
 import styled from "styled-components";
+import { screenReaderOnlyStyle } from "@frontend-mentor/common-styles";
 
 export const Title = styled.h1`
-  ${srOnlyMixin}
+  ${screenReaderOnlyStyle}
 `;
 
 export const Main = styled.main`

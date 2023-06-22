@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import theme from "./theme";
-import { globalMixin } from "./mixins";
+import { globalStyle } from "@frontend-mentor/common-styles";
 
 const GlobalStyles = createGlobalStyle`
-  ${globalMixin}
+  ${globalStyle}
 
   body {
     font-family: ${theme.font.stack};
