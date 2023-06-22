@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@frontend-mentor/common-hooks": ["libs/common-hooks/src/index.ts"]
+      "@frontend-mentor/common-styles": ["libs/common-styles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
