@@ -1,25 +1,42 @@
 import { forwardRef, useEffect, useState } from "react";
 import * as Styled from "./lightbox.style";
+import Thumbnail from "../thumbnail";
+
+interface Image {
+  src: string;
+  alt: string;
+}
+
+interface LightboxProps {
+  className?: string;
+  thumbnails: Image[];
+  images: Image[];
+  initialFeaturedImage: number;
+  setLightboxIsOpen: (lightboxIsOpen: boolean) => void;
+}
 
 const Lightbox = forwardRef(
   (
-    { className, thumbnails, images, initialFeaturedImage, setLightboxIsOpen },
+    {
+      className,
+      thumbnails,
+      images,
+      initialFeaturedImage,
+      setLightboxIsOpen,
+    }: LightboxProps,
     ref
   ) => {
     const [featuredImage, setFeaturedImage] = useState(initialFeaturedImage);
 
-    function showPreviousImage(event) {
-      event.preventDefault();
+    function showPreviousImage() {
       setFeaturedImage(featuredImage <= 1 ? images.length : featuredImage - 1);
     }
 
-    function showNextImage(event) {
-      event.preventDefault();
+    function showNextImage() {
       setFeaturedImage(featuredImage >= images.length ? 1 : featuredImage + 1);
     }
 
-    function closeLightBox(event) {
-      if (event) event.preventDefault();
+    function closeLightBox() {
       const body = document.body;
       const scrollY = body.style.top;
       body.style.position = "";
@@ -42,24 +59,24 @@ const Lightbox = forwardRef(
     }, []);
 
     return (
-      <Container className={className} ref={ref}>
-        <Dialog>
-          <CloseButton action={closeLightBox}>
-            <CloseIcon />
-          </CloseButton>
+      <Styled.Container className={className} ref={ref}>
+        <Styled.Dialog>
+          <Styled.CloseButton action={closeLightBox}>
+            <Styled.CloseIcon />
+          </Styled.CloseButton>
 
-          <Featured>
-            <Slider images={images} currentImage={featuredImage}>
-              <PreviousButton action={showPreviousImage}>
-                <PreviousIcon />
-              </PreviousButton>
-              <NextButton action={showNextImage}>
-                <NextIcon />
-              </NextButton>
-            </Slider>
-          </Featured>
+          <Styled.Featured>
+            <Styled.Slider images={images} currentImage={featuredImage}>
+              <Styled.PreviousButton action={showPreviousImage}>
+                <Styled.PreviousIcon />
+              </Styled.PreviousButton>
+              <Styled.NextButton action={showNextImage}>
+                <Styled.NextIcon />
+              </Styled.NextButton>
+            </Styled.Slider>
+          </Styled.Featured>
 
-          <Thumbnails thumbnailNumber={thumbnails.length}>
+          <Styled.Thumbnails thumbnailNumber={thumbnails.length}>
             {thumbnails.map((thumbnail, index) => {
               const imageIndex = index + 1;
               const isActive = featuredImage === imageIndex;
@@ -72,9 +89,9 @@ const Lightbox = forwardRef(
                 />
               );
             })}
-          </Thumbnails>
-        </Dialog>
-      </Container>
+          </Styled.Thumbnails>
+        </Styled.Dialog>
+      </Styled.Container>
     );
   }
 );

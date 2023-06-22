@@ -1,12 +1,16 @@
 import * as Styled from "./price.style";
 
-function Price({ className }) {
+interface PriceProps {
+  className?: string;
+}
+
+function Price({ className }: PriceProps) {
   return (
-    <Container className={className}>
-      <CurrentPrice>$125.00</CurrentPrice>
-      <Discount>50%</Discount>
-      <InitialPrice>$250.00</InitialPrice>
-    </Container>
+    <Styled.Container className={className}>
+      <Styled.CurrentPrice>$125.00</Styled.CurrentPrice>
+      <Styled.Discount>50%</Styled.Discount>
+      <Styled.InitialPrice>$250.00</Styled.InitialPrice>
+    </Styled.Container>
   );
 }
 

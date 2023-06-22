@@ -1,12 +1,20 @@
-import React from "react";
+import { ReactNode, forwardRef } from "react";
 import * as Styled from "./icon-button.style";
 
-const IconButton = React.forwardRef(({ className, action, children }, ref) => {
-  return (
-    <Styled.Container className={className} onClick={action} ref={ref}>
-      <Styled.Icon>{children}</Styled.Icon>
-    </Styled.Container>
-  );
-});
+interface IconButtonProps {
+  className?: string;
+  action?: () => void;
+  children?: ReactNode;
+}
+
+const IconButton = forwardRef(
+  ({ className, action, children }: IconButtonProps, ref) => {
+    return (
+      <Styled.Container className={className} onClick={action} ref={ref}>
+        <Styled.Icon>{children}</Styled.Icon>
+      </Styled.Container>
+    );
+  }
+);
 
 export default IconButton;

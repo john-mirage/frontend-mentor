@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const Image = styled(motion.img)`
+export const Image = styled(motion.img)`
   position: absolute;
   z-index: 10;
   top: 0;

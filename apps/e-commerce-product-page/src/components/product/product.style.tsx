@@ -5,13 +5,13 @@ import BaseCountInput from "../count-input";
 import BaseButton from "../button";
 import { IconCart } from "../icons";
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
   width: 100%;
   height: auto;
 `;
 
-const Company = styled.p`
+export const Company = styled.p`
   font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -20,7 +20,7 @@ const Company = styled.p`
   margin-bottom: 1rem;
 `;
 
-const Name = styled.h1`
+export const Name = styled.h1`
   font-size: 2.6rem;
   font-weight: 700;
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
@@ -31,7 +31,7 @@ const Name = styled.h1`
   }
 `;
 
-const Description = styled.p`
+export const Description = styled.p`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.6rem;
@@ -39,11 +39,11 @@ const Description = styled.p`
   margin-bottom: 2.4rem;
 `;
 
-const Price = styled(BasePrice)`
+export const Price = styled(BasePrice)`
   margin-bottom: 2rem;
 `;
 
-const Form = styled.div`
+export const Form = styled.div`
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
     display: flex;
     flex-direction: row;
@@ -51,7 +51,7 @@ const Form = styled.div`
   }
 `;
 
-const CountInput = styled(BaseCountInput)`
+export const CountInput = styled(BaseCountInput)`
   margin-bottom: 1.6rem;
 
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
@@ -61,20 +61,20 @@ const CountInput = styled(BaseCountInput)`
   }
 `;
 
-const CartButton = styled(BaseButton)`
+export const CartButton = styled(BaseButton)`
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
     flex: 1 1 65%;
   }
 `;
 
-const CartIcon = styled(IconCart)`
+export const CartIcon = styled(IconCart)`
   margin-right: 1.6rem;
   width: 2rem;
   height: auto;
   fill: ${(props) => props.theme.color.neutral.white};
 `;
 
-const ErrorMessage = styled(motion.p)`
+export const ErrorMessage = styled(motion.p)`
   position: absolute;
   bottom: 0;
   left: 0;

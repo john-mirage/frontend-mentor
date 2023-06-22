@@ -15,14 +15,9 @@ function Cart({
   setCartItemsNumber,
   opacity,
   y,
-  tippyAttrs,
 }: CartProps) {
   return (
-    <Styled.Container
-      className={className}
-      style={{ opacity, y }}
-      {...tippyAttrs}
-    >
+    <Styled.Container className={className} style={{ opacity, y }}>
       <Styled.Header>
         <Styled.Title>Cart</Styled.Title>
       </Styled.Header>

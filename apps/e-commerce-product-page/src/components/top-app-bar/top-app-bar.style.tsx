@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import BaseBadge from "../badge";
 import BaseProfileButton from "../profile-button";
 
-const Container = styled.header`
+export const Container = styled.header`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -20,7 +20,7 @@ const Container = styled.header`
   }
 `;
 
-const Logo = styled(BaseLogo)`
+export const Logo = styled(BaseLogo)`
   flex: 0 1 auto;
   width: 10rem;
   fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
@@ -36,7 +36,7 @@ const Logo = styled(BaseLogo)`
   }
 `;
 
-const MenuButton = styled(IconButton)`
+export const MenuButton = styled(IconButton)`
   flex: 0 0 4.8rem;
   margin-left: -1.6rem;
   margin-right: 0.4rem;
@@ -51,13 +51,13 @@ const MenuButton = styled(IconButton)`
   }
 `;
 
-const MenuIcon = styled(IconMenu)`
+export const MenuIcon = styled(IconMenu)`
   width: 1.4rem;
   height: auto;
   fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
 `;
 
-const CartButton = styled(IconButton)`
+export const CartButton = styled(IconButton)`
   flex: 0 0 4.8rem;
   margin-left: auto;
   margin-right: 0.4rem;
@@ -72,12 +72,12 @@ const CartButton = styled(IconButton)`
   }
 `;
 
-const CartIcon = styled(IconCart)`
+export const CartIcon = styled(IconCart)`
   width: 2rem;
   fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
 `;
 
-const Navigation = styled(BaseNavigation)`
+export const Navigation = styled(BaseNavigation)`
   display: none;
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
@@ -85,13 +85,13 @@ const Navigation = styled(BaseNavigation)`
   }
 `;
 
-const Badge = styled(motion(BaseBadge))`
+export const Badge = styled(motion(BaseBadge))`
   position: absolute;
   top: 0.6rem;
   right: 0.4rem;
 `;
 
-const ProfileButton = styled(BaseProfileButton)`
+export const ProfileButton = styled(BaseProfileButton)`
   flex: 0 0 4.8rem;
   margin-right: -1.2rem;
 

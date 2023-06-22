@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.button`
+export const Container = styled.button`
   display: flex;
   width: 4.8rem;
   height: 4.8rem;
@@ -18,7 +18,7 @@ const Container = styled.button`
   }
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   margin: auto;
   width: 2.6rem;
   height: 2.6rem;

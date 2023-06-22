@@ -18,8 +18,7 @@ const CartProduct = ({
     currency: "USD",
   }).format(cartItemsNumber * 125);
 
-  function handleCartReset(event: MouseEvent) {
-    event.preventDefault();
+  function handleCartReset() {
     setCartItemsNumber(0);
   }
 

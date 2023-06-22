@@ -1,11 +1,15 @@
 import * as Styled from "./profile-button.style";
-import profilePicture from "@assets/solution/ecommerce-product-page/image-avatar.png";
+import profilePicture from "../../images/image-avatar.png";
 
-function ProfileButton({ className }) {
+interface ProfileButtonProps {
+  className?: string;
+}
+
+function ProfileButton({ className }: ProfileButtonProps) {
   return (
-    <Container className={className}>
-      <Image src={profilePicture.src} alt="Profile picture" />
-    </Container>
+    <Styled.Container className={className}>
+      <Styled.Image src={profilePicture} alt="Profile picture" />
+    </Styled.Container>
   );
 }
 

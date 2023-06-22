@@ -1,10 +1,6 @@
 import * as Styled from "./product.style";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import BasePrice from "@components/solution/ecommerce-product-page/price";
-import BaseCountInput from "@components/solution/ecommerce-product-page/count-input";
-import Button from "@components/solution/ecommerce-product-page/button";
-import BaseCartIcon from "@assets/solution/ecommerce-product-page/icon-cart.svg?react";
+import { AnimatePresence } from "framer-motion";
 
 const errorMessageMotion = {
   flash: {
@@ -23,18 +19,25 @@ const errorMessageMotion = {
   },
 };
 
-function Product({
+interface ProductProps {
+  className?: string;
+  cartItemsNumber: number;
+  cartIsOpen: boolean;
+  setCartIsOpen: (cartIsOpen: boolean) => void;
+  setCartItemsNumber: (cartItemsNumber: number) => void;
+}
+
+const Product = ({
   className,
   cartItemsNumber,
   cartIsOpen,
   setCartIsOpen,
   setCartItemsNumber,
-}) {
+}: ProductProps) => {
   const [itemsNumber, setItemsNumber] = useState(0);
   const [formIsNotValid, setFormIsNotValid] = useState(false);
 
-  function handleCartUpdate(event) {
-    event.preventDefault();
+  function handleCartUpdate() {
     if (itemsNumber > 0) {
       if (formIsNotValid) setFormIsNotValid(false);
       setCartItemsNumber(cartItemsNumber + itemsNumber);
@@ -45,24 +48,27 @@ function Product({
   }
 
   return (
-    <Container className={className}>
-      <Company>sneaker company</Company>
-      <Name>Fall Limited Edition Sneakers</Name>
-      <Description>
+    <Styled.Container className={className}>
+      <Styled.Company>sneaker company</Styled.Company>
+      <Styled.Name>Fall Limited Edition Sneakers</Styled.Name>
+      <Styled.Description>
         These low-profile sneakers are your perfect casual wear companion.
         Featuring a durable rubber outer sole, they'll withstand everything the
         weather can offer.
-      </Description>
-      <Price />
-      <Form>
-        <CountInput itemsNumber={itemsNumber} setItemsNumber={setItemsNumber} />
-        <CartButton action={handleCartUpdate} label="Add to cart">
-          <CartIcon />
-        </CartButton>
-      </Form>
+      </Styled.Description>
+      <Styled.Price />
+      <Styled.Form>
+        <Styled.CountInput
+          itemsNumber={itemsNumber}
+          setItemsNumber={setItemsNumber}
+        />
+        <Styled.CartButton action={handleCartUpdate} label="Add to cart">
+          <Styled.CartIcon />
+        </Styled.CartButton>
+      </Styled.Form>
       <AnimatePresence>
         {formIsNotValid && (
-          <ErrorMessage
+          <Styled.ErrorMessage
             key="form-error-message"
             initial="hidden"
             animate="flash"
@@ -70,11 +76,11 @@ function Product({
             variants={errorMessageMotion}
           >
             Click on the plus button to add at least one item.
-          </ErrorMessage>
+          </Styled.ErrorMessage>
         )}
       </AnimatePresence>
-    </Container>
+    </Styled.Container>
   );
-}
+};
 
 export default Product;

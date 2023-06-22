@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
-const DrawerNavigation = styled.nav``;
+export const DrawerNavigation = styled.nav``;
 
-const DrawerLink = styled.a`
+export const DrawerLink = styled.a`
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 3.6rem;
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
 `;
 
-const TopAppBarNavigation = styled.nav`
+export const TopAppBarNavigation = styled.nav`
   display: flex;
   flex-direction: row;
   height: 100%;
   overflow-y: hidden;
 `;
 
-const TopAppBarLink = styled.a`
+export const TopAppBarLink = styled.a`
   position: relative;
   display: flex;
   height: 100%;
@@ -27,7 +27,7 @@ const TopAppBarLink = styled.a`
   }
 `;
 
-const TopAppBarText = styled.span`
+export const TopAppBarText = styled.span`
   margin-top: auto;
   margin-bottom: auto;
   font-size: 1.6rem;
@@ -39,7 +39,7 @@ const TopAppBarText = styled.span`
   }
 `;
 
-const TopAppBarLine = styled.div`
+export const TopAppBarLine = styled.div`
   display: block;
   position: absolute;
   bottom: 0;

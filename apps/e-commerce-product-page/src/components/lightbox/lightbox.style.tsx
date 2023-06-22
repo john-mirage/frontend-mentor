@@ -1,31 +1,38 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import IconButton from "../icon-button";
+import BaseSlider from "../slider";
+import { IconClose, IconPrevious, IconNext } from "../icons";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: auto;
   padding-top: 12rem;
   padding-bottom: 5rem;
 `;
 
-const Dialog = styled.div`
+export const Dialog = styled.div`
   position: relative;
   width: 70rem;
   height: auto;
   margin: auto;
 `;
 
-const Featured = styled.div`
+export const Featured = styled.div`
   position: relative;
   width: 100%;
   height: auto;
   padding-top: 100%;
 `;
 
-const Slider = styled(BaseSlider)`
+export const Slider = styled(BaseSlider)`
   border-radius: 2rem;
 `;
 
-const Thumbnails = styled.ul`
+interface ThumbnailsProps {
+  thumbnailNumber: number;
+}
+
+export const Thumbnails = styled.ul<ThumbnailsProps>`
   display: grid;
   grid-template-columns: repeat(${(props) => props.thumbnailNumber}, 1fr);
   gap: 3rem;
@@ -34,7 +41,7 @@ const Thumbnails = styled.ul`
   padding-right: 6rem;
 `;
 
-const CloseButton = styled(IconButton)`
+export const CloseButton = styled(IconButton)`
   position: absolute;
   top: -1rem;
   right: 0;
@@ -44,7 +51,7 @@ const CloseButton = styled(IconButton)`
   margin-right: -2rem;
 `;
 
-const CloseIcon = styled(BaseCloseIcon)`
+export const CloseIcon = styled(IconClose)`
   width: 2rem;
   height: auto;
   fill: ${(props) => props.theme.color.neutral.white};
@@ -70,13 +77,13 @@ const ctrlIcon = css`
   transition: stroke 300ms;
 `;
 
-const PreviousButton = styled(IconButton)`
+export const PreviousButton = styled(IconButton)`
   ${ctrlButton}
   left: 0;
   transform: translate(-50%, -50%);
 `;
 
-const PreviousIcon = styled(BasePreviousIcon)`
+export const PreviousIcon = styled(IconPrevious)`
   ${ctrlIcon}
 
   ${PreviousButton}:hover & {
@@ -84,13 +91,13 @@ const PreviousIcon = styled(BasePreviousIcon)`
   }
 `;
 
-const NextButton = styled(IconButton)`
+export const NextButton = styled(IconButton)`
   ${ctrlButton}
   right: 0;
   transform: translate(50%, -50%);
 `;
 
-const NextIcon = styled(BaseNextIcon)`
+export const NextIcon = styled(IconNext)`
   ${ctrlIcon}
 
   ${NextButton}:hover & {

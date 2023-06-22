@@ -3,26 +3,33 @@ import Cart from "../cart";
 import { AnimatePresence, useAnimation, useSpring } from "framer-motion";
 import { useEffect } from "react";
 
-function TopAppBar({
+interface TopAppBarProps {
+  className?: string;
+  cartIsOpen: boolean;
+  cartItemsNumber: number;
+  setDrawerIsOpen: (drawerIsOpen: boolean) => void;
+  setCartIsOpen: (cartIsOpen: boolean) => void;
+  setCartItemsNumber: (cartItemsNumber: number) => void;
+}
+
+const TopAppBar = ({
   className,
   cartIsOpen,
   cartItemsNumber,
   setDrawerIsOpen,
   setCartIsOpen,
   setCartItemsNumber,
-}) {
+}: TopAppBarProps) => {
   const springConfig = { damping: 15, stiffness: 300 };
   const opacity = useSpring(0, springConfig);
   const y = useSpring(-20, springConfig);
   const badgeMotionControls = useAnimation();
 
-  function handleMenu(event) {
-    event.preventDefault();
+  function handleMenu() {
     setDrawerIsOpen(true);
   }
 
-  function handleCart(event) {
-    event.preventDefault();
+  function handleCart() {
     setCartIsOpen(!cartIsOpen);
   }
 
@@ -31,7 +38,7 @@ function TopAppBar({
     y.set(0);
   }
 
-  function onCartHide({ unmount }) {
+  function onCartHide({ unmount }: { unmount: () => void }) {
     const cleanup = opacity.onChange((value) => {
       if (value <= 0) {
         cleanup();
@@ -52,69 +59,71 @@ function TopAppBar({
         },
       });
     }
-  }, [cartItemsNumber]);
+  }, [cartItemsNumber, badgeMotionControls]);
 
   return (
-    <Container className={className}>
-      <MenuButton action={handleMenu}>
-        <MenuIcon />
-      </MenuButton>
+    <Styled.Container className={className}>
+      <Styled.MenuButton action={handleMenu}>
+        <Styled.MenuIcon />
+      </Styled.MenuButton>
 
-      <Logo />
+      <Styled.Logo />
 
-      <Navigation type="TopAppBar" />
+      <Styled.Navigation isTopAppBar={true} />
 
-      <Tippy
-        render={(attrs) => (
-          <Cart
-            opacity={opacity}
-            y={y}
-            cartItemsNumber={cartItemsNumber}
-            setCartItemsNumber={setCartItemsNumber}
-            tippyAttrs={attrs}
-          />
-        )}
-        interactive={true}
-        visible={cartIsOpen}
-        onClickOutside={() => setCartIsOpen(false)}
-        appendTo="parent"
-        animation={true}
-        onMount={onCartMount}
-        onHide={onCartHide}
-        placement="bottom"
-        popperOptions={{
-          modifiers: [
-            {
-              name: "RootCustomStyle",
-              enabled: true,
-              phase: "write",
-              fn({ state }) {
-                state.elements.popper.style.maxWidth = "40rem";
-                state.elements.popper.style.width = "calc(100% - 1rem)";
-              },
-            },
-          ],
-        }}
-      >
-        <CartButton action={handleCart}>
-          <CartIcon />
-          <AnimatePresence>
-            {cartItemsNumber > 0 && (
-              <Badge
-                key="cart-badge"
-                animate={badgeMotionControls}
-                exit={{ scale: 0 }}
-              >
-                {cartItemsNumber}
-              </Badge>
-            )}
-          </AnimatePresence>
-        </CartButton>
-      </Tippy>
-
-      <ProfileButton />
-    </Container>
+      <Styled.ProfileButton />
+    </Styled.Container>
   );
-}
+};
 
 export default TopAppBar;
+
+/*
+<Tippy
+  render={(attrs) => (
+    <Cart
+      opacity={opacity}
+      y={y}
+      cartItemsNumber={cartItemsNumber}
+      setCartItemsNumber={setCartItemsNumber}
+      tippyAttrs={attrs}
+    />
+  )}
+  interactive={true}
+  visible={cartIsOpen}
+  onClickOutside={() => setCartIsOpen(false)}
+  appendTo="parent"
+  animation={true}
+  onMount={onCartMount}
+  onHide={onCartHide}
+  placement="bottom"
+  popperOptions={{
+    modifiers: [
+      {
+        name: "RootCustomStyle",
+        enabled: true,
+        phase: "write",
+        fn({ state }) {
+          state.elements.popper.style.maxWidth = "40rem";
+          state.elements.popper.style.width = "calc(100% - 1rem)";
+        },
+      },
+    ],
+  }}
+>
+  <Styled.CartButton action={handleCart}>
+    <Styled.CartIcon />
+    <AnimatePresence>
+      {cartItemsNumber > 0 && (
+        <Styled.Badge
+          key="cart-badge"
+          animate={badgeMotionControls}
+          exit={{ scale: 0 }}
+        >
+          {cartItemsNumber}
+        </Styled.Badge>
+      )}
+    </AnimatePresence>
+  </Styled.CartButton>
+</Tippy>
+*/

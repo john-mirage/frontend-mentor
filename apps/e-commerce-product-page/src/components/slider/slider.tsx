@@ -1,11 +1,22 @@
+import { ReactNode } from "react";
 import * as Styled from "./slider.style";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
-function Slider({ className, images, currentImage, children }) {
+interface SliderProps {
+  className?: string;
+  images: {
+    src: string;
+    alt: string;
+  }[];
+  currentImage: number;
+  children: ReactNode;
+}
+
+function Slider({ className, images, currentImage, children }: SliderProps) {
   return (
     <>
       <AnimatePresence initial={false}>
-        <Image
+        <Styled.Image
           className={className}
           key={currentImage}
           src={images[currentImage - 1].src}

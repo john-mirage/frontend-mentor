@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 
-const Container = styled(motion.li)`
+export const Container = styled(motion.li)`
   position: relative;
   width: 100%;
   height: auto;
@@ -9,7 +9,7 @@ const Container = styled(motion.li)`
   cursor: pointer;
 `;
 
-const layer = css`
+export const layer = css`
   position: absolute;
   top: 0;
   left: 0;
@@ -17,21 +17,21 @@ const layer = css`
   height: 100%;
 `;
 
-const Background = styled(motion.div)`
+export const Background = styled(motion.div)`
   ${layer}
   z-index: 50;
   background-color: ${(props) => props.theme.color.primary.orange};
   border-radius: 1.2rem;
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   ${layer}
   z-index: 60;
   object-fit: cover;
   border-radius: 1rem;
 `;
 
-const Overlay = styled(motion.div)`
+export const Overlay = styled(motion.div)`
   ${layer}
   z-index: 70;
   border-radius: 1rem;

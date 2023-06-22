@@ -23,7 +23,11 @@ export const Featured = styled.div`
   }
 `;
 
-export const Thumbnails = styled.ul`
+interface ThumbnailsProps {
+  thumbnailNumber: number;
+}
+
+export const Thumbnails = styled.ul<ThumbnailsProps>`
   display: none;
 
   @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {

@@ -1,13 +1,21 @@
 import * as Styled from "./count-input.style";
 
-function CountInput({ className, itemsNumber, setItemsNumber }) {
-  function handleMinusButton(event) {
-    event.preventDefault();
+interface CountInputProps {
+  className?: string;
+  itemsNumber: number;
+  setItemsNumber: (itemsNumber: number) => void;
+}
+
+function CountInput({
+  className,
+  itemsNumber,
+  setItemsNumber,
+}: CountInputProps) {
+  function handleMinusButton() {
     if (itemsNumber > 0) setItemsNumber(itemsNumber - 1);
   }
 
-  function handlePlusButton(event) {
-    event.preventDefault();
+  function handlePlusButton() {
     setItemsNumber(itemsNumber + 1);
   }
 

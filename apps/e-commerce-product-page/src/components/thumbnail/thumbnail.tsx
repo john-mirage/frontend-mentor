@@ -1,5 +1,4 @@
 import * as Styled from "./thumbnail.style";
-import { motion } from "framer-motion";
 
 const overlayOnHover = {
   hover: {
@@ -11,22 +10,32 @@ const overlayOnHover = {
   },
 };
 
-function Thumbnail({ className, thumbnail, action, isActive }) {
+interface ThumbnailProps {
+  className?: string;
+  thumbnail: {
+    src: string;
+    alt: string;
+  };
+  action: () => void;
+  isActive: boolean;
+}
+
+function Thumbnail({ className, thumbnail, action, isActive }: ThumbnailProps) {
   return (
-    <Container className={className} onClick={action} whileHover="hover">
-      <Background
+    <Styled.Container className={className} onClick={action} whileHover="hover">
+      <Styled.Background
         initial={false}
         animate={{ scale: isActive ? 1.05 : 0.8 }}
         transition={{ type: "spring", duration: 0.3 }}
       />
-      <Image src={thumbnail.src} alt={thumbnail.alt} />
-      <Overlay
+      <Styled.Image src={thumbnail.src} alt={thumbnail.alt} />
+      <Styled.Overlay
         initial={false}
         animate={{ opacity: isActive ? 1 : 0 }}
         transition={{ type: "spring", duration: 0.3 }}
         variants={overlayOnHover}
       />
-    </Container>
+    </Styled.Container>
   );
 }
 
