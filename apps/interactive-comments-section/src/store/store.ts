@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../slices/slice";
+import commentReducer from "../slices/slice";
 
 export const store = configureStore({
   reducer: {
-    comment: counterReducer,
+    comment: commentReducer,
   },
 });
 
