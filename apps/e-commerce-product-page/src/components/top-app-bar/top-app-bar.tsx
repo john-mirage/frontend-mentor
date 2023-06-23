@@ -1,7 +1,8 @@
 import * as Styled from "./top-app-bar.style";
 import Cart from "../cart";
-import { AnimatePresence, useAnimation, useSpring } from "framer-motion";
+import { AnimatePresence, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { useFloating, autoUpdate } from "@floating-ui/react";
 
 interface TopAppBarProps {
   className?: string;
@@ -20,33 +21,19 @@ const TopAppBar = ({
   setCartIsOpen,
   setCartItemsNumber,
 }: TopAppBarProps) => {
-  const springConfig = { damping: 15, stiffness: 300 };
-  const opacity = useSpring(0, springConfig);
-  const y = useSpring(-20, springConfig);
   const badgeMotionControls = useAnimation();
-
-  function handleMenu() {
-    setDrawerIsOpen(true);
-  }
+  const { refs, floatingStyles } = useFloating({
+    open: cartIsOpen,
+    onOpenChange: setCartIsOpen,
+    whileElementsMounted: autoUpdate,
+  });
 
   function handleCart() {
     setCartIsOpen(!cartIsOpen);
   }
 
-  function onCartMount() {
-    opacity.set(1);
-    y.set(0);
-  }
-
-  function onCartHide({ unmount }: { unmount: () => void }) {
-    const cleanup = opacity.onChange((value) => {
-      if (value <= 0) {
-        cleanup();
-        unmount();
-      }
-    });
-    opacity.set(0);
-    y.set(-20);
+  function handleMenu() {
+    setDrawerIsOpen(true);
   }
 
   useEffect(() => {
@@ -68,11 +55,31 @@ const TopAppBar = ({
           <Styled.MenuIcon />
         </Styled.MenuButton>
         <Styled.Logo />
-      </Styled.LeftSection>
-      <Styled.MiddleSection>
         <Styled.Navigation isTopAppBar={true} />
-      </Styled.MiddleSection>
+      </Styled.LeftSection>
       <Styled.RightSection>
+        <Styled.CartButton ref={refs.setReference} action={handleCart}>
+          <Styled.CartIcon />
+          <AnimatePresence>
+            {cartItemsNumber > 0 && (
+              <Styled.Badge
+                key="cart-badge"
+                animate={badgeMotionControls}
+                exit={{ scale: 0 }}
+              >
+                {cartItemsNumber}
+              </Styled.Badge>
+            )}
+          </AnimatePresence>
+        </Styled.CartButton>
+        {cartIsOpen && (
+          <Cart
+            ref={refs.setFloating}
+            style={floatingStyles}
+            cartItemsNumber={cartItemsNumber}
+            setCartItemsNumber={setCartItemsNumber}
+          />
+        )}
         <Styled.ProfileButton />
       </Styled.RightSection>
     </Styled.Container>

@@ -21,7 +21,6 @@ export const Container = styled.header`
 `;
 
 const Section = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,14 +28,12 @@ const Section = styled.div`
 `;
 
 export const LeftSection = styled(Section)`
+  flex: 1;
   justify-content: flex-start;
 `;
 
-export const MiddleSection = styled(Section)`
-  justify-content: center;
-`;
-
 export const RightSection = styled(Section)`
+  flex: 0;
   justify-content: flex-end;
 `;
 

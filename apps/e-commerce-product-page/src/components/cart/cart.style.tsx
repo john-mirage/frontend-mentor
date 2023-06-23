@@ -5,6 +5,7 @@ export const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: ${({ theme }) => theme.pxToRem(360)};
   min-height: ${({ theme }) => theme.pxToRem(250)};
   border-radius: ${({ theme }) => theme.pxToRem(10)};
   background-color: ${({ theme }) => theme.color.neutral.white};
