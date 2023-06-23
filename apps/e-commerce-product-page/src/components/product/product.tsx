@@ -1,6 +1,10 @@
 import * as Styled from "./product.style";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../store/store";
+import { addCartItem } from "../../slices/cart";
+import { toggleCart } from "../../slices/app";
 
 const errorMessageMotion = {
   flash: {
@@ -21,27 +25,19 @@ const errorMessageMotion = {
 
 interface ProductProps {
   className?: string;
-  cartItemsNumber: number;
-  cartIsOpen: boolean;
-  setCartIsOpen: (cartIsOpen: boolean) => void;
-  setCartItemsNumber: (cartItemsNumber: number) => void;
 }
 
-const Product = ({
-  className,
-  cartItemsNumber,
-  cartIsOpen,
-  setCartIsOpen,
-  setCartItemsNumber,
-}: ProductProps) => {
+const Product = ({ className }: ProductProps) => {
+  const { cartIsOpen } = useSelector((state: RootState) => state.app);
+  const dispatch = useDispatch();
   const [itemsNumber, setItemsNumber] = useState(1);
   const [formIsNotValid, setFormIsNotValid] = useState(false);
 
   function handleCartUpdate() {
     if (itemsNumber > 0) {
       if (formIsNotValid) setFormIsNotValid(false);
-      setCartItemsNumber(cartItemsNumber + itemsNumber);
-      if (!cartIsOpen) setCartIsOpen(true);
+      dispatch(addCartItem(itemsNumber));
+      if (!cartIsOpen) dispatch(toggleCart(true));
     } else {
       if (!formIsNotValid) setFormIsNotValid(true);
     }

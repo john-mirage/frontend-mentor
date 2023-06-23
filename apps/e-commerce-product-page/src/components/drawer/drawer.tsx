@@ -1,26 +1,27 @@
 import * as Styled from "./drawer.style";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleDrawer } from "../../slices/app";
 
 interface DrawerProps {
   className?: string;
-  setDrawerIsOpen: (drawerIsOpen: boolean) => void;
 }
 
-const Drawer = React.forwardRef(
-  ({ className, setDrawerIsOpen }: DrawerProps, ref) => {
-    function handleDrawer() {
-      setDrawerIsOpen(false);
-    }
+const Drawer = React.forwardRef(({ className }: DrawerProps, ref) => {
+  const dispatch = useDispatch();
 
-    return (
-      <Styled.Container className={className} ref={ref}>
-        <Styled.CloseButton action={handleDrawer}>
-          <Styled.CloseIcon />
-        </Styled.CloseButton>
-        <Styled.Navigation isTopAppBar={false} />
-      </Styled.Container>
-    );
+  function handleDrawer() {
+    dispatch(toggleDrawer(false));
   }
-);
+
+  return (
+    <Styled.Container className={className} ref={ref}>
+      <Styled.CloseButton action={handleDrawer}>
+        <Styled.CloseIcon />
+      </Styled.CloseButton>
+      <Styled.Navigation isTopAppBar={false} />
+    </Styled.Container>
+  );
+});
 
 export default Drawer;

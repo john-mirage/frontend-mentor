@@ -3,37 +3,31 @@ import Cart from "../cart";
 import { AnimatePresence, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useFloating, autoUpdate } from "@floating-ui/react";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../store/store";
+import { toggleCart, toggleDrawer } from "../../slices/app";
 
 interface TopAppBarProps {
   className?: string;
-  cartIsOpen: boolean;
-  cartItemsNumber: number;
-  setDrawerIsOpen: (drawerIsOpen: boolean) => void;
-  setCartIsOpen: (cartIsOpen: boolean) => void;
-  setCartItemsNumber: (cartItemsNumber: number) => void;
 }
 
-const TopAppBar = ({
-  className,
-  cartIsOpen,
-  cartItemsNumber,
-  setDrawerIsOpen,
-  setCartIsOpen,
-  setCartItemsNumber,
-}: TopAppBarProps) => {
+const TopAppBar = ({ className }: TopAppBarProps) => {
+  const { cartIsOpen } = useSelector((state: RootState) => state.app);
+  const { cartItemsNumber } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
   const badgeMotionControls = useAnimation();
   const { refs, floatingStyles } = useFloating({
     open: cartIsOpen,
-    onOpenChange: setCartIsOpen,
+    onOpenChange: (open) => dispatch(toggleCart(open)),
     whileElementsMounted: autoUpdate,
   });
 
   function handleCart() {
-    setCartIsOpen(!cartIsOpen);
+    dispatch(toggleCart(!cartIsOpen));
   }
 
   function handleMenu() {
-    setDrawerIsOpen(true);
+    dispatch(toggleDrawer(true));
   }
 
   useEffect(() => {
@@ -72,14 +66,7 @@ const TopAppBar = ({
             )}
           </AnimatePresence>
         </Styled.CartButton>
-        {cartIsOpen && (
-          <Cart
-            ref={refs.setFloating}
-            style={floatingStyles}
-            cartItemsNumber={cartItemsNumber}
-            setCartItemsNumber={setCartItemsNumber}
-          />
-        )}
+        {cartIsOpen && <Cart ref={refs.setFloating} style={floatingStyles} />}
         <Styled.ProfileButton />
       </Styled.RightSection>
     </Styled.Container>

@@ -1,25 +1,26 @@
 import * as Styled from "./cart-product.style";
 import Button from "../button";
 import productThumbnail from "../../images/image-product-1-thumbnail.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../store/store";
+import { removeCartItems } from "../../slices/cart";
 
 interface CartProductProps {
   className?: string;
-  cartItemsNumber: number;
-  setCartItemsNumber: (cartItemsNumber: number) => void;
 }
 
-const CartProduct = ({
-  className,
-  cartItemsNumber,
-  setCartItemsNumber,
-}: CartProductProps) => {
+const CartProduct = ({ className }: CartProductProps) => {
+  const cartItemsNumber = useSelector(
+    (state: RootState) => state.cart.cartItemsNumber
+  );
+  const dispatch = useDispatch();
   const totalPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(cartItemsNumber * 125);
 
   function handleCartReset() {
-    setCartItemsNumber(0);
+    dispatch(removeCartItems());
   }
 
   return (
