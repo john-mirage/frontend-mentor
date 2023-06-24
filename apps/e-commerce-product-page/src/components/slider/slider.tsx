@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperCore } from "swiper/types";
 import { FreeMode, Navigation, Thumbs, EffectFade } from "swiper";
 import * as Styled from "./slider.style";
 import productImage1 from "../../images/image-product-1.jpg";
@@ -17,174 +18,90 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 import Thumbnail from "../thumbnail";
+import { IconNext, IconPrevious } from "../icons";
 
-function Slider() {
+interface SliderProps {
+  isLightbox: boolean;
+  action?: () => void;
+}
+
+function Slider({ isLightbox, action }: SliderProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState(undefined);
+  const swiperRef = useRef<SwiperCore>();
 
   return (
     <>
-      <Styled.Container>
+      <Styled.SliderContainer onClick={action}>
+        <Styled.Slider>
+          <Swiper
+            allowTouchMove={false}
+            effect="fade"
+            loop={true}
+            navigation={false}
+            thumbs={{
+              swiper:
+                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+            }}
+            modules={[FreeMode, Navigation, Thumbs, EffectFade]}
+            onBeforeInit={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            className="mySwiper2"
+          >
+            <SwiperSlide>
+              <img src={productImage1} alt="" draggable="false" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={productImage2} alt="" draggable="false" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={productImage3} alt="" draggable="false" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={productImage4} alt="" draggable="false" />
+            </SwiperSlide>
+          </Swiper>
+        </Styled.Slider>
+        <Styled.LeftButton
+          onClick={() => swiperRef.current?.slidePrev()}
+          $isLightbox={isLightbox}
+        >
+          <IconPrevious />
+        </Styled.LeftButton>
+        <Styled.RightButton
+          onClick={() => swiperRef.current?.slideNext()}
+          $isLightbox={isLightbox}
+        >
+          <IconNext />
+        </Styled.RightButton>
+      </Styled.SliderContainer>
+      <Styled.Thumbnails $isLightbox={isLightbox}>
         <Swiper
-          allowTouchMove={false}
-          effect="fade"
+          onSwiper={setThumbsSwiper}
           loop={true}
-          navigation={false}
-          thumbs={{
-            swiper:
-              thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
-          }}
-          modules={[FreeMode, Navigation, Thumbs, EffectFade]}
-          className="mySwiper2"
+          spaceBetween={32}
+          slidesPerView={4}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="mySwiper"
         >
           <SwiperSlide>
-            <img src={productImage1} alt="" draggable="false" />
+            <Thumbnail thumbnail={productThumbnail1} />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={productImage2} alt="" draggable="false" />
+            <Thumbnail thumbnail={productThumbnail2} />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={productImage3} alt="" draggable="false" />
+            <Thumbnail thumbnail={productThumbnail3} />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={productImage4} alt="" draggable="false" />
+            <Thumbnail thumbnail={productThumbnail4} />
           </SwiperSlide>
         </Swiper>
-      </Styled.Container>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={32}
-        slidesPerView={4}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <Thumbnail thumbnail={productThumbnail1} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Thumbnail thumbnail={productThumbnail2} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Thumbnail thumbnail={productThumbnail3} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Thumbnail thumbnail={productThumbnail4} />
-        </SwiperSlide>
-      </Swiper>
+      </Styled.Thumbnails>
     </>
   );
 }
 
 export default Slider;
-
-/*
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-
-import "./styles.css";
-
-// import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper";
-
-export default function App() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-  return (
-    <>
-      <Swiper
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
-        loop={true}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
-      >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide>
-      </Swiper>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={10}
-        slidesPerView={4}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide>
-      </Swiper>
-    </>
-  );
-}
-*/
