@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Container = styled(motion.div)`
+  margin-top: ${({ theme }) => theme.pxToRem(19)};
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - ${({ theme }) => theme.pxToRem(14)});
   max-width: ${({ theme }) => theme.pxToRem(360)};
   min-height: ${({ theme }) => theme.pxToRem(250)};
   border-radius: ${({ theme }) => theme.pxToRem(10)};

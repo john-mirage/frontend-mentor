@@ -2,7 +2,7 @@ import * as Styled from "./top-app-bar.style";
 import Cart from "../cart";
 import { AnimatePresence, useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import { useFloating, autoUpdate } from "@floating-ui/react";
+import { useFloating, autoUpdate, shift, offset } from "@floating-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store/store";
 import { toggleCart, toggleDrawer } from "../../slices/app";
@@ -20,6 +20,7 @@ const TopAppBar = ({ className }: TopAppBarProps) => {
     open: cartIsOpen,
     onOpenChange: (open) => dispatch(toggleCart(open)),
     whileElementsMounted: autoUpdate,
+    middleware: [shift(), offset({ crossAxis: -7 })],
   });
 
   function handleCart() {

@@ -15,6 +15,12 @@ export const Thumbnails = styled.div<hasLightboxStateProps>`
 
   @media screen and (min-width: ${({ theme }) => theme.screen.sm}) {
     display: block;
+    ${({ $isLightbox }) =>
+      $isLightbox &&
+      css`
+        padding-left: 52px;
+        padding-right: 52px;
+      `}
   }
 `;
 
@@ -37,15 +43,15 @@ export const Image = styled(motion.img)`
 
 const PositionButton = styled.button<hasLightboxStateProps>`
   position: absolute;
-  z-index: 100;
+  z-index: 20;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: ${({ $isLightbox }) => ($isLightbox ? "56px" : "40px")};
+  height: ${({ $isLightbox }) => ($isLightbox ? "56px" : "40px")};
   border-radius: 9999px;
   border: none;
   padding: 0;
@@ -61,9 +67,9 @@ const PositionButton = styled.button<hasLightboxStateProps>`
 `;
 
 export const LeftButton = styled(PositionButton)`
-  left: 16px;
+  left: ${({ $isLightbox }) => ($isLightbox ? "-28px" : "16px")};
 `;
 
 export const RightButton = styled(PositionButton)`
-  right: 16px;
+  right: ${({ $isLightbox }) => ($isLightbox ? "-28px" : "16px")};
 `;
