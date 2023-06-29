@@ -23,19 +23,23 @@ export const Count = styled.p`
 `;
 
 export const IconButton = styled(BaseIconButton)`
-  transition-property: opacity background-color;
-  transition-duration: 300ms;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: opacity background-color;
+    transition-duration: 150ms;
+  }
 
-  &:hover {
-    opacity: 0.6;
-    background-color: rgba(0, 0, 0, 0.1);
+  @media screen and (hover: hover) {
+    &:hover {
+      opacity: 0.6;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
 `;
 
 const Icon = css`
   width: ${({ theme }) => theme.pxToRem(12)};
   height: auto;
-  fill: ${(props) => props.theme.color.primary.orange};
+  color: ${(props) => props.theme.color.primary.orange};
 `;
 
 export const MinusIcon = styled(IconMinus)`

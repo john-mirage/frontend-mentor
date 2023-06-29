@@ -14,8 +14,8 @@ export const Title = styled.h1`
 export const Container = styled.main`
   width: 100%;
   height: auto;
-  padding-top: ${({ theme }) => theme.pxToRem(70)};
-  padding-bottom: ${({ theme }) => theme.pxToRem(140)};
+  padding-top: ${({ theme }) => theme.pxToRem(68)};
+  padding-bottom: ${({ theme }) => theme.pxToRem(88)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
     width: ${({ theme }) => theme.pxToRem(540)};
@@ -44,9 +44,6 @@ export const TopAppBar = styled(BaseTopAppBar)`
   z-index: 80;
   top: 0;
   left: 0;
-  padding-left: ${({ theme }) => theme.pxToRem(20)};
-  padding-right: ${({ theme }) => theme.pxToRem(20)};
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     position: relative;

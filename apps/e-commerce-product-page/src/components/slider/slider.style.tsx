@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
+import { IconNext, IconPrevious } from "../icons";
 
 interface hasLightboxStateProps {
   $isLightbox: boolean;
@@ -64,6 +65,18 @@ const PositionButton = styled.button<hasLightboxStateProps>`
         display: none;
       }
     `}
+`;
+
+const PositionIcon = css`
+  height: ${({ theme }) => theme.pxToRem(12)};
+`;
+
+export const NextIcon = styled(IconNext)`
+  ${PositionIcon}
+`;
+
+export const PreviousIcon = styled(IconPrevious)`
+  ${PositionIcon}
 `;
 
 export const LeftButton = styled(PositionButton)`

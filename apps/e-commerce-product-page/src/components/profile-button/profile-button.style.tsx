@@ -5,25 +5,34 @@ export const Container = styled.button`
   width: ${({ theme }) => theme.pxToRem(48)};
   height: ${({ theme }) => theme.pxToRem(48)};
   border-radius: 50%;
-  transition: background-color 300ms;
   padding: 0;
   border: none;
+  background-color: transparent;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: background-color;
+    transition-duration: 150ms;
+  }
+
+  @media screen and (hover: hover) {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    &:hover {
-      background-color: ${(props) => props.theme.color.primary.orange};
+    @media screen and (hover: hover) {
+      &:hover {
+        background-color: ${(props) => props.theme.color.primary.orange};
+      }
     }
   }
 `;
 
 export const Image = styled.img`
   margin: auto;
-  width: ${({ theme }) => theme.pxToRem(26)};
-  height: ${({ theme }) => theme.pxToRem(26)};
+  width: ${({ theme }) => theme.pxToRem(24)};
+  height: ${({ theme }) => theme.pxToRem(24)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     width: ${({ theme }) => theme.pxToRem(44)};

@@ -13,18 +13,20 @@ export const Container = styled.div`
 
 export const Company = styled.p`
   font-size: ${({ theme }) => theme.pxToRem(12)};
+  line-height: ${({ theme }) => theme.pxToRem(12)};
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: ${({ theme }) => theme.pxToRem(1)};
+  letter-spacing: 1.846px;
   color: ${(props) => props.theme.color.primary.orange};
-  margin-bottom: ${({ theme }) => theme.pxToRem(10)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(19)};
 `;
 
 export const Name = styled.h1`
-  font-size: ${({ theme }) => theme.pxToRem(26)};
+  font-size: ${({ theme }) => theme.pxToRem(28)};
+  line-height: ${({ theme }) => theme.pxToRem(32)};
   font-weight: 700;
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
-  margin-bottom: ${({ theme }) => theme.pxToRem(16)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(15)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
     font-size: ${({ theme }) => theme.pxToRem(48)};
@@ -32,11 +34,11 @@ export const Name = styled.h1`
 `;
 
 export const Description = styled.p`
-  font-size: ${({ theme }) => theme.pxToRem(16)};
+  font-size: ${({ theme }) => theme.pxToRem(15)};
   font-weight: 400;
-  line-height: ${({ theme }) => theme.pxToRem(26)};
+  line-height: ${({ theme }) => theme.pxToRem(25)};
   color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
-  margin-bottom: ${({ theme }) => theme.pxToRem(24)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(28)};
 `;
 
 export const Price = styled(BasePrice)`
@@ -62,6 +64,8 @@ export const CountInput = styled(BaseCountInput)`
 `;
 
 export const CartButton = styled(BaseButton)`
+  box-shadow: 0px 20px 50px -20px #ff7e1b;
+
   @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
     flex: 1 1 65%;
   }
@@ -71,7 +75,7 @@ export const CartIcon = styled(IconCart)`
   margin-right: ${({ theme }) => theme.pxToRem(16)};
   width: ${({ theme }) => theme.pxToRem(20)};
   height: auto;
-  fill: ${(props) => props.theme.color.neutral.white};
+  color: ${(props) => props.theme.color.neutral.white};
 `;
 
 export const ErrorMessage = styled(motion.p)`

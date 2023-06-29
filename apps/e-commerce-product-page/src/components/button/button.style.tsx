@@ -7,9 +7,8 @@ export const Container = styled.button`
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.pxToRem(60)};
-  border-radius: 1rem;
+  border-radius: ${({ theme }) => theme.pxToRem(10)};
   background-color: ${({ theme }) => theme.color.primary.orange};
-  box-shadow: 0 10px 30px -10px ${({ theme }) => theme.color.primary.orange};
   cursor: pointer;
   transition: opacity 300ms;
   border: none;

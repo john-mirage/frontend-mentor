@@ -28,7 +28,7 @@ const CartProduct = ({ className }: CartProductProps) => {
       <Styled.Product>
         <Styled.Thumbnail src={productThumbnail} />
         <Styled.Info>
-          <Styled.Title>Autumn Limited Edition...</Styled.Title>
+          <Styled.Title>Fall Limited Edition Sneakers</Styled.Title>
           <Styled.Price>
             $125 x {cartItemsNumber}{" "}
             <Styled.TotalPrice>{totalPrice}</Styled.TotalPrice>

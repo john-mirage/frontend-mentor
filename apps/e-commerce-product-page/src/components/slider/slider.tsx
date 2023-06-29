@@ -66,13 +66,13 @@ function Slider({ isLightbox, action }: SliderProps) {
           onClick={() => swiperRef.current?.slidePrev()}
           $isLightbox={isLightbox}
         >
-          <IconPrevious />
+          <Styled.PreviousIcon />
         </Styled.LeftButton>
         <Styled.RightButton
           onClick={() => swiperRef.current?.slideNext()}
           $isLightbox={isLightbox}
         >
-          <IconNext />
+          <Styled.NextIcon />
         </Styled.RightButton>
       </Styled.SliderContainer>
       <Styled.Thumbnails $isLightbox={isLightbox}>

@@ -13,7 +13,7 @@ export const Product = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
-  margin-bottom: ${({ theme }) => theme.pxToRem(25)};
+  margin-bottom: ${({ theme }) => theme.pxToRem(26)};
   text-align: center;
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
@@ -23,7 +23,7 @@ export const Product = styled.div`
 `;
 
 export const Thumbnail = styled.img`
-  flex: 0 0 ${({ theme }) => theme.pxToRem(50)};
+  flex: none;
   width: ${({ theme }) => theme.pxToRem(50)};
   height: ${({ theme }) => theme.pxToRem(50)};
   object-fit: cover;
@@ -31,13 +31,14 @@ export const Thumbnail = styled.img`
   margin-bottom: ${({ theme }) => theme.pxToRem(10)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
-    margin-right: ${({ theme }) => theme.pxToRem(20)};
+    margin-right: ${({ theme }) => theme.pxToRem(16)};
     margin-bottom: 0;
   }
 `;
 
 export const Info = styled.div`
-  flex: 1 1 0;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -56,6 +57,9 @@ export const Title = styled.h4`
   font-size: ${({ theme }) => theme.pxToRem(16)};
   font-weight: 400;
   color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const Price = styled.p`
@@ -70,11 +74,17 @@ export const TotalPrice = styled.span`
 `;
 
 export const DeleteButton = styled(IconButton)`
-  flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
-  transition: background-color 300ms;
+  flex: none;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: background-color;
+    transition-duration: 150ms;
+  }
+
+  @media screen and (hover: hover) {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.cart}) {
@@ -85,5 +95,5 @@ export const DeleteButton = styled(IconButton)`
 export const DeleteIcon = styled(IconDelete)`
   width: ${({ theme }) => theme.pxToRem(14)};
   height: auto;
-  fill: ${(props) => props.theme.color.neutral.grayishBlue};
+  color: ${(props) => props.theme.color.neutral.grayishBlue};
 `;

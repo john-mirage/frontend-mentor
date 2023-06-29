@@ -2,6 +2,7 @@ import * as Styled from "./drawer.style";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleDrawer } from "../../slices/app";
+import Navigation from "../navigation";
 
 interface DrawerProps {
   className?: string;
@@ -19,7 +20,7 @@ const Drawer = React.forwardRef(({ className }: DrawerProps, ref) => {
       <Styled.CloseButton action={handleDrawer}>
         <Styled.CloseIcon />
       </Styled.CloseButton>
-      <Styled.Navigation isTopAppBar={false} />
+      <Navigation isTopAppBar={false} />
     </Styled.Container>
   );
 });

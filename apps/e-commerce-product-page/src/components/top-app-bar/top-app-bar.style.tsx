@@ -12,8 +12,11 @@ export const Container = styled.header`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: ${({ theme }) => theme.pxToRem(70)};
+  height: ${({ theme }) => theme.pxToRem(68)};
   background-color: ${(props) => props.theme.color.neutral.white};
+  padding-left: ${({ theme }) => theme.pxToRem(24)};
+  padding-right: ${({ theme }) => theme.pxToRem(24)};
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     height: ${({ theme }) => theme.pxToRem(120)};
@@ -39,8 +42,8 @@ export const RightSection = styled(Section)`
 
 export const Logo = styled(BaseLogo)`
   flex: 0 1 auto;
-  width: ${({ theme }) => theme.pxToRem(100)};
-  fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
+  height: ${({ theme }) => theme.pxToRem(20)};
+  color: ${(props) => props.theme.color.neutral.veryDarkBlue};
   margin-right: ${({ theme }) => theme.pxToRem(10)};
 
   @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
@@ -56,11 +59,16 @@ export const Logo = styled(BaseLogo)`
 export const MenuButton = styled(IconButton)`
   flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
   margin-left: ${({ theme }) => theme.pxToRem(-16)};
-  margin-right: ${({ theme }) => theme.pxToRem(4)};
-  transition: background-color 300ms;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: background-color;
+    transition-duration: 150ms;
+  }
+
+  @media screen and (hover: hover) {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
@@ -69,19 +77,24 @@ export const MenuButton = styled(IconButton)`
 `;
 
 export const MenuIcon = styled(IconMenu)`
-  width: ${({ theme }) => theme.pxToRem(14)};
+  width: ${({ theme }) => theme.pxToRem(16)};
   height: auto;
-  fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
+  color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
 `;
 
 export const CartButton = styled(IconButton)`
   flex: 0 0 ${({ theme }) => theme.pxToRem(48)};
   margin-left: auto;
-  margin-right: ${({ theme }) => theme.pxToRem(4)};
-  transition: background-color 300ms;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: background-color;
+    transition-duration: 150ms;
+  }
+
+  @media screen and (hover: hover) {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
@@ -90,8 +103,8 @@ export const CartButton = styled(IconButton)`
 `;
 
 export const CartIcon = styled(IconCart)`
-  width: ${({ theme }) => theme.pxToRem(20)};
-  fill: ${(props) => props.theme.color.neutral.veryDarkBlue};
+  height: ${({ theme }) => theme.pxToRem(20)};
+  color: ${(props) => props.theme.color.neutral.darkGrayishBlue};
 `;
 
 export const Navigation = styled(BaseNavigation)`
