@@ -57,6 +57,18 @@ const PositionButton = styled.button<hasLightboxStateProps>`
   border: none;
   padding: 0;
   cursor: pointer;
+  color: ${({ theme }) => theme.color.neutral.veryDarkBlue};
+
+  @media screen and (hover: hover) {
+    &:hover {
+      color: ${({ theme }) => theme.color.primary.orange};
+    }
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: color;
+    transition-duration: 150ms;
+  }
 
   ${({ $isLightbox }) =>
     !$isLightbox &&
@@ -69,6 +81,10 @@ const PositionButton = styled.button<hasLightboxStateProps>`
 
 const PositionIcon = css`
   height: ${({ theme }) => theme.pxToRem(12)};
+
+  @media screen and (min-width: ${({ theme }) => theme.screen.lg}) {
+    height: ${({ theme }) => theme.pxToRem(16)};
+  }
 `;
 
 export const NextIcon = styled(IconNext)`

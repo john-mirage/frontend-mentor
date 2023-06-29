@@ -24,6 +24,7 @@ export const TopAppBarLink = styled.a`
   display: flex;
   height: 100%;
   margin-right: ${({ theme }) => theme.pxToRem(30)};
+  text-decoration: none;
 
   &:last-child {
     margin-right: 0;

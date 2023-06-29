@@ -28,8 +28,9 @@ export const Name = styled.h1`
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
   margin-bottom: ${({ theme }) => theme.pxToRem(15)};
 
-  @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
-    font-size: ${({ theme }) => theme.pxToRem(48)};
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
+    font-size: ${({ theme }) => theme.pxToRem(44)};
+    line-height: ${({ theme }) => theme.pxToRem(48)};
   }
 `;
 
@@ -46,7 +47,7 @@ export const Price = styled(BasePrice)`
 `;
 
 export const Form = styled.div`
-  @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -56,8 +57,9 @@ export const Form = styled.div`
 export const CountInput = styled(BaseCountInput)`
   margin-bottom: ${({ theme }) => theme.pxToRem(16)};
 
-  @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
-    flex: 1 1 35%;
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
+    flex: none;
+    width: ${({ theme }) => theme.pxToRem(157)};
     margin-bottom: 0;
     margin-right: ${({ theme }) => theme.pxToRem(20)};
   }
@@ -66,8 +68,8 @@ export const CountInput = styled(BaseCountInput)`
 export const CartButton = styled(BaseButton)`
   box-shadow: 0px 20px 50px -20px #ff7e1b;
 
-  @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
-    flex: 1 1 65%;
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
+    flex: 1;
   }
 `;
 

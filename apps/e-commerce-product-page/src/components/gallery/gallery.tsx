@@ -11,7 +11,7 @@ const Gallery = ({ className }: GalleryProps) => {
   const dispatch = useDispatch();
 
   function handleLightbox() {
-    if (window.matchMedia("(min-width: 576px)").matches) {
+    if (window.matchMedia("(min-width: 992px)").matches) {
       dispatch(toggleLightbox(true));
     }
   }

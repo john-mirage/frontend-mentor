@@ -24,15 +24,21 @@ export const CloseButton = styled(IconButton)`
   width: ${({ theme }) => theme.pxToRem(60)};
   height: ${({ theme }) => theme.pxToRem(60)};
   margin-right: ${({ theme }) => theme.pxToRem(-20)};
+  color: ${(props) => props.theme.color.neutral.white};
+
+  @media screen and (hover: hover) {
+    &:hover {
+      color: ${(props) => props.theme.color.primary.orange};
+    }
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: color;
+    transition-duration: 150ms;
+  }
 `;
 
 export const CloseIcon = styled(IconClose)`
   width: ${({ theme }) => theme.pxToRem(20)};
   height: auto;
-  fill: ${(props) => props.theme.color.neutral.white};
-  transition: fill 300ms;
-
-  ${CloseButton}:hover & {
-    fill: ${(props) => props.theme.color.primary.orange};
-  }
 `;

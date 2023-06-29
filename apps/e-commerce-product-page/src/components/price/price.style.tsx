@@ -28,6 +28,7 @@ export const Discount = styled.p`
 `;
 
 export const InitialPrice = styled.p`
+  width: 100%;
   font-size: ${({ theme }) => theme.pxToRem(16)};
   line-height: ${({ theme }) => theme.pxToRem(26)};
   font-weight: 700;
@@ -35,7 +36,11 @@ export const InitialPrice = styled.p`
   color: ${(props) => props.theme.color.neutral.grayishBlue};
   margin-left: auto;
 
-  @media screen and (min-width: ${(props) => props.theme.screen.xl}) {
+  @media screen and (min-width: ${(props) => props.theme.screen.xs}) {
+    width: auto;
+  }
+
+  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
     margin-top: ${({ theme }) => theme.pxToRem(10)};
     width: 100%;
   }

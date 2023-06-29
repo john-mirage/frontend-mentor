@@ -12,7 +12,7 @@ function Navigation({ className, isTopAppBar }: NavigationProps) {
     return (
       <Styled.TopAppBarNavigation className={className}>
         {links.map((link, index) => (
-          <Styled.TopAppBarLink key={index}>
+          <Styled.TopAppBarLink key={index} href="#">
             <Styled.TopAppBarText>{link}</Styled.TopAppBarText>
             <Styled.TopAppBarLine />
           </Styled.TopAppBarLink>

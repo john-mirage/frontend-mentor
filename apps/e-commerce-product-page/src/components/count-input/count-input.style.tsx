@@ -24,14 +24,13 @@ export const Count = styled.p`
 
 export const IconButton = styled(BaseIconButton)`
   @media screen and (prefers-reduced-motion: no-preference) {
-    transition-property: opacity background-color;
+    transition-property: opacity;
     transition-duration: 150ms;
   }
 
   @media screen and (hover: hover) {
     &:hover {
       opacity: 0.6;
-      background-color: rgba(0, 0, 0, 0.1);
     }
   }
 `;

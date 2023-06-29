@@ -22,8 +22,8 @@ const theme = {
       '"Rubik", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
   },
   screen: {
+    xs: "375px",
     sm: "576px",
-    md: "768px",
     lg: "992px",
     xl: "1200px",
     cart: "300px",
