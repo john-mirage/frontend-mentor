@@ -4,14 +4,14 @@ import { IconClose } from "../icons";
 
 export const Container = styled.div`
   width: 100%;
-  height: auto;
+  max-width: ${({ theme }) => theme.pxToRem(550)};
   padding-top: ${({ theme }) => theme.pxToRem(120)};
   padding-bottom: ${({ theme }) => theme.pxToRem(50)};
 `;
 
 export const Dialog = styled.div`
   position: relative;
-  width: ${({ theme }) => theme.pxToRem(700)};
+  width: 100%;
   height: auto;
   margin: auto;
 `;

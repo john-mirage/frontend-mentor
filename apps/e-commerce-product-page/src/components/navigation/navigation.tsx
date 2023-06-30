@@ -23,7 +23,9 @@ function Navigation({ className, isTopAppBar }: NavigationProps) {
     return (
       <Styled.DrawerNavigation className={className}>
         {links.map((link, index) => (
-          <Styled.DrawerLink key={index}>{link}</Styled.DrawerLink>
+          <Styled.DrawerLink key={index} href="#">
+            {link}
+          </Styled.DrawerLink>
         ))}
       </Styled.DrawerNavigation>
     );

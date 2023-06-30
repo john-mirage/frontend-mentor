@@ -21,7 +21,6 @@ const Lightbox = forwardRef(({ className }: LightboxProps, ref) => {
         <Styled.CloseButton action={handleLightbox}>
           <Styled.CloseIcon />
         </Styled.CloseButton>
-
         <Slider isLightbox={true} />
       </Styled.Dialog>
     </Styled.Container>

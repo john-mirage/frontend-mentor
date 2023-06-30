@@ -7,7 +7,20 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: ${theme.font.stack};
-    background-color: ${theme.color.veryLightGray};
+  }
+
+  .swiper-gallery {
+    aspect-ratio: 375/300;
+  }
+
+  .swiper-gallery img {
+    object-fit: cover;
+  }
+
+  @media screen and (min-width: 576px) {
+    .swiper-gallery {
+      aspect-ratio: 1/1;
+    }
   }
 `;
 

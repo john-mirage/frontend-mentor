@@ -8,6 +8,7 @@ export const Container = styled.button`
   padding: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition-property: background-color;
@@ -16,7 +17,7 @@ export const Container = styled.button`
 
   @media screen and (hover: hover) {
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.color.neutral.lightGrayishBlue};
     }
   }
 

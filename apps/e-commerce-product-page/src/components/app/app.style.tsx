@@ -47,11 +47,7 @@ export const TopAppBar = styled(BaseTopAppBar)`
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
     position: relative;
-    margin-bottom: ${({ theme }) => theme.pxToRem(100)};
-    padding-left: 0;
-    padding-right: 0;
-    box-shadow: none;
-    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+    margin-bottom: ${({ theme }) => theme.pxToRem(90)};
   }
 `;
 
@@ -93,11 +89,9 @@ export const Lightbox = styled(motion(BaseLightbox))`
   position: fixed;
   display: flex;
   z-index: 100;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const Scrim = styled(motion.div)`

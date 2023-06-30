@@ -21,7 +21,7 @@ export const CloseButton = styled(BaseIconButton)`
 
   @media screen and (hover: hover) {
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.color.neutral.lightGrayishBlue};
     }
   }
 `;

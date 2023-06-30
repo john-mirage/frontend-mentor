@@ -19,7 +19,12 @@ export const Container = styled.header`
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    height: ${({ theme }) => theme.pxToRem(120)};
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: none;
+    border-bottom: ${({ theme }) => theme.pxToRem(1)} solid
+      hsla(219, 35%, 92%, 1);
+    height: ${({ theme }) => theme.pxToRem(112)};
   }
 `;
 
@@ -46,13 +51,8 @@ export const Logo = styled(BaseLogo)`
   color: ${(props) => props.theme.color.neutral.veryDarkBlue};
   margin-right: ${({ theme }) => theme.pxToRem(10)};
 
-  @media screen and (min-width: ${(props) => props.theme.screen.sm}) {
-    width: ${({ theme }) => theme.pxToRem(120)};
-  }
-
   @media screen and (min-width: ${(props) => props.theme.screen.lg}) {
-    width: ${({ theme }) => theme.pxToRem(160)};
-    margin-right: ${({ theme }) => theme.pxToRem(60)};
+    margin-right: ${({ theme }) => theme.pxToRem(56)};
   }
 `;
 
@@ -67,7 +67,7 @@ export const MenuButton = styled(IconButton)`
 
   @media screen and (hover: hover) {
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.color.neutral.lightGrayishBlue};
     }
   }
 
@@ -93,7 +93,7 @@ export const CartButton = styled(IconButton)`
 
   @media screen and (hover: hover) {
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.color.neutral.lightGrayishBlue};
     }
   }
 

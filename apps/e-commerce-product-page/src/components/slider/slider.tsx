@@ -18,7 +18,6 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 import Thumbnail from "../thumbnail";
-import { IconNext, IconPrevious } from "../icons";
 
 interface SliderProps {
   isLightbox: boolean;
@@ -46,7 +45,7 @@ function Slider({ isLightbox, action }: SliderProps) {
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
             }}
-            className="mySwiper2"
+            className="swiper-gallery"
           >
             <SwiperSlide>
               <img src={productImage1} alt="" draggable="false" />
@@ -84,7 +83,6 @@ function Slider({ isLightbox, action }: SliderProps) {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper"
         >
           <SwiperSlide>
             <Thumbnail thumbnail={productThumbnail1} />
