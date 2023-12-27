@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
-import { FreeMode, Navigation, Thumbs, EffectFade } from "swiper";
+import { FreeMode, Navigation, Thumbs, EffectFade } from "swiper/modules";
 import * as Styled from "./slider.style";
 import productImage1 from "../../images/image-product-1.jpg";
 import productImage2 from "../../images/image-product-2.jpg";
@@ -77,7 +77,7 @@ function Slider({ isLightbox, action }: SliderProps) {
       <Styled.Thumbnails $isLightbox={isLightbox}>
         <Swiper
           onSwiper={setThumbsSwiper}
-          loop={true}
+          loop={false}
           spaceBetween={32}
           slidesPerView={4}
           freeMode={true}
