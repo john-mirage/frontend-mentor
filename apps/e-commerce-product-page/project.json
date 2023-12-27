@@ -54,20 +54,15 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/e-commerce-product-page"],
+      "outputs": ["{workspaceRoot}/coverage/apps/e-commerce-product-page"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/e-commerce-product-page"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/e-commerce-product-page/**/*.{ts,tsx,js,jsx}"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": []

@@ -54,20 +54,15 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/newsletter-sign-up-form"],
+      "outputs": ["{workspaceRoot}/coverage/apps/newsletter-sign-up-form"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/newsletter-sign-up-form"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/newsletter-sign-up-form/**/*.{ts,tsx,js,jsx}"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": []

@@ -54,18 +54,15 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/age-calculator-app"],
+      "outputs": ["{workspaceRoot}/coverage/apps/age-calculator-app"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/age-calculator-app"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/age-calculator-app/**/*.{ts,tsx,js,jsx}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": []

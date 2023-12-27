@@ -54,20 +54,15 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/interactive-comments-section"],
+      "outputs": ["{workspaceRoot}/coverage/apps/interactive-comments-section"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/interactive-comments-section"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/interactive-comments-section/**/*.{ts,tsx,js,jsx}"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": []
